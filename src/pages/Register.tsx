@@ -15,12 +15,12 @@ import { IonReactRouter } from '@ionic/react-router';
 
 const Register: React.FC = () => {
 
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [cpassword, setCPassword] = useState('')
 
   function registerUser() {
-    console.log(username, password, cpassword )
+    console.log(email, password, cpassword)
   }
 
   return (
@@ -33,13 +33,15 @@ const Register: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonInput
-          placeholder="username"
-          onIonChange={(e: any) => setUsername(e.target.value)} />
+          placeholder="email"
+          onIonChange={(e: any) => setEmail(e.target.value)} />
 
         <IonInput
+          type="password"
           placeholder="password"
           onIonChange={(e: any) => setPassword(e.target.value)} />
         <IonInput
+          type="password"
           placeholder="confirm password"
           onIonChange={(e: any) => setCPassword(e.target.value)} />
 

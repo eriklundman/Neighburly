@@ -12,14 +12,16 @@ import {
   IonHeader, IonPage, IonTitle, IonToolbar, IonContent
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import { loginUser } from '../firebaseConfig'
 
 const Login: React.FC = () => {
 
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function loginUser() {
-    console.log(username, password)
+  async function login() {
+    const res = await loginUser(email, password)
+    console.log(`${res ? 'login success' : 'login failed' }`)
   }
 
   return (
@@ -32,13 +34,13 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonContent>
         <IonInput
-          placeholder="username"
-          onIonChange={(e: any) => setUsername(e.target.value)} />
+          placeholder="email"
+          onIonChange={(e: any) => setEmail(e.target.value)} />
         <IonInput
+          type="password"
           placeholder="password"
           onIonChange={(e: any) => setPassword(e.target.value)} />
-        <IonButton onClick={loginUser} >Login</IonButton>
-
+        <IonButton onClick={login}>Login</IonButton>
         <p>New here? <Link to="/register">Register</Link> </p>
       </IonContent>
     </IonPage >
