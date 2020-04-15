@@ -7,7 +7,6 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonButton,
-  IonTabs,
   IonInput,
   IonHeader, IonPage, IonTitle, IonToolbar, IonContent
 } from '@ionic/react';

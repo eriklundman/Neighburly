@@ -26,7 +26,7 @@ const Tabs: React.FC = () => {
         <Route path="/helpTab" component={HelpTab} exact={true} />
         <Route path="/mapTab" component={MapTab} exact={true} />
         <Route path="/profileTab" component={ProfileTab} />
-        <Route path="/tabs" render={() => <Redirect to="/menuTab" />} exact={true} />
+        <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom" >
         <IonTabButton tab="menuTab" href="/menuTab">

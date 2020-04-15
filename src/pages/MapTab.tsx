@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import SimpleMap from '../components/Map1';
 import './MapTab.css';
 
 const MapTab: React.FC = () => {
@@ -17,7 +17,7 @@ const MapTab: React.FC = () => {
             <IonTitle size="large">Map tab</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+        <SimpleMap/>
       </IonContent>
     </IonPage>
   );
