@@ -18,6 +18,7 @@ const HelpTab: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonButton color="primary" id="knapp">knapp</IonButton>
+          <ExploreContainer name="Tab 1 page" />
       </IonContent>
     </IonPage>
   );
