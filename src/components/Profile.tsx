@@ -1,6 +1,6 @@
 import React from 'react';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
-import { personCircleOutline } from 'ionicons/icons';
+import { IonContent, IonTitle, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
+import { personCircleOutline, settingsOutline } from 'ionicons/icons';
 
 
 const Profile: React.FC = () => {
@@ -8,13 +8,18 @@ const Profile: React.FC = () => {
         <IonContent>
             <IonGrid>
           <IonRow>
-            <IonCol>
-            <IonIcon size="large" color="tertiary" icon={personCircleOutline} />
-            <IonText>Edit profile</IonText>
-            </IonCol>
+            <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
           </IonRow>
           <IonRow>
-          <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
+         </IonRow>
+         <IonRow>
+         <IonIcon size="large" color="tertiary" icon={settingsOutline}></IonIcon>
+         </IonRow>
+         <IonRow>
+         <IonText color="tertiary">Edit profile</IonText>
+         </IonRow>
+         <IonRow>
+         <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
           <IonSegmentButton value="helper">
             <IonLabel>Helper</IonLabel>
           </IonSegmentButton>
