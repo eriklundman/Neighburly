@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Link } from 'react-router-dom';
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -12,15 +12,21 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { loginUser } from '../firebaseConfig'
+import {toast} from "../toast";
 
 const Login: React.FC = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  let history = useHistory();
 
   async function login() {
     const res = await loginUser(email, password)
     console.log(`${res ? 'login success' : 'login failed' }`)
+    if (res) {
+      history.push('/tabs');
+      toast("Log in successful");
+    }
   }
 
   return (
