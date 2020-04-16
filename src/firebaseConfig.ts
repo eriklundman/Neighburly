@@ -11,7 +11,9 @@ const config = {
   measurementId: "G-X8Y1CVKP6Y"
 };
 
-firebase.initializeApp(config)
+firebase.initializeApp(config);
+const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true})
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -24,7 +26,7 @@ export async function loginUser(email: string, password: string) {
   }
 }
 
-export async function registerUser(email: string, password: string) {
+export async function registerUser(firstname: string, lastname: string, email: string, password: string) {
   try {
     const res = await firebase.auth().createUserWithEmailAndPassword(email, password)
     console.log(res)
