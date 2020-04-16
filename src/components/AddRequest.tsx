@@ -1,15 +1,15 @@
 import React from 'react';
-import { IonFabButton, IonIcon, IonFab } from '@ionic/react';
-import {addOutline } from 'ionicons/icons';
+import {IonIcon, IonFab, IonFabButton } from '@ionic/react';
+import { addCircleOutline } from 'ionicons/icons';
 
 const RequestBtn = () => {
     return(
-    <IonFab vertical="top" horizontal="start" slot="fixed">
-        <IonFabButton>
-          <IonIcon icon={addOutline} size="large"/>
-        </IonFabButton>
-        Add Rqst
-      </IonFab>
+        <IonFab vertical="top" horizontal="start" slot="fixed">
+          <IonFabButton routerLink="/mapTab/makerequest">
+            <IonIcon icon={addCircleOutline} />
+          </IonFabButton>
+          Add Rqst
+        </IonFab>
     );
   };
 

@@ -15,6 +15,7 @@ import MenuTab from './MenuTab';
 import HelpTab from './HelpTab';
 import MapTab from './MapTab';
 import ProfileTab from './ProfileTab';
+import MakeRequest from './MakeRequest';
 
 
 const Tabs: React.FC = () => {
@@ -25,6 +26,7 @@ const Tabs: React.FC = () => {
         <Route path="/menuTab" component={MenuTab} exact={true} />
         <Route path="/helpTab" component={HelpTab} exact={true} />
         <Route path="/mapTab" component={MapTab} exact={true} />
+        <Route path="/mapTab/makerequest/" component={MakeRequest}/>
         <Route path="/profileTab" component={ProfileTab} />
         <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
 import './ProfileTab.css';
-import { personCircleOutline } from 'ionicons/icons';
 import Profile from '../components/Profile'
 
 const ProfileTab: React.FC = () => {
