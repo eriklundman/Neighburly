@@ -13,7 +13,6 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
-db.settings({timestampsInSnapshots: true})
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -28,13 +27,13 @@ export async function loginUser(email: string, password: string) {
 }
 
 export async function registerUser(firstname: string, lastname: string, email: string, password: string) {
-  try {
-    const res = await firebase.auth().createUserWithEmailAndPassword(email, password)
-    console.log(res)
-    return true
-  }
-  catch (error){
-    console.log(error)
-    return false
-  }
+
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+          db.collection('users').doc(email).set({
+            firstname, lastname
+          }).catch(function(error) {
+            console.error("Error adding document: ", error);
+          });
+})
+
 }
