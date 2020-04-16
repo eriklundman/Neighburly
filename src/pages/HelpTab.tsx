@@ -17,7 +17,6 @@ const HelpTab: React.FC = () => {
             <IonTitle size="large">Help tab</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonButton color="primary" id="knapp">knapp</IonButton>
           <ExploreContainer name="Tab 1 page" />
       </IonContent>
     </IonPage>

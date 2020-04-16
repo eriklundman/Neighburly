@@ -11,6 +11,7 @@ const Menu: React.FC = () => {
 </IonItem>
 <IonItem routerLink="/mapTab">
   <IonLabel> Terms & Conditions </IonLabel>
+  <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>
 </IonContent>
 );

@@ -17,7 +17,6 @@ const MenuTab: React.FC = () => {
             <IonTitle size="large">MenuTab</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonMenuToggle autoHide={false}></IonMenuToggle>
         <Menu/>
       </IonContent>
     </IonPage>
