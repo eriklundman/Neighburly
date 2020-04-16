@@ -23,3 +23,15 @@ export async function loginUser(email: string, password: string) {
     return false
   }
 }
+
+export async function registerUser(email: string, password: string) {
+  try {
+    const res = await firebase.auth().createUserWithEmailAndPassword(email, password)
+    console.log(res)
+    return true
+  }
+  catch (error){
+    console.log(error)
+    return false
+  }
+}
