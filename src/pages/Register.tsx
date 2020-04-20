@@ -25,7 +25,7 @@ const Register: React.FC = () => {
 
   async function register() {
     if (password === cpassword) {
-      const res = await registerUser(firstname, lastname, email, password)
+      await registerUser(firstname, lastname, email, password)
     }
     else {
       console.log("olika lösenord")

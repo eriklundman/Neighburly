@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+import { constructOutline } from 'ionicons/icons';
 
 const config = {
   apiKey: "AIzaSyCjzRHhY9FAUQ0yoxWN9pKF3MwDtGrtRdw",
@@ -13,6 +14,7 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true });
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -28,12 +30,32 @@ export async function loginUser(email: string, password: string) {
 
 export async function registerUser(firstname: string, lastname: string, email: string, password: string) {
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-          db.collection('users').doc(email).set({
-            firstname, lastname
-          }).catch(function(error) {
-            console.error("Error adding document: ", error);
-          });
-})
+  firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
+    db.collection('users').doc(cred.user.uid).set({
+      firstname, lastname
+    }).catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+  })
 
 }
+
+
+
+export function setUpProfile() {
+  
+var user = firebase.auth().currentUser;
+
+    if (user != null) {
+      user.providerData.forEach(function(profile){
+        console.log("mail: " + profile?.email)
+        let thing = document.getElementById('profcont') as any
+        thing.innerText = profile?.email
+      })
+    }
+    else {
+      console.log("inte inloggad antar jag")
+    }
+
+}
+

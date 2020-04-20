@@ -4,11 +4,11 @@ import './ProfileTab.css';
 import Profile from '../components/Profile'
 
 const ProfileTab: React.FC = () => {
-  
+
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="primary">
+        <IonToolbar color="secondary">
           <IonTitle color="tertiary">Neighburly</IonTitle>
         </IonToolbar>
       </IonHeader>
