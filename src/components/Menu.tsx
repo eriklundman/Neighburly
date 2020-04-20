@@ -5,7 +5,7 @@ import { arrowForwardOutline } from 'ionicons/icons';
 const Menu: React.FC = () => {
   return (
     <IonContent>
-<IonItem routerLink="/mapTab">
+<IonItem routerLink="/menuTab/info/">
   <IonLabel> Info </IonLabel>
   <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>

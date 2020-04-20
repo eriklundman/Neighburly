@@ -2,6 +2,7 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
 import './ProfileTab.css';
 import Profile from '../components/Profile'
+import SettingsBtn from '../components/EditProfile';
 
 const ProfileTab: React.FC = () => {
   
@@ -19,6 +20,7 @@ const ProfileTab: React.FC = () => {
           </IonToolbar>
           </IonHeader>
         <Profile/>
+        <SettingsBtn/>
       </IonContent>
     </IonPage>
   );

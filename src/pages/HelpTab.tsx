@@ -2,6 +2,7 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './HelpTab.css';
+import Help from '../components/Help'
 
 const HelpTab: React.FC = () => {
   return (
@@ -17,8 +18,8 @@ const HelpTab: React.FC = () => {
             <IonTitle size="large">Help tab</IonTitle>
           </IonToolbar>
         </IonHeader>
-          <ExploreContainer name="Tab 1 page" />
-      </IonContent>
+        <Help/>     
+ </IonContent>
     </IonPage>
   );
 };
