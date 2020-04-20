@@ -1,9 +1,13 @@
-import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent } from '@ionic/react';
+import React, { useState } from 'react';
+import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonInput, IonList, IonItem } from '@ionic/react';
 import PickRequestType from '../components/PickRequestType';
-import RequestDescription from '../components/RequestDes'
+import RequestDescription from '../components/RequestDes';
+import AddressPredictions from '../components/AddressInput';
+import PlacesAutocomplete from '../components/AddressInput2'
 
 const MakeRequest: React.FC = () => {
+    const [text, setText] = useState<string>();
+    
     return (
         <IonPage>
             <IonToolbar>
@@ -15,6 +19,7 @@ const MakeRequest: React.FC = () => {
         <IonContent>
             <PickRequestType/>
             <RequestDescription/>
+            <PlacesAutocomplete/>
         </IonContent>
         </IonPage>
     );

@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
   IonButton,
   IonInput,
   IonHeader, IonPage, IonTitle, IonToolbar, IonContent
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
 import { loginUser } from '../firebaseConfig'
 import {toast} from "../toast";
 
