@@ -9,7 +9,7 @@ const Menu: React.FC = () => {
   <IonLabel> Info </IonLabel>
   <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>
-<IonItem routerLink="/mapTab">
+<IonItem routerLink="/menuTab/termsandconditions/">
   <IonLabel> Terms & Conditions </IonLabel>
   <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>

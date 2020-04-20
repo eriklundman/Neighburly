@@ -1,6 +1,7 @@
 import React from 'react';
-import { IonContent, IonTitle, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
-import { personCircleOutline, settingsOutline } from 'ionicons/icons';
+import { IonContent, IonTitle, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar } from '@ionic/react';
+import { personCircleOutline } from 'ionicons/icons';
+import SettingsBtn from '../components/EditProfile';
 
 
 const Profile: React.FC = () => {
@@ -9,16 +10,11 @@ const Profile: React.FC = () => {
             <IonGrid>
           <IonRow>
             <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
+            <IonText>Name of user</IonText>
           </IonRow>
-          <IonRow>
-         </IonRow>
+          <SettingsBtn/>
          <IonRow>
-         <IonIcon size="large" color="tertiary" icon={settingsOutline}></IonIcon>
-         </IonRow>
-         <IonRow>
-         <IonText color="tertiary">Edit profile</IonText>
-         </IonRow>
-         <IonRow>
+           <IonToolbar>
          <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
           <IonSegmentButton value="helper">
             <IonLabel>Helper</IonLabel>
@@ -27,6 +23,7 @@ const Profile: React.FC = () => {
             <IonLabel>Receiver</IonLabel>
           </IonSegmentButton>
          </IonSegment>
+         </IonToolbar>
          </IonRow>
          </IonGrid>
         </IonContent>

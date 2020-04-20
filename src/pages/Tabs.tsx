@@ -18,6 +18,8 @@ import ProfileTab from './ProfileTab';
 import MakeRequest from './MakeRequest';
 import EditYourProfile from './EditYourProfile';
 import GetInfo from './GetInfo';
+import TermsOfUse from './TermsOfUse';
+
 
 
 
@@ -28,6 +30,7 @@ const Tabs: React.FC = () => {
       <IonRouterOutlet>
         <Route path="/menuTab" component={MenuTab} exact={true} />
         <Route path="/menuTab/info/" component={GetInfo}/>
+        <Route path="/menuTab/termsandconditions/" component={TermsOfUse}/>
         <Route path="/helpTab" component={HelpTab} exact={true} />
         <Route path="/mapTab" component={MapTab} exact={true} />
         <Route path="/mapTab/makerequest/" component={MakeRequest}/>
