@@ -1,12 +1,12 @@
 import React from 'react';
-import { IonContent, IonTitle, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar } from '@ionic/react';
+import { IonContent, IonTitle, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar, IonPage } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
 import SettingsBtn from '../components/EditProfile';
 
 
 const Profile: React.FC = () => {
     return (
-        <IonContent>
+          <IonContent>
             <IonGrid>
           <IonRow>
             <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
@@ -26,7 +26,7 @@ const Profile: React.FC = () => {
          </IonToolbar>
          </IonRow>
          </IonGrid>
-        </IonContent>
+         </IonContent>
   );
   }
   

@@ -32,7 +32,15 @@ const PlacesAutocomplete = () => {
     setValue(description, false);
     clearSuggestions();
 
- 
+    // Get latitude and longitude via utility functions
+    getGeocode({ address: description })
+      .then(results => getLatLng(results[0]))
+      .then(({ lat, lng }) => {
+        console.log('📍 Coordinates: ', { lat, lng });
+      }).catch(error => {
+        console.log('😱 Error: ', error)
+      });
+  };
 
   const renderSuggestions = () =>
     data.map(suggestion => {

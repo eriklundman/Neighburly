@@ -2,8 +2,8 @@ import React from 'react';
 import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonLabel } from '@ionic/react';
 
 
-
 const EditYourProfile: React.FC = () => {
+    console.log("hejhej")
     return (
         <IonPage>
             <IonToolbar>

@@ -9,7 +9,6 @@ import {
   IonTabButton,
   IonTabs
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
 import { personOutline, navigateCircleOutline, heartOutline, menuOutline } from 'ionicons/icons';
 import MenuTab from './MenuTab';
 import HelpTab from './HelpTab';
@@ -34,7 +33,7 @@ const Tabs: React.FC = () => {
         <Route path="/helpTab" component={HelpTab} exact={true} />
         <Route path="/mapTab" component={MapTab} exact={true} />
         <Route path="/mapTab/makerequest/" component={MakeRequest}/>
-        <Route path="/profileTab" component={ProfileTab} />
+        <Route path="/profileTab" component={ProfileTab} exact={true} />
         <Route path="/profileTab/edityourprofile/" component={EditYourProfile}/>
         <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>
