@@ -1,26 +1,16 @@
-<<<<<<< Updated upstream
-=======
 import React, {useState, useEffect} from 'react';
 import { IonContent, IonIcon, IonGrid, IonRow, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar, IonCol} from '@ionic/react';
 
->>>>>>> Stashed changes
-
-import { IonContent, IonGrid, IonIcon, IonLabel, IonRow, IonSegment, IonSegmentButton, IonText, IonToolbar } from '@ionic/react';
 import { personCircleOutline } from 'ionicons/icons';
-import React, { useState } from 'react';
 import SettingsBtn from '../components/EditProfile';
 
 const Profile: React.FC = () => {
-<<<<<<< Updated upstream
-  
-=======
   const [mode, setMode] = useState('You have helped (antal) persons')
 
   useEffect(() => {
     console.log(`${mode}`)
 
   });
->>>>>>> Stashed changes
 
     return (
           <IonContent>

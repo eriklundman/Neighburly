@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonItem, IonLabel, IonContent, IonIcon} from '@ionic/react';
+import { IonItem, IonLabel, IonContent, IonIcon, IonButton, IonButtons} from '@ionic/react';
 import { arrowForwardOutline } from 'ionicons/icons';
 
 const Menu: React.FC = () => {
@@ -12,6 +12,13 @@ const Menu: React.FC = () => {
 <IonItem routerLink="/menuTab/termsandconditions/">
   <IonLabel> Terms & Conditions </IonLabel>
   <IonIcon icon={arrowForwardOutline} slot="end" />
+</IonItem>
+<IonItem>
+  <IonButtons>
+  <IonButton className="ion-text-capitalize" color="danger">
+    Log Out
+  </IonButton>
+  </IonButtons>
 </IonItem>
 </IonContent>
 );
