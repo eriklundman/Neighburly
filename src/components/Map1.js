@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './MapMarker';
 
@@ -11,13 +11,13 @@ class SimpleMap extends React.Component {
   
   static defaultProps = {
     center: {
-      lat: 59,
+      lat: 59.8,
       lng: 17.63889
     },
     zoom: 11
   };
 
-  componentWillMount = () =>{
+  componentDidMount = () =>{
     navigator.geolocation.getCurrentPosition(this.currentCoords)
   };
 
@@ -30,8 +30,22 @@ class SimpleMap extends React.Component {
   };
  
   render() {
-    const setCenter = this.state.userPos
-    const setUserPos = this.state.userPos
+    const setCenter = this.state.userPos;
+    const setUserPos = this.state.userPos;
+
+    const apiIsLoaded = (map, maps, setUserPos) => {
+      new maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.3,
+        map,
+        center: setUserPos,
+        radius: 6000
+      });
+    };
+
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
@@ -39,6 +53,7 @@ class SimpleMap extends React.Component {
           defaultCenter={this.props.center}
           center={setCenter}
           defaultZoom={this.props.zoom}
+          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, setUserPos)}
         >
           <Marker
             lat={setUserPos.lat}
