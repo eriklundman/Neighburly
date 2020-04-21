@@ -10,6 +10,7 @@ const ProfileTab: React.FC = () => {
       <IonHeader>
         <IonToolbar color="primary">
           <IonTitle color="tertiary">Neighburly</IonTitle>
+
         </IonToolbar>
       </IonHeader>
       <IonContent>

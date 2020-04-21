@@ -10,17 +10,20 @@ import {toast} from "../toast";
 
 const Login: React.FC = () => {
 
+  const [busy, setBusy] = useState<boolean>(false)
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  let history = useHistory();
 
   async function login() {
+    setBusy(true)
     const res = await loginUser(email, password)
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
-      history.push('/tabs');
+    
       toast("Log in successful");
     }
+    setBusy(false)
   }
 
   return (
@@ -43,7 +46,6 @@ const Login: React.FC = () => {
         <p>New here? <Link to="/register">Register</Link> </p>
       </IonContent>
     </IonPage >
-
 
   );
 };

@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
-import { constructOutline } from 'ionicons/icons';
+import React, { useState } from 'react';
+import { resolve } from 'dns';
 
 const config = {
   apiKey: "AIzaSyCjzRHhY9FAUQ0yoxWN9pKF3MwDtGrtRdw",
@@ -20,7 +21,6 @@ export async function loginUser(email: string, password: string) {
   try {
     const res = await firebase.auth().signInWithEmailAndPassword(email, password)
     console.log(res)
-
     return true
   } catch (error) {
     console.log(error)
@@ -42,20 +42,54 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 
-export function setUpProfile() {
+/*export const setUpProfile = () => {
+
+  var user = firebase.auth().currentUser;
+
+  if (user != null) {
+    user.providerData.forEach(function (profile) {
+      let mail = profile?.email
+      console.log(mail)
+      return mail
+    })
+  }
+  else {
+    let error = "ej inloggad" as string
+    return error
+
+  }
+
+}*/
+
+/*export async function setUpProfile() {
+
+  var user = firebase.auth().currentUser;
   
-var user = firebase.auth().currentUser;
+  if (user != null) {
+    db.collection('users').doc(user.uid).onSnapshot(doc => {
+      var fn = doc.data()?.firstname;
+      console.log(fn)
+      return fn
+    })
+    
+  }
+  else {
+    let error = "ej inloggad" as string
+    return error
 
-    if (user != null) {
-      user.providerData.forEach(function(profile){
-        console.log("mail: " + profile?.email)
-        let thing = document.getElementById('profcont') as any
-        thing.innerText = profile?.email
-      })
-    }
-    else {
-      console.log("inte inloggad antar jag")
-    }
+  }
 
+}*/
+export function getCurrentUser() {
+  return new Promise((resolve,reject)=> {
+    const unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
+      if(user) {
+        resolve(user)
+      }else {
+        resolve(null)
+      }
+      unsubscribe()
+    })
+  })
+  
 }
-

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonRouterOutlet,
+  IonSpinner
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Register from './pages/Register';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -27,9 +29,16 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import { useDispatch } from 'react-redux';
+import { getCurrentUser } from './firebaseConfig';
 
-const App: React.FC = () => (
-  <IonApp>
+
+
+
+
+const RoutingSystem: React.FC = () => {
+
+  return(
     <IonReactRouter>
     <IonRouterOutlet>
         <Route path="/tabs" component={Tabs} exact />
@@ -38,7 +47,36 @@ const App: React.FC = () => (
         <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>     
     </IonReactRouter>
+  )
+}
+
+
+
+
+
+const App: React.FC = () => {
+
+const [busy, setBusy] = useState(true)
+
+useEffect(() => {
+  getCurrentUser().then((user: any) => {
+    if (user) {
+      //logged in
+      window.history.replaceState({}, '', '/tabs')
+    }
+    else{
+      window.history.replaceState({}, '', '/')
+    }
+    setBusy(false)
+  })
+  
+}, [])
+  
+return(
+  <IonApp>
+    {busy ? <IonSpinner/> : <RoutingSystem/>}
   </IonApp>
-);
+)
+}
 
 export default App;
