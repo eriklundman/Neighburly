@@ -11,7 +11,6 @@ const PlacesAutocomplete = () => {
     setValue,
     clearSuggestions
   } = usePlacesAutocomplete({
-    
     debounce: 300
   });
   const ref = useRef();
@@ -61,7 +60,7 @@ const PlacesAutocomplete = () => {
 
   return (
     <div ref={ref}>
-      <input
+      <input className="address-input-field"
         value={value}
         onChange={handleInput}
         disabled={!ready}

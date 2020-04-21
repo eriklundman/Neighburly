@@ -3,10 +3,11 @@ import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, I
 import PickRequestType from '../components/PickRequestType';
 import RequestDescription from '../components/RequestDes';
 import AddressPredictions from '../components/AddressInput';
-import PlacesAutocomplete from '../components/AddressInput2'
+import PlacesAutocomplete from '../components/AddressInput2';
+import DateTimeExamples from '../components/DatePicker';
+import GeolocationButton from '../components/CoordBtn'
 
 const MakeRequest: React.FC = () => {
-    const [text, setText] = useState<string>();
     
     return (
         <IonPage>
@@ -20,6 +21,7 @@ const MakeRequest: React.FC = () => {
             <PickRequestType/>
             <RequestDescription/>
             <PlacesAutocomplete/>
+            <DateTimeExamples/>
         </IonContent>
         </IonPage>
     );

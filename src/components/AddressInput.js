@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import UseAddressPredictions from "./Autocomplete";
+import './AddressInput2.css'
 
 export default function AddressPredictions() {
   const [input, setInput] = useState("");
-
   const predictions = UseAddressPredictions(input);
 
   return (

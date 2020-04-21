@@ -2,11 +2,10 @@ import React from 'react';
 import './MapMarker.css';
 
 const Marker = (props: any) => {
-    const { color, name, id } = props;
+    const {color} = props;
     return (
       <div className="marker"
-        style={{ backgroundColor: color, cursor: 'pointer'}}
-        title={name}
+      style={{ backgroundColor: color, cursor: 'pointer'}}
       />
     );
   };
