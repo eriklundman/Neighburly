@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Link } from 'react-router-dom';
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -9,12 +9,15 @@ import {
   IonButton,
   IonTabs,
   IonInput,
-  IonHeader, IonPage, IonTitle, IonToolbar, IonContent
+  IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonLoading
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { registerUser } from '../firebaseConfig'
+import { toast } from "../toast";
 
 const Register: React.FC = () => {
+  let history = useHistory();
+  const [busy, setBusy] = useState<boolean>(false);
 
   const [firstname, setFirstname] = useState('')
   const [lastname, setLastname] = useState('')
@@ -24,12 +27,25 @@ const Register: React.FC = () => {
   const [cpassword, setCPassword] = useState('')
 
   async function register() {
-    if (password === cpassword) {
-      await registerUser(firstname, lastname, email, password)
-    }
-    else {
+
+    if (password !== cpassword) {
       console.log("olika lösenord")
+      return toast("Passwords doesn't match")
     }
+    if (email.trim() === "" || password.trim() === "") {
+      return toast("Email and password are required")
+    }
+    if (firstname.trim() === "" || lastname.trim() === "") {
+      return toast("First name and surname are required")
+    }
+    setBusy(true);
+    const res = await registerUser(firstname, lastname, email, password);
+    console.log(res);
+    if (res) {
+      history.push('/login');
+      await toast("You're account has been registered!", 3000);
+    }
+    setBusy(false);
   }
 
   return (
@@ -40,6 +56,7 @@ const Register: React.FC = () => {
           <IonTitle>Register</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonLoading message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
         <IonInput
           placeholder="first name"

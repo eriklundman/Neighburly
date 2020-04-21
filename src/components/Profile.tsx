@@ -6,7 +6,7 @@ import SettingsBtn from '../components/EditProfile';
 
 const Profile: React.FC = () => {
   
- 
+
     return (
           <IonContent>
             <IonGrid>
@@ -14,7 +14,6 @@ const Profile: React.FC = () => {
             <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
             <IonText>Name of user</IonText>
             </IonRow>
-
           <SettingsBtn/>
          <IonRow>
            <IonToolbar>

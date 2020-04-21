@@ -1,6 +1,10 @@
 import * as firebase from 'firebase'
+
 import React, { useState } from 'react';
 import { resolve } from 'dns';
+
+import {toast} from "./toast";
+
 
 const config = {
   apiKey: "AIzaSyCjzRHhY9FAUQ0yoxWN9pKF3MwDtGrtRdw",
@@ -15,6 +19,7 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
+
 db.settings({ timestampsInSnapshots: true });
 
 export async function loginUser(email: string, password: string) {
@@ -23,22 +28,36 @@ export async function loginUser(email: string, password: string) {
     console.log(res)
     return true
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    await toast(error, 4000);
+
     return false
   }
 }
 
 export async function registerUser(firstname: string, lastname: string, email: string, password: string) {
 
-  firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
+  let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any)  => {
+
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname
-    }).catch(function (error) {
+      firstname, lastname, email
+    }).catch(function(error) {
       console.error("Error adding document: ", error);
+
     });
+
+    return true
+  }).catch(function(error) {
+    console.error("Error register user ", error);
+    toast(error, 4000);
+    return false
   })
 
+  return res
+
 }
+
+
 
 
 
@@ -93,3 +112,4 @@ export function getCurrentUser() {
   })
   
 }
+

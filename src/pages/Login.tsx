@@ -3,7 +3,7 @@ import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonHeader, IonPage, IonTitle, IonToolbar, IonContent
+  IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonLoading
 } from '@ionic/react';
 import { loginUser } from '../firebaseConfig'
 import {toast} from "../toast";
@@ -21,10 +21,12 @@ const Login: React.FC = () => {
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
     
-      toast("Log in successful");
+      toast("Log in successful!", 1500);
     }
     setBusy(false)
+
   }
+
 
   return (
 
@@ -34,6 +36,7 @@ const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonLoading message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
         <IonInput
           placeholder="email"
