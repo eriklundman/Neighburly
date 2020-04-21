@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonText, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo'
@@ -22,7 +22,7 @@ const EditYourProfile: React.FC = () => {
       <EditRadius/>
       <EditInfo/>
       <IonButtons>
-          <IonButton color="secondary">Change password</IonButton>
+          <IonButton className="ion-text-capitalize" color="secondary">Change password</IonButton>
           </IonButtons>
           <IonButton color="danger">Delete account</IonButton>
          </IonContent>

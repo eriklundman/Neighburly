@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonGrid, IonRow, IonCol, IonText, IonLabel, IonSegment, IonSegmentButton } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './ProfileTab.css';
 import Profile from '../components/Profile'
 
@@ -8,7 +8,7 @@ const ProfileTab: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="secondary">
+        <IonToolbar color="primary">
           <IonTitle color="tertiary">Neighburly</IonTitle>
         </IonToolbar>
       </IonHeader>

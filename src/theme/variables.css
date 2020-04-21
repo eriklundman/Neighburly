@@ -70,14 +70,7 @@ http://ionicframework.com/docs/theming/ */
 
 }
 
-.ion-color-our {
-  --ion-color-base: var(--ion-color-primary);
-  --ion-color-base-rgb: var(--ion-color-primary-rgb);
-  --ion-color-contrast: var(--ion-color-primary-contrast);
-  --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb);
-  --ion-color-shade: var(--ion-color-primary-shade);
-  --ion-color-tint: var(--ion-color-primary-tint);
-}
+
 
 @media (prefers-color-scheme: dark) {
   /*

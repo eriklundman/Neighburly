@@ -1,23 +1,21 @@
 import React from 'react';
 import { IonContent, IonIcon, IonGrid, IonRow, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar} from '@ionic/react';
+
+
 import { personCircleOutline } from 'ionicons/icons';
 import SettingsBtn from '../components/EditProfile';
 
 import { setUpProfile } from '../firebaseConfig';
 
 
-
-
 const Profile: React.FC = () => {
     return (
           <IonContent>
             <IonGrid>
-          <IonRow>
-
+            <IonRow>
             <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
             <IonText>Name of user</IonText>
-
-          </IonRow>
+            </IonRow>
           <SettingsBtn/>
          <IonRow>
            <IonToolbar>
