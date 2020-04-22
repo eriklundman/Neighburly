@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { IonList } from '@ionic/react';
 
 const PlacesAutocomplete = () => {
+  
   const {
     ready,
     value,
@@ -11,9 +12,12 @@ const PlacesAutocomplete = () => {
     setValue,
     clearSuggestions
   } = usePlacesAutocomplete({
+    requestOptions: "",
     debounce: 300
   });
   const ref = useRef();
+  const [coord, setCoord] = useState();
+
   useOnclickOutside(ref, () => {
     // When user clicks outside of the component, we can dismiss
     // the searched suggestions by calling this method
@@ -35,7 +39,9 @@ const PlacesAutocomplete = () => {
     getGeocode({ address: description })
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
+        setCoord({lat, lng})
         console.log('📍 Coordinates: ', { lat, lng });
+        console.log('📍 Coordinates: ', coord);
       }).catch(error => {
         console.log('😱 Error: ', error)
       });

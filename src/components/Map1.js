@@ -53,6 +53,7 @@ class SimpleMap extends React.Component {
           defaultCenter={this.props.center}
           center={setCenter}
           defaultZoom={this.props.zoom}
+          yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, setUserPos)}
         >
           <Marker
