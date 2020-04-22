@@ -1,16 +1,28 @@
 import React, {useState, useEffect} from 'react';
 import { IonContent, IonIcon, IonGrid, IonRow, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar, IonCol} from '@ionic/react';
-
+import { getUserInfo } from '../firebaseConfig'
 import { personCircleOutline } from 'ionicons/icons';
 import SettingsBtn from '../components/EditProfile';
 
 const Profile: React.FC = () => {
-  const [mode, setMode] = useState('You have helped (antal) persons')
+  const [mode, setMode] = useState('You have helped (antal) persons');
+    const [fn, setFn] = useState('');
+    const [ln, setLn] = useState('');
+    const [email, setEmail] = useState('');
 
-  useEffect(() => {
+
+    useEffect(() => {
     console.log(`${mode}`)
 
   });
+
+
+  getUserInfo().then((result : any) => {
+      setFn(result.firstname);
+        setLn(result.lastname);
+        setEmail(result.email)});
+
+
 
     return (
           <IonContent>
@@ -20,7 +32,7 @@ const Profile: React.FC = () => {
               <IonCol></IonCol>
               <IonCol>
             <IonIcon size="large" color="tertiary" icon={personCircleOutline}/>
-            <IonText>Name of user</IonText>
+            <IonText>{fn} {ln}</IonText>
           </IonCol>
           <IonCol></IonCol>
           </IonRow>

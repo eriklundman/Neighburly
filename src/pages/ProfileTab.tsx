@@ -6,6 +6,7 @@ import HeaderLogga from '../components/HeaderLogga';
 
 const ProfileTab: React.FC = () => {
 
+
   return (
     <IonPage>
         <IonHeader>
