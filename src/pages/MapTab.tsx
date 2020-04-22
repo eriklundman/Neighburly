@@ -7,11 +7,6 @@ import RequestBtn from '../components/AddRequest'
 const MapTab: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Map</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent>
         <IonHeader collapse="condense">
           <IonToolbar>

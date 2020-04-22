@@ -1,17 +1,23 @@
 import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonText, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
-import EditInfo from '../components/EditInfo'
+import EditInfo from '../components/EditInfo';
+import HeaderLogga from '../components/HeaderLogga';
+
 
 
 const EditYourProfile: React.FC = () => {
     return (
         <IonPage>
-            <IonToolbar color="primary">
-          <IonTitle color="tertiary">Neighburly</IonTitle>
-        </IonToolbar>
+             <IonHeader>
+              <IonToolbar>
+                 <HeaderLogga/>
+              </IonToolbar>
+             </IonHeader>
+
         <IonContent>
+
         <IonItem> 
         <IonButtons slot="start">
           <IonBackButton color="tertiary" defaultHref="/profileTab" />
@@ -19,6 +25,7 @@ const EditYourProfile: React.FC = () => {
         <IonTitle color="tertiary"> Edit profile </IonTitle>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>
       </IonItem>
+      
       <EditRadius/>
       <EditInfo/>
       <IonRow>
