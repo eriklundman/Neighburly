@@ -5,6 +5,7 @@ import {
   IonInput,
   IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonLoading
 } from '@ionic/react';
+import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'
 import {toast} from "../toast";
 
@@ -32,10 +33,10 @@ const Login: React.FC = () => {
 
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Login</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+         <IonToolbar>
+             <HeaderLogga/>
+          </IonToolbar>
+         </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
         <IonInput

@@ -14,6 +14,8 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { registerUser } from '../firebaseConfig'
 import { toast } from "../toast";
+import HeaderLogga from '../components/HeaderLogga';
+
 
 const Register: React.FC = () => {
   let history = useHistory();
@@ -53,8 +55,9 @@ const Register: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Register</IonTitle>
+          <HeaderLogga/>
         </IonToolbar>
+        <IonTitle>Register</IonTitle>
       </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>

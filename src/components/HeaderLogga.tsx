@@ -1,4 +1,5 @@
 import React from 'react';
+import './HeaderLogga.css';
 import { IonHeader, IonImg } from '@ionic/react';
 
 const HeaderLogga = () => {
