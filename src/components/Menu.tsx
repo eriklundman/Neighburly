@@ -1,10 +1,26 @@
-import React from 'react';
-import { IonItem, IonLabel, IonContent, IonIcon, IonButton, IonButtons} from '@ionic/react';
+import React, {useState} from 'react';
+import { IonItem, IonLabel, IonContent, IonIcon, IonButton, IonButtons, IonLoading} from '@ionic/react';
 import { arrowForwardOutline } from 'ionicons/icons';
+import { useHistory } from 'react-router-dom';
+import { logoutUser } from '../firebaseConfig'
+import {toast} from "../toast";
+
 
 const Menu: React.FC = () => {
+  const [busy, setBusy] = useState(false);
+  const history = useHistory();
+
+  async function logout() {
+    setBusy(true);
+    await logoutUser();
+    setBusy(false);
+    history.replace('/')
+    await toast("Logged out")
+
+  }
   return (
     <IonContent>
+      <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
 <IonItem routerLink="/menuTab/info/">
   <IonLabel> Info </IonLabel>
   <IonIcon icon={arrowForwardOutline} slot="end" />
@@ -15,7 +31,7 @@ const Menu: React.FC = () => {
 </IonItem>
 <IonItem>
   <IonButtons>
-  <IonButton className="ion-text-capitalize" color="danger">
+  <IonButton onClick ={logout} className="ion-text-capitalize" color="danger">
     Log Out
   </IonButton>
   </IonButtons>

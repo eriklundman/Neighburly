@@ -56,6 +56,10 @@ export async function registerUser(firstname: string, lastname: string, email: s
   return res
 
 }
+export async function logoutUser() {
+  return firebase.auth().signOut()
+
+}
 
 
 

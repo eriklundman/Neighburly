@@ -11,7 +11,7 @@ import {toast} from "../toast";
 const Login: React.FC = () => {
 
   const [busy, setBusy] = useState<boolean>(false)
-
+  const history = useHistory();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -20,7 +20,7 @@ const Login: React.FC = () => {
     const res = await loginUser(email, password)
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
-    
+      history.replace('/tabs');
       toast("Log in successful!", 1500);
     }
     setBusy(false)
