@@ -3,7 +3,7 @@ import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocom
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { IonList } from '@ionic/react';
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = (props) => {
   
   const {
     ready,
@@ -12,11 +12,9 @@ const PlacesAutocomplete = () => {
     setValue,
     clearSuggestions
   } = usePlacesAutocomplete({
-    requestOptions: "",
-    debounce: 300
+    requestOptions: {componentRestrictions:{country:"se"}}
   });
   const ref = useRef();
-  const [coord, setCoord] = useState();
 
   useOnclickOutside(ref, () => {
     // When user clicks outside of the component, we can dismiss
@@ -39,9 +37,8 @@ const PlacesAutocomplete = () => {
     getGeocode({ address: description })
       .then(results => getLatLng(results[0]))
       .then(({ lat, lng }) => {
-        setCoord({lat, lng})
-        console.log('📍 Coordinates: ', { lat, lng });
-        console.log('📍 Coordinates: ', coord);
+        props.setCoords([lat, lng]);
+        console.log('📍 Coordinates: ', props.coords);
       }).catch(error => {
         console.log('😱 Error: ', error)
       });

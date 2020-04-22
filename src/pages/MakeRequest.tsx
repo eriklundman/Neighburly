@@ -34,6 +34,8 @@ const MakeRequest: React.FC = () => {
   const [selected, setSelected] = useState<string>("other");
   const [selectedDate, setSelectedDate] = useState<string>('2020-04-15T13:47:20.789');
 
+  const [coords, setCoords] = useState([]);
+
   return (
     <IonPage>
       <IonToolbar>
@@ -88,13 +90,14 @@ const MakeRequest: React.FC = () => {
             ></IonTextarea>
           </IonItem>
         </div>
-        <PlacesAutocomplete  />
+        <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
         
         <IonItem>
           <IonLabel position="floating">MM/DD/YYYY</IonLabel>
           <IonDatetime displayFormat="MM/DD/YYYY" min="2020-04-14" max="2021-12-09" value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)}></IonDatetime>
         </IonItem>
         <IonButton>Submit request</IonButton>
+  <h2>lat:{coords[0]} long:{coords[1]} type:{selected} date: {selectedDate} description:{text}</h2>
       </IonContent>
     </IonPage>
   );
