@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonPage, IonToolbar, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
@@ -8,6 +8,7 @@ import HeaderLogga from '../components/HeaderLogga';
 
 
 const EditYourProfile: React.FC = () => {
+    const [radius, setRadius] = useState();
     return (
         <IonPage>
              <IonHeader>
@@ -26,7 +27,7 @@ const EditYourProfile: React.FC = () => {
         <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>
       </IonItem>
       
-      <EditRadius/>
+      <EditRadius radius={radius} setRadius={setRadius} />
       <EditInfo/>
       <IonRow>
           <IonCol>
@@ -39,6 +40,9 @@ const EditYourProfile: React.FC = () => {
           </IonCol>
           <IonCol>
           </IonCol>
+          </IonRow>
+          <IonRow>
+              <IonButton>Save changes</IonButton>
           </IonRow>
          </IonContent>
         </IonPage>

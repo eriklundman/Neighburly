@@ -1,20 +1,31 @@
-import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
-import SimpleMap from '../components/Map1';
-import './MapTab.css';
-import RequestBtn from '../components/AddRequest'
+import React, { useState, useRef } from "react";
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonModal,
+  IonButton,
+} from "@ionic/react";
+import SimpleMap from "../components/Map1";
+import "./MapTab.css";
+import RequestBtn from "../components/AddRequest";
 
 const MapTab: React.FC = () => {
+  const [showModal, setShowModal] = useState(false);
+  const pageRef = useRef();
+
   return (
-    <IonPage>
+    <IonPage ref={pageRef}>
       <IonContent>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Map tab</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <RequestBtn/>
-        <SimpleMap/>
+        <RequestBtn />
+        <SimpleMap />
       </IonContent>
     </IonPage>
   );
