@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { IonContent, IonIcon, IonGrid, IonRow, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar, IonCol} from '@ionic/react';
-import { getUserInfo } from '../firebaseConfig'
+import {getUserInfo} from '../firebaseConfig'
 import { personCircleOutline } from 'ionicons/icons';
 import SettingsBtn from '../components/EditProfile';
 
@@ -16,11 +16,13 @@ const Profile: React.FC = () => {
 
   });
 
-
-  getUserInfo().then((result : any) => {
-      setFn(result.firstname);
-        setLn(result.lastname);
-        setEmail(result.email)});
+    if (getUserInfo() !== undefined) {
+        getUserInfo().then((result: any) => {
+            setFn(result.firstname);
+            setLn(result.lastname);
+            setEmail(result.email)
+        });
+    }
 
 
 

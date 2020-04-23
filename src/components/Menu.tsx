@@ -14,7 +14,7 @@ const Menu: React.FC = () => {
     setBusy(true);
     await logoutUser();
     setBusy(false);
-    history.replace('/')
+    history.replace('/login')
     await toast("Logged out")
 
   }
