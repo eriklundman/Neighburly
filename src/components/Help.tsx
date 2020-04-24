@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { IonSegmentButton, IonLabel, IonContent, IonSegment} from '@ionic/react';
+import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid} from '@ionic/react';
+import Request from '../components/Request';
+
+
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
 const Help: React.FC = () => {
-    const [mode, setMode] = useState('You have helped (antal) persons')
+    const [mode, setMode] = useState('list active helps')
 
 useEffect(() => {
         console.log(`${mode}`)
@@ -11,15 +14,26 @@ useEffect(() => {
     
   return (
     <IonContent>
+      <IonGrid>
+      <IonToolbar>
+        <IonRow>
          <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
-          <IonSegmentButton onClick={() => setMode(mode==='You have helped (antal) persons' ? 'You have been helped by(antal)': 'You have helped (antal) persons')} value="activehelps" >
+          <IonSegmentButton onClick={() => setMode(mode==='list active helps' ? 'You have been helped by(antal)': 'list active helps')} value="activehelps" >
             <IonLabel>Active helps</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton onClick={() => setMode(mode==='You have helped (antal) persons' ? 'You have been helped by(antal)': 'You have been helped by(antal)')} value="inactivehelps" >
+          <IonSegmentButton onClick={() => setMode(mode==='list inactive helps' ? 'list active helps': 'list inactive helps')} value="inactivehelps" >
             <IonLabel>Inactive helps</IonLabel>
           </IonSegmentButton>
          </IonSegment>
+         </IonRow>
+         <IonRow>
          <p>{mode}</p>
+         </IonRow>
+         </IonToolbar>
+         <Request/>
+
+
+         </IonGrid>
 </IonContent>
 );
 }

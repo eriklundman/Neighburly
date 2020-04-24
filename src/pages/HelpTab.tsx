@@ -14,11 +14,6 @@ const HelpTab: React.FC = () => {
       </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Help tab</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <Help/>     
  </IonContent>
     </IonPage>

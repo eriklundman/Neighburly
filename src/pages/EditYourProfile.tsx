@@ -22,7 +22,7 @@ const EditYourProfile: React.FC = () => {
 
         <IonItem> 
         <IonButtons slot="start">
-          <IonBackButton color="tertiary" defaultHref="/profileTab" />
+          <IonBackButton text="" color="tertiary" defaultHref="/profileTab" />
         </IonButtons>
         <IonTitle color="tertiary"> Edit profile </IonTitle>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>

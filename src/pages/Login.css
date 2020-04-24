@@ -1,0 +1,14 @@
+.Register{
+    color: #001e57;
+    padding-left: 0 auto;
+
+}
+
+.Centrera{
+    margin: 0 auto;
+    padding-left: 0 auto;
+}
+
+.Input{
+    --background: #c2d5ff;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonIcon, IonButton, IonButtons, IonItem, IonLabel } from '@ionic/react';
+import {IonIcon, IonButton, IonButtons, IonItem, IonText } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 
 const SettingsBtn = () => {
@@ -7,7 +7,7 @@ const SettingsBtn = () => {
         <IonButtons>
         <IonButton> 
         <IonItem routerLink="/profileTab/edityourprofile/">
-        <IonLabel> Edit your profile </IonLabel>
+        <IonText> Edit your profile </IonText>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start" />
       </IonItem>
         </IonButton>

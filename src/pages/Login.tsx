@@ -3,11 +3,13 @@ import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonHeader, IonPage, IonTitle, IonToolbar, IonContent, IonLoading
+  IonHeader, IonPage, IonText, IonToolbar, IonContent, IonLoading, IonCol, IonGrid, IonRow
 } from '@ionic/react';
 import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'
 import {toast} from "../toast";
+import './Login.css';
+
 
 const Login: React.FC = () => {
 
@@ -37,19 +39,38 @@ const Login: React.FC = () => {
              <HeaderLogga/>
           </IonToolbar>
          </IonHeader>
+
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
+
       <IonContent>
+        <IonGrid>
+        <IonRow>
+        <IonText
+         className="Register">Email address</IonText></IonRow>
+        <IonRow>
         <IonInput
-          placeholder="email"
-          onIonChange={(e: any) => setEmail(e.target.value)} />
+        className="Input"
+          placeholder=""
+          onIonChange={(e: any) => setEmail(e.target.value)} /></IonRow>
+          <IonRow>
+        <IonText
+          className="Register">Password</IonText></IonRow>
+          <IonRow>
         <IonInput
+        className="Input"
           type="password"
-          placeholder="password"
-          onIonChange={(e: any) => setPassword(e.target.value)} />
-        <IonButton onClick={login}>Login</IonButton>
-        <p>New here? <Link to="/register">Register</Link> </p>
+          placeholder=""
+          onIonChange={(e: any) => setPassword(e.target.value)} /></IonRow>
+          <IonRow></IonRow>
+        <IonRow>
+        <IonButton text-color="tertiary"className="ion-text-capitalize" expand="full" onClick={login}>Login</IonButton>
+        </IonRow>
+        <IonRow>
+        <div className="ion-text-center">New on Neighburly?<Link to="/register">Register here!</Link> </div>
+        </IonRow>
+        </IonGrid>
       </IonContent>
-    </IonPage >
+    </IonPage>
 
   );
 };
