@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { IonList } from '@ionic/react';
+import { IonList, IonInput } from '@ionic/react';
 
 const PlacesAutocomplete = (props) => {
   
@@ -63,9 +63,9 @@ const PlacesAutocomplete = (props) => {
 
   return (
     <div ref={ref}>
-      <input className="address-input-field"
+      <IonInput className="address-input-field"
         value={value}
-        onChange={handleInput}
+        onIonChange={handleInput}
         disabled={!ready}
         placeholder="Where are you going?"
       />

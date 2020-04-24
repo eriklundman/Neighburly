@@ -34,16 +34,17 @@ class SimpleMap extends React.Component {
     const setUserPos = this.state.userPos;
 
     const apiIsLoaded = (map, maps, setUserPos) => {
-      new maps.Circle({
-        strokeColor: "#FF0000",
+      let circle = new maps.Circle({
+        strokeColor: "001e57",
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: "#FF0000",
+        fillColor: "#bbd0ff",
         fillOpacity: 0.3,
         map,
         center: setUserPos,
-        radius: 6000
+      
       });
+      circle.setRadius(6000)
     };
 
     return (

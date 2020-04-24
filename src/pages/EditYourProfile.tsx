@@ -9,12 +9,16 @@ import {getUserInfo, updateDatabase} from "../firebaseConfig";
 
 
 const EditYourProfile: React.FC = () => {
-
+    
+    const [fn, setFn] = useState('');
+    const [ln, setLn] = useState('');
     const [userRadius, setUserRadius] = useState(0);
     if (getUserInfo() !== undefined) {
 
         getUserInfo().then((result: any) => {
             setUserRadius(result.radius/1000);
+            setFn(result.firstname);
+            setLn(result.lastname);
         });
     }
     console.log(userRadius)
@@ -40,7 +44,6 @@ const EditYourProfile: React.FC = () => {
              </IonHeader>
 
         <IonContent>
-
         <IonItem> 
         <IonButtons slot="start">
           <IonBackButton text="" color="tertiary" defaultHref="/profileTab" />
@@ -49,20 +52,32 @@ const EditYourProfile: React.FC = () => {
         <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>
       </IonItem>
       
-      <EditRadius radius={radius} setRadius={setRadius}/>
-      <EditInfo/>
+      <EditRadius radius={radius} setRadius={setRadius} />
+      
+      <EditInfo fn={fn} ln={ln}/>
      
       <IonRow>
-          
+      <IonCol/>
+              <IonCol>
       <IonButtons>
-          <IonButton expand="full" className="ion-text-capitalize" color="secondary">Change password</IonButton>
+          <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
           </IonButtons>
+          </IonCol>
+              <IonCol/>
           </IonRow>
           <IonRow>
-          <IonButton expand="full" color="danger">Delete account</IonButton>
+              <IonCol/>
+              <IonCol>
+              <IonButton expand="block" onClick={update} >Save changes</IonButton>
+              </IonCol>
+              <IonCol/>
           </IonRow>
           <IonRow>
-              <IonButton expand="block" onClick={update}>Save changes</IonButton>
+          <IonCol/>
+              <IonCol>
+          <IonButton expand="block" color="danger">Delete account</IonButton>
+          </IonCol>
+              <IonCol/>
           </IonRow>
          </IonContent>
         </IonPage>
