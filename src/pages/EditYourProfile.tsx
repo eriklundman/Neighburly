@@ -9,6 +9,7 @@ import HeaderLogga from '../components/HeaderLogga';
 
 const EditYourProfile: React.FC = () => {
     const [radius, setRadius] = useState();
+
     return (
         <IonPage>
              <IonHeader>
@@ -29,20 +30,19 @@ const EditYourProfile: React.FC = () => {
       
       <EditRadius radius={radius} setRadius={setRadius} />
       <EditInfo/>
+     
       <IonRow>
-          <IonCol>
-          </IonCol>
-          <IonCol>
+          
       <IonButtons>
-          <IonButton className="ion-text-capitalize" color="secondary">Change password</IonButton>
+          <IonButton expand="full" className="ion-text-capitalize" color="secondary">Change password</IonButton>
           </IonButtons>
-          <IonButton color="danger">Delete account</IonButton>
-          </IonCol>
-          <IonCol>
-          </IonCol>
           </IonRow>
           <IonRow>
-              <IonButton>Save changes</IonButton>
+          <IonButton expand="full" color="danger">Delete account</IonButton>
+          
+          </IonRow>
+          <IonRow>
+              <IonButton expand="block" >Save changes</IonButton>
           </IonRow>
          </IonContent>
         </IonPage>

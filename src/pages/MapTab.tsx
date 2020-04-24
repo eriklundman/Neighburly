@@ -3,12 +3,9 @@ import {
   IonContent,
   IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
   IonModal,
   IonButton,
   IonIcon,
-  IonItem,
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";

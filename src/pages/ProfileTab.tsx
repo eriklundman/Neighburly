@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonToolbar, IonTitle, IonImg, IonThumbnail, IonCol, IonItem, IonIcon } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonToolbar} from '@ionic/react';
 import './ProfileTab.css';
 import Profile from '../components/Profile';
 import HeaderLogga from '../components/HeaderLogga';
