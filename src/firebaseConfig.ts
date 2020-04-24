@@ -1,9 +1,9 @@
 import * as firebase from 'firebase'
 
-import React, { useState } from 'react';
+import React from 'react';
 import { resolve } from 'dns';
 
-import {toast} from "./toast";
+import { toast } from "./toast";
 
 
 const config = {
@@ -25,7 +25,7 @@ db.settings({ timestampsInSnapshots: true });
 export async function loginUser(email: string, password: string) {
   try {
     const res = await firebase.auth().signInWithEmailAndPassword(email, password)
-    console.log(res)
+    
     return true
   } catch (error) {
     console.log(error);
@@ -37,17 +37,17 @@ export async function loginUser(email: string, password: string) {
 
 export async function registerUser(firstname: string, lastname: string, email: string, password: string) {
 
-  let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any)  => {
+  let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
 
     db.collection('users').doc(cred.user.uid).set({
       firstname, lastname, email, radius: 5000
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.error("Error adding document: ", error);
 
     });
 
     return true
-  }).catch(function(error) {
+  }).catch(function (error) {
     console.error("Error register user ", error);
     toast(error, 4000);
     return false
@@ -56,29 +56,50 @@ export async function registerUser(firstname: string, lastname: string, email: s
   return res
 
 }
+
+
+
+export function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
+  
+  let userRef: any = firebase.auth().currentUser;
+
+  try{
+  db.collection('requests').doc().set({
+    receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords
+  })
+  return true
+}
+  catch{
+    toast("Requesten skickades ej")
+    return false
+  }
+}
+
+
+
+
 export async function logoutUser() {
   return firebase.auth().signOut()
-
 }
 
 
 export function getCurrentUser() {
-  return new Promise((resolve,reject)=> {
-    const unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
-      if(user) {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
         resolve(user)
-      }else {
+      } else {
         resolve(null)
       }
       unsubscribe()
     })
   })
-  
+
 }
 
 export async function getUserInfo() {
 
-  let userRef : any = firebase.auth().currentUser;
+  let userRef: any = firebase.auth().currentUser;
 
   if (userRef) {
     let user: any = userRef.uid;
@@ -87,7 +108,9 @@ export async function getUserInfo() {
 
     return docRef.get().then(function (doc) {
       if (doc.exists) {
+
         //console.log("Document data:", doc.data());
+
         return doc.data();
       } else {
         // doc.data() will be undefined in this case
@@ -98,28 +121,29 @@ export async function getUserInfo() {
     }).catch(function (error) {
       console.log("Error getting document:", error);
     });
-    }
   }
+}
 
-  export async function updateDatabase(radius : any) {
-    let userRef: any = firebase.auth().currentUser;
+export async function updateDatabase(radius: any) {
+  let userRef: any = firebase.auth().currentUser;
 
-    if (userRef) {
-      let user: any = userRef.uid;
+  if (userRef) {
+    let user: any = userRef.uid;
 
 
-      db.collection("users").doc(user).set({
-        radius: radius*1000
-      }, {merge: true})
-          .then(function () {
-            console.log("Document successfully written!");
-          })
-          .catch(function (error) {
-            console.error("Error writing document: ", error);
-          });
+    db.collection("users").doc(user).set({
+      radius: radius * 1000
+    }, { merge: true })
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
 
-    }
   }
+}
+
 
 
 

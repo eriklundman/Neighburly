@@ -21,14 +21,14 @@ const EditYourProfile: React.FC = () => {
             setLn(result.lastname);
         });
     }
-    console.log(userRadius)
+    //console.log(userRadius)
     const [radius, setRadius] = useState(0);
 
     useEffect(() => {
             setRadius(userRadius)// This is be executed when `userRadius` state changes
     }, [userRadius]);
 
-    console.log(radius)
+    //console.log(radius)
 
     //console.log(userRadius)
     async function update() {

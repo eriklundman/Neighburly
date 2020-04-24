@@ -21,6 +21,7 @@ const Login: React.FC = () => {
   async function login() {
     setBusy(true)
     const res = await loginUser(email, password)
+    
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
       history.replace('/tabs');

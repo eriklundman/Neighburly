@@ -15,8 +15,10 @@ const ProfileTab: React.FC = () => {
       </IonToolbar>
       </IonHeader>
       <IonContent>
+
       <IonHeader collapse="condense">
           </IonHeader>
+
         <Profile/>
       </IonContent>
     </IonPage>

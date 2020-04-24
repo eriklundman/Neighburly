@@ -40,6 +40,7 @@ const Register: React.FC = () => {
     if (firstname.trim() === "" || lastname.trim() === "") {
       return toast("First name and surname are required")
     }
+    
     setBusy(true);
     const res = await registerUser(firstname, lastname, email, password);
     console.log(res);

@@ -22,6 +22,7 @@ const MapTab: React.FC = () => {
   return (
     <IonPage ref={pageRef}>
       <IonContent>
+
         <IonHeader collapse="condense">
         </IonHeader>
         <RequestBtn />
@@ -38,6 +39,7 @@ const MapTab: React.FC = () => {
 
           <p>This is modal content</p>
         </IonModal>
+
         <SimpleMap/>
       </IonContent>
       <IonButtons className="modalButton">

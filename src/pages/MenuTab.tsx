@@ -12,11 +12,7 @@ const MenuTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">MenuTab</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        
         <Menu/>
       </IonContent>
     </IonPage>
