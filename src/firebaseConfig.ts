@@ -40,7 +40,7 @@ export async function registerUser(firstname: string, lastname: string, email: s
   let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any)  => {
 
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname, email
+      firstname, lastname, email, radius: 5000
     }).catch(function(error) {
       console.error("Error adding document: ", error);
 
@@ -62,47 +62,6 @@ export async function logoutUser() {
 }
 
 
-
-
-
-/*export const setUpProfile = () => {
-
-  var user = firebase.auth().currentUser;
-
-  if (user != null) {
-    user.providerData.forEach(function (profile) {
-      let mail = profile?.email
-      console.log(mail)
-      return mail
-    })
-  }
-  else {
-    let error = "ej inloggad" as string
-    return error
-
-  }
-
-}*/
-
-/*export async function setUpProfile() {
-
-  var user = firebase.auth().currentUser;
-  
-  if (user != null) {
-    db.collection('users').doc(user.uid).onSnapshot(doc => {
-      var fn = doc.data()?.firstname;
-      console.log(fn)
-      return fn
-    })
-    
-  }
-  else {
-    let error = "ej inloggad" as string
-    return error
-
-  }
-
-}*/
 export function getCurrentUser() {
   return new Promise((resolve,reject)=> {
     const unsubscribe = firebase.auth().onAuthStateChanged(function(user) {
@@ -122,13 +81,13 @@ export async function getUserInfo() {
   let userRef : any = firebase.auth().currentUser;
 
   if (userRef) {
-    let user : any = userRef.uid;
+    let user: any = userRef.uid;
     let docRef = db.collection("users").doc(user);
 
 
     return docRef.get().then(function (doc) {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        //console.log("Document data:", doc.data());
         return doc.data();
       } else {
         // doc.data() will be undefined in this case
@@ -139,12 +98,32 @@ export async function getUserInfo() {
     }).catch(function (error) {
       console.log("Error getting document:", error);
     });
+    }
+  }
 
+  export async function updateDatabase(radius : any) {
+    let userRef: any = firebase.auth().currentUser;
+
+    if (userRef) {
+      let user: any = userRef.uid;
+
+
+      db.collection("users").doc(user).set({
+        radius: radius*1000
+      }, {merge: true})
+          .then(function () {
+            console.log("Document successfully written!");
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+          });
+
+    }
   }
 
 
 
 
 
-}
+
 

@@ -6,11 +6,9 @@ import {
   IonModal,
   IonButton,
   IonIcon,
-<<<<<<< Updated upstream
-=======
   IonItem,
   IonButtons,
->>>>>>> Stashed changes
+
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";
