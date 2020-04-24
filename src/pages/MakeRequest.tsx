@@ -20,8 +20,7 @@ import {
   IonIcon,
   IonDatetime,
 } from "@ionic/react";
-import AddressPredictions from "../components/AddressInput";
-import PlacesAutocomplete from "../components/AddressInput2";
+import PlacesAutocomplete from "../components/AddressInput";
 import {
   pawOutline,
   flowerOutline,
@@ -32,8 +31,7 @@ import {
 const MakeRequest: React.FC = () => {
   const [text, setText] = useState<string>();
   const [selected, setSelected] = useState<string>("other");
-  const [selectedDate, setSelectedDate] = useState<string>('2020-04-15T13:47:20.789');
-
+  const [selectedDate, setSelectedDate] = useState<string>('');
   const [coords, setCoords] = useState([]);
 
   return (
@@ -49,9 +47,9 @@ const MakeRequest: React.FC = () => {
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
-            <IonListHeader>
-              <IonLabel>Pick type of request</IonLabel>
-            </IonListHeader>
+      
+            <IonLabel>Pick type of request</IonLabel>
+   
             <IonRow>
               <IonCol>
                 <IonRadio value="dog-walking" />
@@ -81,7 +79,7 @@ const MakeRequest: React.FC = () => {
           </IonRadioGroup>
         </IonList>
         <div>
-          <IonItemDivider>Description of your request</IonItemDivider>
+          <IonLabel>Description of your request</IonLabel>
           <IonItem>
             <IonTextarea
               placeholder="Enter more information here..."
@@ -90,14 +88,16 @@ const MakeRequest: React.FC = () => {
             ></IonTextarea>
           </IonItem>
         </div>
+
+        <IonLabel>Address</IonLabel>
         <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
         
+        <IonLabel>Last date</IonLabel>
         <IonItem>
           <IonLabel position="floating">MM/DD/YYYY</IonLabel>
           <IonDatetime displayFormat="MM/DD/YYYY" min="2020-04-14" max="2021-12-09" value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)}></IonDatetime>
         </IonItem>
         <IonButton>Submit request</IonButton>
-  <h2>lat:{coords[0]} long:{coords[1]} type:{selected} date: {selectedDate} description:{text}</h2>
       </IonContent>
     </IonPage>
   );
