@@ -19,8 +19,8 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
-
 db.settings({ timestampsInSnapshots: true });
+let credUpdate = false;
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -124,26 +124,37 @@ export async function getUserInfo() {
   }
 }
 
-export async function updateDatabase(radius: any) {
-  let userRef: any = firebase.auth().currentUser;
+  export async function updateDatabase(radius : any, firstname : any, lastname : any) {
+    let userRef: any = firebase.auth().currentUser;
 
   if (userRef) {
     let user: any = userRef.uid;
 
-
-    db.collection("users").doc(user).set({
-      radius: radius * 1000
-    }, { merge: true })
-      .then(function () {
-        console.log("Document successfully written!");
-      })
-      .catch(function (error) {
-        console.error("Error writing document: ", error);
-      });
+      db.collection("users").doc(user).set({
+        radius: radius*1000, firstname, lastname
+      }, {merge: true})
+          .then(function () {
+            console.log("Document successfully written!");
+            toast("Changes saved")
+            credUpdate = true;
+          })
+          .catch(function (error) {
+            console.error("Error writing document: ", error);
+            toast("Problem saving changes, check internet connection")
+          });
 
   }
 }
 
+  export async function credChange() {
+    if (credUpdate) {
+      credUpdate = false;
+      return true
+    }
+    else {
+      return false
+    }
+  }
 
 
 

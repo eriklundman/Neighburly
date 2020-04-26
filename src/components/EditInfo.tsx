@@ -3,19 +3,17 @@ import {IonItem, IonInput, IonSelectOption, IonSelect, IonLabel } from '@ionic/r
 
 
      const EditInfo: React.FC<any> = props => {
-        const [firstName, setFirstName] = useState<string>();
-        const [lastName, setLastName] = useState<string>();
         const [gender, setGender] = useState<string>();
   
     return(
         <div>
           <IonLabel position="floating">First name</IonLabel>
         <IonItem>
-            <IonInput value={firstName} placeholder={props.fn} onIonChange={e => setFirstName(e.detail.value!)}></IonInput>
+            <IonInput value={props.fn} placeholder={props.userfn} onIonChange={e => props.setfn(e.detail.value!)}></IonInput>
           </IonItem>
           <IonLabel position="floating">Last name</IonLabel>
         <IonItem>
-            <IonInput value={lastName} placeholder={props.ln} onIonChange={e => setLastName(e.detail.value!)}></IonInput>
+            <IonInput value={props.ln} placeholder={props.userln} onIonChange={e => props.setln(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
           <IonLabel position="floating">Gender</IonLabel>
