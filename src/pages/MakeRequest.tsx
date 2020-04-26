@@ -6,13 +6,9 @@ import {
   IonTitle,
   IonButtons,
   IonBackButton,
-  IonContent,
   IonButton,
-  IonItemDivider,
   IonItem,
   IonTextarea,
-  IonList,
-  IonListHeader,
   IonRadioGroup,
   IonLabel,
   IonRow,
@@ -37,7 +33,7 @@ const MakeRequest: React.FC = () => {
 
   const [text, setText] = useState<string>("");
   const [selected, setSelected] = useState<string>("other");
-  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [selectedDate, setSelectedDate] = useState<string>("");
   const [coords, setCoords] = useState([]);
 
   function sendRequest() {
@@ -64,15 +60,21 @@ const MakeRequest: React.FC = () => {
   }
 
   return (
-    <IonPage>
+<IonPage>
+      
       <IonToolbar>
         <IonTitle>Make Request</IonTitle>
         <IonButtons slot="start">
           <IonBackButton defaultHref="/mapTab" />
         </IonButtons>
       </IonToolbar>
-      <IonContent>
-        <IonList>
+
+        <IonRow>
+            <IonItem>
+            <IonLabel>Pick type of request</IonLabel>
+            </IonItem>
+        </IonRow>
+
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
@@ -92,6 +94,7 @@ const MakeRequest: React.FC = () => {
                 <IonIcon icon={flowerOutline} size="large" />
               </IonCol>
             </IonRow>
+
             <IonRow>
               <IonCol>
                 <IonRadio value="other" />
@@ -101,14 +104,16 @@ const MakeRequest: React.FC = () => {
 
               <IonCol>
                 <IonRadio value="shopping" />
-                <IonLabel className="ion-text-center"> Shopping</IonLabel>
+                <IonLabel> Shopping</IonLabel>
                 <IonIcon icon={basketOutline} size="large" />
               </IonCol>
             </IonRow>
+
           </IonRadioGroup>
-        </IonList>
         <div>
+        <IonItem>
           <IonLabel>Description of your request</IonLabel>
+          </IonItem>
           <IonItem>
             <IonTextarea
               className="requestInputs"
@@ -118,19 +123,32 @@ const MakeRequest: React.FC = () => {
             ></IonTextarea>
           </IonItem>
         </div>
-
+          <IonItem>
         <IonLabel>Address</IonLabel>
+        </IonItem>
+        <IonItem>
         <PlacesAutocomplete coords={coords} setCoords={setCoords} />
-
+        </IonItem>
         <IonLabel>Last date</IonLabel>
         <IonItem>
+        <IonLabel>Last date</IonLabel>
+        
           <IonLabel position="floating">MM/DD/YYYY</IonLabel>
-          <IonDatetime displayFormat="MM/DD/YYYY" min="2020-04-14" max="2021-12-09" value={selectedDate} onIonChange={e => setSelectedDate(e.detail.value!)}></IonDatetime>
+          <IonDatetime
+            displayFormat="MM/DD/YYYY"
+            min="2020-04-14"
+            max="2021-12-09"
+            value={selectedDate}
+            onIonChange={(e) => setSelectedDate(e.detail.value!)}
+          ></IonDatetime>
         </IonItem>
-        <IonButton onClick={sendRequest}>Submit request</IonButton>
-      </IonContent>
-    </IonPage>
-  );
+        <IonButton expand='block' onClick={sendRequest}>Submit request
+        </IonButton>
+        </IonPage>
+);
+
 };
+
+
 
 export default MakeRequest;

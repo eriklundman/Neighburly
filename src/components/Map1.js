@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './MapMarker';
 import { getUserInfo, getRequest } from '../firebaseConfig'
@@ -15,33 +15,34 @@ import { IonIcon, IonButton, IonButtons } from '@ionic/react';
 
 class SimpleMap extends React.Component {
 
-  state = {
-    lat: "",
-    lng: "",
-    userPos: "",
-    radius: 1500,
-    markers: []
-  };
 
+  constructor(props){
+    super(props);
+    this.googleMapCircle = React.createRef();
+    this.state = {
+      lat: "",
+      lng: "",
+      userPos: "",
+      radius: 1000,
+      markers: []
+    };
+  }
+  
   static defaultProps = {
     center: {
       lat: 59.8,
       lng: 17.63889
     },
-    zoom: 11,
+    zoom: 11
   };
 
   componentDidMount = () => {
 
-    getUserInfo().then((result) => {
-      if (result !== undefined) {
-        this.setState({
-          radius: result.radius
-        })
-      }
-    });
 
-    navigator.geolocation.getCurrentPosition(this.currentCoords)
+    if (navigator.geolocation){
+      navigator.geolocation.watchPosition(this.currentCoords)
+      this.newRadius();
+    }
 
     let array = []
     array = getRequest()
@@ -70,7 +71,7 @@ class SimpleMap extends React.Component {
     )
   };
 
-  /* newRadius = () => {
+   newRadius = () => {
      getUserInfo().then((result) => {
        if (result !== undefined) {
          this.setState({
@@ -78,32 +79,35 @@ class SimpleMap extends React.Component {
          })
        }
      });
-   }*/
+   }
 
 
 
-  render() {
+  componentDidUpdate = (prevState) => {
+    if (prevState.radius !== this.state.radius) {
+      //This is where I want to update radius
+      }
+    };
 
-    const setCenter = this.state.userPos;
-    const setUserPos = this.state.userPos;
-    const setUserRadius = this.state.radius;
-    //console.log(setUserRadius)
-
-    const apiIsLoaded = (map, maps, setUserPos, setUserRadius) => {
-      let circle = new maps.Circle({
+     apiIsLoaded = (map, maps, setUserPos, setUserRadius) => {
+        var circle = new maps.Circle({
+        ref:this.googleMapCircle,
         strokeColor: "001e57",
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: "#bbd0ff",
         fillOpacity: 0.3,
-        map,
+        map:map,
         center: setUserPos,
         radius: setUserRadius
       });
-
-
-
     };
+ 
+  render() {
+    
+    const setCenter = this.state.userPos;
+    const setUserPos = this.state.userPos;
+    const setUserRadius = this.state.radius;
 
 
     return (
@@ -115,10 +119,9 @@ class SimpleMap extends React.Component {
           defaultCenter={this.props.center}
           center={setCenter}
           defaultZoom={this.props.zoom}
-          setUserRadius={this.state.radius}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => {
-            apiIsLoaded(map, maps, setUserPos, setUserRadius)
+            this.apiIsLoaded(map, maps, setUserPos, setUserRadius)
           }}>
 
           {this.state.markers.map((marker, i) => {
@@ -148,7 +151,7 @@ class SimpleMap extends React.Component {
                   onClick={this.markerClicked.bind(this, marker)}>
 
                   <IonIcon
-                    slot="start"
+                    slot="icon-only"
                     icon={ico}
                   />
 
@@ -164,6 +167,8 @@ class SimpleMap extends React.Component {
             lng={setUserPos.lng}
             color="blue"
           />
+
+          
 
         </GoogleMapReact>
       </div>
