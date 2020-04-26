@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid} from '@ionic/react';
+import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid, IonList} from '@ionic/react';
 import Request from '../components/Request';
 
 
@@ -30,9 +30,9 @@ useEffect(() => {
          <p>{mode}</p>
          </IonRow>
          </IonToolbar>
+         <IonList>
          <Request/>
-
-
+         </IonList>
          </IonGrid>
 </IonContent>
 );

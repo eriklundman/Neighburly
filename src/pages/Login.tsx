@@ -3,7 +3,7 @@ import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonHeader, IonPage, IonText, IonToolbar, IonContent, IonLoading, IonCol, IonGrid, IonRow
+  IonHeader, IonPage, IonLabel, IonList, IonToolbar, IonContent, IonLoading, IonCol, IonGrid, IonRow, IonItem
 } from '@ionic/react';
 import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'
@@ -45,24 +45,18 @@ const Login: React.FC = () => {
 
       <IonContent>
         <IonGrid>
-        <IonRow>
-        <IonText
-         className="Register">Email address</IonText></IonRow>
-        <IonRow>
+
+          <IonList>
+            <IonItem>
+            <IonLabel position="floating"> Email address</IonLabel>
+            <IonInput
+          onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
+          <IonItem>
+          <IonLabel position="floating"> Password</IonLabel>
         <IonInput
-        className="Input"
-          placeholder=""
-          onIonChange={(e: any) => setEmail(e.target.value)} /></IonRow>
-          <IonRow>
-        <IonText
-          className="Register">Password</IonText></IonRow>
-          <IonRow>
-        <IonInput
-        className="Input"
           type="password"
-          placeholder=""
-          onIonChange={(e: any) => setPassword(e.target.value)} /></IonRow>
-          <IonRow></IonRow>
+          onIonChange={(e: any) => setPassword(e.target.value)} /></IonItem>
+          </IonList>
         <IonRow>
         <IonButton text-color="tertiary"className="ion-text-capitalize" expand="full" onClick={login}>Login</IonButton>
         </IonRow>

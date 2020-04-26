@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {IonIcon, IonTextarea, IonContent, IonButton, IonButtons, IonItem, IonText, IonRow, IonBadge, IonToolbar, IonItemDivider, IonGrid, IonItemGroup} from '@ionic/react';
+import {IonIcon, IonList, IonCard, IonCardContent, IonLabel, IonTextarea, IonContent, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonBadge, IonToolbar, IonItemDivider, IonGrid, IonItemGroup} from '@ionic/react';
 import { personCircleOutline, 
     chatbubblesOutline, 
     checkmarkDoneOutline,
@@ -14,33 +14,34 @@ import './Request.css';
 const Request = () => {
   
 
-
-
     return(
+        
+        <IonItem>
+            <IonGrid>
+                <IonRow>
+                <IonCol> <div className="ion-align-self-start">
+             <IonIcon color="tertiary" icon={personCircleOutline} size="large" slot="start"/>
+             <IonText slot="end">Username</IonText>
+      </div> </IonCol>
 
-        <IonToolbar>
-            <IonItemGroup>
-                <IonItemDivider>
-        <IonIcon color="tertiary" icon={personCircleOutline} slot="start" size="large"/>
-        <IonText>User name</IonText>
-        <IonIcon color="tertiary" icon={chatbubblesOutline} slot="end"/>
-        <IonBadge className="badge" color="danger" slot="end">1</IonBadge>
-        </IonItemDivider>
+        <IonCol><div className="ion-float-right">
+       <IonButtons> <IonButton>
+        <IonIcon color="tertiary" icon={chatbubblesOutline} slot="icon-only"/>
+        </IonButton></IonButtons>
+        </div> </IonCol>
+        </IonRow>
 
-        <IonItemDivider>
-            <IonIcon color="tertiary" icon={pawOutline} slot="start"/>
-        </IonItemDivider>
-
-        <IonItemDivider>
-            <IonTextarea placeholder="Preview of requestinfo..">
-
-            </IonTextarea>
-        <IonIcon color="success" icon={checkmarkDoneOutline} slot="end"/>
-
-        </IonItemDivider>
-        </IonItemGroup>
-        </IonToolbar>
-       
+        <IonRow>
+            <IonCol><div className="ion-align-self-start">
+            <IonIcon color="tertiary" icon={pawOutline}/>
+                requestinfo</div></IonCol>
+                <IonCol><div className="ion-float-right">
+            <IonIcon color="success" icon={checkmarkDoneOutline} size="large"/>
+                </div></IonCol>
+        </IonRow>
+        </IonGrid>
+        </IonItem>
+          
     );
   };
 
