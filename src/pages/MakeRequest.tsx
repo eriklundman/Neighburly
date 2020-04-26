@@ -131,8 +131,7 @@ const MakeRequest: React.FC = () => {
         </IonItem>
         <IonLabel>Last date</IonLabel>
         <IonItem>
-        <IonLabel>Last date</IonLabel>
-        
+          
           <IonLabel position="floating">MM/DD/YYYY</IonLabel>
           <IonDatetime
             displayFormat="MM/DD/YYYY"
