@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   IonContent,
   IonHeader,
@@ -14,10 +14,20 @@ import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
+import { getRequest } from "../firebaseConfig";
 
 const MapTab: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const pageRef = useRef<any>();
+  let array: any = []
+  array = getRequest()
+  
+  const listItems = array.map((req: any) => {
+    return(
+      <p>{req.type}</p>
+    )
+  })
+
 
   return (
     <IonPage ref={pageRef}>
@@ -31,22 +41,22 @@ const MapTab: React.FC = () => {
           swipeToClose={true}
           presentingElement={pageRef.current}
           onDidDismiss={() => setShowModal(false)}>
-                <IonButtons className="modalButton">
-          <IonButton color="white" onClick={() => setShowModal(false)}>
-          <IonIcon className="modalButton" size="large" icon={chevronDownOutline}/>
-          </IonButton>
+          <IonButtons className="modalButton">
+            <IonButton color="white" onClick={() => setShowModal(false)}>
+              <IonIcon className="modalButton" size="large" icon={chevronDownOutline} />
+            </IonButton>
           </IonButtons>
 
-          <p>This is modal content</p>
+          <p>{listItems}</p>
         </IonModal>
 
-        <SimpleMap/>
+        <SimpleMap />
       </IonContent>
       <IonButtons className="modalButton">
-      <IonButton color="white" onClick={() => setShowModal(true)}>
-        <IonIcon className="modalButton" size="large" icon={chevronUpOutline}/>
-      
-      </IonButton>
+        <IonButton color="white" onClick={() => setShowModal(true)}>
+          <IonIcon className="modalButton" size="large" icon={chevronUpOutline} />
+
+        </IonButton>
       </IonButtons>
 
 

@@ -29,10 +29,10 @@ import {
   basketOutline,
 } from "ionicons/icons";
 import { toast } from "../toast";
-import {createRequest} from "../firebaseConfig"
+import { createRequest } from "../firebaseConfig"
 
 const MakeRequest: React.FC = () => {
-  
+
   let history = useHistory()
 
   const [text, setText] = useState<string>("");
@@ -41,22 +41,25 @@ const MakeRequest: React.FC = () => {
   const [coords, setCoords] = useState([]);
 
   function sendRequest() {
-    if(text.trim() === ''){
+    if (text.trim() === '') {
       toast("Enter a description for the request!")
     }
-    if(selectedDate === ''){
+    if (selectedDate === '') {
       toast('Choose a "latest date" for your request!')
     }
-    if(coords === []){
+    if (coords === []) {
       toast('Pick an address for your request!')
     }
-    const req = createRequest(text,selected,selectedDate,coords)
-    if(req){
-      history.push('/tabs');
-      setText("")
-      setSelected("other")
-      setSelectedDate("")
-      setCoords([])
+    if (text.trim() !== '' || selectedDate !== '' || coords !== []) {
+      const req = createRequest(text, selected, selectedDate, coords)
+
+      if (req) {
+        history.push('/tabs');
+        setText("")
+        setSelected("other")
+        setSelectedDate("")
+        setCoords([])
+      }
     }
   }
 
@@ -73,9 +76,9 @@ const MakeRequest: React.FC = () => {
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
-      
+
             <IonLabel>Pick type of request</IonLabel>
-   
+
             <IonRow>
               <IonCol>
                 <IonRadio value="dog-walking" />
@@ -108,7 +111,7 @@ const MakeRequest: React.FC = () => {
           <IonLabel>Description of your request</IonLabel>
           <IonItem>
             <IonTextarea
-            className="requestInputs"
+              className="requestInputs"
               placeholder="Enter more information here..."
               value={text}
               onIonChange={(e) => setText(e.detail.value!)}
@@ -117,8 +120,8 @@ const MakeRequest: React.FC = () => {
         </div>
 
         <IonLabel>Address</IonLabel>
-        <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
-        
+        <PlacesAutocomplete coords={coords} setCoords={setCoords} />
+
         <IonLabel>Last date</IonLabel>
         <IonItem>
           <IonLabel position="floating">MM/DD/YYYY</IonLabel>

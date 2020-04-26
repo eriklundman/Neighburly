@@ -75,6 +75,20 @@ export function createRequest(text: string, selected: string, selectedDate: stri
   }
 }
 
+export function getRequest(){
+  let reqArr: any = []
+  let requestRef = db.collection("requests")
+  let allRequests = requestRef.get().then(snapshot => {
+    snapshot.forEach(req => {
+      reqArr.push({lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type})
+    });
+  })
+  .catch(err => {
+    console.log('Error getting documents', err);
+  });
+  return reqArr
+}
+
 
 
 
