@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./MapMarker";
-import { getUserInfo, getRequest } from "../firebaseConfig";
+import { getUserInfo, getRequest, helpRequest } from "../firebaseConfig";
 import {
   pawOutline,
   flowerOutline,
@@ -22,9 +22,10 @@ class SimpleMap extends React.Component {
       radius: 1000,
       markers: [],
       showAlert: false,
-      des:"",
-      reqType:"",
-      name:""
+      des: "",
+      reqType: "",
+      name: "",
+      req_id: ""
 
     };
   }
@@ -52,19 +53,21 @@ class SimpleMap extends React.Component {
   };
 
   markerClicked(marker) {
-    
-    this.setState({showAlert:true});
-    this.setState({des: marker.des});
-    this.setState({name: marker.r_fn + " " + marker.r_ln})
+
+    this.setState({ showAlert: true });
+    this.setState({ des: marker.des });
+    this.setState({ name: marker.r_fn + " " + marker.r_ln })
+    this.setState({ req_id: marker.req_id })
+
 
     if (marker.type === "shopping") {
-      this.setState({reqType: "Shopping"})
+      this.setState({ reqType: "Shopping" })
     } else if (marker.type === "dog-walking") {
-      this.setState({reqType: "Dog Walking"})
+      this.setState({ reqType: "Dog Walking" })
     } else if (marker.type === "gardening") {
-      this.setState({reqType: "Gardening"})
+      this.setState({ reqType: "Gardening" })
     } else {
-      this.setState({reqType: "Other"})
+      this.setState({ reqType: "Other" })
     }
 
   }
@@ -92,7 +95,7 @@ class SimpleMap extends React.Component {
   };
 
   setShowAlertFalse = () => {
-    this.setState({showAlert:false});
+    this.setState({ showAlert: false });
   };
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -100,6 +103,11 @@ class SimpleMap extends React.Component {
       this.newRadius();
     }
   };
+
+  takeRequest = () => {
+    helpRequest(this.state.req_id);
+  }
+
 
   apiIsLoaded = (map, maps, setUserPos, setUserRadius) => {
     let circle = new maps.Circle({
@@ -137,7 +145,12 @@ class SimpleMap extends React.Component {
             header={this.state.name}
             subHeader={this.state.reqType}
             message={this.state.des}
-            buttons={["Cancel", "Help"]}
+            buttons={["Cancel", {
+              text: 'Help',
+              handler: () => {
+                this.takeRequest();
+              }
+            }]}
           />
 
           {this.state.markers.map((marker, i) => {
@@ -152,19 +165,21 @@ class SimpleMap extends React.Component {
               ico = helpCircleOutline;
             }
 
-            return (
-              <IonButton
-                size="small"
-                color="dark"
-                fill="clear"
-                lat={marker.lat}
-                lng={marker.lng}
-                onClick={this.markerClicked.bind(this, marker)}
-                style={{position: 'absolute', transform: 'translate(-50%, -100%)'}}
-              >
-                <IonIcon slot="icon-only" icon={ico} />
-              </IonButton>
-            );
+            if (marker.accepted == false) {
+              return (
+                <IonButton
+                  size="small"
+                  color="dark"
+                  fill="clear"
+                  lat={marker.lat}
+                  lng={marker.lng}
+                  onClick={this.markerClicked.bind(this, marker)}
+                  style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}
+                >
+                  <IonIcon slot="icon-only" icon={ico} />
+                </IonButton>
+              );
+            }
           })}
 
           <Marker lat={setUserPos.lat} lng={setUserPos.lng} color="blue" />

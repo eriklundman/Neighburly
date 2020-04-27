@@ -67,7 +67,7 @@ export function createRequest(text: string, selected: string, selectedDate: stri
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname
+          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false
         })
       }
     })
@@ -86,8 +86,7 @@ export function getRequest() {
   requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
 
-      reqArr.push({ lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
-
+      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
     });
 
   })
@@ -98,6 +97,28 @@ export function getRequest() {
   return reqArr
 }
 
+export function helpRequest(request_id: any) {
+
+  let userRef: any = firebase.auth().currentUser;
+
+  try {
+    db.collection("users").doc(userRef.uid).get().then((docu: any) => {
+      if (docu !== undefined) {
+        db.collection('requests').doc(request_id).set({
+          accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid
+        }, { merge: true }).then((nada: any) => {
+          toast("Changes saved")
+        })
+      }
+    })
+
+    return true
+  }
+  catch{
+    toast("Requesten skickades ej")
+    return false
+  }
+}
 
 export async function logoutUser() {
   return firebase.auth().signOut()
