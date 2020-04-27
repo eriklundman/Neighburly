@@ -6,7 +6,6 @@ import {
   IonModal,
   IonButton,
   IonIcon,
-  IonItem,
   IonButtons,
   IonList
  
@@ -59,10 +58,6 @@ const MapTab: React.FC = () => {
 
           </IonList>
           </IonContent>
-
-          <IonList>
-        <Request/>
-        </IonList>
 
         </IonModal>
         <SimpleMap/>

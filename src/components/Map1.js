@@ -8,7 +8,7 @@ import {
   helpCircleOutline,
   basketOutline,
 } from "ionicons/icons";
-import { IonIcon, IonButton, IonAlert } from "@ionic/react";
+import { IonIcon, IonButton, IonAlert, IonContent } from "@ionic/react";
 
 //const AnyReactComponent = ({  pawOutline, flowerOutline, helpCircleOutline, basketOutline }) => <div><img src={img_src} className="YOUR-CLASS-NAME" style={{}} /></div>;
 
@@ -25,10 +25,13 @@ class SimpleMap extends React.Component {
       des: "",
       reqType: "",
       name: "",
-      req_id: ""
-
+      req_id: "",
+      mapRef: "",
+      mapsRef: "",
+      circle:""
     };
   }
+  
 
   static defaultProps = {
     center: {
@@ -50,6 +53,7 @@ class SimpleMap extends React.Component {
     this.setState({
       markers: array,
     });
+
   };
 
   markerClicked(marker) {
@@ -100,7 +104,8 @@ class SimpleMap extends React.Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.radius !== this.state.radius) {
-      this.newRadius();
+      console.log(this.state.circle.setRadius(this.state.radius))
+
     }
   };
 
@@ -109,34 +114,35 @@ class SimpleMap extends React.Component {
   }
 
 
-  apiIsLoaded = (map, maps, setUserPos, setUserRadius) => {
-    let circle = new maps.Circle({
+  apiIsLoaded = (map, maps) => {
+      this.setState({mapRef:map})
+      this.setState({mapsRef:maps})
+
+      this.setState({circle: new this.state.mapsRef.Circle({
       strokeColor: "001e57",
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: "#bbd0ff",
       fillOpacity: 0.3,
-      map: map,
-      center: setUserPos,
-      radius: setUserRadius,
-    });
-  };
+      map: this.state.mapRef,
+      center: this.state.userPos,
+      radius: this.state.radius
+    })});
+};
 
   render() {
-    const setCenter = this.state.userPos;
-    const setUserPos = this.state.userPos;
-    const setUserRadius = this.state.radius;
+    this.newRadius();
 
     return (
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyB1OBf8rN8thOb-BW9QdiMc06NOuBvFrNI" }}
           defaultCenter={this.props.center}
-          center={setCenter}
+          center={this.state.userPos}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => {
-            this.apiIsLoaded(map, maps, setUserPos, setUserRadius);
+            this.apiIsLoaded(map, maps);
           }}
         >
           <IonAlert
@@ -182,7 +188,7 @@ class SimpleMap extends React.Component {
             }
           })}
 
-          <Marker lat={setUserPos.lat} lng={setUserPos.lng} color="blue" />
+          <Marker lat={this.state.userPos.lat} lng={this.state.userPos.lng} color="blue" />
         </GoogleMapReact>
       </div>
     );
