@@ -31,6 +31,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './firebaseConfig';
+import TermsOfUseRegister from './pages/TermsOfUseRegister';
 
 
 
@@ -44,6 +45,7 @@ const RoutingSystem: React.FC = () => {
         <Route path="/tabs" component={Tabs} exact />
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
+        <Route path="/termsofuse" component={TermsOfUseRegister} exact/>
         <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>     
     </IonReactRouter>

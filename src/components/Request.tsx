@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {IonIcon, IonList, IonCard, IonCardContent, IonLabel, IonTextarea, IonContent, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonBadge, IonToolbar, IonItemDivider, IonGrid, IonItemGroup} from '@ionic/react';
 import { personCircleOutline, 
     chatbubblesOutline, 
-    checkmarkDoneOutline,
+    checkmarkOutline,
     pawOutline,
     flowerOutline,
     helpCircleOutline,
@@ -45,8 +45,10 @@ const Request: React.FC<any> = props => {
             <IonIcon color="tertiary" icon={icon}/>
                  {props.item.des} </div></IonCol>
                 <IonCol><div className="ion-float-right">
-            <IonIcon color="success" icon={checkmarkDoneOutline} size="large"/>
-                </div></IonCol>
+       <IonButtons> <IonButton>
+        <IonIcon color="success" icon={checkmarkOutline} slot="icon-only"/>
+        </IonButton></IonButtons>
+        </div> </IonCol>
         </IonRow>
         </IonGrid>
         </IonItem>

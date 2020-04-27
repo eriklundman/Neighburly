@@ -7,12 +7,18 @@ import {
   IonButton,
   IonIcon,
   IonItem,
+<<<<<<< Updated upstream
   IonButtons, IonList,
+=======
+  IonButtons,
+  IonList
+>>>>>>> Stashed changes
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
+import Request from "../components/Request";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import {getRequest} from "../firebaseConfig";
 import RequestOnMap from "../components/RequestOnMap";
@@ -57,9 +63,18 @@ const MapTab: React.FC = () => {
           </IonList>
           </IonContent>
 
+<<<<<<< Updated upstream
         </IonModal>
 
         <SimpleMap />
+=======
+          <IonList>
+        <Request/>
+        </IonList>
+
+        </IonModal>
+        <SimpleMap/>
+>>>>>>> Stashed changes
       </IonContent>
       <IonButtons className="modalButton">
         <IonButton color="white" onClick={() => setShowModal(true)}>

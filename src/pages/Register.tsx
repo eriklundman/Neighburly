@@ -18,7 +18,7 @@ import {
   IonRow,
   IonList,
   IonItem,
-  IonRadio
+  IonCheckbox
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { registerUser } from '../firebaseConfig'
@@ -36,6 +36,8 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [cpassword, setCPassword] = useState('')
+
+  const [checked, setChecked] = useState(false);
 
   async function register() {
 
@@ -73,28 +75,32 @@ const Register: React.FC = () => {
       <IonContent>
         <IonList>
           <IonItem>
-            <IonLabel position="floating"> First name</IonLabel>
+            <IonLabel color="tertiary" position="floating"> First name</IonLabel>
            <IonInput
              onIonChange={(e: any) => setFirstname(e.target.value)} /></IonItem>
              <IonItem>
-             <IonLabel position="floating"> Last name</IonLabel>            
+             <IonLabel color="tertiary" position="floating"> Last name</IonLabel>            
              <IonInput
              onIonChange={(e: any) => setLastname(e.target.value)} /></IonItem>
              <IonItem>
-             <IonLabel position="floating"> Email address</IonLabel>
+             <IonLabel color="tertiary" position="floating"> Email address</IonLabel>
              <IonInput
               onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
               <IonItem>
-              <IonLabel position="floating"> Password</IonLabel>
+              <IonLabel color="tertiary" position="floating"> Password</IonLabel>
               <IonInput
                type="password"
                onIonChange={(e: any) => setPassword(e.target.value)} /></IonItem>
                <IonItem>
-               <IonLabel position="floating"> Confirm password</IonLabel>
+               <IonLabel color="tertiary" position="floating"> Confirm password</IonLabel>
              <IonInput
                type="password"
                onIonChange={(e: any) => setCPassword(e.target.value)} /></IonItem>
+               
               </IonList>
+             <IonItem>
+              <IonLabel color="tertiary"> I accept <Link to="/termsofuse">terms of use</Link></IonLabel>
+            <IonCheckbox slot="start" checked={checked} onIonChange={e => setChecked(e.detail.checked)} /></IonItem>
 
 
         <IonButton onClick={register}>Register</IonButton>
