@@ -80,7 +80,7 @@ export function getRequest(){
   let requestRef = db.collection("requests")
   let allRequests = requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
-      reqArr.push({lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type})
+      reqArr.push({lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description})
     });
   })
   .catch(err => {
