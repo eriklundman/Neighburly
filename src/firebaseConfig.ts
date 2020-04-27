@@ -25,7 +25,7 @@ let credUpdate = false;
 export async function loginUser(email: string, password: string) {
   try {
     const res = await firebase.auth().signInWithEmailAndPassword(email, password)
-    
+
     return true
   } catch (error) {
     console.log(error);
@@ -60,32 +60,41 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 export function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
-  
+
   let userRef: any = firebase.auth().currentUser;
 
-  try{
-  db.collection('requests').doc().set({
-    receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords
-  })
-  return true
-}
+  try {
+    db.collection("users").doc(userRef.uid).get().then((docu: any) => {
+      if (docu !== undefined) {
+        db.collection('requests').doc().set({
+          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname
+        })
+      }
+    })
+
+    return true
+  }
   catch{
     toast("Requesten skickades ej")
     return false
   }
 }
 
-export function getRequest(){
+export function getRequest() {
   let reqArr: any = []
   let requestRef = db.collection("requests")
-  let allRequests = requestRef.get().then(snapshot => {
+  requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
-      reqArr.push({lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description})
+
+      reqArr.push({ lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+
     });
+
   })
-  .catch(err => {
-    console.log('Error getting documents', err);
-  });
+    .catch(err => {
+      console.log('Error getting documents', err);
+    });
+
   return reqArr
 }
 
@@ -138,37 +147,37 @@ export async function getUserInfo() {
   }
 }
 
-  export async function updateDatabase(radius : any, firstname : any, lastname : any) {
-    let userRef: any = firebase.auth().currentUser;
+export async function updateDatabase(radius: any, firstname: any, lastname: any) {
+  let userRef: any = firebase.auth().currentUser;
 
   if (userRef) {
     let user: any = userRef.uid;
 
-      db.collection("users").doc(user).set({
-        radius: radius*1000, firstname, lastname
-      }, {merge: true})
-          .then(function () {
-            console.log("Document successfully written!");
-            toast("Changes saved")
-            credUpdate = true;
-          })
-          .catch(function (error) {
-            console.error("Error writing document: ", error);
-            toast("Problem saving changes, check internet connection")
-          });
+    db.collection("users").doc(user).set({
+      radius: radius * 1000, firstname, lastname
+    }, { merge: true })
+      .then(function () {
+        console.log("Document successfully written!");
+        toast("Changes saved")
+        credUpdate = true;
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+        toast("Problem saving changes, check internet connection")
+      });
 
   }
 }
 
-  export async function credChange() {
-    if (credUpdate) {
-      credUpdate = false;
-      return true
-    }
-    else {
-      return false
-    }
+export async function credChange() {
+  if (credUpdate) {
+    credUpdate = false;
+    return true
   }
+  else {
+    return false
+  }
+}
 
 
 

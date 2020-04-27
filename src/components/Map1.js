@@ -23,7 +23,9 @@ class SimpleMap extends React.Component {
       markers: [],
       showAlert: false,
       des:"",
-      reqType:""
+      reqType:"",
+      name:""
+
     };
   }
 
@@ -50,9 +52,10 @@ class SimpleMap extends React.Component {
   };
 
   markerClicked(marker) {
-    console.log("The marker that was clicked is", marker);
+    
     this.setState({showAlert:true});
-    this.setState({des: marker.des})
+    this.setState({des: marker.des});
+    this.setState({name: marker.r_fn + " " + marker.r_ln})
 
     if (marker.type === "shopping") {
       this.setState({reqType: "Shopping"})
@@ -131,7 +134,7 @@ class SimpleMap extends React.Component {
           <IonAlert
             isOpen={this.state.showAlert}
             onDidDismiss={() => this.setShowAlertFalse()}
-            header={"Request"}
+            header={this.state.name}
             subHeader={this.state.reqType}
             message={this.state.des}
             buttons={["Cancel", "Help"]}
@@ -157,6 +160,7 @@ class SimpleMap extends React.Component {
                 lat={marker.lat}
                 lng={marker.lng}
                 onClick={this.markerClicked.bind(this, marker)}
+                style={{position: 'absolute', transform: 'translate(-50%, -100%)'}}
               >
                 <IonIcon slot="icon-only" icon={ico} />
               </IonButton>

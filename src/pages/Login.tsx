@@ -7,7 +7,7 @@ import {
 } from '@ionic/react';
 import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'
-import {toast} from "../toast";
+import { toast } from "../toast";
 import './Login.css';
 
 
