@@ -7,26 +7,28 @@ import {
   IonButton,
   IonIcon,
   IonItem,
-  IonButtons,
+  IonButtons, IonList,
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
-import { getRequest } from "../firebaseConfig";
+import {getRequest} from "../firebaseConfig";
+import RequestOnMap from "../components/RequestOnMap";
 
 const MapTab: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const pageRef = useRef<any>();
-  let array: any = []
-  array = getRequest()
-  
-  const listItems = array.map((req: any) => {
-    return(
-      <p>{req.type}</p>
-    )
-  })
+
+
+  const [info, setInfo] = useState([]);
+  useEffect(() => {
+    let data = getRequest();
+    setInfo(data)
+    console.log("hej")
+  },[]);
+
 
 
   return (
@@ -46,8 +48,15 @@ const MapTab: React.FC = () => {
               <IonIcon className="modalButton" size="large" icon={chevronDownOutline} />
             </IonButton>
           </IonButtons>
+          <IonContent scrollEvents={true}>
+          <IonList>
+            {info.map((item: any, index: number) => (
+                <RequestOnMap key={index} item={item}/>
+            ))}
 
-          <p>{listItems}</p>
+          </IonList>
+          </IonContent>
+
         </IonModal>
 
         <SimpleMap />

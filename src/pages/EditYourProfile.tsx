@@ -30,7 +30,7 @@ const EditYourProfile: React.FC = () => {
                 setUserLn(result.lastname);
             });
         }
-    }, [userfn]);
+    }, []);
 
     useEffect(() => {
         setRadius(userRadius)// This is be executed when `userRadius` state changes

@@ -99,8 +99,6 @@ export function getRequest() {
 }
 
 
-
-
 export async function logoutUser() {
   return firebase.auth().signOut()
 }
@@ -168,17 +166,15 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
 
   }
 }
-
-export async function credChange() {
-  if (credUpdate) {
-    credUpdate = false;
-    return true
+  export function credChange() {
+    if (credUpdate) {
+      credUpdate = false;
+      return true
+    }
+    else {
+      return false
+    }
   }
-  else {
-    return false
-  }
-}
-
 
 
 

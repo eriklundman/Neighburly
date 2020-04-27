@@ -95,7 +95,7 @@ class SimpleMap extends React.Component {
     this.setState({showAlert:false});
   };
 
-  componentDidUpdate = (prevState) => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (prevState.radius !== this.state.radius) {
       this.newRadius();
     }
