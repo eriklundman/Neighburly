@@ -8,7 +8,7 @@ import {
   helpCircleOutline,
   basketOutline,
 } from "ionicons/icons";
-import { IonIcon, IonButton, IonAlert, IonContent } from "@ionic/react";
+import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
 
 //const AnyReactComponent = ({  pawOutline, flowerOutline, helpCircleOutline, basketOutline }) => <div><img src={img_src} className="YOUR-CLASS-NAME" style={{}} /></div>;
 
@@ -19,7 +19,7 @@ class SimpleMap extends React.Component {
       lat: "",
       lng: "",
       userPos: "",
-      radius: 1000,
+      radius: 0,
       markers: [],
       showAlert: false,
       des: "",
@@ -41,10 +41,10 @@ class SimpleMap extends React.Component {
     zoom: 11,
   };
 
+
   componentDidMount = () => {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(this.currentCoords);
-      this.newRadius();
     }
 
     let array = [];
@@ -91,8 +91,9 @@ class SimpleMap extends React.Component {
   newRadius = () => {
     getUserInfo().then((result) => {
       if (result !== undefined) {
+        console.log("hej")
         this.setState({
-          radius: result.radius,
+          radius: result.radius
         });
       }
     });
@@ -104,13 +105,19 @@ class SimpleMap extends React.Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.radius !== this.state.radius) {
-      console.log(this.state.circle.setRadius(this.state.radius))
-
+      this.state.circle.setRadius(this.state.radius);
+    }
+    if (prevState.userPos !== this.state.userPos && prevState.userPos!=="" ) {
+      this.state.circle.setOptions({center: this.state.userPos});
     }
   };
 
   takeRequest = () => {
     helpRequest(this.state.req_id);
+  };
+
+  ionViewDidEnter() {
+    this.newRadius();
   }
 
 
@@ -128,10 +135,10 @@ class SimpleMap extends React.Component {
       center: this.state.userPos,
       radius: this.state.radius
     })});
+
 };
 
   render() {
-    this.newRadius();
 
     return (
       <div style={{ height: "100%", width: "100%" }}>
@@ -195,4 +202,4 @@ class SimpleMap extends React.Component {
   }
 }
 
-export default SimpleMap;
+export default withIonLifeCycle(SimpleMap);
