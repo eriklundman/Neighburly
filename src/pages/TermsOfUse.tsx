@@ -5,10 +5,10 @@ import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent } 
 const TermsOfUse: React.FC = () => {
     return (
         <IonPage>
-            <IonToolbar>
-          <IonTitle>Terms & Conditions</IonTitle>
+            <IonToolbar color="primary">
+          <IonTitle color="tertiary">Terms & Conditions</IonTitle>
           <IonButtons slot="start">
-          <IonBackButton defaultHref="/menuTab" />
+          <IonBackButton color="tertiary" text="" defaultHref="/menuTab" />
         </IonButtons>
         </IonToolbar>
         <IonContent>

@@ -20,10 +20,10 @@ const Help: React.FC = () => {
                 <IonToolbar>
                     <IonRow>
                         <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
-                            <IonSegmentButton onClick={() => setMode(mode==='list active helps' ? 'You have been helped by(antal)': 'list active helps')} value="activehelps" >
+                            <IonSegmentButton onClick={() => setMode(mode==='list active helps' ? 'list active helps': 'list active helps')} value="activehelps" >
                                 <IonLabel>Active helps</IonLabel>
                             </IonSegmentButton>
-                            <IonSegmentButton onClick={() => setMode(mode==='list inactive helps' ? 'list active helps': 'list inactive helps')} value="inactivehelps" >
+                            <IonSegmentButton onClick={() => setMode(mode==='list inactive helps' ? 'list inactive helps': 'list inactive helps')} value="inactivehelps" >
                                 <IonLabel>Inactive helps</IonLabel>
                             </IonSegmentButton>
                         </IonSegment>

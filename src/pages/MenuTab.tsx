@@ -7,8 +7,8 @@ const MenuTab: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Menu</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle color="tertiary">Menu</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

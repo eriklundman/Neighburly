@@ -45,7 +45,7 @@ const ProfileTab: React.FC = () => {
 
       <IonRow className="ion-align-items-stretch">
      <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
-       <IonSegmentButton onClick={() => setMode(mode === 'You have helped (antal) persons' ? 'You have been helped by(antal) persons' : 'You have helped (antal) persons')} value="helper" >
+       <IonSegmentButton onClick={() => setMode(mode === 'You have helped (antal) persons' ? 'You have helped (antal) persons' : 'You have helped (antal) persons')} value="helper" >
          <IonLabel color="tertiary">Helper</IonLabel>
        </IonSegmentButton>
        <IonSegmentButton onClick={() => setMode(mode === 'You have helped (antal) persons' ? 'You have been helped by(antal) persons' : 'You have been helped by(antal) persons')} value="receiver" >

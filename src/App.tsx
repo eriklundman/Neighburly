@@ -9,6 +9,8 @@ import { IonReactRouter } from '@ionic/react-router';
 import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import TermsOfUseRegister from './pages/TermsOfUseRegister';
+
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -31,7 +33,6 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './firebaseConfig';
-import TermsOfUseRegister from './pages/TermsOfUseRegister';
 
 
 

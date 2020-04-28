@@ -23,11 +23,9 @@ const Menu: React.FC = () => {
       <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
 <IonItem routerLink="/menuTab/info/">
   <IonLabel> Info </IonLabel>
-  <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>
 <IonItem routerLink="/menuTab/termsandconditions/">
   <IonLabel> Terms & Conditions </IonLabel>
-  <IonIcon icon={arrowForwardOutline} slot="end" />
 </IonItem>
 <IonItem>
   <IonButtons>
