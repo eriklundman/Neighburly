@@ -14,7 +14,7 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-color-secondary: #194afb;
     --ion-color-secondary-rgb: 25,74,251;
-    --ion-color-secondary-contrast: #ffffff;
+    --ion-color-secondary-contrast: #533e3e;
     --ion-color-secondary-contrast-rgb: 255,255,255;
     --ion-color-secondary-shade: #1641dd;
     --ion-color-secondary-tint: #305cfb;
@@ -68,6 +68,13 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
 
+    --ion-tab-bar-color-selected: #bbd0ff;
+
+
+
+     
+
+   
    
 
 }

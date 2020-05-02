@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { IonPage, IonToolbar, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonToolbar, IonGrid, IonText, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
@@ -7,6 +7,8 @@ import HeaderLogga from '../components/HeaderLogga';
 import {getUserInfo, updateDatabase} from "../firebaseConfig";
 import {toast} from "../toast";
 import { useHistory } from 'react-router-dom';
+import './EditYourProfile.css';
+
 
 
 
@@ -57,46 +59,53 @@ const EditYourProfile: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <HeaderLogga/>
+                <IonItem color="primary">
+                <IonGrid>
+                    <IonRow className="ion-align-items-center">
+
+                    <IonCol><div className="ion-float-left">
+                      <IonButtons slot="start">
+                        <IonBackButton text="Back" color="tertiary" defaultHref="/profileTab" />
+                     </IonButtons>
+                    </div></IonCol>  
+
+                    <IonCol ><div className="ion-float-left">
+                    <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>  </div> 
+                    <div className="ion-float-center"><IonText color="tertiary" slot="end"> Edit profile </IonText>
+                    </div> </IonCol>
+                    <IonCol></IonCol>
+
+                    </IonRow>
+                    </IonGrid>
+                </IonItem>
+
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent>
-                <IonItem>
-                    <IonButtons slot="start">
-                        <IonBackButton text="" color="tertiary" defaultHref="/profileTab" />
-                    </IonButtons>
-                    <IonTitle color="tertiary"> Edit profile </IonTitle>
-                    <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>
-                </IonItem>
-
+            <IonContent scrollEvents={true}>
+            
+                    
                 <EditRadius radius={radius} setRadius={setRadius} />
+              
 
                 <EditInfo userfn={userfn} userln={userln} fn={fn} setfn={setfn} ln={ln} setln={setln} />
-
+                <IonCol></IonCol>
+                <IonCol>
+                <IonRow>  
+                        <IonButton expand="block" onClick={update}>Save changes</IonButton>   
+                </IonRow>
                 <IonRow>
-                    <IonCol/>
-                    <IonCol>
                         <IonButtons>
                             <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
                         </IonButtons>
-                    </IonCol>
-                    <IonCol/>
+               
                 </IonRow>
-                <IonRow>
-                    <IonCol/>
-                    <IonCol>
-                        <IonButton expand="block" onClick={update} >Save changes</IonButton>
-                    </IonCol>
-                    <IonCol/>
+               
+                <IonRow>  
+                        <IonButton className="centreraKnapp" expand="block" color="danger">Delete account</IonButton> 
                 </IonRow>
-                <IonRow>
-                    <IonCol/>
-                    <IonCol>
-                        <IonButton expand="block" color="danger">Delete account</IonButton>
-                    </IonCol>
-                    <IonCol/>
-                </IonRow>
+                </IonCol>
+                <IonCol></IonCol>
             </IonContent>
         </IonPage>
     );

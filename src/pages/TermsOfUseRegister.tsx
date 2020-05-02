@@ -11,7 +11,7 @@ const TermsOfUseRegister: React.FC = () => {
           <IonBackButton defaultHref="/register" />
         </IonButtons>
         </IonToolbar>
-        <IonContent>
+        <IonContent scrollEvents={true}>
 <h1>Terms and conditions</h1>
 <p>These terms and conditions (&quot;Terms&quot;, &quot;Agreement&quot;) are an agreement between Mobile Application Developer (&quot;Mobile Application Developer&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;) and you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;). This Agreement sets forth the general terms and conditions of your use of the Neighburly mobile application and any of its products or services (collectively, &quot;Mobile Application&quot; or &quot;Services&quot;).</p>
 <h2>Accounts and membership</h2>

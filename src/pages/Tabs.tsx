@@ -17,6 +17,8 @@ import MakeRequest from './MakeRequest';
 import EditYourProfile from './EditYourProfile';
 import GetInfo from './GetInfo';
 import TermsOfUse from './TermsOfUse';
+import './Tabs.css';
+
 
 
 
@@ -36,22 +38,22 @@ const Tabs: React.FC = () => {
         <Route path="/profileTab/edityourprofile/" component={EditYourProfile}/>
         <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>
-      <IonTabBar slot="bottom" >
-        <IonTabButton tab="menuTab" href="/menuTab">
-          <IonIcon color="secondary" icon={menuOutline} />
-          <IonLabel color="secondary">Menu</IonLabel>
+      <IonTabBar slot="bottom">
+        <IonTabButton className="tabColor" tab="menuTab" href="/menuTab">
+          <IonIcon icon={menuOutline} />
+          <IonLabel >Menu</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="helpTab" href="/helpTab">
-          <IonIcon color="secondary" icon={heartOutline} />
-          <IonLabel color="secondary">Helps</IonLabel>
+        <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
+          <IonIcon icon={heartOutline} />
+          <IonLabel>Helps</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="mapTab" href="/mapTab">
-          <IonIcon color="secondary" icon={navigateCircleOutline} />
-          <IonLabel color="secondary">Map</IonLabel>
+        <IonTabButton className="tabColor" tab="mapTab" href="/mapTab">
+          <IonIcon icon={navigateCircleOutline} />
+          <IonLabel>Map</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="profileTab" href="/profileTab">
-          <IonIcon color="secondary" icon={personOutline} />
-          <IonLabel color="secondary">My Profile</IonLabel>
+        <IonTabButton className="tabColor" tab="profileTab" href="/profileTab">
+          <IonIcon icon={personOutline} />
+          <IonLabel >My Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
