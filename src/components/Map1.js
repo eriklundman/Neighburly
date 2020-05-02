@@ -53,7 +53,6 @@ class SimpleMap extends React.Component {
     this.setState({
       markers: array,
     });
-
   };
 
   markerClicked(marker) {
@@ -91,7 +90,6 @@ class SimpleMap extends React.Component {
   newRadius = () => {
     getUserInfo().then((result) => {
       if (result !== undefined) {
-        console.log("hej")
         this.setState({
           radius: result.radius
         });
