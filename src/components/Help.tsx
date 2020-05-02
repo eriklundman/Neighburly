@@ -1,29 +1,44 @@
 import React, {useState, useEffect} from 'react';
 import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid, IonList} from '@ionic/react';
 import Request from '../components/Request';
-import {getRequest} from "../firebaseConfig";
+import {getRequest, getYourRequest} from "../firebaseConfig";
 
 
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
 const Help: React.FC = () => {
     const [mode, setMode] = useState('list active helps');
     const [info, setInfo] = useState([]);
+    const [defValue, setDefValue] = useState("");
 
     useEffect(() => {
-        setInfo(getRequest())
+        setInfo(getYourRequest())
+        setDefValue("activehelps")
 
     }, []);
+
+    function active() {
+        setMode("list active helps");
+        setDefValue("activehelps");
+
+
+    }
+
+    function inactive() {
+        setMode("list inactive helps");
+        setDefValue("inactivehelps");
+
+    }
 
     return (
         <IonContent>
             <IonGrid>
                 <IonToolbar>
                     <IonRow>
-                        <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)}>
-                            <IonSegmentButton onClick={() => setMode(mode==='list active helps' ? 'list active helps': 'list active helps')} value="activehelps" >
+                        <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)} value={defValue}>
+                            <IonSegmentButton onClick={active} value="activehelps" >
                                 <IonLabel>Active helps</IonLabel>
                             </IonSegmentButton>
-                            <IonSegmentButton onClick={() => setMode(mode==='list inactive helps' ? 'list inactive helps': 'list inactive helps')} value="inactivehelps" >
+                            <IonSegmentButton onClick={inactive} value="inactivehelps" >
                                 <IonLabel>Inactive helps</IonLabel>
                             </IonSegmentButton>
                         </IonSegment>

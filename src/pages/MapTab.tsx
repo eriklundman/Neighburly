@@ -8,13 +8,12 @@ import {
   IonIcon,
   IonButtons,
   IonList
- 
+
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
-import Request from "../components/Request";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import {getRequest} from "../firebaseConfig";
 import RequestOnMap from "../components/RequestOnMap";
@@ -27,8 +26,7 @@ const MapTab: React.FC = () => {
   const [info, setInfo] = useState([]);
   useEffect(() => {
     let data = getRequest();
-    setInfo(data)
-    console.log("hej")
+    setInfo(data);
   },[]);
 
 
@@ -53,12 +51,11 @@ const MapTab: React.FC = () => {
           <IonContent scrollEvents={true}>
           <IonList>
             {info.map((item: any, index: number) => (
-                <RequestOnMap key={index} item={item}/>
+                item.accepted===false ? <RequestOnMap key={index} item={item}/> : <p></p>
             ))}
 
           </IonList>
           </IonContent>
-
         </IonModal>
         <SimpleMap/>
       </IonContent>

@@ -1,7 +1,19 @@
 
 import React, {useState, useEffect} from 'react';
-import { IonContent, IonIcon, IonGrid, IonRow, IonText, IonLabel, IonSegment, IonSegmentButton, IonToolbar, IonCol} from '@ionic/react';
-import {credChange, getUserInfo} from '../firebaseConfig'
+import {
+    IonContent,
+    IonIcon,
+    IonGrid,
+    IonRow,
+    IonText,
+    IonLabel,
+    IonSegment,
+    IonSegmentButton,
+    IonToolbar,
+    IonCol,
+    useIonViewDidEnter
+} from '@ionic/react';
+import {getUserInfo} from '../firebaseConfig'
 
 import { personCircleOutline } from 'ionicons/icons';
 import './Profile.css';
@@ -11,10 +23,9 @@ const Profile: React.FC = () => {
     const [fn, setFn] = useState('');
     const [ln, setLn] = useState('');
     const [email, setEmail] = useState('');
-    const [update, setUpdate] = useState(false)
 
 
-    useEffect(() => {
+    useIonViewDidEnter(() => {
         getUserInfo().then((result: any) => {
             if(result !== undefined){
                 setFn(result.firstname);
@@ -22,13 +33,8 @@ const Profile: React.FC = () => {
                 setEmail(result.email)
             }
         });
-        setUpdate(false)
-    },[update]);
+    });
 
-
-    if (credChange()) {
-        setUpdate(true)
-    }
 
 
     return (

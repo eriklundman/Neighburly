@@ -20,7 +20,6 @@ const config = {
 firebase.initializeApp(config);
 const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
-let credUpdate = false;
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -93,6 +92,24 @@ export function getRequest() {
     .catch(err => {
       console.log('Error getting documents', err);
     });
+
+  return reqArr
+}
+
+export function getYourRequest() {
+  let userRef: any = firebase.auth().currentUser;
+  let reqArr: any = []
+  let requestRef = db.collection("requests").where("helper_id", "==", userRef.uid)
+  requestRef.get().then(snapshot => {
+    snapshot.forEach(req => {
+
+      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+    });
+
+  })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
 
   return reqArr
 }
@@ -178,7 +195,6 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
       .then(function () {
         console.log("Document successfully written!");
         toast("Changes saved")
-        credUpdate = true;
       })
       .catch(function (error) {
         console.error("Error writing document: ", error);
@@ -187,15 +203,7 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
 
   }
 }
-  export function credChange() {
-    if (credUpdate) {
-      credUpdate = false;
-      return true
-    }
-    else {
-      return false
-    }
-  }
+
 
 
 
