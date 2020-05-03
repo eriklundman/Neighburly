@@ -59,14 +59,14 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 export function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
-
+  return createChatRoom().then((chatRoomId : any) => {
   let userRef: any = firebase.auth().currentUser;
 
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false
+          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, chatId: chatRoomId
         })
       }
     })
@@ -77,6 +77,57 @@ export function createRequest(text: string, selected: string, selectedDate: stri
     toast("Requesten skickades ej")
     return false
   }
+  })
+
+}
+
+async function createChatRoom() {
+   return db.collection("chats").add({
+    messages: [],
+  }).then(docRef => {
+        console.log("Document written with ID: ", docRef.id);
+        return docRef.id
+      })
+      .catch(error => console.error("Error adding document: ", error))
+}
+
+export function storeMessage(message : string, chatId : string, firstName : any) {
+  let userRef: any = firebase.auth().currentUser;
+  let info = {content: message, name: firstName, timeStamp: Date.now()};
+  try {
+    let chatRef = db.collection("chats").doc(chatId);
+    chatRef.update({
+      messages: firebase.firestore.FieldValue.arrayUnion(info)
+    }).then(() => {
+      console.log("Message sent")
+    });
+  }
+  catch{
+    toast("Meddelandet kunde inte skickas")
+    return false
+  }
+}
+
+export function retrieveMessages(chatId : string) {
+
+  let docRef = db.collection("chats").doc(chatId);
+
+
+  return docRef.get().then(function (doc) {
+    if (doc.exists) {
+
+      console.log("Document data:", doc.data());
+
+      return doc.data()
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+
+
+    }
+  }).catch(function (error) {
+    console.log("Error getting document:", error);
+  });
 }
 
 export function getRequest() {
@@ -103,7 +154,7 @@ export function getYourRequest() {
   requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
 
-      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
     });
 
   })

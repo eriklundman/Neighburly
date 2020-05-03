@@ -10,6 +10,7 @@ import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import TermsOfUseRegister from './pages/TermsOfUseRegister';
+import Chat from "./pages/Chat";
 
 
 
@@ -47,6 +48,7 @@ const RoutingSystem: React.FC = () => {
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/termsofuse" component={TermsOfUseRegister} exact/>
+        <Route path="/chat/:id" component={Chat} exact/>
         <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>     
     </IonReactRouter>

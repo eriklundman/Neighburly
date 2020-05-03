@@ -35,7 +35,7 @@ const Tabs: React.FC = () => {
         <Route path="/mapTab" component={MapTab} exact={true} />
         <Route path="/mapTab/makerequest/" component={MakeRequest}/>
         <Route path="/profileTab" component={ProfileTab} exact={true} />
-        <Route path="/profileTab/edityourprofile/" component={EditYourProfile}/>
+        <Route path="/edityourprofile" component={EditYourProfile}/>
         <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">

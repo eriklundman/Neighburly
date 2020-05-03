@@ -6,7 +6,7 @@ const SettingsBtn = () => {
     return(
         <IonButtons>
         <IonButton> 
-        <IonItem routerLink="/profileTab/edityourprofile/">
+        <IonItem routerLink="/edityourprofile">
          <IonText>Edit your profile </IonText>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start" />
       </IonItem>

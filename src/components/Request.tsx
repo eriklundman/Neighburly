@@ -34,9 +34,11 @@ const Request: React.FC<any> = props => {
       </div> </IonCol>
 
         <IonCol><div className="ion-float-right">
-       <IonButtons> <IonButton>
-        <IonIcon color="tertiary" icon={chatbubblesOutline} slot="icon-only"/>
-        </IonButton></IonButtons>
+       <IonButtons>
+           <IonButton routerLink={`/chat/${props.item.chatId}`}>
+                <IonIcon color="tertiary" icon={chatbubblesOutline} slot="icon-only"/>
+           </IonButton>
+       </IonButtons>
         </div> </IonCol>
         </IonRow>
 
