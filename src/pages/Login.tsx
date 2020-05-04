@@ -49,7 +49,7 @@ const Login: React.FC = () => {
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>
-            <IonInput
+            <IonInput className="elsa"
           onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
           <IonItem>
           <IonLabel position="floating"> Password</IonLabel>

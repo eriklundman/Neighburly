@@ -6,7 +6,7 @@ import {
   pawOutline,
   flowerOutline,
   helpCircleOutline,
-  basketOutline,
+  cartOutline,
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
 
@@ -164,7 +164,7 @@ class SimpleMap extends React.Component {
           {this.state.markers.map((marker, i) => {
             let ico;
             if (marker.type === "shopping") {
-              ico = basketOutline;
+              ico = cartOutline;
             } else if (marker.type === "dog-walking") {
               ico = pawOutline;
             } else if (marker.type === "gardening") {

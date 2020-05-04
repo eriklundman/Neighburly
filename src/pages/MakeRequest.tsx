@@ -17,16 +17,21 @@ import {
   IonIcon,
   IonDatetime,
   IonContent,
+  IonHeader,
+  IonText
 } from "@ionic/react";
 import PlacesAutocomplete from "../components/AddressInput";
 import {
   pawOutline,
   flowerOutline,
   helpCircleOutline,
-  basketOutline,
+  cartOutline,
+  chevronBackOutline
 } from "ionicons/icons";
 import { toast } from "../toast";
 import { createRequest } from "../firebaseConfig"
+import './MakeRequest.css';
+
 
 const MakeRequest: React.FC = () => {
 
@@ -63,54 +68,52 @@ const MakeRequest: React.FC = () => {
   return (
 <IonPage>
       <IonContent scrollEvents= {true}>
-      <IonToolbar>
-        <IonTitle>Make Request</IonTitle>
-        <IonButtons slot="start">
-          <IonBackButton defaultHref="/mapTab" />
-        </IonButtons>
-      </IonToolbar>
-
-        <IonRow>
-            <IonItem>
-            <IonLabel>Pick type of request</IonLabel>
-            </IonItem>
-        </IonRow>
+      <IonHeader>
+             <IonToolbar color="primary">
+             <IonTitle className="ion-text-center" color="tertiary">Make request</IonTitle>
+                  <IonButtons slot="start">
+                 <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/mapTab" />
+              </IonButtons>
+            </IonToolbar>
+        </IonHeader>
 
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
 
-            <IonLabel>Pick type of request</IonLabel>
-
+              <IonRow>
+            <IonText className="textDesign">Pick type of request</IonText>
+            </IonRow>
             <IonRow>
-              <IonCol>
-                <IonRadio value="dog-walking" />
-                <IonLabel> Dog walking</IonLabel>
-                <IonIcon icon={pawOutline} size="large" />
+              <IonCol className="ion-justify-content-center">
+                <IonRadio className="radioDesign" value="dog-walking" />
+                <IonLabel color="tertiary"> Dog walking</IonLabel>
+                <IonIcon color="tertiary" icon={pawOutline} size="large" />
               </IonCol>
 
               <IonCol>
-                <IonRadio value="gardening" />
-                <IonLabel> Gardening</IonLabel>
-                <IonIcon icon={flowerOutline} size="large" />
+                <IonRadio className="radioDesign" value="gardening" />
+                <IonLabel color="tertiary"> Gardening</IonLabel>
+                <IonIcon color="tertiary" icon={flowerOutline} size="large" />
               </IonCol>
             </IonRow>
 
             <IonRow>
               <IonCol>
-                <IonRadio value="other" />
-                <IonLabel> Other</IonLabel>
-                <IonIcon icon={helpCircleOutline} size="large" />
+                <IonRadio className="radioDesign" value="other" />
+                <IonLabel color="tertiary"> Other</IonLabel>
+                <IonIcon color="tertiary" icon={helpCircleOutline} size="large" />
               </IonCol>
 
               <IonCol>
-                <IonRadio value="shopping" />
-                <IonLabel> Shopping</IonLabel>
-                <IonIcon icon={basketOutline} size="large" />
+                <IonRadio className="radioDesign" value="shopping" />
+                <IonLabel color="tertiary"> Shopping</IonLabel>
+                <IonIcon color="tertiary" icon={cartOutline} size="large" />
               </IonCol>
             </IonRow>
 
           </IonRadioGroup>
+
         <div>
         <IonItem>
           <IonLabel>Description of your request</IonLabel>

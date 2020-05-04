@@ -5,7 +5,7 @@ import { personCircleOutline,
     pawOutline,
     flowerOutline,
     helpCircleOutline,
-    basketOutline } from 'ionicons/icons';
+    cartOutline } from 'ionicons/icons';
 import './Request.css';
 
 
@@ -13,7 +13,7 @@ import './Request.css';
 const RequestOnMap: React.FC<any> = props => {
     let icon : any;
     if (props.item.type === "shopping") {
-        icon = basketOutline;}
+        icon = cartOutline;}
     if (props.item.type === "dog-walking") {
         icon = pawOutline;}
     if (props.item.type === "gardening") {

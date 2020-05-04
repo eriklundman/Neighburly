@@ -8,3 +8,8 @@
     margin: 0 auto;
     padding-left: 0 auto;
 }
+
+.elsa {
+    --ion-placeholder-color: #ffffff;
+    --ion-item-color: #ffffff;
+}
