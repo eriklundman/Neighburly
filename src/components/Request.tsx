@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {IonIcon, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonBadge, IonGrid} from '@ionic/react';
 import { personCircleOutline, 
-    chatbubblesOutline, 
+    chatbubblesOutline,
     checkmarkOutline,
     pawOutline,
     flowerOutline,
@@ -25,7 +25,7 @@ const Request: React.FC<any> = props => {
 
     return(
 
-        <IonItem>
+        <IonItem class={props.type}>
             <IonGrid>
                 <IonRow>
                 <IonCol> <div className="ion-align-self-start">
@@ -43,9 +43,12 @@ const Request: React.FC<any> = props => {
         </IonRow>
 
         <IonRow>
-            <IonCol><div className="ion-align-self-start">
+            <IonCol>
+                <div className="ion-align-self-start">
             <IonIcon color="tertiary" icon={icon}/>
-                 {props.item.des} </div></IonCol>
+                 {props.item.des} {  props.type}
+                </div>
+            </IonCol>
                 <IonCol><div className="ion-float-right">
        <IonButtons> <IonButton>
         <IonIcon color="success" icon={checkmarkOutline} slot="icon-only"/>

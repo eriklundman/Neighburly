@@ -1,4 +1,18 @@
+.badge {
+    --padding-start:1px;
+}
+.hejsan{
+    --padding-end:0 auto;
+}
 
-.hej{
-    --padding-end: 20%;
+.noAccept {
+    color: #c7434b;
+}
+
+.youWillHelp {
+    color: #2b832e;
+}
+
+.helpingYou {
+    color: #001a4d;
 }

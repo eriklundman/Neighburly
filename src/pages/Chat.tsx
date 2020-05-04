@@ -11,10 +11,7 @@ import {
     IonList, IonLabel, IonInput, IonItem, IonFooter
 } from '@ionic/react';
 import {getUserInfo, retrieveMessages, storeMessage} from "../firebaseConfig";
-import Request from "../components/Request";
 const db = firebase.firestore();
-
-
 
 const Chat: React.FC<any> = (props) => {
     const [message, setMessage] = useState("");
@@ -23,29 +20,40 @@ const Chat: React.FC<any> = (props) => {
     const chatId = props.match.params.id;
 
 
-
     useEffect(() => {
         if (getUserInfo() !== undefined) {
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
             });
-            retrieveMessages(chatId).then((data : any) => {
-                setChats(data.messages);
-            })
         }
-
+        db.collection("chats").doc(chatId).onSnapshot(snapshot => {
+            updateMessages(snapshot.data())
+        })
     }, []);
 
+
+    function updateMessages(data : any) {
+        setChats(data.messages);
+        ScrollToBottom()
+
+    }
 
     function sendMessage() {
         if (message !== "") {
             storeMessage(message, chatId , fn)
             setMessage("")
-            retrieveMessages(chatId).then((data : any) => {
-                setChats(data.messages);
-            })
+            //retrieveMessages(chatId).then((data : any) => {
+             //   setChats(data.messages);
+           // })
 
         }
+    }
+    function ScrollToBottom(){
+        let element : any = document.getElementById("bottom");
+        // I can't remember why I added a short timeout,
+        // but you might be able to use ngzone instead.
+        // the below works great though.
+        setTimeout(()=>{element.scrollIntoView({behavior: 'smooth'})},100);
     }
 
     return (
@@ -53,7 +61,7 @@ const Chat: React.FC<any> = (props) => {
             <IonHeader>
                 <IonTitle>Chat</IonTitle>
             </IonHeader>
-            <IonContent>
+            <IonContent >
                 <IonGrid>
                     <IonList>
                         {chats.map((item: any, index: number) => (
@@ -61,6 +69,7 @@ const Chat: React.FC<any> = (props) => {
                         ))}
 
                     </IonList>
+                    <IonLabel id="bottom"></IonLabel>
                 </IonGrid>
 
 

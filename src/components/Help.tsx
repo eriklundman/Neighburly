@@ -2,19 +2,41 @@ import React, {useState, useEffect} from 'react';
 import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid, IonList} from '@ionic/react';
 import Request from '../components/Request';
 import {getRequest, getYourRequest} from "../firebaseConfig";
-
+import * as firebase from 'firebase'
+const db = firebase.firestore();
 
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
 const Help: React.FC = () => {
     const [mode, setMode] = useState('list active helps');
     const [info, setInfo] = useState([]);
     const [defValue, setDefValue] = useState("");
+    const[id, setId] = useState<any>()
 
     useEffect(() => {
-        setInfo(getYourRequest())
+        //setInfo(getYourRequest())
         setDefValue("activehelps")
 
+        let userRef: any = firebase.auth().currentUser;
+        setId(userRef.uid);
+        let reqArr: any = [];
+        let requestRef = db.collection("requests")
+
+        requestRef.onSnapshot(snapshot => {
+            reqArr = [];
+            snapshot.forEach(req => {
+                console.log(req.data())
+                reqArr.push({ accepted: req.data().accepted, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
+
+            });
+            loadData(reqArr);
+        })
+
     }, []);
+
+    function loadData(data : any) {
+        setInfo(data)
+
+    }
 
     function active() {
         setMode("list active helps");
@@ -46,11 +68,18 @@ const Help: React.FC = () => {
                 </IonToolbar>
                 <IonList>
                     {info.map((item: any, index: number) => (
-                        <Request key={index} item={item}/>
-                    ))}
+                        item.accepted !== true ?
+                            item.r_id === id ? <Request key={index} item={item} type={"noAccept"}/>
+                                : <p></p>
+                            : item.accepted === true ?
+                            item.h_id === id ? <Request key={index} item={item} type={"youWillHelp"}/>
+                                : item.r_id === id ? <Request key={index} item={item} type={"helpingYou"}/>
+                                : <p></p>
+                            : <p></p>))}
 
                 </IonList>
             </IonGrid>
+
         </IonContent>
     );
 }

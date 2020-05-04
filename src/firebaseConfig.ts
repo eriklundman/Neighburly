@@ -108,26 +108,16 @@ export function storeMessage(message : string, chatId : string, firstName : any)
   }
 }
 
-export function retrieveMessages(chatId : string) {
+export async function retrieveMessages(chatId : string) {
 
-  let docRef = db.collection("chats").doc(chatId);
+  return db.collection("chats").doc(chatId).onSnapshot(snapshot => {
+    let changes = snapshot.data()
+    console.log(changes)
 
-
-  return docRef.get().then(function (doc) {
-    if (doc.exists) {
-
-      console.log("Document data:", doc.data());
-
-      return doc.data()
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
+    return changes
 
 
-    }
-  }).catch(function (error) {
-    console.log("Error getting document:", error);
-  });
+  })
 }
 
 export function getRequest() {
@@ -149,8 +139,8 @@ export function getRequest() {
 
 export function getYourRequest() {
   let userRef: any = firebase.auth().currentUser;
-  let reqArr: any = []
-  let requestRef = db.collection("requests").where("helper_id", "==", userRef.uid)
+  let reqArr: any = [];
+  let requestRef = db.collection("requests").where("helper_id", "==", userRef.uid);
   requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
 
