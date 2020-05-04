@@ -6,7 +6,8 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  IonBadge
 } from '@ionic/react';
 import { personOutline, navigateCircleOutline, heartOutline, menuOutline } from 'ionicons/icons';
 import MenuTab from './MenuTab';
@@ -44,6 +45,7 @@ const Tabs: React.FC = () => {
           <IonLabel >Menu</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
+          <IonBadge color="danger">1</IonBadge>
           <IonIcon icon={heartOutline} />
           <IonLabel>Helps</IonLabel>
         </IonTabButton>

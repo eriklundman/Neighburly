@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {IonIcon, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonGrid} from '@ionic/react';
+import {IonIcon, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonBadge, IonGrid} from '@ionic/react';
 import { personCircleOutline, 
     chatbubblesOutline, 
     checkmarkOutline,

@@ -1,16 +1,19 @@
 import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader } from '@ionic/react';
+import { chevronBackOutline } from 'ionicons/icons';
 
 
 const TermsOfUse: React.FC = () => {
     return (
         <IonPage>
+            <IonHeader className="ion-text-justify">
             <IonToolbar color="primary">
           <IonTitle color="tertiary">Terms & Conditions</IonTitle>
           <IonButtons slot="start">
-          <IonBackButton color="tertiary" text="" defaultHref="/menuTab" />
+          <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/menuTab" />
         </IonButtons>
         </IonToolbar>
+        </IonHeader>
         <IonContent scrollEvents={true}>
 
 <h1>Terms and conditions</h1>

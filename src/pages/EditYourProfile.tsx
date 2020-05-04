@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { IonPage, IonToolbar, IonGrid, IonText, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
-import { settingsOutline } from 'ionicons/icons';
+import { IonPage, IonToolbar, IonGrid, IonFooter, IonText, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
+import { settingsOutline, chevronBackOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
 import HeaderLogga from '../components/HeaderLogga';
@@ -58,33 +58,25 @@ const EditYourProfile: React.FC = () => {
     return (
         <IonPage>
             <IonHeader>
-                <IonToolbar>
-                <IonItem color="primary">
+                <IonToolbar color="primary">
                 <IonGrid>
                     <IonRow className="ion-align-items-center">
-
-                    <IonCol><div className="ion-float-left">
+                    <div className="ion-float-left">
                       <IonButtons slot="start">
-                        <IonBackButton text="Back" color="tertiary" defaultHref="/profileTab" />
+                      <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
                      </IonButtons>
-                    </div></IonCol>  
-
-                    <IonCol ><div className="ion-float-left">
-                    <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>  </div> 
-                    <div className="ion-float-center"><IonText color="tertiary" slot="end"> Edit profile </IonText>
-                    </div> </IonCol>
-                    <IonCol></IonCol>
-
+                    </div>
+                    <div className="ion-align-items-stretch">
+                    <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>  
+                    <IonText color="tertiary" slot="end"> Edit profile </IonText>
+                    </div> 
                     </IonRow>
                     </IonGrid>
-                </IonItem>
-
                 </IonToolbar>
             </IonHeader>
 
             <IonContent scrollEvents={true}>
-            
-                    
+                
                 <EditRadius radius={radius} setRadius={setRadius} />
               
 
@@ -92,21 +84,26 @@ const EditYourProfile: React.FC = () => {
                 <IonCol></IonCol>
                 <IonCol>
                 <IonRow>  
-                        <IonButton expand="block" onClick={update}>Save changes</IonButton>   
+
+                      <IonButton className="hej" expand="block" onClick={update}>Save changes</IonButton>   
+
                 </IonRow>
                 <IonRow>
-                        <IonButtons>
-                            <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
-                        </IonButtons>
-               
-                </IonRow>
-               
-                <IonRow>  
-                        <IonButton className="centreraKnapp" expand="block" color="danger">Delete account</IonButton> 
+                      <IonButtons>
+                        <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
+                    </IonButtons>
                 </IonRow>
                 </IonCol>
                 <IonCol></IonCol>
             </IonContent>
+            <IonFooter>
+                    <IonToolbar>
+                        <IonButtons>
+                <IonButton  className="centreraKnapp" expand="block" color="danger">Delete account</IonButton> 
+                </IonButtons>
+                </IonToolbar>
+                </IonFooter>
+           
         </IonPage>
     );
 };
