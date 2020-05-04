@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
   IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
   IonButton,
-  IonTabs,
   IonInput,
   IonHeader, 
   IonPage,
   IonToolbar, 
   IonContent, 
   IonLoading,
-  IonGrid,
-  IonRow,
   IonList,
   IonItem,
   IonCheckbox
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
 import { registerUser } from '../firebaseConfig'
 import { toast } from "../toast";
 import HeaderLogga from '../components/HeaderLogga';
@@ -42,7 +34,6 @@ const Register: React.FC = () => {
   async function register() {
 
     if (password !== cpassword) {
-      console.log("olika lösenord")
       return toast("Passwords doesn't match")
     }
     if (email.trim() === "" || password.trim() === "") {
@@ -51,10 +42,13 @@ const Register: React.FC = () => {
     if (firstname.trim() === "" || lastname.trim() === "") {
       return toast("First name and surname are required")
     }
+
+    if (!checked) {
+      return toast("You must accept terms of use")
+    }
     
     setBusy(true);
     const res = await registerUser(firstname, lastname, email, password);
-    console.log(res);
     if (res) {
       history.push('/login');
       await toast("You're account has been registered!", 3000);
@@ -76,12 +70,12 @@ const Register: React.FC = () => {
         <IonList>
           <IonItem>
             <IonLabel color="tertiary" position="floating"> First name</IonLabel>
-           <IonInput
-             onIonChange={(e: any) => setFirstname(e.target.value)} /></IonItem>
+           <IonInput 
+             onIonChange={(e: any) => setFirstname(e.target.value)}/></IonItem>
              <IonItem>
              <IonLabel color="tertiary" position="floating"> Last name</IonLabel>            
              <IonInput
-             onIonChange={(e: any) => setLastname(e.target.value)} /></IonItem>
+             onIonChange={(e: any) => setLastname(e.target.value)}/></IonItem>
              <IonItem>
              <IonLabel color="tertiary" position="floating"> Email address</IonLabel>
              <IonInput
@@ -95,8 +89,7 @@ const Register: React.FC = () => {
                <IonLabel color="tertiary" position="floating"> Confirm password</IonLabel>
              <IonInput
                type="password"
-               onIonChange={(e: any) => setCPassword(e.target.value)} /></IonItem>
-               
+               onIonChange={(e: any) => setCPassword(e.target.value)}/></IonItem>
               </IonList>
              <IonItem>
               <IonLabel color="tertiary"> I accept <Link to="/termsofuse">terms of use</Link></IonLabel>

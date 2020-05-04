@@ -8,7 +8,7 @@ const RequestBtn = () => {
           <IonFabButton routerLink="/mapTab/makerequest">
             <IonIcon icon={addCircleOutline} />
           </IonFabButton>
-          Add Rqst
+          Add Request
         </IonFab>
     );
   };

@@ -43,9 +43,6 @@ const Help: React.FC = () => {
                             </IonSegmentButton>
                         </IonSegment>
                     </IonRow>
-                    <IonRow>
-                        <p>{mode}</p>
-                    </IonRow>
                 </IonToolbar>
                 <IonList>
                     {info.map((item: any, index: number) => (

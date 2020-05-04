@@ -1,5 +1,9 @@
+.address-input-div{
+    width: 100%;
+}
+
 .address-input-field{
     width: 100%;
-    border:none;
     outline: none;
+    border: none;
 }

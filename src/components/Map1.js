@@ -10,8 +10,6 @@ import {
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
 
-//const AnyReactComponent = ({  pawOutline, flowerOutline, helpCircleOutline, basketOutline }) => <div><img src={img_src} className="YOUR-CLASS-NAME" style={{}} /></div>;
-
 class SimpleMap extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +26,7 @@ class SimpleMap extends React.Component {
       req_id: "",
       mapRef: "",
       mapsRef: "",
-      circle:""
+      circle: ""
     };
   }
   
@@ -44,9 +42,9 @@ class SimpleMap extends React.Component {
 
   componentDidMount = () => {
     if (navigator.geolocation) {
+      console.log("geolocation")
       navigator.geolocation.watchPosition(this.currentCoords);
     }
-
     let array = [];
     array = getRequest();
 
@@ -105,7 +103,7 @@ class SimpleMap extends React.Component {
     if (prevState.radius !== this.state.radius) {
       this.state.circle.setRadius(this.state.radius);
     }
-    if (prevState.userPos !== this.state.userPos && prevState.userPos!=="" ) {
+    if (prevState.userPos !== this.state.userPos && this.state.circle !== "") {
       this.state.circle.setOptions({center: this.state.userPos});
     }
   };
@@ -122,7 +120,6 @@ class SimpleMap extends React.Component {
   apiIsLoaded = (map, maps) => {
       this.setState({mapRef:map})
       this.setState({mapsRef:maps})
-
       this.setState({circle: new this.state.mapsRef.Circle({
       strokeColor: "001e57",
       strokeOpacity: 0.8,

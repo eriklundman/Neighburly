@@ -16,6 +16,7 @@ import {
   IonRadio,
   IonIcon,
   IonDatetime,
+  IonContent,
 } from "@ionic/react";
 import PlacesAutocomplete from "../components/AddressInput";
 import {
@@ -61,7 +62,7 @@ const MakeRequest: React.FC = () => {
 
   return (
 <IonPage>
-      
+      <IonContent scrollEvents= {true}>
       <IonToolbar>
         <IonTitle>Make Request</IonTitle>
         <IonButtons slot="start">
@@ -143,6 +144,7 @@ const MakeRequest: React.FC = () => {
         </IonItem>
         <IonButton expand='block' onClick={sendRequest}>Submit request
         </IonButton>
+        </IonContent>
         </IonPage>
 );
 

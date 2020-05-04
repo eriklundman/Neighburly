@@ -1,7 +1,7 @@
 import React, { useRef} from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { IonList, IonItem } from '@ionic/react';
+import { IonList, IonItem, IonRow } from '@ionic/react';
 import './AddressInput.css';
 
 const PlacesAutocomplete = (props) => {
@@ -63,15 +63,16 @@ const PlacesAutocomplete = (props) => {
     });
 
   return (
-    <div ref={ref}>
-      <IonItem>
-      <input class="address-input-field"
+    <div className="address-input-div" ref={ref}>
+ 
+      <input className="address-input-field"
         value={value}
         onChange={handleInput}
         disabled={!ready}
         placeholder="Where do you want help"
       />
-      </IonItem>
+
+     
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === 'OK' && <ul>{renderSuggestions()}</ul>}
     </div>
