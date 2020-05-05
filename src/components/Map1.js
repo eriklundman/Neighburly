@@ -42,8 +42,7 @@ class SimpleMap extends React.Component {
 
   componentDidMount = () => {
     if (navigator.geolocation) {
-      console.log("geolocation")
-      navigator.geolocation.getCurrentPosition(this.currentCoords);
+      navigator.geolocation.watchPosition(this.currentCoords);
     }
     let array = [];
     array = getRequest();
@@ -83,7 +82,6 @@ class SimpleMap extends React.Component {
         lng: longitude,
       },
     }));
-    console.log(this.state.userPos)
   };
 
   newRadius = () => {
@@ -106,6 +104,7 @@ class SimpleMap extends React.Component {
     }
     if (prevState.userPos !== this.state.userPos && this.state.circle !== "") {
       this.state.circle.setOptions({center: this.state.userPos});
+      this.props.setUserPosition(this.state.userPos, this.state.radius)
     }
   };
 
@@ -115,11 +114,6 @@ class SimpleMap extends React.Component {
 
   ionViewDidEnter() {
     this.newRadius();
-
-    if (navigator.geolocation) {
-      console.log("geolocation")
-      navigator.geolocation.watchPosition(this.currentCoords);
-    }
   }
 
 
