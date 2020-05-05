@@ -1,7 +1,7 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./MapMarker";
-import { getUserInfo, getRequest, helpRequest } from "../firebaseConfig";
+import { getUserInfo, getUserId, getRequest, helpRequest, deleteRequest } from "../firebaseConfig";
 import {
   pawOutline,
   flowerOutline,
@@ -20,16 +20,18 @@ class SimpleMap extends React.Component {
       radius: 0,
       markers: [],
       showAlert: false,
+      showAlert2: false,
       des: "",
       reqType: "",
       name: "",
       req_id: "",
       mapRef: "",
       mapsRef: "",
-      circle: ""
+      circle: "",
+      userId: ""
     };
   }
-  
+
 
   static defaultProps = {
     center: {
@@ -46,6 +48,12 @@ class SimpleMap extends React.Component {
     }
     let array = [];
     array = getRequest();
+    let uid = "";
+    uid = getUserId()
+
+    this.setState({
+      userId: uid
+    });
 
     this.setState({
       markers: array,
@@ -54,7 +62,14 @@ class SimpleMap extends React.Component {
 
   markerClicked(marker) {
 
-    this.setState({ showAlert: true });
+    if (marker.r_id === this.state.userId) {
+      this.setState({ showAlert2: true })
+    }
+
+    else {
+      this.setState({ showAlert: true });
+    }
+
     this.setState({ des: marker.des });
     this.setState({ name: marker.r_fn + " " + marker.r_ln })
     this.setState({ req_id: marker.req_id })
@@ -98,6 +113,10 @@ class SimpleMap extends React.Component {
     this.setState({ showAlert: false });
   };
 
+  setShowAlertFalse2 = () => {
+    this.setState({ showAlert2: false });
+  };
+
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.radius !== this.state.radius) {
       this.state.circle.setRadius(this.state.radius);
@@ -112,26 +131,34 @@ class SimpleMap extends React.Component {
     helpRequest(this.state.req_id);
   };
 
+  eraseRequest = () => {
+    deleteRequest(this.state.req_id);
+  };
+
+
+
   ionViewDidEnter() {
     this.newRadius();
   }
 
 
   apiIsLoaded = (map, maps) => {
-      this.setState({mapRef:map})
-      this.setState({mapsRef:maps})
-      this.setState({circle: new this.state.mapsRef.Circle({
-      strokeColor: "001e57",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#bbd0ff",
-      fillOpacity: 0.3,
-      map: this.state.mapRef,
-      center: this.state.userPos,
-      radius: this.state.radius
-    })});
+    this.setState({ mapRef: map })
+    this.setState({ mapsRef: maps })
+    this.setState({
+      circle: new this.state.mapsRef.Circle({
+        strokeColor: "001e57",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#bbd0ff",
+        fillOpacity: 0.3,
+        map: this.state.mapRef,
+        center: this.state.userPos,
+        radius: this.state.radius
+      })
+    });
 
-};
+  };
 
   render() {
 
@@ -147,6 +174,7 @@ class SimpleMap extends React.Component {
             this.apiIsLoaded(map, maps);
           }}
         >
+          
           <IonAlert
             isOpen={this.state.showAlert}
             onDidDismiss={() => this.setShowAlertFalse()}
@@ -157,6 +185,20 @@ class SimpleMap extends React.Component {
               text: 'Help',
               handler: () => {
                 this.takeRequest();
+              }
+            }]}
+          />
+
+          <IonAlert
+            isOpen={this.state.showAlert2}
+            onDidDismiss={() => this.setShowAlertFalse2()}
+            header="Your Own Request"
+            subHeader={this.state.reqType}
+            message={this.state.des}
+            buttons={["Cancel", {
+              text: 'Delete',
+              handler: () => {
+                this.eraseRequest();
               }
             }]}
           />
@@ -173,11 +215,26 @@ class SimpleMap extends React.Component {
               ico = helpCircleOutline;
             }
 
-            if (marker.accepted == false) {
+            if (marker.accepted == false && marker.r_id !== this.state.userId) {
               return (
                 <IonButton
                   size="small"
-                  color="dark"
+                  color="tertiary"
+                  fill="clear"
+                  lat={marker.lat}
+                  lng={marker.lng}
+                  onClick={this.markerClicked.bind(this, marker)}
+                  style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}
+                >
+                  <IonIcon slot="icon-only" icon={ico} />
+                </IonButton>
+              );
+            }
+            if (marker.accepted == false && marker.r_id === this.state.userId) {
+              return (
+                <IonButton
+                  size="small"
+                  color="secondary"
                   fill="clear"
                   lat={marker.lat}
                   lng={marker.lng}

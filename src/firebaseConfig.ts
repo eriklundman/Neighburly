@@ -58,26 +58,23 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 
-export function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
-  return createChatRoom().then((chatRoomId : any) => {
+export async function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
+  const chatRoomId = await createChatRoom();
   let userRef: any = firebase.auth().currentUser;
-
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
           receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, chatId: chatRoomId
-        })
+        });
       }
-    })
-
-    return true
+    });
+    return true;
   }
-  catch{
-    toast("Requesten skickades ej")
-    return false
+  catch {
+    toast("Requesten skickades ej");
+    return false;
   }
-  })
 
 }
 
@@ -126,7 +123,7 @@ export function getRequest() {
   requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
 
-      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id:req.data().receiver_id })
     });
 
   })
@@ -178,6 +175,14 @@ export function helpRequest(request_id: any) {
   }
 }
 
+export function deleteRequest(request_id: any){
+  db.collection("requests").doc(request_id).delete().then(function() {
+    toast("Request successfully deleted!");
+}).catch(function(error) {
+    toast("Error removing request");
+});
+}
+
 export async function logoutUser() {
   return firebase.auth().signOut()
 }
@@ -221,6 +226,13 @@ export async function getUserInfo() {
     }).catch(function (error) {
       console.log("Error getting document:", error);
     });
+  }
+}
+
+export function getUserId() {
+  let userRef: any = firebase.auth().currentUser;
+  if (userRef) {
+    return userRef.uid;
   }
 }
 

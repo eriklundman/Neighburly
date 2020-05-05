@@ -7,7 +7,7 @@ import {
   IonButton,
   IonIcon,
   IonButtons,
-  IonList
+  IonList, 
 
 
 } from "@ionic/react";
@@ -17,6 +17,7 @@ import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import {getRequest} from "../firebaseConfig";
 import RequestOnMap from "../components/RequestOnMap";
+import RefreshBtn from "../components/RefreshBtn"
 
 const MapTab: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -69,6 +70,8 @@ const MapTab: React.FC = () => {
         <IonHeader collapse="condense">
         </IonHeader>
         <RequestBtn />
+        <RefreshBtn/>
+        
         <IonModal
           isOpen={showModal}
           swipeToClose={true}
