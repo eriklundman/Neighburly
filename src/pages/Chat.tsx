@@ -8,10 +8,11 @@ import {
     IonToolbar,
     IonButton,
     IonGrid,
-    IonList, IonLabel, IonInput, IonItem, IonFooter
+    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, retrieveMessages, storeMessage} from "../firebaseConfig";
+import { chevronBackOutline } from 'ionicons/icons';
 const db = firebase.firestore();
 
 const Chat: React.FC<any> = (props) => {
@@ -63,9 +64,14 @@ const Chat: React.FC<any> = (props) => {
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonTitle>Chat</IonTitle>
-            </IonHeader>
+           <IonHeader>
+          <IonToolbar color="primary">
+        <IonTitle color="tertiary">Chat</IonTitle>
+        <IonButtons slot="start">
+        <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/HelpTab" />
+      </IonButtons>
+      </IonToolbar>
+      </IonHeader>
             <IonContent>
 
                     <div >

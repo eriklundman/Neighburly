@@ -29,8 +29,8 @@ const Request: React.FC<any> = props => {
             <IonGrid>
                 <IonRow>
                 <IonCol> <div className="ion-align-self-start">
-             <IonIcon color="tertiary" icon={personCircleOutline} size="large" slot="start"/>
-             <IonText slot="end">{props.item.r_fn +" "+ props.item.r_ln}</IonText>
+             <IonIcon className="ion-float-left" color="tertiary" icon={personCircleOutline} size="large" slot="start"/>
+             <IonText className="ion-float-right" slot="end">{props.item.r_fn +" "+ props.item.r_ln}</IonText>
       </div> </IonCol>
 
         <IonCol><div className="ion-float-right">

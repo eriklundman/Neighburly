@@ -11,7 +11,8 @@ import {
     IonSegmentButton,
     IonToolbar,
     IonCol,
-    useIonViewDidEnter
+    useIonViewDidEnter,
+    IonTitle
 } from '@ionic/react';
 import {getUserInfo} from '../firebaseConfig'
 
@@ -40,14 +41,14 @@ const Profile: React.FC = () => {
     return (
         <IonContent>
 
-                <IonRow className="ion-align-items-end">
-                    <IonCol><div className="ion-float-right">
-                    <IonIcon size="large" color="tertiary" icon={personCircleOutline} />
+                <IonRow className="ion-no-padding">
+                    <IonCol className="hallo"><div className="ion-float-right">
+                    <IonIcon slot="end" size="large" color="tertiary" icon={personCircleOutline} />
                       </div></IonCol>
-                    <IonCol><div className="ion-float-left">
-                        <IonText>{fn} {ln}</IonText>
+                    <IonCol><div className="hejsan">
+                        <IonTitle className="ion-float-left">{fn} {ln}</IonTitle>
                         </div> </IonCol>
-                    <IonCol></IonCol>
+                        <IonCol></IonCol>
                 </IonRow>
 
         </IonContent>

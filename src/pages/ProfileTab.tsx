@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import { IonContent, IonGrid, IonHeader, IonPage, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonRow, IonCol} from '@ionic/react';
+import { IonContent, IonGrid, IonIcon, IonHeader, IonPage, IonToolbar, IonSegment, IonSegmentButton, IonLabel, IonRow, IonCol} from '@ionic/react';
 import './ProfileTab.css';
 import Profile from '../components/Profile';
 import HeaderLogga from '../components/HeaderLogga';
 import SettingsBtn from '../components/EditProfile';
+
 
 
 const ProfileTab: React.FC = () => {
@@ -22,9 +23,6 @@ const ProfileTab: React.FC = () => {
 
         <Profile/>
         <IonContent>
-
-
-
       <IonRow>
           <IonCol></IonCol>
           <IonCol className="ion-text-center">

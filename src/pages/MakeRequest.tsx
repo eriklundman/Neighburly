@@ -81,8 +81,8 @@ const MakeRequest: React.FC = () => {
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
 
-              <IonRow>
-            <IonText className="textDesign">Pick type of request</IonText>
+              <IonRow className="ion-justify-content-center">
+            <IonText> <h3> Pick type of request </h3></IonText>
             </IonRow>
             <IonRow>
               <IonCol className="ion-justify-content-center">
