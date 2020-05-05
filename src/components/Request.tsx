@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {IonIcon, IonButton, IonButtons, IonItem, IonText, IonRow, IonCol, IonBadge, IonGrid} from '@ionic/react';
 import { personCircleOutline, 
     chatbubblesOutline,
@@ -10,8 +10,8 @@ import { personCircleOutline,
 import './Request.css';
 
 
-
 const Request: React.FC<any> = props => {
+
     let icon : any;
     if (props.item.type === "shopping") {
         icon = cartOutline;}

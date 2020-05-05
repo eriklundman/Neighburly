@@ -13,9 +13,7 @@ const Help: React.FC = () => {
     const[id, setId] = useState<any>()
 
     useEffect(() => {
-        //setInfo(getYourRequest())
         setDefValue("activehelps")
-
         let userRef: any = firebase.auth().currentUser;
         setId(userRef.uid);
         let reqArr: any = [];
@@ -25,7 +23,7 @@ const Help: React.FC = () => {
             reqArr = [];
             snapshot.forEach(req => {
                 console.log(req.data())
-                reqArr.push({ accepted: req.data().accepted, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
+                reqArr.push({ accepted: req.data().accepted, completed: req.data().completed, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
 
             });
             loadData(reqArr);
@@ -41,14 +39,11 @@ const Help: React.FC = () => {
     function active() {
         setMode("list active helps");
         setDefValue("activehelps");
-
-
     }
 
     function inactive() {
         setMode("list inactive helps");
         setDefValue("inactivehelps");
-
     }
 
     return (
@@ -67,7 +62,7 @@ const Help: React.FC = () => {
                     </IonRow>
                 </IonToolbar>
                 <IonList>
-                    {info.map((item: any, index: number) => (
+                    {defValue === "activehelps" ? info.map((item: any, index: number) => (
                         item.accepted !== true ?
                             item.r_id === id ? <Request key={index} item={item} type={"noAccept"}/>
                                 : <p></p>
@@ -75,7 +70,13 @@ const Help: React.FC = () => {
                             item.h_id === id ? <Request key={index} item={item} type={"youWillHelp"}/>
                                 : item.r_id === id ? <Request key={index} item={item} type={"helpingYou"}/>
                                 : <p></p>
-                            : <p></p>))}
+                            : <p></p>))
+
+                        : info.map((item: any, index: number) => (
+                                item.completed === true && item.h_id === id ? <Request key={index} item={item} type={"iHelped"}/>
+                                    : item.completed === true && item.r_id === id ? <Request key={index} item={item} type={"beenHelped"}/>
+                                    : <p></p>
+                    ))}
 
                 </IonList>
             </IonGrid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonIcon,
@@ -25,6 +25,12 @@ import './Tabs.css';
 
 
 const Tabs: React.FC = () => {
+  const [newMessage, setNewMessage] = useState();
+  useEffect(() => {
+    setNewMessage(true)
+  });
+
+
   return (
 
     <IonTabs>
@@ -45,7 +51,7 @@ const Tabs: React.FC = () => {
           <IonLabel >Menu</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
-          <IonBadge color="danger">1</IonBadge>
+          {newMessage && <IonBadge color="danger">1</IonBadge>}
           <IonIcon icon={heartOutline} />
           <IonLabel>Helps</IonLabel>
         </IonTabButton>
@@ -55,7 +61,7 @@ const Tabs: React.FC = () => {
         </IonTabButton>
         <IonTabButton className="tabColor" tab="profileTab" href="/profileTab">
           <IonIcon icon={personOutline} />
-          <IonLabel >My Profile</IonLabel>
+          <IonLabel>My Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

@@ -66,7 +66,7 @@ export function createRequest(text: string, selected: string, selectedDate: stri
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, chatId: chatRoomId
+          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, chatId: chatRoomId
         })
       }
     })
@@ -93,7 +93,7 @@ async function createChatRoom() {
 
 export function storeMessage(message : string, chatId : string, firstName : any) {
   let userRef: any = firebase.auth().currentUser;
-  let info = {content: message, name: firstName, timeStamp: Date.now()};
+  let info = {content: message, name: firstName, timeStamp: Date.now(), uId: userRef.uid};
   try {
     let chatRef = db.collection("chats").doc(chatId);
     chatRef.update({

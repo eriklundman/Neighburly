@@ -9,21 +9,26 @@ import {
     IonButton,
     IonGrid,
     IonList, IonLabel, IonInput, IonItem, IonFooter
-} from '@ionic/react';
+} from '@ionic/react'
+import './Chat.css';
 import {getUserInfo, retrieveMessages, storeMessage} from "../firebaseConfig";
 const db = firebase.firestore();
 
 const Chat: React.FC<any> = (props) => {
     const [message, setMessage] = useState("");
     const [fn, setFn] = useState("");
+    const [id , setId] = useState<any>("")
     const [chats, setChats] = useState([]);
     const chatId = props.match.params.id;
 
 
     useEffect(() => {
         if (getUserInfo() !== undefined) {
+            let userRef : any = firebase.auth().currentUser;
+            setId(userRef.uid);
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
+                setId(result.uI)
             });
         }
         db.collection("chats").doc(chatId).onSnapshot(snapshot => {
@@ -61,16 +66,17 @@ const Chat: React.FC<any> = (props) => {
             <IonHeader>
                 <IonTitle>Chat</IonTitle>
             </IonHeader>
-            <IonContent >
-                <IonGrid>
-                    <IonList>
+            <IonContent>
+
+                    <div >
                         {chats.map((item: any, index: number) => (
-                            <IonItem key={index}>{item.name}: {item.content}</IonItem>
+                         id !== item.uId ?  <div className="you" key={index}>{item.name}: {item.content}</div> :
+                             <div className="other" key={index}>{item.name}: {item.content}</div>
                         ))}
 
-                    </IonList>
+                    </div>
                     <IonLabel id="bottom"></IonLabel>
-                </IonGrid>
+
 
 
             </IonContent>
