@@ -133,18 +133,6 @@ const MakeRequest: React.FC = () => {
         <IonItem>
         <PlacesAutocomplete coords={coords} setCoords={setCoords} />
         </IonItem>
-        <IonLabel>Last date</IonLabel>
-        <IonItem>
-          
-          <IonLabel position="floating">MM/DD/YYYY</IonLabel>
-          <IonDatetime
-            displayFormat="MM/DD/YYYY"
-            min="2020-04-14"
-            max="2021-12-09"
-            value={selectedDate}
-            onIonChange={(e) => setSelectedDate(e.detail.value!)}
-          ></IonDatetime>
-        </IonItem>
         <IonButton expand='block' onClick={sendRequest}>Submit request
         </IonButton>
         </IonContent>

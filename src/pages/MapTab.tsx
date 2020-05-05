@@ -55,8 +55,6 @@ const MapTab: React.FC = () => {
 
     const dist = R * c 
 
-    console.log(dist);
-
     if ( dist < userRad ) {
       return true
     }

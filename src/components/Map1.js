@@ -16,7 +16,7 @@ class SimpleMap extends React.Component {
     this.state = {
       lat: "",
       lng: "",
-      userPos: "",
+      userPos: {lat:0, lng:0},
       radius: 0,
       markers: [],
       showAlert: false,
@@ -102,7 +102,7 @@ class SimpleMap extends React.Component {
     if (prevState.radius !== this.state.radius) {
       this.state.circle.setRadius(this.state.radius);
     }
-    if (prevState.userPos !== this.state.userPos && this.state.circle !== "") {
+    if (prevState.userPos !== this.state.userPos && this.state.circle !== "" && this.state.circle !==undefined) {
       this.state.circle.setOptions({center: this.state.userPos});
       this.props.setUserPosition(this.state.userPos, this.state.radius)
     }
