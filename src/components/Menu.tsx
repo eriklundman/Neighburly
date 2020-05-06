@@ -21,10 +21,10 @@ const Menu: React.FC = () => {
   return (
     <IonContent>
       <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
-<IonItem routerLink="/menuTab/info/">
+<IonItem detail={true} routerLink="/menuTab/info/">
   <IonLabel> Info </IonLabel>
 </IonItem>
-<IonItem routerLink="/menuTab/termsandconditions/">
+<IonItem detail={true} routerLink="/menuTab/termsandconditions/">
   <IonLabel> Terms & Conditions </IonLabel>
 </IonItem>
 <IonItem>
