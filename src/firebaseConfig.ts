@@ -19,7 +19,7 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
+//db.settings({ timestampsInSnapshots: true });
 
 export async function loginUser(email: string, password: string) {
   try {
@@ -39,7 +39,7 @@ export async function registerUser(firstname: string, lastname: string, email: s
   let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
 
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname, email, radius: 5000
+      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0
     }).catch(function (error) {
       console.error("Error adding document: ", error);
 
@@ -82,15 +82,15 @@ async function createChatRoom() {
    return db.collection("chats").add({
     messages: [], newMessage: "noNew",
   }).then(docRef => {
-        console.log("Document written with ID: ", docRef.id);
-        return docRef.id
-      })
-      .catch(error => console.error("Error adding document: ", error))
+    console.log("Document written with ID: ", docRef.id);
+    return docRef.id
+  })
+    .catch(error => console.error("Error adding document: ", error))
 }
 
-export function storeMessage(message : string, chatId : string, firstName : any) {
+export function storeMessage(message: string, chatId: string, firstName: any) {
   let userRef: any = firebase.auth().currentUser;
-  let info = {content: message, name: firstName, timeStamp: Date.now(), uId: userRef.uid};
+  let info = { content: message, name: firstName, timeStamp: Date.now(), uId: userRef.uid };
   try {
     let chatRef = db.collection("chats").doc(chatId);
     chatRef.update({
@@ -125,7 +125,7 @@ export function getRequest() {
   requestRef.get().then(snapshot => {
     snapshot.forEach(req => {
 
-      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id:req.data().receiver_id })
+      reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
     });
 
   })
@@ -147,9 +147,9 @@ export function getYourRequest() {
     });
 
   })
-      .catch(err => {
-        console.log('Error getting documents', err);
-      });
+    .catch(err => {
+      console.log('Error getting documents', err);
+    });
 
   return reqArr
 }
@@ -177,12 +177,12 @@ export function helpRequest(request_id: any) {
   }
 }
 
-export function deleteRequest(request_id: any){
-  db.collection("requests").doc(request_id).delete().then(function() {
+export function deleteRequest(request_id: any) {
+  db.collection("requests").doc(request_id).delete().then(function () {
     toast("Request successfully deleted!");
-}).catch(function(error) {
+  }).catch(function (error) {
     toast("Error removing request");
-});
+  });
 }
 
 export async function logoutUser() {
@@ -259,6 +259,21 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
   }
 }
 
+export function giveRating(new_rating: any, userId: any) {
+  
+    let userData = db.collection("users").doc(userId);
+
+    userData.get().then((doc: any) => {
+      if(doc !== undefined){
+      let nr = ((doc.data().rating)*(doc.data().numb_of_ratings) + new_rating)/((doc.data().numb_of_ratings)+1)
+      userData.update({
+        numb_of_ratings: firebase.firestore.FieldValue.increment(1),
+        rating: nr
+      })
+      }
+    })
+  
+}
 
 
 

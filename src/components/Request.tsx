@@ -22,9 +22,13 @@ import {
   cartOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
+import {giveRating} from "../firebaseConfig"
 import "./Request.css";
+
 import * as firebase from 'firebase'
+
 const db = firebase.firestore();
+
 
 
 const Request: React.FC<any> = (props) => {
@@ -80,6 +84,19 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     setShowAlert(false);
+    console.log("hejdå");
+    let userRef: any = firebase.auth().currentUser;
+    if(userRef.uid === props.item.h_id){
+      giveRating(rating, props.item.r_id);
+    }
+    else if (userRef.uid === props.item.r_id){
+      giveRating(rating, props.item.h_id);
+    }
+
+    db.collection("requests").doc(props.item.req_id).update({
+      completed: true
+    })
+    
   };
 
   return (

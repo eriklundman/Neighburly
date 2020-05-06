@@ -4,7 +4,6 @@ import Marker from "./MapMarker";
 import {
   getUserInfo,
   getUserId,
-  getRequest,
   helpRequest,
   deleteRequest,
 } from "../firebaseConfig";
@@ -57,6 +56,7 @@ class SimpleMap extends React.Component {
     const wait = Geolocation.watchPosition(
       { timeout: 30000, enableHighAccuracy: true },
       (position, err) => {
+        if(position){
         this.setState({
           userPos: {
             lat: position.coords.latitude,
@@ -64,8 +64,10 @@ class SimpleMap extends React.Component {
           },
         });
       }
-    );
-  };
+      }
+    )
+    }
+  
 
   componentDidMount = () => {
 
