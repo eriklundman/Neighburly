@@ -6,7 +6,8 @@ import {
     IonRow,
     IonCol,
     useIonViewDidEnter,
-    IonTitle
+    IonTitle,
+    IonItem
 } from '@ionic/react';
 import {getUserInfo} from '../firebaseConfig'
 
@@ -33,8 +34,7 @@ const Profile: React.FC = () => {
 
 
     return (
-        <IonContent>
-
+        <IonItem>
                 <IonRow>
                     <IonCol size="4"><div className="ion-float-right">
                     <IonIcon slot="end" size="large" color="tertiary" icon={personCircleOutline} />
@@ -45,7 +45,7 @@ const Profile: React.FC = () => {
                         <IonCol></IonCol>
                 </IonRow>
 
-        </IonContent>
+        </IonItem>
     );
 }
 
