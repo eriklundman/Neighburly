@@ -1,7 +1,13 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./MapMarker";
-import { getUserInfo, getUserId, getRequest, helpRequest, deleteRequest } from "../firebaseConfig";
+import {
+  getUserInfo,
+  getUserId,
+  getRequest,
+  helpRequest,
+  deleteRequest,
+} from "../firebaseConfig";
 import {
   pawOutline,
   flowerOutline,
@@ -9,6 +15,7 @@ import {
   cartOutline,
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
+import { Plugins } from "@capacitor/core";
 
 class SimpleMap extends React.Component {
   constructor(props) {
@@ -16,7 +23,7 @@ class SimpleMap extends React.Component {
     this.state = {
       lat: "",
       lng: "",
-      userPos: {lat:0, lng:0},
+      userPos: { lat: 0, lng: 0 },
       radius: 0,
       markers: [],
       showAlert: false,
@@ -28,10 +35,9 @@ class SimpleMap extends React.Component {
       mapRef: "",
       mapsRef: "",
       circle: "",
-      userId: ""
+      userId: "",
     };
   }
-
 
   static defaultProps = {
     center: {
@@ -41,18 +47,32 @@ class SimpleMap extends React.Component {
     zoom: 11,
   };
 
+  getCurrentPosition = () => {
+    const { Geolocation } = Plugins;
+
+    const wait = Geolocation.watchPosition(
+      { timeout: 30000, enableHighAccuracy: true },
+      (position, err) => {
+        this.setState({
+          userPos: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+        });
+      }
+    );
+  };
 
   componentDidMount = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(this.currentCoords);
-    }
+    this.getCurrentPosition();
+
     let array = [];
     array = getRequest();
     let uid = "";
-    uid = getUserId()
+    uid = getUserId();
 
     this.setState({
-      userId: uid
+      userId: uid,
     });
 
     this.setState({
@@ -61,49 +81,32 @@ class SimpleMap extends React.Component {
   };
 
   markerClicked(marker) {
-
     if (marker.r_id === this.state.userId) {
-      this.setState({ showAlert2: true })
-    }
-
-    else {
+      this.setState({ showAlert2: true });
+    } else {
       this.setState({ showAlert: true });
     }
 
     this.setState({ des: marker.des });
-    this.setState({ name: marker.r_fn + " " + marker.r_ln })
-    this.setState({ req_id: marker.req_id })
-
+    this.setState({ name: marker.r_fn + " " + marker.r_ln });
+    this.setState({ req_id: marker.req_id });
 
     if (marker.type === "shopping") {
-      this.setState({ reqType: "Shopping" })
+      this.setState({ reqType: "Shopping" });
     } else if (marker.type === "dog-walking") {
-      this.setState({ reqType: "Dog Walking" })
+      this.setState({ reqType: "Dog Walking" });
     } else if (marker.type === "gardening") {
-      this.setState({ reqType: "Gardening" })
+      this.setState({ reqType: "Gardening" });
     } else {
-      this.setState({ reqType: "Other" })
+      this.setState({ reqType: "Other" });
     }
-
   }
-
-  currentCoords = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    this.setState((prevState) => ({
-      userPos: {
-        ...prevState.userPos,
-        lat: latitude,
-        lng: longitude,
-      },
-    }));
-  };
 
   newRadius = () => {
     getUserInfo().then((result) => {
       if (result !== undefined) {
         this.setState({
-          radius: result.radius
+          radius: result.radius,
         });
       }
     });
@@ -118,12 +121,21 @@ class SimpleMap extends React.Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.radius !== this.state.radius) {
+    if (
+      prevState.radius !== this.state.radius &&
+      this.state.circle !== "" &&
+      this.state.circle !== undefined
+    ) {
       this.state.circle.setRadius(this.state.radius);
+      this.props.setUserPosition(this.state.userPos, this.state.radius);
     }
-    if (prevState.userPos !== this.state.userPos && this.state.circle !== "" && this.state.circle !==undefined) {
-      this.state.circle.setOptions({center: this.state.userPos});
-      this.props.setUserPosition(this.state.userPos, this.state.radius)
+    if (
+      prevState.userPos !== this.state.userPos &&
+      this.state.circle !== "" &&
+      this.state.circle !== undefined
+    ) {
+      this.state.circle.setOptions({ center: this.state.userPos });
+      this.props.setUserPosition(this.state.userPos, this.state.radius);
     }
   };
 
@@ -135,16 +147,13 @@ class SimpleMap extends React.Component {
     deleteRequest(this.state.req_id);
   };
 
-
-
   ionViewDidEnter() {
     this.newRadius();
   }
 
-
   apiIsLoaded = (map, maps) => {
-    this.setState({ mapRef: map })
-    this.setState({ mapsRef: maps })
+    this.setState({ mapRef: map });
+    this.setState({ mapsRef: maps });
     this.setState({
       circle: new this.state.mapsRef.Circle({
         strokeColor: "001e57",
@@ -154,14 +163,12 @@ class SimpleMap extends React.Component {
         fillOpacity: 0.3,
         map: this.state.mapRef,
         center: this.state.userPos,
-        radius: this.state.radius
-      })
+        radius: this.state.radius,
+      }),
     });
-
   };
 
   render() {
-
     return (
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
@@ -174,19 +181,21 @@ class SimpleMap extends React.Component {
             this.apiIsLoaded(map, maps);
           }}
         >
-          
           <IonAlert
             isOpen={this.state.showAlert}
             onDidDismiss={() => this.setShowAlertFalse()}
             header={this.state.name}
             subHeader={this.state.reqType}
             message={this.state.des}
-            buttons={["Cancel", {
-              text: 'Help',
-              handler: () => {
-                this.takeRequest();
-              }
-            }]}
+            buttons={[
+              "Cancel",
+              {
+                text: "Help",
+                handler: () => {
+                  this.takeRequest();
+                },
+              },
+            ]}
           />
 
           <IonAlert
@@ -195,12 +204,15 @@ class SimpleMap extends React.Component {
             header="Your Own Request"
             subHeader={this.state.reqType}
             message={this.state.des}
-            buttons={["Cancel", {
-              text: 'Delete',
-              handler: () => {
-                this.eraseRequest();
-              }
-            }]}
+            buttons={[
+              "Cancel",
+              {
+                text: "Delete",
+                handler: () => {
+                  this.eraseRequest();
+                },
+              },
+            ]}
           />
 
           {this.state.markers.map((marker, i) => {
@@ -224,7 +236,10 @@ class SimpleMap extends React.Component {
                   lat={marker.lat}
                   lng={marker.lng}
                   onClick={this.markerClicked.bind(this, marker)}
-                  style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}
+                  style={{
+                    position: "absolute",
+                    transform: "translate(-50%, -100%)",
+                  }}
                 >
                   <IonIcon slot="icon-only" icon={ico} />
                 </IonButton>
@@ -239,7 +254,10 @@ class SimpleMap extends React.Component {
                   lat={marker.lat}
                   lng={marker.lng}
                   onClick={this.markerClicked.bind(this, marker)}
-                  style={{ position: 'absolute', transform: 'translate(-50%, -100%)' }}
+                  style={{
+                    position: "absolute",
+                    transform: "translate(-50%, -100%)",
+                  }}
                 >
                   <IonIcon slot="icon-only" icon={ico} />
                 </IonButton>
@@ -247,7 +265,11 @@ class SimpleMap extends React.Component {
             }
           })}
 
-          <Marker lat={this.state.userPos.lat} lng={this.state.userPos.lng} color="blue" />
+          <Marker
+            lat={this.state.userPos.lat}
+            lng={this.state.userPos.lng}
+            color="blue"
+          />
         </GoogleMapReact>
       </div>
     );

@@ -7,7 +7,8 @@ import {
   IonButton,
   IonIcon,
   IonButtons,
-  IonList, 
+  IonList,
+  IonLabel, 
 
 
 } from "@ionic/react";
@@ -99,6 +100,9 @@ const MapTab: React.FC = () => {
           <IonIcon className="modalButton" size="large" icon={chevronUpOutline} />
         </IonButton>
       </IonButtons>
+      <div className="ion-text-center">
+          <IonLabel>See all requests within your radius</IonLabel>
+          </div>
     </IonPage>
   );
 };

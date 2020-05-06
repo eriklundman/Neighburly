@@ -17,7 +17,6 @@ import HeaderLogga from "../components/HeaderLogga";
 import SettingsBtn from "../components/EditProfile";
 import StarRatingComponent from 'react-star-rating-component';
 
-
 const ProfileTab: React.FC = () => {
   const [mode, setMode] = useState("You have helped (antal) persons");
   const [userRating, setUserRating] = useState(3);

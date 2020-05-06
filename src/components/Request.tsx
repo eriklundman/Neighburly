@@ -22,7 +22,7 @@ import {
   cartOutline,
 } from "ionicons/icons";
 import "./Request.css";
-import StarRatingComponent from 'react-star-rating-component';
+import StarRatingComponent from "react-star-rating-component";
 
 const Request: React.FC<any> = (props) => {
   let icon: any;
@@ -42,9 +42,13 @@ const Request: React.FC<any> = (props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [rating, setRating] = useState(0);
 
-  const onStarClick = (nextValue: any) => {
+  const onStarClick = (nextValue: number) => {
     setRating(nextValue);
-  }
+  };
+
+  const doneWithRequest = () => {
+    setShowAlert(false);
+  };
 
   return (
     <IonItem class={props.type}>
@@ -90,7 +94,6 @@ const Request: React.FC<any> = (props) => {
           <IonCol>
             <div className="ion-float-right">
               <IonButtons>
-                
                 <IonButton onClick={() => setShowAlert(true)}>
                   <IonIcon
                     color="success"
@@ -103,30 +106,32 @@ const Request: React.FC<any> = (props) => {
           </IonCol>
         </IonRow>
       </IonGrid>
-      <IonModal
-        isOpen={showAlert}
-        onDidDismiss={() => setShowAlert(false)}
-
-      >
-          <IonRow>
-              <IonCol/>
+      <IonModal isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
+          <IonRow className="ion-text-center">
               <IonCol>
-        <StarRatingComponent 
-          name="rate1" 
-          starCount={5}
-          value={rating}
-          onStarClick={onStarClick}
-          starColor="#194afb"
-          emptyStarColor="#001e57"
-        />
-        </IonCol>
-        <IonCol/>
+            <h1>Are you sure the request is done?</h1>
+              <p>Rate the person</p>
+              </IonCol>
+          </IonRow>
+        <IonRow className="ion-text-center">
+          <IonCol>
+            <div style={{ fontSize: 45 }}>
+              <StarRatingComponent
+                name="rate1"
+                starCount={5}
+                value={rating}
+                onStarClick={onStarClick}
+                starColor="#194afb"
+                emptyStarColor="#bbd0ff"
+              />
+            </div>
+          </IonCol>
         </IonRow>
 
         <p>{rating}</p>
         <IonButtons>
-        <IonButton onClick={() => setShowAlert(false)}>Close Modal</IonButton>
-        <IonButton onClick={() => setShowAlert(false)}>Save</IonButton>
+          <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
+          <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
         </IonButtons>
       </IonModal>
     </IonItem>
