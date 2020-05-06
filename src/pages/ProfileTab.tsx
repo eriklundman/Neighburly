@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IonContent,
   IonHeader,
@@ -15,10 +15,24 @@ import Profile from "../components/Profile";
 import HeaderLogga from "../components/HeaderLogga";
 import SettingsBtn from "../components/EditProfile";
 import StarRatingComponent from 'react-star-rating-component';
+import * as firebase from 'firebase'
+
+const db = firebase.firestore();
 
 const ProfileTab: React.FC = () => {
   const [mode, setMode] = useState("You have helped (antal) persons");
-  const [userRating, setUserRating] = useState(3.9);
+  //const [userRating, setUserRating] = useState(3);
+  const [stars, setStars] = useState(3)
+
+  useEffect(() => {
+    let userRef : any = firebase.auth().currentUser;
+   
+    db.collection("users").doc(userRef.uid).onSnapshot((snapshot: any) => {
+      //setUserRating(snapshot.data().rating)
+      setStars(snapshot.data().rating+0.5)
+    })
+  }, []);
+
 
   return (
     <IonPage>
@@ -37,7 +51,7 @@ const ProfileTab: React.FC = () => {
         <StarRatingComponent 
           name="rate1" 
           starCount={5}
-          value={userRating}
+          value={stars}
           editing={false}
           starColor="#194afb"
           emptyStarColor="#001e57"
