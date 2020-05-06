@@ -92,17 +92,17 @@ const Chat: React.FC<any> = (props) => {
                     <div >
                         {chats.map((item: any, index: number) => (item.uId === id ?
 
-                                    <IonCol><div className="you" key={index}>
+                                    <div className="you" key={index}>
                                         <span className="timeStamp">{date(item.timeStamp)} </span>
                                         {item.content}
-                                    </div></IonCol>
+                                    </div>
                                     :
                             <div key={index}>
                                 <span className="name">{item.name}</span>
-                                <IonCol> <div  className="other" >
+                                 <div  className="other" >
                                      <span className="timeStamp">{date(item.timeStamp)} </span>
                                       {item.content}
-                                 </div></IonCol>
+                                 </div>
                             </div>
                         ))}
 
