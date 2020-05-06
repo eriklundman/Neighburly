@@ -26,7 +26,7 @@ class SimpleMap extends React.Component {
     this.state = {
       lat: "",
       lng: "",
-      userPos: { lat: 0, lng: 0 },
+      userPos: { lat: 59.379917, lng: 15.846315 },
       radius: 0,
       markers: [],
       showAlert: false,
@@ -84,7 +84,7 @@ class SimpleMap extends React.Component {
     requestRef.onSnapshot(snapshot => {
       array = [];
       snapshot.forEach(req => {
-        array.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+        array.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
       });
       this.loadData(array);
     })
@@ -98,7 +98,7 @@ class SimpleMap extends React.Component {
   }
 
   markerClicked(marker) {
-    if (marker.r_id === this.state.userId) {
+    if (marker.r_id === firebase.auth().currentUser.uid) {
       this.setState({ showAlert2: true });
     } else {
       this.setState({ showAlert: true });

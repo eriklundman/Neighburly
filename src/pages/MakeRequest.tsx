@@ -39,27 +39,22 @@ const MakeRequest: React.FC = () => {
 
   const [text, setText] = useState<string>("");
   const [selected, setSelected] = useState<string>("other");
-  const [selectedDate, setSelectedDate] = useState<string>("");
   const [coords, setCoords] = useState([]);
 
   function sendRequest() {
     if (text.trim() === '') {
       toast("Enter a description for the request!")
     }
-    if (selectedDate === '') {
-      toast('Choose a "latest date" for your request!')
-    }
     if (coords === []) {
       toast('Pick an address for your request!')
     }
-    if (text.trim() !== '' || selectedDate !== '' || coords !== []) {
-      const req = createRequest(text, selected, selectedDate, coords)
+    if (text.trim() !== '' ||  coords !== []) {
+      const req = createRequest(text, selected, coords)
 
       if (req) {
         history.push('/tabs');
         setText("")
         setSelected("other")
-        setSelectedDate("")
         setCoords([])
       }
     }

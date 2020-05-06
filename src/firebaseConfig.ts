@@ -58,14 +58,14 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 
-export async function createRequest(text: string, selected: string, selectedDate: string, coords: any) {
+export async function createRequest(text: string, selected: string, coords: any) {
   const chatRoomId = await createChatRoom();
   let userRef: any = firebase.auth().currentUser;
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, last_date: selectedDate, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, chatId: chatRoomId
+          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, chatId: chatRoomId
         });
       }
     });

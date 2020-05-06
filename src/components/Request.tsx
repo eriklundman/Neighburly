@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonIcon,
   IonButton,
@@ -26,7 +26,7 @@ import {
   cartOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
-import {giveRating} from "../firebaseConfig"
+import { giveRating } from "../firebaseConfig"
 import "./Request.css";
 
 import * as firebase from 'firebase'
@@ -36,9 +36,9 @@ const db = firebase.firestore();
 
 
 const Request: React.FC<any> = (props) => {
-    const [notice, setNotice] = useState<any>();
-    const [showAlert, setShowAlert] = useState(false);
-    const [rating, setRating] = useState(0);
+  const [notice, setNotice] = useState<any>();
+  const [showAlert, setShowAlert] = useState(false);
+  const [rating, setRating] = useState(0);
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -60,110 +60,106 @@ const Request: React.FC<any> = (props) => {
     setRating(nextValue);
   };
 
-    useEffect(() => {
-        let userRef : any = firebase.auth().currentUser;
+  useEffect(() => {
+    let userRef: any = firebase.auth().currentUser;
 
-        db.collection("chats").where(firebase.firestore.FieldPath.documentId(), '==', props.item.chatId)
-            .onSnapshot(function(snapshot) {
+    db.collection("chats").where(firebase.firestore.FieldPath.documentId(), '==', props.item.chatId)
+      .onSnapshot(function (snapshot) {
 
-                snapshot.docChanges().forEach(function(change) {
-                    let lastMessage = change.doc.data().newMessage;
-                    console.log("New message: ", lastMessage);
-                    if (lastMessage === userRef.uid || lastMessage === "noNew") {
-                        setNotice(false);
-                    }
-                    else {
-                        setNotice(true);
-                    }
+        snapshot.docChanges().forEach(function (change) {
+          let lastMessage = change.doc.data().newMessage;
+          
+          if (lastMessage === userRef.uid || lastMessage === "noNew") {
+            setNotice(false);
+          }
+          else {
+            setNotice(true);
+          }
 
-                });
-            });
+        });
+      });
 
-    },[])
+  }, [])
 
-    function removeNotice() {
-        setNotice(false);
-    }
+  function removeNotice() {
+    setNotice(false);
+  }
 
 
   const doneWithRequest = () => {
     setShowAlert(false);
     let userRef: any = firebase.auth().currentUser;
-    if(userRef.uid === props.item.h_id){
+    if (userRef.uid === props.item.h_id) {
       giveRating(rating, props.item.r_id);
     }
-    else if (userRef.uid === props.item.r_id){
+    else if (userRef.uid === props.item.r_id) {
       giveRating(rating, props.item.h_id);
     }
 
     db.collection("requests").doc(props.item.req_id).update({
       completed: true
     })
-    
+
   };
 
   return (
     <IonCard class={props.type}>
       <IonCardHeader>
-     
-        <IonCardSubtitle>hej</IonCardSubtitle>
-        <IonButtons>
-                {notice && <IonBadge color="danger">1</IonBadge>}
-                <IonButton className="ion-chat-button" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
-                  <IonIcon
-                    color="tertiary"
-                    icon={chatbubblesOutline}
-                    slot="icon-only"
-                  />
-                </IonButton>
-              </IonButtons>
-       
-           
-              <IonCardTitle >
-                {props.item.r_fn + " " + props.item.r_ln}
 
-              </IonCardTitle>
-       
-    
-            </IonCardHeader>
+        <IonCardSubtitle>hej</IonCardSubtitle>
+        
+          {notice && <IonBadge color="danger">1</IonBadge>}
+          <IonButton className="ion-chat-button" fill="clear" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
+            <IonIcon
+              color="tertiary"
+              icon={chatbubblesOutline}
+              slot="icon-only"
+            />
+          </IonButton>
         
 
-       
-<IonCardContent>
-       
-         <IonItem lines="none" className="ion-no-padding">
-              <IonIcon slot="start" color="tertiary" icon={icon} />
-              {props.item.des}
 
-              {props.item.completed === false &&
-             
-             
-              <IonButtons slot="end" >
-                <IonButton onClick={() => setShowAlert(true)}>
-                  <IonIcon
-                    color="success"
-                    icon={checkmarkOutline}
-                    slot="icon-only"
-                  />
-                </IonButton>
-              </IonButtons>
-            }
-       
-              </IonItem>
-              
-           
-           
-     
-        </IonCardContent>
-    
+        <IonCardTitle >
+          {props.item.r_fn + " " + props.item.r_ln}
+
+        </IonCardTitle>
+
+
+      </IonCardHeader>
+
+
+
+      <IonCardContent>
+
+        <IonItem lines="none" className="ion-no-padding">
+          <IonIcon slot="start" color="tertiary" icon={icon} />
+          {props.item.des}
+
+          {props.item.completed === false &&
+
+
+            <IonButtons slot="end" >
+              <IonButton onClick={() => setShowAlert(true)}>
+                <IonIcon
+                  color="success"
+                  icon={checkmarkOutline}
+                  slot="icon-only"
+                />
+              </IonButton>
+            </IonButtons>
+          }
+
+        </IonItem>
+      </IonCardContent>
+
 
       <IonModal isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
-          <IonRow className="ion-text-center">
-              <IonCol>
+        <IonRow className="ion-text-center">
+          <IonCol>
             <h1>Are you sure the request is done?</h1>
-              <p>Rate the person</p>
-              </IonCol>
-          </IonRow>
+            <p>Rate the person</p>
+          </IonCol>
+        </IonRow>
         <IonRow className="ion-text-center">
           <IonCol>
             <div style={{ fontSize: 45 }}>
@@ -178,15 +174,14 @@ const Request: React.FC<any> = (props) => {
             </div>
           </IonCol>
         </IonRow>
-       
+
         <p>{rating}</p>
         <IonButtons>
           <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
-
           <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
         </IonButtons>
       </IonModal>
-    
+
     </IonCard>
   );
 };
