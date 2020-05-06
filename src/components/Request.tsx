@@ -134,6 +134,9 @@ const Request: React.FC<any> = (props) => {
          <IonItem lines="none" className="ion-no-padding">
               <IonIcon slot="start" color="tertiary" icon={icon} />
               {props.item.des}
+
+              {props.item.completed === false &&
+             
              
               <IonButtons slot="end" >
                 <IonButton onClick={() => setShowAlert(true)}>
@@ -144,8 +147,10 @@ const Request: React.FC<any> = (props) => {
                   />
                 </IonButton>
               </IonButtons>
+            }
        
               </IonItem>
+              
            
            
      
@@ -177,6 +182,7 @@ const Request: React.FC<any> = (props) => {
         <p>{rating}</p>
         <IonButtons>
           <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
+
           <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
         </IonButtons>
       </IonModal>

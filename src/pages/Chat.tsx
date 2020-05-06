@@ -7,12 +7,7 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonGrid,
-<<<<<<< Updated upstream
-    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
-=======
-    IonList, IonLabel, IonCol, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
->>>>>>> Stashed changes
+    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -34,10 +29,6 @@ const Chat: React.FC<any> = (props) => {
             setId(userRef.uid);
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
             });
         }
 
@@ -97,12 +88,7 @@ const Chat: React.FC<any> = (props) => {
       </IonToolbar>
       </IonHeader>
             <IonContent>
-<<<<<<< Updated upstream
                     <div >
-=======
-
-                    <div>
->>>>>>> Stashed changes
                         {chats.map((item: any, index: number) => (item.uId === id ?
 
                                     <div className="you" key={index}>
@@ -116,11 +102,7 @@ const Chat: React.FC<any> = (props) => {
                                      <span className="timeStamp">{date(item.timeStamp)} </span>
                                       {item.content}
                                  </div>
-<<<<<<< Updated upstream
                             </div>
-=======
-                            
->>>>>>> Stashed changes
                         ))}
 
                     </div>
