@@ -8,7 +8,11 @@ import {
     IonToolbar,
     IonButton,
     IonGrid,
+<<<<<<< Updated upstream
     IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
+=======
+    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton, IonCol
+>>>>>>> Stashed changes
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -30,7 +34,10 @@ const Chat: React.FC<any> = (props) => {
             setId(userRef.uid);
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             });
         }
 
@@ -90,6 +97,7 @@ const Chat: React.FC<any> = (props) => {
       </IonHeader>
 
             <IonContent>
+<<<<<<< Updated upstream
 
                     <div >
                         {chats.map((item: any, index: number) => (item.uId === id ?
@@ -101,11 +109,18 @@ const Chat: React.FC<any> = (props) => {
                                      {item.name}: {item.content}
                                  </div>
                             
+=======
+                    
+             <div className="ion-justify-content-end">
+                        {chats.map((item: any, index: number) => (
+                         id === item.uId ? <div className="you" key={index}>{item.name}: {item.content} </div>: 
+                          <div className="other" key={index}>{item.name}: {item.content} </div>
+>>>>>>> Stashed changes
                         ))}
 
                     </div>
+                    
                     <IonLabel id="bottom"></IonLabel>
-
 
 
             </IonContent>

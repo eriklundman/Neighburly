@@ -41,11 +41,11 @@ const Profile: React.FC = () => {
     return (
         <IonContent>
 
-                <IonRow className="ion-no-padding">
-                    <IonCol className="hallo"><div className="ion-float-right">
+                <IonRow>
+                    <IonCol size="4" offset="1"><div className="ion-float-right">
                     <IonIcon slot="end" size="large" color="tertiary" icon={personCircleOutline} />
                       </div></IonCol>
-                    <IonCol><div className="hejsan">
+                    <IonCol size="5"><div className="hejsan">
                         <IonTitle className="ion-float-left">{fn} {ln}</IonTitle>
                         </div> </IonCol>
                         <IonCol></IonCol>

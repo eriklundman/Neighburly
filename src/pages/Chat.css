@@ -2,12 +2,14 @@
 .you {
     position: relative;
     max-inline-size: 13em;
-    left:32vw;
-    background: #46a048;
+    background: #c2d5ff;
     border-radius: .7em;
     margin: 0.5em 1em;
     padding: 0.5em 0.6em;
     width: fit-content;
+    left:32vw;
+    align-content: flex-end;
+
 }
 
 
@@ -15,12 +17,12 @@
 .other {
     position: relative;
     max-inline-size: 13em;
-
-    background: #00aabb;
+    background: #c2d5ff;
     border-radius: .7em;
     margin: 0.2em 1em;
     padding: 0.5em 0.6em;
     width: fit-content;
+
 }
 
 /*
