@@ -85,10 +85,11 @@ const MapTab: React.FC = () => {
     <IonPage ref={pageRef}>
       <IonContent>
 
-        <IonHeader collapse="condense">
-        </IonHeader>
-        <RequestBtn />
+     
+        <RequestBtn/>
+
         <RefreshBtn/>
+        
         
         <IonModal
           isOpen={showModal}
@@ -114,11 +115,9 @@ const MapTab: React.FC = () => {
       <IonFooter>
       
       <IonToolbar>
-        <IonButtons>
         <IonButton expand="full" fill="clear" onClick={() => setShowModal(true)}>
           <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
         </IonButton>
-        </IonButtons>
   
       <div className="ion-text-center">
           <IonLabel>See all requests within your radius</IonLabel>

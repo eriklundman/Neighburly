@@ -3,7 +3,6 @@ import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButton
 import { settingsOutline, chevronBackOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
-import HeaderLogga from '../components/HeaderLogga';
 import {getUserInfo, updateDatabase} from "../firebaseConfig";
 import {toast} from "../toast";
 import { useHistory } from 'react-router-dom';
@@ -59,10 +58,10 @@ const EditYourProfile: React.FC = () => {
         <IonPage>
              <IonHeader>
              <IonToolbar color="primary">
-             <IonTitle className="ion-text-center" color="tertiary">Edit profile</IonTitle>
                   <IonButtons slot="start">
                  <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
               </IonButtons>
+              <IonTitle className="ion-text-center" color="tertiary">Edit profile</IonTitle>
             </IonToolbar>
         </IonHeader>
 
