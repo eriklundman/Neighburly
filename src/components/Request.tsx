@@ -80,6 +80,17 @@ const Request: React.FC<any> = (props) => {
         });
       });
 
+      db.collection("requests").doc(props.item.req_id).onSnapshot((snapshot: any) => {
+        
+        if (snapshot.data().h_completed === true && snapshot.data().r_completed === true){
+          db.collection("requests").doc(props.item.req_id).update({
+            completed: true
+          })
+        }
+
+
+      })
+
   }, [])
 
   function removeNotice() {
@@ -98,6 +109,7 @@ const Request: React.FC<any> = (props) => {
       db.collection("requests").doc(props.item.req_id).update({
         h_completed: true
       })
+
     }
     else if (userRef.uid === props.item.r_id) {
       helper = true
@@ -105,7 +117,9 @@ const Request: React.FC<any> = (props) => {
       db.collection("requests").doc(props.item.req_id).update({
         r_completed: true
       })
+
     }
+
   };
 
   return (
@@ -152,8 +166,9 @@ const Request: React.FC<any> = (props) => {
                 />
               </IonButton>
             </IonButtons>
-            
+
             : props.item.h_completed === false && userRef.uid === props.item.h_id ?
+
               <IonButtons slot="end" >
                 <IonButton onClick={() => setShowAlert(true)}>
                   <IonIcon
@@ -166,6 +181,9 @@ const Request: React.FC<any> = (props) => {
               : console.log()
 
           }
+
+
+          
 
         </IonItem>
       </IonCardContent>

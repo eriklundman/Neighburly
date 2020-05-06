@@ -65,7 +65,7 @@ export async function createRequest(text: string, selected: string, coords: any)
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, r_completed: false, h_completed: false, chatId: chatRoomId
+          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, r_completed: false, h_completed: false, chatId: chatRoomId
         });
       }
     });
