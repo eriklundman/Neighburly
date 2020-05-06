@@ -15,7 +15,11 @@ import {
   cartOutline,
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
+
 import { Plugins } from "@capacitor/core";
+import * as firebase from 'firebase'
+const db = firebase.firestore();
+
 
 class SimpleMap extends React.Component {
   constructor(props) {
@@ -64,21 +68,33 @@ class SimpleMap extends React.Component {
   };
 
   componentDidMount = () => {
+
     this.getCurrentPosition();
 
-    let array = [];
-    array = getRequest();
     let uid = "";
     uid = getUserId();
-
     this.setState({
       userId: uid,
     });
 
+
+    let array = [];
+    let requestRef = db.collection("requests")
+    requestRef.onSnapshot(snapshot => {
+      array = [];
+      snapshot.forEach(req => {
+        array.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+      });
+      this.loadData(array);
+    })
+
+  };
+
+  loadData(array) {
     this.setState({
       markers: array,
     });
-  };
+  }
 
   markerClicked(marker) {
     if (marker.r_id === this.state.userId) {

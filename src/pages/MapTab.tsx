@@ -19,6 +19,9 @@ import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import {getRequest} from "../firebaseConfig";
 import RequestOnMap from "../components/RequestOnMap";
 import RefreshBtn from "../components/RefreshBtn"
+import * as firebase from 'firebase'
+const db = firebase.firestore();
+
 
 const MapTab: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,12 +35,24 @@ const MapTab: React.FC = () => {
     setUserPos(userPosFromChild);
     setUserRadius (userRadiusFromChild);
   };
-
   const [info, setInfo] = useState([]);
+
   useEffect(() => {
-    let data = getRequest();
-    setInfo(data);
+
+    let reqArr: any = [];
+    let requestRef = db.collection("requests");
+    requestRef.onSnapshot(snapshot => {
+      reqArr = [];
+      snapshot.forEach(req => {
+        reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+      });
+      loadData(reqArr);
+    })
   },[]);
+
+  function loadData(data : any) {
+    setInfo(data);
+  }
 
   const deg2Rad = (deg:number) => {
     const rad = deg * (Math.PI/180);
@@ -55,7 +70,7 @@ const MapTab: React.FC = () => {
     const a = (Math.sin(deg2Rad(dlat/2)))*(Math.sin(deg2Rad(dlat/2))) + Math.cos(deg2Rad(userPos.lat)) * Math.cos(deg2Rad(lat)) * (Math.sin(deg2Rad(dlon/2)))*(Math.sin(deg2Rad(dlon/2)))
     const c = 2 * Math.atan2( Math.sqrt(a), Math.sqrt(1-a) )
 
-    const dist = R * c 
+    const dist = R * c
 
     if ( dist < userRad ) {
       return true
@@ -87,7 +102,7 @@ const MapTab: React.FC = () => {
             <p>Request within radius</p>
           <IonList>
             {info.map((item: any, index: number) => (
-                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true?  <RequestOnMap key={index} item={item}/> : <p></p>
+                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true?  <RequestOnMap key={index} item={item}/> : console.log()
             ))}
 
           </IonList>

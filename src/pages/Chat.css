@@ -18,8 +18,20 @@
 
     background: #00aabb;
     border-radius: .7em;
-    margin: 0.5em 1em;
+    margin: 0.2em 1em;
     padding: 0.5em 0.6em;
     width: fit-content;
 }
 
+/*
+.name {
+position:relative;
+    left:0.7em;
+
+}
+.yourName {
+    display: block;
+    color: white;
+    opacity: 60%;
+    padding-bottom: 0.1em;
+}*/

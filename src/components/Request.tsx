@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
   IonIcon,
   IonButton,
@@ -21,10 +21,17 @@ import {
   helpCircleOutline,
   cartOutline,
 } from "ionicons/icons";
-import "./Request.css";
 import StarRatingComponent from "react-star-rating-component";
+import "./Request.css";
+import * as firebase from 'firebase'
+const db = firebase.firestore();
+
 
 const Request: React.FC<any> = (props) => {
+    const [notice, setNotice] = useState<any>();
+    const [showAlert, setShowAlert] = useState(false);
+    const [rating, setRating] = useState(0);
+
   let icon: any;
   if (props.item.type === "shopping") {
     icon = cartOutline;
@@ -39,12 +46,37 @@ const Request: React.FC<any> = (props) => {
     icon = helpCircleOutline;
   }
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [rating, setRating] = useState(0);
+
 
   const onStarClick = (nextValue: number) => {
     setRating(nextValue);
   };
+
+    useEffect(() => {
+        let userRef : any = firebase.auth().currentUser;
+
+        db.collection("chats").where(firebase.firestore.FieldPath.documentId(), '==', props.item.chatId)
+            .onSnapshot(function(snapshot) {
+
+                snapshot.docChanges().forEach(function(change) {
+                    let lastMessage = change.doc.data().newMessage;
+                    console.log("New message: ", lastMessage);
+                    if (lastMessage === userRef.uid || lastMessage === "noNew") {
+                        setNotice(false);
+                    }
+                    else {
+                        setNotice(true);
+                    }
+
+                });
+            });
+
+    },[])
+
+    function removeNotice() {
+        setNotice(false);
+    }
+
 
   const doneWithRequest = () => {
     setShowAlert(false);
@@ -72,7 +104,8 @@ const Request: React.FC<any> = (props) => {
           <IonCol>
             <div className="ion-float-right">
               <IonButtons>
-                <IonButton routerLink={`/chat/${props.item.chatId}`}>
+                {notice && <IonBadge color="danger">1</IonBadge>}
+                <IonButton onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
                   <IonIcon
                     color="tertiary"
                     icon={chatbubblesOutline}
@@ -82,6 +115,7 @@ const Request: React.FC<any> = (props) => {
               </IonButtons>
             </div>
           </IonCol>
+
         </IonRow>
 
         <IonRow>

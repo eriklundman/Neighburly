@@ -22,7 +22,6 @@ const Help: React.FC = () => {
         requestRef.onSnapshot(snapshot => {
             reqArr = [];
             snapshot.forEach(req => {
-                console.log(req.data())
                 reqArr.push({ accepted: req.data().accepted, completed: req.data().completed, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
 
             });
@@ -63,19 +62,16 @@ const Help: React.FC = () => {
                 </IonToolbar>
                 <IonList>
                     {defValue === "activehelps" ? info.map((item: any, index: number) => (
-                        item.accepted !== true ?
-                            item.r_id === id ? <Request key={index} item={item} type={"noAccept"}/>
-                                : <p></p>
-                            : item.accepted === true ?
+                         item.accepted === true ?
                             item.h_id === id ? <Request key={index} item={item} type={"youWillHelp"}/>
                                 : item.r_id === id ? <Request key={index} item={item} type={"helpingYou"}/>
-                                : <p></p>
-                            : <p></p>))
+                                : console.log()
+                            : console.log()))
 
                         : info.map((item: any, index: number) => (
                                 item.completed === true && item.h_id === id ? <Request key={index} item={item} type={"iHelped"}/>
                                     : item.completed === true && item.r_id === id ? <Request key={index} item={item} type={"beenHelped"}/>
-                                    : <p></p>
+                                    : console.log()
                     ))}
 
                 </IonList>

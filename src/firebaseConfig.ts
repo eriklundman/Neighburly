@@ -80,7 +80,7 @@ export async function createRequest(text: string, selected: string, selectedDate
 
 async function createChatRoom() {
    return db.collection("chats").add({
-    messages: [],
+    messages: [], newMessage: "noNew",
   }).then(docRef => {
         console.log("Document written with ID: ", docRef.id);
         return docRef.id
@@ -94,27 +94,29 @@ export function storeMessage(message : string, chatId : string, firstName : any)
   try {
     let chatRef = db.collection("chats").doc(chatId);
     chatRef.update({
-      messages: firebase.firestore.FieldValue.arrayUnion(info)
+      messages: firebase.firestore.FieldValue.arrayUnion(info), newMessage: userRef.uid
     }).then(() => {
       console.log("Message sent")
     });
   }
   catch{
     toast("Meddelandet kunde inte skickas")
-    return false
   }
 }
 
-export async function retrieveMessages(chatId : string) {
+export function updateNotice(chatId : string) {
 
-  return db.collection("chats").doc(chatId).onSnapshot(snapshot => {
-    let changes = snapshot.data()
-    console.log(changes)
-
-    return changes
-
-
-  })
+    try {
+        let chatRef = db.collection("chats").doc(chatId);
+        chatRef.update({
+            newMessage: "noNew"
+        }).then(() => {
+            console.log("Notice updated")
+        });
+    }
+    catch{
+        console.log("notice update failed")
+    }
 }
 
 export function getRequest() {
