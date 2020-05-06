@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   IonContent,
-  IonGrid,
   IonHeader,
   IonPage,
   IonToolbar,
@@ -19,7 +18,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 const ProfileTab: React.FC = () => {
   const [mode, setMode] = useState("You have helped (antal) persons");
-  const [userRating, setUserRating] = useState(3);
+  const [userRating, setUserRating] = useState(3.9);
 
   return (
     <IonPage>
@@ -42,6 +41,7 @@ const ProfileTab: React.FC = () => {
           editing={false}
           starColor="#194afb"
           emptyStarColor="#001e57"
+          
         />
         </div>
         </IonCol>

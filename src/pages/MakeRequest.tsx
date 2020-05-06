@@ -128,7 +128,7 @@ const MakeRequest: React.FC = () => {
           </IonItem>
         </div>
           <IonItem>
-        <IonLabel>Address</IonLabel>
+        <IonLabel>Request location (Be as specific as you want)</IonLabel>
         </IonItem>
         <IonItem>
         <PlacesAutocomplete coords={coords} setCoords={setCoords} />

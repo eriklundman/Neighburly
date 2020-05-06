@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid, IonList} from '@ionic/react';
 import Request from '../components/Request';
-import {getRequest, getYourRequest} from "../firebaseConfig";
 import * as firebase from 'firebase'
 const db = firebase.firestore();
 

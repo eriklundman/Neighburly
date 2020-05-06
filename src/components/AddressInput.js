@@ -1,7 +1,7 @@
 import React, { useRef} from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import useOnclickOutside from 'react-cool-onclickoutside';
-import { IonList, IonItem, IonRow } from '@ionic/react';
+import { IonList} from '@ionic/react';
 import './AddressInput.css';
 
 const PlacesAutocomplete = (props) => {

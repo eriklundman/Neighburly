@@ -17,9 +17,14 @@
     color: #001a4d;
 }
 
-.iHelped {
-
+.ion-chat-button {
+    position: absolute;
+    right:0;
+    top:0;
 }
-.beenHelped {
 
+.ion-done-button {
+    position: absolute;
+    right:0;
+    top:0;
 }

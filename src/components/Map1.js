@@ -65,9 +65,8 @@ class SimpleMap extends React.Component {
         });
       }
       }
-    )
-    }
-  
+    );
+  };
 
   componentDidMount = () => {
 

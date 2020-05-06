@@ -7,10 +7,14 @@ import {
   IonText,
   IonRow,
   IonCol,
-  IonBadge,
   IonGrid,
-  IonAlert,
   IonModal,
+  IonBadge,
+  IonCardContent,
+  IonCard,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardHeader,
 } from "@ionic/react";
 import {
   personCircleOutline,
@@ -84,7 +88,6 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     setShowAlert(false);
-    console.log("hejdå");
     let userRef: any = firebase.auth().currentUser;
     if(userRef.uid === props.item.h_id){
       giveRating(rating, props.item.r_id);
@@ -100,29 +103,13 @@ const Request: React.FC<any> = (props) => {
   };
 
   return (
-    <IonItem class={props.type}>
-      <IonGrid>
-        <IonRow>
-          <IonCol>
-            {" "}
-            <div className="ion-align-self-start">
-              <IonIcon
-                color="tertiary"
-                icon={personCircleOutline}
-                size="large"
-                slot="start"
-              />
-              <IonText slot="end">
-                {props.item.r_fn + " " + props.item.r_ln}
-              </IonText>
-            </div>
-          </IonCol>
-
-          <IonCol>
-            <div className="ion-float-right">
-              <IonButtons>
+    <IonCard class={props.type}>
+      <IonCardHeader>
+     
+        <IonCardSubtitle>hej</IonCardSubtitle>
+        <IonButtons>
                 {notice && <IonBadge color="danger">1</IonBadge>}
-                <IonButton onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
+                <IonButton className="ion-chat-button" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
                   <IonIcon
                     color="tertiary"
                     icon={chatbubblesOutline}
@@ -130,21 +117,25 @@ const Request: React.FC<any> = (props) => {
                   />
                 </IonButton>
               </IonButtons>
-            </div>
-          </IonCol>
+       
+           
+              <IonCardTitle >
+                {props.item.r_fn + " " + props.item.r_ln}
 
-        </IonRow>
+              </IonCardTitle>
+       
+    
+            </IonCardHeader>
+        
 
-        <IonRow>
-          <IonCol>
-            <div className="ion-align-self-start">
-              <IonIcon color="tertiary" icon={icon} />
-              {props.item.des} {props.type}
-            </div>
-          </IonCol>
-          <IonCol>
-            <div className="ion-float-right">
-              <IonButtons>
+       
+<IonCardContent>
+       
+         <IonItem lines="none" className="ion-no-padding">
+              <IonIcon slot="start" color="tertiary" icon={icon} />
+              {props.item.des}
+             
+              <IonButtons slot="end" >
                 <IonButton onClick={() => setShowAlert(true)}>
                   <IonIcon
                     color="success"
@@ -153,10 +144,14 @@ const Request: React.FC<any> = (props) => {
                   />
                 </IonButton>
               </IonButtons>
-            </div>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
+       
+              </IonItem>
+           
+           
+     
+        </IonCardContent>
+    
+
       <IonModal isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
           <IonRow className="ion-text-center">
               <IonCol>
@@ -178,14 +173,15 @@ const Request: React.FC<any> = (props) => {
             </div>
           </IonCol>
         </IonRow>
-
+       
         <p>{rating}</p>
         <IonButtons>
           <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
           <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
         </IonButtons>
       </IonModal>
-    </IonItem>
+    
+    </IonCard>
   );
 };
 

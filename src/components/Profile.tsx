@@ -3,13 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {
     IonContent,
     IonIcon,
-    IonGrid,
     IonRow,
-    IonText,
-    IonLabel,
-    IonSegment,
-    IonSegmentButton,
-    IonToolbar,
     IonCol,
     useIonViewDidEnter,
     IonTitle
