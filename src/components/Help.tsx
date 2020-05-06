@@ -62,7 +62,7 @@ const Help: React.FC = () => {
                 </IonToolbar>
                 <IonList>
                     {defValue === "activehelps" ? info.map((item: any, index: number) => (
-                         item.accepted === true ?
+                         item.accepted === true && item.completed === false ?
                             item.h_id === id ? <Request key={index} item={item} type={"youWillHelp"}/>
                                 : item.r_id === id ? <Request key={index} item={item} type={"helpingYou"}/>
                                 : console.log()

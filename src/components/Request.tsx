@@ -92,6 +92,10 @@ const Request: React.FC<any> = (props) => {
     else if (userRef.uid === props.item.r_id){
       giveRating(rating, props.item.h_id);
     }
+
+    db.collection("requests").doc(props.item.req_id).update({
+      completed: true
+    })
     
   };
 
