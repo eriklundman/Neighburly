@@ -20,9 +20,11 @@ import * as firebase from 'firebase'
 const db = firebase.firestore();
 
 const ProfileTab: React.FC = () => {
-  const [mode, setMode] = useState("You have helped (antal) persons");
-  //const [userRating, setUserRating] = useState(3);
+  const [mode, setMode] = useState("");
+  
   const [stars, setStars] = useState(3)
+  const [helps, setHelps] = useState(0)
+  const [receives, setReceives] = useState(0)
 
   useEffect(() => {
     let userRef : any = firebase.auth().currentUser;
@@ -30,6 +32,10 @@ const ProfileTab: React.FC = () => {
     db.collection("users").doc(userRef.uid).onSnapshot((snapshot: any) => {
       //setUserRating(snapshot.data().rating)
       setStars(snapshot.data().rating+0.5)
+      setHelps(snapshot.data().have_helped)
+      setReceives(snapshot.data().have_been_helped)
+      setMode("You have helped " + snapshot.data().have_helped + " person(s)")
+      
     })
   }, []);
 
@@ -80,9 +86,7 @@ const ProfileTab: React.FC = () => {
           <IonSegmentButton
             onClick={() =>
               setMode(
-                mode === "You have helped (antal) persons"
-                  ? "You have helped (antal) persons"
-                  : "You have helped (antal) persons"
+                "You have helped " + helps + " person(s)"
               )
             }
             value="helper"
@@ -92,10 +96,8 @@ const ProfileTab: React.FC = () => {
           <IonSegmentButton
             onClick={() =>
               setMode(
-                mode === "You have helped (antal) persons"
-                  ? "You have been helped by(antal) persons"
-                  : "You have been helped by(antal) persons"
-              )
+                "You have been helped " + receives + " time(s)"
+                )
             }
             value="receiver"
           >
