@@ -18,7 +18,8 @@ import {
   IonDatetime,
   IonContent,
   IonHeader,
-  IonText
+  IonText,
+  IonInput
 } from "@ionic/react";
 import PlacesAutocomplete from "../components/AddressInput";
 import {
@@ -110,11 +111,12 @@ const MakeRequest: React.FC = () => {
           </IonRadioGroup>
 
         <div>
-        <IonItem>
-          <IonLabel>Description of your request</IonLabel>
+        <IonItem className="description-input" >
+          <IonLabel style={{fontSize: 12}}>Short description of your request (maximum 100 characters)</IonLabel>
           </IonItem>
           <IonItem>
             <IonTextarea
+              maxlength = {100}
               className="requestInputs"
               placeholder="Enter more information here..."
               value={text}
@@ -123,8 +125,8 @@ const MakeRequest: React.FC = () => {
           </IonItem>
         </div>
           <IonItem>
-        <IonLabel>Request location (Be as specific as you want)</IonLabel>
-        </IonItem>
+        <IonLabel style={{fontSize: 12}}>Request location (Be as specific as you want)</IonLabel>
+        </IonItem >
         <IonItem>
         <PlacesAutocomplete coords={coords} setCoords={setCoords} />
         </IonItem>

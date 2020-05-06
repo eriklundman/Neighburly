@@ -8,3 +8,7 @@
 .textDesign{
     text-size-adjust: 30px;
 }
+
+.description-input{
+    --highlight-height: 2px;
+}

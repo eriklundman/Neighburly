@@ -8,7 +8,9 @@ import {
   IonIcon,
   IonButtons,
   IonList,
-  IonLabel, 
+  IonLabel,
+  IonFooter,
+  IonToolbar, 
 
 
 } from "@ionic/react";
@@ -109,14 +111,20 @@ const MapTab: React.FC = () => {
         </IonModal>
         <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback}/>
       </IonContent>
-      <IonButtons className="modalButton">
-        <IonButton color="white" onClick={() => setShowModal(true)}>
-          <IonIcon className="modalButton" size="large" icon={chevronUpOutline} />
+      <IonFooter>
+      
+      <IonToolbar>
+        <IonButtons>
+        <IonButton expand="full" fill="clear" onClick={() => setShowModal(true)}>
+          <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
         </IonButton>
-      </IonButtons>
+        </IonButtons>
+  
       <div className="ion-text-center">
           <IonLabel>See all requests within your radius</IonLabel>
           </div>
+          </IonToolbar>
+          </IonFooter>
     </IonPage>
   );
 };

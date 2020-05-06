@@ -25,7 +25,7 @@ import './Tabs.css';
 
 
 const Tabs: React.FC = () => {
-  const [newMessage, setNewMessage] = useState();
+  const [newMessage, setNewMessage] = useState(false);
   useEffect(() => {
     setNewMessage(true)
   });

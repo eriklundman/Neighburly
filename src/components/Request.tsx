@@ -4,10 +4,8 @@ import {
   IonButton,
   IonButtons,
   IonItem,
-  IonText,
   IonRow,
   IonCol,
-  IonGrid,
   IonModal,
   IonBadge,
   IonCardContent,
@@ -24,16 +22,15 @@ import {
   flowerOutline,
   helpCircleOutline,
   cartOutline,
+  trashOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { giveRating } from "../firebaseConfig"
 import "./Request.css";
 
-import * as firebase from 'firebase'
+import * as firebase from "firebase";
 
 const db = firebase.firestore();
-
-
 
 const Request: React.FC<any> = (props) => {
 
@@ -59,7 +56,6 @@ const Request: React.FC<any> = (props) => {
   if (props.item.type === "other") {
     icon = helpCircleOutline;
   }
-
 
   const onStarClick = (nextValue: number) => {
     setRating(nextValue);
@@ -94,7 +90,7 @@ const Request: React.FC<any> = (props) => {
 
       })
 
-  }, [])
+  }, []);
 
   function displayLayout() {
     if (type === "youWillHelp") {setText("Helping");
@@ -117,7 +113,6 @@ const Request: React.FC<any> = (props) => {
   function removeNotice() {
     setNotice(false);
   }
-
 
   const doneWithRequest = () => {
     setShowAlert(false);
@@ -145,16 +140,16 @@ const Request: React.FC<any> = (props) => {
     <IonCard class={props.type}>
       <IonCardHeader>
         <IonCardSubtitle className={props.type} >{text}</IonCardSubtitle>
-      <IonButtons>
-        {notice && <IonBadge color="danger">1</IonBadge>}
-        <IonButton className="ion-chat-button" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
+    
+        {notice && <IonBadge className="chatt-badge" color="danger">1</IonBadge>}
+        <IonButton fill="clear" className="ion-chat-button" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
           <IonIcon
               color="tertiary"
               icon={chatbubblesOutline}
               slot="icon-only"
           />
         </IonButton>
-      </IonButtons>
+     
       <IonCardTitle >
         {name}
       </IonCardTitle>
@@ -220,7 +215,6 @@ const Request: React.FC<any> = (props) => {
           <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
         </IonButtons>
       </IonModal>
-
     </IonCard>
   );
 };
