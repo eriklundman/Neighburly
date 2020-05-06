@@ -39,6 +39,7 @@ const Request: React.FC<any> = (props) => {
   const [notice, setNotice] = useState<any>();
   const [showAlert, setShowAlert] = useState(false);
   const [rating, setRating] = useState(0);
+  let userRef: any = firebase.auth().currentUser;
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -61,14 +62,14 @@ const Request: React.FC<any> = (props) => {
   };
 
   useEffect(() => {
-    let userRef: any = firebase.auth().currentUser;
+
 
     db.collection("chats").where(firebase.firestore.FieldPath.documentId(), '==', props.item.chatId)
       .onSnapshot(function (snapshot) {
 
         snapshot.docChanges().forEach(function (change) {
           let lastMessage = change.doc.data().newMessage;
-          
+
           if (lastMessage === userRef.uid || lastMessage === "noNew") {
             setNotice(false);
           }
@@ -88,18 +89,23 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     setShowAlert(false);
-    let userRef: any = firebase.auth().currentUser;
+
+    let helper: boolean
+
     if (userRef.uid === props.item.h_id) {
-      giveRating(rating, props.item.r_id);
+      helper = false
+      giveRating(rating, props.item.r_id, helper);
+      db.collection("requests").doc(props.item.req_id).update({
+        h_completed: true
+      })
     }
     else if (userRef.uid === props.item.r_id) {
-      giveRating(rating, props.item.h_id);
+      helper = true
+      giveRating(rating, props.item.h_id, helper);
+      db.collection("requests").doc(props.item.req_id).update({
+        r_completed: true
+      })
     }
-
-    db.collection("requests").doc(props.item.req_id).update({
-      completed: true
-    })
-
   };
 
   return (
@@ -107,16 +113,16 @@ const Request: React.FC<any> = (props) => {
       <IonCardHeader>
 
         <IonCardSubtitle>hej</IonCardSubtitle>
-        
-          {notice && <IonBadge color="danger">1</IonBadge>}
-          <IonButton className="ion-chat-button" fill="clear" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
-            <IonIcon
-              color="tertiary"
-              icon={chatbubblesOutline}
-              slot="icon-only"
-            />
-          </IonButton>
-        
+
+        {notice && <IonBadge color="danger">1</IonBadge>}
+        <IonButton className="ion-chat-button" fill="clear" onClick={removeNotice} routerLink={`/chat/${props.item.chatId}`}>
+          <IonIcon
+            color="tertiary"
+            icon={chatbubblesOutline}
+            slot="icon-only"
+          />
+        </IonButton>
+
 
 
         <IonCardTitle >
@@ -135,8 +141,7 @@ const Request: React.FC<any> = (props) => {
           <IonIcon slot="start" color="tertiary" icon={icon} />
           {props.item.des}
 
-          {props.item.completed === false &&
-
+          {props.item.r_completed === false && userRef.uid === props.item.r_id ?
 
             <IonButtons slot="end" >
               <IonButton onClick={() => setShowAlert(true)}>
@@ -147,6 +152,19 @@ const Request: React.FC<any> = (props) => {
                 />
               </IonButton>
             </IonButtons>
+            
+            : props.item.h_completed === false && userRef.uid === props.item.h_id ?
+              <IonButtons slot="end" >
+                <IonButton onClick={() => setShowAlert(true)}>
+                  <IonIcon
+                    color="success"
+                    icon={checkmarkOutline}
+                    slot="icon-only"
+                  />
+                </IonButton>
+              </IonButtons>
+              : console.log()
+
           }
 
         </IonItem>

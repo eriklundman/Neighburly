@@ -65,7 +65,7 @@ export async function createRequest(text: string, selected: string, coords: any)
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, chatId: chatRoomId
+          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, r_completed: false, h_completed: false, chatId: chatRoomId
         });
       }
     });
@@ -259,16 +259,27 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
   }
 }
 
-export function giveRating(new_rating: any, userId: any) {
+export function giveRating(new_rating: any, userId: any, helper: boolean) {
   
     let userData = db.collection("users").doc(userId);
+    let helped: number = 0
+    let received: number = 0
+    if(helper === true){
+      helped = 1
+    }
+    else if(helper === false){
+      received = 1
+    }
 
     userData.get().then((doc: any) => {
       if(doc !== undefined){
       let nr = ((doc.data().rating)*(doc.data().numb_of_ratings) + new_rating)/((doc.data().numb_of_ratings)+1)
       userData.update({
         numb_of_ratings: firebase.firestore.FieldValue.increment(1),
-        rating: nr
+        rating: nr,
+        have_helped: firebase.firestore.FieldValue.increment(helped),
+        have_been_helped: firebase.firestore.FieldValue.increment(received)
+        
       })
       }
     })
