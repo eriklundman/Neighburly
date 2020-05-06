@@ -4,11 +4,11 @@
     max-inline-size: 13em;
     background: #c2d5ff;
     border-radius: .7em;
-    margin: 0.2em 1em;
+    margin: 1em 1em;
     padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
-    left:32vw;
-    align-content: flex-end;
+    margin-right: 0px;
+    margin-left: auto;
 
 }
 
@@ -17,12 +17,19 @@
 .other {
     position: relative;
     max-inline-size: 13em;
-    background: #c2d5ff;
+    color: #ffffff;
+    background: #001e57;
     border-radius: .7em;
-    margin: 0.2em 1em;
+    margin: 1em 1em;
     padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
 
+
+
+}
+
+.sendButton{
+    color: #ffffff;
 }
 
 

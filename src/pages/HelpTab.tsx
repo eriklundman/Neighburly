@@ -8,11 +8,7 @@ import HeaderLogga from '../components/HeaderLogga';
 const HelpTab: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-      <IonToolbar>
       <HeaderLogga/>
-      </IonToolbar>
-      </IonHeader>
       <IonContent>
         <Help/>     
  </IonContent>

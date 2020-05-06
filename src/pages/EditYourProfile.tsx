@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { IonPage, IonToolbar, IonGrid, IonFooter, IonText, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
+import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
 import { settingsOutline, chevronBackOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
@@ -57,23 +57,14 @@ const EditYourProfile: React.FC = () => {
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar color="primary">
-                <IonGrid>
-                    <IonRow className="ion-align-items-center">
-                    <div className="ion-float-left">
-                      <IonButtons slot="start">
-                      <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
-                     </IonButtons>
-                    </div>
-                    <div className="ion-align-items-stretch">
-                    <IonIcon color="tertiary" icon={settingsOutline} slot="start"/>  
-                    <IonText color="tertiary" slot="end"> Edit profile </IonText>
-                    </div> 
-                    </IonRow>
-                    </IonGrid>
-                </IonToolbar>
-            </IonHeader>
+             <IonHeader>
+             <IonToolbar color="primary">
+             <IonTitle className="ion-text-center" color="tertiary">Edit profile</IonTitle>
+                  <IonButtons slot="start">
+                 <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
+              </IonButtons>
+            </IonToolbar>
+        </IonHeader>
 
             <IonContent scrollEvents={true}>
                 

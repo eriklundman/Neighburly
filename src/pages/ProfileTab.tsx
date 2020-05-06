@@ -36,11 +36,7 @@ const ProfileTab: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
           <HeaderLogga />
-        </IonToolbar>
-      </IonHeader>
 
       <Profile />
       <IonContent>
@@ -54,8 +50,7 @@ const ProfileTab: React.FC = () => {
           value={stars}
           editing={false}
           starColor="#194afb"
-          emptyStarColor="#001e57"
-          
+          emptyStarColor="#bbd0ff"
         />
         </div>
         </IonCol>
@@ -92,7 +87,7 @@ const ProfileTab: React.FC = () => {
             }
             value="helper"
           >
-            <IonLabel color="tertiary">Helper</IonLabel>
+            <IonLabel color="secondary">Helper</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton
             onClick={() =>
@@ -104,7 +99,7 @@ const ProfileTab: React.FC = () => {
             }
             value="receiver"
           >
-            <IonLabel color="tertiary">Receiver</IonLabel>
+            <IonLabel color="secondary">Receiver</IonLabel>
           </IonSegmentButton>
         </IonSegment>
       </IonRow>

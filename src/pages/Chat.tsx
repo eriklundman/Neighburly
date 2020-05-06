@@ -7,7 +7,8 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
+    IonGrid,
+    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -91,17 +92,17 @@ const Chat: React.FC<any> = (props) => {
                     <div >
                         {chats.map((item: any, index: number) => (item.uId === id ?
 
-                                    <div className="you" key={index}>
+                                    <IonCol><div className="you" key={index}>
                                         <span className="timeStamp">{date(item.timeStamp)} </span>
                                         {item.content}
-                                    </div>
+                                    </div></IonCol>
                                     :
                             <div key={index}>
                                 <span className="name">{item.name}</span>
-                                 <div  className="other" >
+                                <IonCol> <div  className="other" >
                                      <span className="timeStamp">{date(item.timeStamp)} </span>
                                       {item.content}
-                                 </div>
+                                 </div></IonCol>
                             </div>
                         ))}
 
@@ -113,7 +114,7 @@ const Chat: React.FC<any> = (props) => {
                     <IonLabel position="floating"> Message</IonLabel>
                     <IonInput value={message} type="text"
                               onIonChange={(e: any) => setMessage(e.target.value)} />
-                    <IonButton onClick={sendMessage}>Send</IonButton>
+                    <IonButton color="secondary"fill="outline" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
                 </IonItem>
             </IonFooter>
         </IonPage>

@@ -36,11 +36,11 @@ const Profile: React.FC = () => {
         <IonContent>
 
                 <IonRow>
-                    <IonCol size="4" offset="1"><div className="ion-float-right">
+                    <IonCol size="4"><div className="ion-float-right">
                     <IonIcon slot="end" size="large" color="tertiary" icon={personCircleOutline} />
                       </div></IonCol>
-                    <IonCol size="5"><div className="hejsan">
-                        <IonTitle className="ion-float-left">{fn} {ln}</IonTitle>
+                    <IonCol className="hejsan"><div>
+                        <IonTitle>{fn} {ln}</IonTitle>
                         </div> </IonCol>
                         <IonCol></IonCol>
                 </IonRow>
