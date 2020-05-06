@@ -4,8 +4,8 @@
     max-inline-size: 13em;
     background: #c2d5ff;
     border-radius: .7em;
-    margin: 0.5em 1em;
-    padding: 0.5em 0.6em;
+    margin: 0.2em 1em;
+    padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
     left:32vw;
     align-content: flex-end;
@@ -20,20 +20,22 @@
     background: #c2d5ff;
     border-radius: .7em;
     margin: 0.2em 1em;
-    padding: 0.5em 0.6em;
+    padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
 
 }
 
-/*
+
 .name {
 position:relative;
-    left:0.7em;
+    left:1em;
+    font-size: small;
 
 }
-.yourName {
+.timeStamp {
     display: block;
     color: white;
-    opacity: 60%;
+    opacity: 70%;
     padding-bottom: 0.1em;
-}*/
+    font-size: x-small;
+}

@@ -8,11 +8,7 @@ import {
     IonToolbar,
     IonButton,
     IonGrid,
-<<<<<<< Updated upstream
     IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave
-=======
-    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton, IonCol
->>>>>>> Stashed changes
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -34,10 +30,7 @@ const Chat: React.FC<any> = (props) => {
             setId(userRef.uid);
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
             });
         }
 
@@ -76,7 +69,8 @@ const Chat: React.FC<any> = (props) => {
         let date = new Date(timeStamp);
         // test.toLocaleDateString()
         // test.toLocaleTimeString()
-        return date.toLocaleDateString() + " " + date.toLocaleTimeString()
+
+        return date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + " " + date.toLocaleDateString()
     }
 
     useIonViewDidLeave(() => {
@@ -95,34 +89,26 @@ const Chat: React.FC<any> = (props) => {
       </IonButtons>
       </IonToolbar>
       </IonHeader>
-
             <IonContent>
-<<<<<<< Updated upstream
-
                     <div >
                         {chats.map((item: any, index: number) => (item.uId === id ?
-                                <div className="you" key={index}>
-                                    {item.name}:
-                                    {item.content}
-                                </div> :
-                                 <div key={index} className="other" >
-                                     {item.name}: {item.content}
+
+                                    <div className="you" key={index}>
+                                        <span className="timeStamp">{date(item.timeStamp)} </span>
+                                        {item.content}
+                                    </div>
+                                    :
+                            <div key={index}>
+                                <span className="name">{item.name}</span>
+                                 <div  className="other" >
+                                     <span className="timeStamp">{date(item.timeStamp)} </span>
+                                      {item.content}
                                  </div>
-                            
-=======
-                    
-             <div className="ion-justify-content-end">
-                        {chats.map((item: any, index: number) => (
-                         id === item.uId ? <div className="you" key={index}>{item.name}: {item.content} </div>: 
-                          <div className="other" key={index}>{item.name}: {item.content} </div>
->>>>>>> Stashed changes
+                            </div>
                         ))}
 
                     </div>
-                    
                     <IonLabel id="bottom"></IonLabel>
-
-
             </IonContent>
             <IonFooter>
                 <IonItem>
