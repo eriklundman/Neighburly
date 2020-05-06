@@ -10,11 +10,19 @@
 }
 
 .youWillHelp {
-    color: #2b832e;
+    color: #e0ac08;
 }
 
 .helpingYou {
-    color: #001a4d;
+    color: #e0ac08;
+}
+
+.iHelped {
+    color: #2b832e;
+}
+
+.beenHelped {
+    color: #2b832e;
 }
 
 .ion-chat-button {

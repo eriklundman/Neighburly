@@ -21,7 +21,7 @@ const Help: React.FC = () => {
         requestRef.onSnapshot(snapshot => {
             reqArr = [];
             snapshot.forEach(req => {
-                reqArr.push({ accepted: req.data().accepted, completed: req.data().completed, h_completed: req.data().h_completed, r_completed: req.data().r_completed, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, chatId: req.data().chatId })
+                reqArr.push({ accepted: req.data().accepted, completed: req.data().completed, h_completed: req.data().h_completed, r_completed: req.data().r_completed, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, h_fn: req.data().helper_fn, h_ln: req.data().helper_ln, chatId: req.data().chatId })
 
             });
             loadData(reqArr);
