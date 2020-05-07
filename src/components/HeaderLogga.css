@@ -1,12 +1,13 @@
-.loggan{
-    width: 160px; 
-    height: 122px;
-    margin: 0 auto;
-    padding-bottom: 54px;
+  .loggan{
+    width: 225px; 
+    height: 74px;
+    margin: -0.4em auto;
+   /* padding-bottom: 54px;*/
+   padding: 1em;
+  
   }
   
   .header_logga{
-   /* padding-top:1px;*/
      background-color: #bbd0ff;
      height: 56px;
   }

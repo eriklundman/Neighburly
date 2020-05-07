@@ -1,7 +1,11 @@
 import React from 'react';
-import { IonPage, IonIcon, IonToolbar, IonCol, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonRow, IonGrid } from '@ionic/react';
+import { IonSlides, IonSlide, IonPage, IonIcon, IonToolbar, IonCol, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonRow, IonGrid } from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 
+const slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
 
 const GetInfo: React.FC = () => {
     return (
@@ -15,6 +19,19 @@ const GetInfo: React.FC = () => {
             </IonToolbar>
         </IonHeader>
         <IonContent>
+
+        <IonSlides pager={true} options={slideOpts}>
+      <IonSlide>
+        <h1>Slide 1</h1>
+      </IonSlide>
+      <IonSlide>
+        <h1>Slide 2</h1>
+      </IonSlide>
+      <IonSlide>
+        <h1>Slide 3</h1>
+      </IonSlide>
+    </IonSlides>
+    
         </IonContent>
         </IonPage>
     );

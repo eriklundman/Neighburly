@@ -5,7 +5,7 @@ import { IonHeader, IonImg } from '@ionic/react';
 const HeaderLogga = () => {
     return(
         <IonHeader className="header_logga" color="primary">
-        <IonImg src="assets/icon/logga.png" className="loggan"> </IonImg>
+        <IonImg src="assets/icon/logga3.png" className="loggan"> </IonImg>
           </IonHeader>
        
     );

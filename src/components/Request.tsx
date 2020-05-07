@@ -13,6 +13,7 @@ import {
   IonCardTitle,
   IonCardSubtitle,
   IonCardHeader,
+  IonContent,
 } from "@ionic/react";
 import {
   personCircleOutline,
@@ -137,7 +138,7 @@ const Request: React.FC<any> = (props) => {
   };
 
   return (
-    <IonCard class={props.type}>
+    <IonCard  class={props.type}>
       <IonCardHeader>
         <IonCardSubtitle className={props.type} >{text}</IonCardSubtitle>
     
@@ -186,17 +187,17 @@ const Request: React.FC<any> = (props) => {
           }
         </IonItem>
       </IonCardContent>
-      
       <IonModal isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
         <IonRow className="ion-text-center">
           <IonCol>
             <h1>Are you sure the request is done?</h1>
-            <p>Rate the person</p>
+            <h4 className="info-text">Rate {name} by clicking on the stars!</h4>
           </IonCol>
         </IonRow>
         <IonRow className="ion-text-center">
           <IonCol>
-            <div style={{ fontSize: 45 }}>
+            <div  className="rating-design"
+            style={{ fontSize: 45 }}>
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -209,11 +210,13 @@ const Request: React.FC<any> = (props) => {
           </IonCol>
         </IonRow>
         <IonButtons>
-          <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
-          <IonButton onClick={() => doneWithRequest()}>Save</IonButton>
+          <IonButton className="cancel-button"color="secondary" fill="outline" onClick={() => setShowAlert(false)}>Cancel</IonButton>
+          <IonButton onClick={() => doneWithRequest()}>Done!</IonButton>
         </IonButtons>
       </IonModal>
-    </IonCard>
+      </IonCard>
+
+    
   );
 };
 
