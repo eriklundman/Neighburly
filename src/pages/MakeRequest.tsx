@@ -114,15 +114,15 @@ const MakeRequest: React.FC = () => {
         <IonItem className="description-input" >
           <IonLabel style={{fontSize: 12}}>Short description of your request (maximum 100 characters)</IonLabel>
           </IonItem>
-          <IonItem>
-            <IonTextarea
-              maxlength = {100}
-              className="requestInputs"
-              placeholder="Enter more information here..."
-              value={text}
-              onIonChange={(e) => setText(e.detail.value!)}
-            ></IonTextarea>
-          </IonItem>
+        <IonItem>
+        <div className="information-div">
+         <input className="address-input-field"
+         value={text}
+         placeholder="Enter more information here..."
+         onChange={(e) => setText(e.target.value!)}
+         /></div></IonItem>
+         
+
         </div>
           <IonItem>
         <IonLabel style={{fontSize: 12}}>Request location (Be as specific as you want)</IonLabel>

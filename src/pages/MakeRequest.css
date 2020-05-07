@@ -12,3 +12,25 @@
 .description-input{
     --highlight-height: 2px;
 }
+
+.description-input-text{
+    margin: 1em 0em;
+    width: 100%;
+    background: transparent;
+    outline:#bbd0ff;
+    box-sizing: border-box;
+    padding: 0.8em;
+    border: 0.2em solid #bbd0ff;
+
+}
+
+   
+
+.description-input-text:focus{
+    border: 0.2em solid #194afb;
+
+}
+
+.information-div{
+    width: 100%;
+}

@@ -41,10 +41,10 @@ const ProfileTab: React.FC = () => {
 
   return (
     <IonPage>
-      <HeaderLogga />
+          <HeaderLogga />
+          <IonContent>
 
       <Profile />
-      <IonContent>
         <IonRow>
           <IonCol className="ion-text-center">
             <div style={{ fontSize: 45 }}>
