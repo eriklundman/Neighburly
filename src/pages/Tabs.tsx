@@ -36,8 +36,8 @@ const Tabs: React.FC = () => {
         userRef.uid)
         .onSnapshot(function (snapshot) {
           boolArray = [];
-          snapshot.docChanges().forEach(function (change) {
-            let lastMessage = change.doc.data().newMessage;
+          snapshot.forEach(function (change) {
+            let lastMessage = change.data().newMessage;
               console.log(lastMessage)
             if (lastMessage === userRef.uid || lastMessage === "noNew") {
                 boolArray.push(false);
@@ -54,8 +54,10 @@ const Tabs: React.FC = () => {
 
   function checkBoolArray(array : any) {
      if (array.includes(true)) {
+         console.log("det finns ett nytt meddelande!")
        return setNewMessage(true);
      }
+     console.log("du har inga nya meddelanden!")
      return setNewMessage(false);
   }
   return (

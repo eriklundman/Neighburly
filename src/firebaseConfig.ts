@@ -60,13 +60,12 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 export async function createRequest(text: string, selected: string, coords: any) {
   let userRef: any = firebase.auth().currentUser;
-  const chatRoomId = await createChatRoom(userRef.uid);
 
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, r_completed: false, h_completed: false, chatId: chatRoomId
+          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, r_completed: false, h_completed: false
         });
       }
     });
@@ -83,7 +82,6 @@ async function createChatRoom(uid : any) {
    return db.collection("chats").add({
     messages: [], newMessage: "noNew", participants: [uid]
   }).then(docRef => {
-    console.log("Document written with ID: ", docRef.id);
     return docRef.id
   })
     .catch(error => console.error("Error adding document: ", error))
@@ -155,22 +153,24 @@ export function getYourRequest() {
   return reqArr
 }
 
-export function helpRequest(request_id: any) {
+export async function helpRequest(request_id: any) {
 
   let userRef: any = firebase.auth().currentUser;
+  const chatRoomId = await createChatRoom(userRef.uid);
 
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         let reqRef = db.collection('requests')
             reqRef.doc(request_id).set({
-          accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid
+          accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid, chatId: chatRoomId
         }, { merge: true }).then((nada: any) => {
           toast("Changes saved")
         })
+
         reqRef.doc(request_id).get().then((req: any) => {
           db.collection("chats").doc(req.data().chatId).update({
-            participants: firebase.firestore.FieldValue.arrayUnion(userRef.uid)
+            participants: firebase.firestore.FieldValue.arrayUnion(req.data().receiver_id)
           }).then(nada => {
 
           })
@@ -183,7 +183,7 @@ export function helpRequest(request_id: any) {
     return true
   }
   catch{
-    toast("Requesten skickades ej")
+    toast("Error could not accept request")
     return false
   }
 }
