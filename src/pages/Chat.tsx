@@ -30,7 +30,7 @@ const Chat: React.FC<any> = (props) => {
             setId(userRef.uid);
             getUserInfo().then((result: any) => {
                 setFn(result.firstname);
-            });
+            }).catch();
         }
 
         unsubscribe = db.collection("chats").doc(chatId).onSnapshot(snapshot => {

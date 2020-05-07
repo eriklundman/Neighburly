@@ -19,6 +19,8 @@ import EditYourProfile from './EditYourProfile';
 import GetInfo from './GetInfo';
 import TermsOfUse from './TermsOfUse';
 import './Tabs.css';
+import * as firebase from "firebase";
+const db = firebase.firestore();
 
 
 
@@ -26,11 +28,36 @@ import './Tabs.css';
 
 const Tabs: React.FC = () => {
   const [newMessage, setNewMessage] = useState(false);
+
   useEffect(() => {
-    setNewMessage(true)
-  });
+    let boolArray: boolean[] = [];
+    let userRef : any = firebase.auth().currentUser;
+    db.collection("chats").where('participants', 'array-contains',
+        userRef.uid)
+        .onSnapshot(function (snapshot) {
+          boolArray = [];
+          snapshot.docChanges().forEach(function (change) {
+            let lastMessage = change.doc.data().newMessage;
+              console.log(lastMessage)
+            if (lastMessage === userRef.uid || lastMessage === "noNew") {
+                boolArray.push(false);
+                setNewMessage(false)
+            }
+            else {
+                setNewMessage(true)
+                boolArray.push(true)
+            }
+          });
+          checkBoolArray(boolArray)
+        });
+  }, []);
 
-
+  function checkBoolArray(array : any) {
+     if (array.includes(true)) {
+       return setNewMessage(true);
+     }
+     return setNewMessage(false);
+  }
   return (
 
     <IonTabs>

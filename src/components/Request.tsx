@@ -182,7 +182,7 @@ const Request: React.FC<any> = (props) => {
                   />
                 </IonButton>
               </IonButtons>
-              : console.log("hej")
+              : console.log()
           }
         </IonItem>
       </IonCardContent>

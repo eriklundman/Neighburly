@@ -59,8 +59,9 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 
 export async function createRequest(text: string, selected: string, coords: any) {
-  const chatRoomId = await createChatRoom();
   let userRef: any = firebase.auth().currentUser;
+  const chatRoomId = await createChatRoom(userRef.uid);
+
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
@@ -78,9 +79,9 @@ export async function createRequest(text: string, selected: string, coords: any)
 
 }
 
-async function createChatRoom() {
+async function createChatRoom(uid : any) {
    return db.collection("chats").add({
-    messages: [], newMessage: "noNew",
+    messages: [], newMessage: "noNew", participants: [uid]
   }).then(docRef => {
     console.log("Document written with ID: ", docRef.id);
     return docRef.id
@@ -161,13 +162,23 @@ export function helpRequest(request_id: any) {
   try {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
-        db.collection('requests').doc(request_id).set({
+        let reqRef = db.collection('requests')
+            reqRef.doc(request_id).set({
           accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid
         }, { merge: true }).then((nada: any) => {
           toast("Changes saved")
         })
+        reqRef.doc(request_id).get().then((req: any) => {
+          db.collection("chats").doc(req.data().chatId).update({
+            participants: firebase.firestore.FieldValue.arrayUnion(userRef.uid)
+          }).then(nada => {
+
+          })
+        })
       }
     })
+
+
 
     return true
   }
