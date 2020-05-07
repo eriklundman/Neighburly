@@ -208,8 +208,6 @@ const Request: React.FC<any> = (props) => {
             </div>
           </IonCol>
         </IonRow>
-
-        <p>{rating}</p>
         <IonButtons>
           <IonButton onClick={() => setShowAlert(false)}>Cancel</IonButton>
           <IonButton onClick={() => doneWithRequest()}>Save</IonButton>

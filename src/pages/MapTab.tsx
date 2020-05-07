@@ -18,7 +18,6 @@ import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
-import {getRequest} from "../firebaseConfig";
 import RequestOnMap from "../components/RequestOnMap";
 import RefreshBtn from "../components/RefreshBtn"
 import * as firebase from 'firebase'
@@ -38,15 +37,18 @@ const MapTab: React.FC = () => {
     setUserRadius (userRadiusFromChild);
   };
   const [info, setInfo] = useState([]);
+  const [userId, setUserId] = useState<any>();
 
   useEffect(() => {
 
+    let userRef:any = firebase.auth().currentUser
+    setUserId(userRef.uid)
     let reqArr: any = [];
     let requestRef = db.collection("requests");
     requestRef.onSnapshot(snapshot => {
       reqArr = [];
       snapshot.forEach(req => {
-        reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln })
+        reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
       });
       loadData(reqArr);
     })
@@ -104,7 +106,7 @@ const MapTab: React.FC = () => {
           <IonContent scrollEvents={true}>
           <IonList>
             {info.map((item: any, index: number) => (
-                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true?  <RequestOnMap key={index} item={item}/> : console.log()
+                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true?  <RequestOnMap key={index} item={item} userId={userId}/> : console.log()
             ))}
 
           </IonList>

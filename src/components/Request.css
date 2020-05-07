@@ -43,3 +43,12 @@
     z-index: 1;
     top:10%
 }
+
+.profile-name-request{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:left;
+    vertical-align: middle;
+    }
+    

@@ -4,25 +4,22 @@ import {
   IonButton,
   IonButtons,
   IonItem,
-  IonText,
-  IonRow,
-  IonCol,
-  IonGrid,
   IonCard,
   IonCardHeader,
-  IonCardTitle,
   IonCardContent,
 } from "@ionic/react";
 import {
   personCircleOutline,
-  checkmarkDoneOutline,
   pawOutline,
   flowerOutline,
   helpCircleOutline,
   cartOutline,
   heart,
+  trashBinOutline,
+  trashOutline,
 } from "ionicons/icons";
 import "./Request.css";
+import { helpRequest, deleteRequest } from "../firebaseConfig";
 
 const RequestOnMap: React.FC<any> = (props) => {
   let icon: any;
@@ -42,35 +39,54 @@ const RequestOnMap: React.FC<any> = (props) => {
   return (
     <IonCard>
       <IonCardHeader>
-        <IonRow className="ion-align-items-center">
-          <IonCol size="1">
-            <div>
-              <IonIcon
-                color="tertiary"
-                icon={personCircleOutline}
-                size="large"
-                slot="start"
-              />
-            </div>
-          </IonCol>
-          <IonCol>
-            <IonCardTitle>
-              {props.item.r_fn + " " + props.item.r_ln}{" "}
-            </IonCardTitle>
-          </IonCol>
-        </IonRow>
+      { props.userId !== props.item.r_id ?
+        <div className="profile-name-request">
+          <IonIcon
+            slot="end"
+            size="large"
+            color="tertiary"
+            icon={personCircleOutline}
+          />
+          <h3 color="tertiary">{props.item.r_fn + " " + props.item.r_ln[0]}</h3>
+        </div>
+         :
+         <h3 color="tertiary">Your Own Request</h3>
+       }
       </IonCardHeader>
 
       <IonCardContent>
         <IonItem lines="none">
           <IonIcon slot="start" color="tertiary" icon={icon} />
           {props.item.des}
+
+          {props.userId !== props.item.r_id ?
+
           <IonButtons slot="end">
-            <IonButton>
-              <IonIcon color="secondary" icon={heart} size="large" />
+            <IonButton color="secondary" shape="round" onClick={() => helpRequest(props.item.req_id)}>
+              <IonIcon
+                slot="start"
+                color="secondary"
+                icon={heart}
+                size="large"
+              />
+              Help
             </IonButton>
-            Help
           </IonButtons>
+            :
+            <IonButtons slot="end">
+            <IonButton color="danger" shape="round" onClick={() => deleteRequest(props.item.req_id)}>
+              <IonIcon
+                slot="start"
+                color="danger"
+                icon={trashOutline}
+                size="large"
+              />
+              Delete
+            </IonButton>
+          </IonButtons>
+            
+            
+            }
         </IonItem>
       </IonCardContent>
     </IonCard>
