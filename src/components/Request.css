@@ -51,24 +51,3 @@
     justify-content:left;
     vertical-align: middle;
     }
-    
-.cancel-button{
-    color: #bbd0ff;
-    margin: auto auto;
-}
-
-.done-button{
-    color: #bbd0ff;
-    margin: auto auto;
-}
-
-.info-text{
-    color: #001e57;
-    width: 60%;
-    padding-top: 8em;
-    margin: auto auto;
-}
-
-.rating-design{
-margin-bottom: 4em;
-}
