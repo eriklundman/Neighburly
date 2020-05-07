@@ -11,7 +11,7 @@ const EditRadius: React.FC<any> = props => {
       <IonGrid>
       <IonRow className="ion-align-items-center">
       <IonIcon size="large" color="tertiary" icon={navigateCircleOutline} />
-      <IonLabel color="tertiary">  Set radius: {props.radius} km</IonLabel>
+      <IonLabel color="tertiary">  Radius: {props.radius} km</IonLabel>
       </IonRow>
 
       <IonRow>

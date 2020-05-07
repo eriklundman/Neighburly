@@ -18,7 +18,7 @@ import * as firebase from "firebase";
 const db = firebase.firestore();
 
 const ProfileTab: React.FC = () => {
-  const [mode, setMode] = useState("");
+ 
 
   const [value, setValue] = useState("helper");
 
@@ -36,9 +36,6 @@ const ProfileTab: React.FC = () => {
         setStars(snapshot.data().rating + 0.5);
         setHelps(snapshot.data().have_helped);
         setReceives(snapshot.data().have_been_helped);
-        setMode(
-          "You have helped " + snapshot.data().have_helped + " person(s)"
-        );
       });
   }, []);
 
