@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IonIcon,
   IonButton,
@@ -20,8 +20,14 @@ import {
 } from "ionicons/icons";
 import "./Request.css";
 import { helpRequest, deleteRequest } from "../firebaseConfig";
+import StarRatingComponent from "react-star-rating-component";
+import * as firebase from "firebase";
+
+const db = firebase.firestore();
+
 
 const RequestOnMap: React.FC<any> = (props) => {
+  const [stars, setStars] = useState(3);
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
     event: Event | undefined;
@@ -29,6 +35,14 @@ const RequestOnMap: React.FC<any> = (props) => {
     open: false,
     event: undefined,
   });
+
+  useEffect(() => {
+    db.collection("users")
+      .doc(props.item.r_id)
+      .onSnapshot((snapshot: any) => {
+        setStars(snapshot.data().rating + 0.5);
+      })
+  },[]);
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -89,6 +103,14 @@ const RequestOnMap: React.FC<any> = (props) => {
               icon={personCircleOutline}
             />
               {props.item.r_fn + " " + props.item.r_ln}
+              <StarRatingComponent
+                name="rate1"
+                starCount={5}
+                value={stars}
+                editing={false}
+                starColor="#194afb"
+                emptyStarColor="#bbd0ff"
+              />
               </div>
             </IonPopover>
 

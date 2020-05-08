@@ -50,6 +50,7 @@ const MapTab: React.FC = () => {
       snapshot.forEach(req => {
         reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
       });
+
       loadData(reqArr);
     })
   },[]);

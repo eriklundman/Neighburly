@@ -32,7 +32,6 @@ const ProfileTab: React.FC = () => {
     db.collection("users")
       .doc(userRef.uid)
       .onSnapshot((snapshot: any) => {
-        //setUserRating(snapshot.data().rating)
         setStars(snapshot.data().rating + 0.5);
         setHelps(snapshot.data().have_helped);
         setReceives(snapshot.data().have_been_helped);
