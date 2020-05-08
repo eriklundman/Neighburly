@@ -155,10 +155,15 @@ const Request: React.FC<any> = (props) => {
   }
 
   const doneWithRequest = () => {
+    if (rating===0) {
+        
+    }
+    else {
+
     setShowAlert(false);
 
-    let helper: boolean;
-
+    let helper: boolean
+   
     if (userRef.uid === props.item.h_id) {
       helper = false;
       giveRating(rating, props.item.r_id, helper);
@@ -171,6 +176,7 @@ const Request: React.FC<any> = (props) => {
       db.collection("requests").doc(props.item.req_id).update({
         r_completed: true,
       });
+    }
     }
   };
 
@@ -295,16 +301,14 @@ const Request: React.FC<any> = (props) => {
           </div>
         </IonPopover>
       </IonCardContent>
-      <IonModal isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
-        <IonRow className="ion-text-center">
-          <IonCol>
-            <h1>Are you sure the request is done?</h1>
-            <h4 className="info-text">Rate {name} by clicking on the stars!</h4>
-          </IonCol>
-        </IonRow>
-        <IonRow className="ion-text-center">
-          <IonCol>
-            <div className="rating-design" style={{ fontSize: 45 }}>
+
+
+      <IonModal cssClass="css-class" isOpen={showAlert} onDidDismiss={() => setShowAlert(false)}>
+            <div className="rating-box">
+            <h3 className="title-design">Are you sure the request is done?</h3>
+            <p className="info-text">If so, rate {name} with the stars!</p>
+            <div  className="rating-design"
+            style={{ fontSize: 45 }}>
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -313,9 +317,9 @@ const Request: React.FC<any> = (props) => {
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
               />
+              
             </div>
-          </IonCol>
-        </IonRow>
+        
         <IonButtons>
           <IonButton
             className="cancel-button"
@@ -327,6 +331,8 @@ const Request: React.FC<any> = (props) => {
           </IonButton>
           <IonButton onClick={() => doneWithRequest()}>Done!</IonButton>
         </IonButtons>
+       
+        </div>
       </IonModal>
     </IonCard>
   );

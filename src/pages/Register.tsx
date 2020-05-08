@@ -65,11 +65,7 @@ const Register: React.FC = () => {
   return (
 
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
           <HeaderLogga/>
-        </IonToolbar>
-      </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
     
       <IonContent>

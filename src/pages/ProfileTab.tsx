@@ -46,6 +46,7 @@ const ProfileTab: React.FC = () => {
           <IonContent>
 
       <Profile />
+      <p className="your-rating-text">Your rating</p>
         <IonRow>
           <IonCol className="ion-text-center">
             <div style={{ fontSize: 45 }}>
