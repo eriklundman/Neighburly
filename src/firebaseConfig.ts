@@ -39,7 +39,7 @@ export async function registerUser(firstname: string, lastname: string, email: s
   let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
 
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0
+      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0, have_helped: 0, have_been_helped: 0
     }).catch(function (error) {
       console.error("Error adding document: ", error);
 
