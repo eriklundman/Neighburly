@@ -86,11 +86,11 @@ const Tabs: React.FC = () => {
         </IonTabButton>
         <IonTabButton className="tabColor" tab="mapTab" href="/mapTab">
           <IonIcon icon={navigateCircleOutline} />
-          <IonLabel>Map</IonLabel>
+          <IonLabel>Requests</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="profileTab" href="/profileTab">
           <IonIcon icon={personOutline} />
-          <IonLabel>My Profile</IonLabel>
+          <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

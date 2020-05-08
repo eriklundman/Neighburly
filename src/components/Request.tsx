@@ -13,17 +13,14 @@ import {
   IonCardTitle,
   IonCardSubtitle,
   IonCardHeader,
-  IonContent,
 } from "@ionic/react";
 import {
-  personCircleOutline,
   chatbubblesOutline,
   checkmarkOutline,
   pawOutline,
   flowerOutline,
   helpCircleOutline,
   cartOutline,
-  trashOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { giveRating } from "../firebaseConfig"
@@ -66,6 +63,7 @@ const Request: React.FC<any> = (props) => {
       displayLayout();
         let userRef : any = firebase.auth().currentUser;
 
+        if (props.item.chatId){
     db.collection("chats").where(firebase.firestore.FieldPath.documentId(), '==', props.item.chatId)
       .onSnapshot(function (snapshot) {
         snapshot.docChanges().forEach(function (change) {
@@ -79,6 +77,7 @@ const Request: React.FC<any> = (props) => {
           }
         });
       });
+    }
 
       db.collection("requests").doc(props.item.req_id).onSnapshot((snapshot: any) => {
         
@@ -160,7 +159,7 @@ const Request: React.FC<any> = (props) => {
           <IonIcon slot="start" color="tertiary" icon={icon} />
           {props.item.des}
 
-          {props.item.r_completed === false && userRef.uid === props.item.r_id ?
+          {props.item.r_completed === false && userRef!==null && userRef.uid === props.item.r_id ?
 
             <IonButtons slot="end" >
               <IonButton onClick={() => setShowAlert(true)}>
@@ -172,7 +171,7 @@ const Request: React.FC<any> = (props) => {
               </IonButton>
             </IonButtons>
 
-            : props.item.h_completed === false && userRef.uid === props.item.h_id ?
+            : props.item.h_completed === false && userRef!==null && userRef.uid === props.item.h_id ?
 
               <IonButtons slot="end" >
                 <IonButton onClick={() => setShowAlert(true)}>
