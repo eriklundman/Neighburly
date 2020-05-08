@@ -19,7 +19,6 @@ import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import RequestOnMap from "../components/RequestOnMap";
-import RefreshBtn from "../components/RefreshBtn"
 import * as firebase from 'firebase'
 const db = firebase.firestore();
 
@@ -90,8 +89,6 @@ const MapTab: React.FC = () => {
 
      
         <RequestBtn/>
-
-        <RefreshBtn/>
         
         
         <IonModal

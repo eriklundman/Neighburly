@@ -7,8 +7,7 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonGrid,
-    IonList, IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol
+    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -83,7 +82,7 @@ const Chat: React.FC<any> = (props) => {
             {notice === "noNew" || notice === id ? console.log() : updateNotice(chatId)}
            <IonHeader>
           <IonToolbar color="primary">
-        <IonTitle color="tertiary">{Chat}</IonTitle>
+        <IonTitle color="tertiary">Chat</IonTitle>
         <IonButtons slot="start">
         <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/HelpTab" />
       </IonButtons>

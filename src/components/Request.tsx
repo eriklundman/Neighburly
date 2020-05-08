@@ -14,6 +14,7 @@ import {
   IonCardSubtitle,
   IonCardHeader,
   IonPopover,
+  IonLabel,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -23,6 +24,7 @@ import {
   helpCircleOutline,
   cartOutline,
   personCircleOutline,
+  trashOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { giveRating } from "../firebaseConfig";
@@ -192,6 +194,7 @@ const Request: React.FC<any> = (props) => {
             color="tertiary"
             icon={chatbubblesOutline}
             slot="icon-only"
+            size="large"
           />
         </IonButton>
 
@@ -215,29 +218,42 @@ const Request: React.FC<any> = (props) => {
           {props.item.r_completed === false &&
           userRef &&
           userRef.uid === props.item.r_id ? (
-            <IonButtons slot="end">
-              <IonButton onClick={() => setShowAlert(true)}>
+           
+              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" fill="clear">
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
                   slot="icon-only"
+                  size="large"
                 />
               </IonButton>
-            </IonButtons>
+        
           ) : props.item.h_completed === false &&
             userRef &&
             userRef.uid === props.item.h_id ? (
-            <IonButtons slot="end">
-              <IonButton onClick={() => setShowAlert(true)}>
+          
+              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" fill="clear">
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
                   slot="icon-only"
+                  size="large"
                 />
               </IonButton>
-            </IonButtons>
+ 
+          ) : props.item.completed===true ? (
+           
+              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" fill="clear">
+                <IonIcon
+                  color="danger"
+                  icon={trashOutline}
+                  slot="icon-only"
+                  size="large"
+                />
+              </IonButton>
+
           ) : (
-            console.log()
+            <IonBadge className="ion-done-button" >WAITING...</IonBadge>
           )}
         </IonItem>
 
@@ -267,7 +283,6 @@ const Request: React.FC<any> = (props) => {
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
               />:
-              
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
