@@ -299,6 +299,21 @@ export function giveRating(new_rating: any, userId: any, helper: boolean) {
 
 
 
+export function deleteAccount() {
+  let userRef: any = firebase.auth().currentUser;
+  if(userRef){
+    db.collection("users").doc(userRef.uid).delete().then(function () {
+      toast("User account successfully deleted!");
+    }).catch(function (error) {
+      toast("Error deleting user account");
+    });
+
+    userRef.delete()
+  }
+} 
+
+
+
 
 
 

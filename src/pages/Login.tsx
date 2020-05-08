@@ -28,6 +28,8 @@ const Login: React.FC = () => {
       toast("Log in successful!", 1500);
     }
     setBusy(false)
+    setEmail('')
+    setPassword('')
 
   }
 

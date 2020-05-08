@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
+import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol, IonAlert } from '@ionic/react';
 import { settingsOutline, chevronBackOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
-import {getUserInfo, updateDatabase} from "../firebaseConfig";
-import {toast} from "../toast";
+import { getUserInfo, updateDatabase, deleteAccount } from "../firebaseConfig";
+import { toast } from "../toast";
 import { useHistory } from 'react-router-dom';
 import './EditYourProfile.css';
 
@@ -22,6 +22,7 @@ const EditYourProfile: React.FC = () => {
     const [fn, setfn] = useState<string>("");
     const [ln, setln] = useState<string>("");
     const [radius, setRadius] = useState(0);
+    const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
     useEffect(() => {
         if (getUserInfo() !== undefined) {
@@ -45,7 +46,7 @@ const EditYourProfile: React.FC = () => {
         setln(userln)// This is be executed when `userRadius` state changes
     }, [userln]);
 
-    //console.log(userRadius)
+
     async function update() {
         if (fn === "" || ln === "") {
             return toast("You need to enter first- and lastname")
@@ -54,46 +55,71 @@ const EditYourProfile: React.FC = () => {
         history.goBack();
     }
 
+    function deleteClicked(){
+        setShowDeleteAlert(true);
+    }
+
+    function deleteUser() {
+        deleteAccount()
+        history.push('/login');
+    }
+
     return (
         <IonPage>
-             <IonHeader>
-             <IonToolbar color="primary">
-                  <IonButtons slot="start">
-                 <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
-              </IonButtons>
-              <IonTitle className="ion-text-center" color="tertiary">Edit profile</IonTitle>
-            </IonToolbar>
-        </IonHeader>
+            <IonHeader>
+                <IonToolbar color="primary">
+                    <IonButtons slot="start">
+                        <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/profileTab" />
+                    </IonButtons>
+                    <IonTitle className="ion-text-center" color="tertiary">Edit profile</IonTitle>
+                </IonToolbar>
+            </IonHeader>
 
             <IonContent scrollEvents={true}>
-                
+
                 <EditRadius radius={radius} setRadius={setRadius} />
-              
+
 
                 <EditInfo userfn={userfn} userln={userln} fn={fn} setfn={setfn} ln={ln} setln={setln} />
                 <IonCol></IonCol>
                 <IonCol>
-                <IonRow>  
+                    <IonRow>
 
-                      <IonButton className="hej" expand="block" onClick={update}>Save changes</IonButton>   
+                        <IonButton className="hej" expand="block" onClick={update}>Save changes</IonButton>
 
-                </IonRow>
-                <IonRow>
-                      <IonButtons>
-                        <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
-                    </IonButtons>
-                </IonRow>
+                    </IonRow>
+                    <IonRow>
+                        <IonButtons>
+                            <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
+                        </IonButtons>
+                    </IonRow>
                 </IonCol>
                 <IonCol></IonCol>
             </IonContent>
             <IonFooter>
-                    <IonToolbar>
-                        <IonButtons>
-                <IonButton  className="centreraKnapp" expand="block" color="danger">Delete account</IonButton> 
-                </IonButtons>
+                <IonToolbar>
+                    <IonButtons>
+                        <IonButton className="centreraKnapp" expand="block" color="danger" onClick={deleteClicked}>Delete account</IonButton>
+                    </IonButtons>
+
+                    <IonAlert
+                        isOpen={showDeleteAlert}
+                        onDidDismiss={() => setShowDeleteAlert(false)}
+                        header={'Confirm!'}
+                        message={'Are you sure you want to delete your account?'}
+                        buttons={['Cancel',
+                            {
+                                text: 'Delete',
+                                
+                                handler: () => {
+                                    deleteUser();
+                                }
+                            }
+                        ]}
+                    />
                 </IonToolbar>
-                </IonFooter>
-           
+            </IonFooter>
+
         </IonPage>
     );
 };

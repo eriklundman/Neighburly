@@ -53,6 +53,12 @@ const Register: React.FC = () => {
       history.push('/login');
       await toast("You're account has been registered!", 3000);
     }
+    setFirstname('')
+    setLastname('')
+    setPassword('')
+    setCPassword('')
+    setEmail('')
+    setChecked(false)
     setBusy(false);
   }
 
