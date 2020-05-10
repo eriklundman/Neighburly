@@ -232,7 +232,7 @@ class SimpleMap extends React.Component {
             ]}
           />
 
-          {this.state.markers.map((marker, i) => {
+          {this.state.markers.map((marker, index) => {
             let ico;
             if (marker.type === "shopping") {
               ico = cartOutline;
@@ -246,7 +246,7 @@ class SimpleMap extends React.Component {
 
             if (marker.accepted == false && marker.r_id !== this.state.userId) {
               return (
-                <IonButton
+                <IonButton key={index}
                   size="small"
                   color="tertiary"
                   fill="clear"
@@ -264,7 +264,7 @@ class SimpleMap extends React.Component {
             }
             if (marker.accepted == false && marker.r_id === this.state.userId) {
               return (
-                <IonButton
+                <IonButton key={index}
                   size="small"
                   color="secondary"
                   fill="clear"
