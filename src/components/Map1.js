@@ -244,9 +244,9 @@ class SimpleMap extends React.Component {
               ico = helpCircleOutline;
             }
 
-            if (marker.accepted == false && marker.r_id !== this.state.userId) {
+            if (marker.accepted === false && marker.r_id !== this.state.userId) {
               return (
-                <IonButton key={index}
+                <IonButton
                   size="small"
                   color="tertiary"
                   fill="clear"
@@ -262,9 +262,9 @@ class SimpleMap extends React.Component {
                 </IonButton>
               );
             }
-            if (marker.accepted == false && marker.r_id === this.state.userId) {
+            if (marker.accepted === false && marker.r_id === this.state.userId) {
               return (
-                <IonButton key={index}
+                <IonButton
                   size="small"
                   color="secondary"
                   fill="clear"
