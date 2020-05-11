@@ -8,6 +8,7 @@ import {
   IonCardHeader,
   IonCardContent,
   IonPopover,
+  IonAlert,
 } from "@ionic/react";
 import {
   personCircleOutline,
@@ -35,6 +36,8 @@ const RequestOnMap: React.FC<any> = (props) => {
     open: false,
     event: undefined,
   });
+
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     db.collection("users")
@@ -124,7 +127,7 @@ const RequestOnMap: React.FC<any> = (props) => {
               <IonButton
                 color="secondary"
                 shape="round"
-                onClick={() => helpRequest(props.item.req_id)}
+                onClick={() => setShowAlert(true)}
               >
                 <IonIcon
                   slot="start"
@@ -153,6 +156,18 @@ const RequestOnMap: React.FC<any> = (props) => {
             </IonButtons>
           )}
         </IonItem>
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={"Help " +  props.item.r_fn + "!"}
+          message={"Do you want to help " + props.item.r_fn + "?"}
+          buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
+          {text:'Help', 
+          cssClass: 'alert-buttons',
+          handler: () => {
+            helpRequest(props.item.req_id);
+          }}]}
+        />
       </IonCardContent>
     </IonCard>
   );

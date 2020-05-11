@@ -7,3 +7,7 @@ ion-content ion-toolbar {
 
 }
 
+.ion-modal-opener{
+  --border-radius: 25px !important;
+}
+

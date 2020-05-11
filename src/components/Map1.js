@@ -8,15 +8,16 @@ import {
   deleteRequest,
 } from "../firebaseConfig";
 import {
-  pawOutline,
-  flowerOutline,
-  helpCircleOutline,
-  cartOutline,
+  paw,
+  flower,
+  helpCircle,
+  cart,
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
 
 import { Plugins } from "@capacitor/core";
 import * as firebase from 'firebase'
+import "./Request.css";
 const db = firebase.firestore();
 
 
@@ -205,8 +206,9 @@ class SimpleMap extends React.Component {
             subHeader={this.state.reqType}
             message={this.state.des}
             buttons={[
-              "Cancel",
+              {text: "Cancel", cssClass:"alert-buttons"},
               {
+                cssClass:"alert-buttons",
                 text: "Help",
                 handler: () => {
                   this.takeRequest();
@@ -235,13 +237,13 @@ class SimpleMap extends React.Component {
           {this.state.markers.map((marker, index) => {
             let ico;
             if (marker.type === "shopping") {
-              ico = cartOutline;
+              ico = cart;
             } else if (marker.type === "dog-walking") {
-              ico = pawOutline;
+              ico = paw;
             } else if (marker.type === "gardening") {
-              ico = flowerOutline;
+              ico = flower;
             } else {
-              ico = helpCircleOutline;
+              ico = helpCircle;
             }
 
             if (marker.accepted === false && marker.r_id !== this.state.userId) {
@@ -258,7 +260,7 @@ class SimpleMap extends React.Component {
                     transform: "translate(-50%, -100%)",
                   }}
                 >
-                  <IonIcon slot="icon-only" icon={ico} />
+                  <IonIcon size="large" slot="icon-only" icon={ico} />
                 </IonButton>
               );
             }
@@ -276,7 +278,7 @@ class SimpleMap extends React.Component {
                     transform: "translate(-50%, -100%)",
                   }}
                 >
-                  <IonIcon slot="icon-only" icon={ico} />
+                  <IonIcon size="large" slot="icon-only" icon={ico} />
                 </IonButton>
               );
             }

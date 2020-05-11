@@ -28,13 +28,13 @@
 .ion-chat-button {
     position: absolute;
     right:2%;
-    top:10%;
+    top:12%;
 }
 
 .ion-done-button {
     position: absolute;
     right:0;
-    bottom:10%;
+    bottom:0%;
 }
 
 .chatt-badge{
@@ -52,7 +52,6 @@
     vertical-align: middle;
     }
     
-
 
 .info-text{
     color: #001e57;
@@ -102,4 +101,8 @@ text-align: center;
 
 .done-button{
     width:100%;
+}
+
+.alert-buttons{
+    color: #194afb !important; 
 }

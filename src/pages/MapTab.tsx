@@ -112,18 +112,21 @@ const MapTab: React.FC = () => {
         </IonModal>
         <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback}/>
       </IonContent>
-      <IonFooter>
+     
+        <div className="ion-modal-opener">
       
-      <IonToolbar>
-        <IonButton expand="full" fill="clear" onClick={() => setShowModal(true)}>
+
+        <IonButton className="ion-modal-opener" expand="full" fill="clear" onClick={() => setShowModal(true)}>
           <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
         </IonButton>
   
       <div className="ion-text-center">
-          <IonLabel>See all requests within your radius</IonLabel>
+          <IonLabel>See a list with all request within your radius</IonLabel>
           </div>
-          </IonToolbar>
-          </IonFooter>
+
+          </div>
+
+       
     </IonPage>
   );
 };

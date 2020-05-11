@@ -44,10 +44,10 @@ const MakeRequest: React.FC = () => {
 
   function sendRequest() {
     if (text.trim() === '') {
-      toast("Enter a description for the request!")
+      return toast("Enter a description for the request!")
     }
-    if (coords === []) {
-      toast('Pick an address for your request!')
+    if (coords.length===0) {
+      return toast('Pick a valid address for your request!')
     }
     if (text.trim() !== '' ||  coords !== []) {
       const req = createRequest(text, selected, coords)
@@ -117,6 +117,8 @@ const MakeRequest: React.FC = () => {
         <IonItem>
         <div className="information-div">
          <input className="address-input-field"
+         type="text"
+         maxLength = {100}
          value={text}
          placeholder="Enter more information here..."
          onChange={(e) => setText(e.target.value!)}
