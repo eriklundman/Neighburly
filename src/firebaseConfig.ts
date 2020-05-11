@@ -1,9 +1,9 @@
 import * as firebase from 'firebase'
 
 import React from 'react';
-import { resolve } from 'dns';
 
 import { toast } from "./toast";
+import { useHistory } from 'react-router-dom';
 
 
 const config = {
@@ -78,8 +78,8 @@ export async function createRequest(text: string, selected: string, coords: any)
 
 }
 
-async function createChatRoom(uid : any) {
-   return db.collection("chats").add({
+async function createChatRoom(uid: any) {
+  return db.collection("chats").add({
     messages: [], newMessage: "noNew", participants: [uid]
   }).then(docRef => {
     return docRef.id
@@ -103,19 +103,19 @@ export function storeMessage(message: string, chatId: string, firstName: any) {
   }
 }
 
-export function updateNotice(chatId : string) {
+export function updateNotice(chatId: string) {
 
-    try {
-        let chatRef = db.collection("chats").doc(chatId);
-        chatRef.update({
-            newMessage: "noNew"
-        }).then(() => {
-            console.log("Notice updated")
-        });
-    }
-    catch{
-        console.log("notice update failed")
-    }
+  try {
+    let chatRef = db.collection("chats").doc(chatId);
+    chatRef.update({
+      newMessage: "noNew"
+    }).then(() => {
+      console.log("Notice updated")
+    });
+  }
+  catch{
+    console.log("notice update failed")
+  }
 }
 
 export function getRequest() {
@@ -162,10 +162,11 @@ export async function helpRequest(request_id: any) {
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         let reqRef = db.collection('requests')
-            reqRef.doc(request_id).set({
+        reqRef.doc(request_id).set({
           accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid, chatId: chatRoomId
         }, { merge: true }).then((nada: any) => {
-          toast("Changes saved")
+          toast("Request accepted")
+
         })
 
         reqRef.doc(request_id).get().then((req: any) => {
@@ -271,37 +272,37 @@ export async function updateDatabase(radius: any, firstname: any, lastname: any)
 }
 
 export function giveRating(new_rating: any, userId: any, helper: boolean) {
-  
-    let userData = db.collection("users").doc(userId);
-    let helped: number = 0
-    let received: number = 0
-    if(helper === true){
-      helped = 1
-    }
-    else if(helper === false){
-      received = 1
-    }
 
-    userData.get().then((doc: any) => {
-      if(doc !== undefined){
-      let nr = ((doc.data().rating)*(doc.data().numb_of_ratings) + new_rating)/((doc.data().numb_of_ratings)+1)
+  let userData = db.collection("users").doc(userId);
+  let helped: number = 0
+  let received: number = 0
+  if (helper === true) {
+    helped = 1
+  }
+  else if (helper === false) {
+    received = 1
+  }
+
+  userData.get().then((doc: any) => {
+    if (doc !== undefined) {
+      let nr = ((doc.data().rating) * (doc.data().numb_of_ratings) + new_rating) / ((doc.data().numb_of_ratings) + 1)
       userData.update({
         numb_of_ratings: firebase.firestore.FieldValue.increment(1),
         rating: nr,
         have_helped: firebase.firestore.FieldValue.increment(helped),
         have_been_helped: firebase.firestore.FieldValue.increment(received)
-        
+
       })
-      }
-    })
-  
+    }
+  })
+
 }
 
 
 
 export function deleteAccount() {
   let userRef: any = firebase.auth().currentUser;
-  if(userRef){
+  if (userRef) {
     db.collection("users").doc(userRef.uid).delete().then(function () {
       toast("User account successfully deleted!");
     }).catch(function (error) {
@@ -310,9 +311,18 @@ export function deleteAccount() {
 
     userRef.delete()
   }
-} 
+}
 
 
+export function newPw(new_password: string) {
+  var user: any = firebase.auth().currentUser;
+  user.updatePassword(new_password).then(function () {
+    console.log("nytt lösenord")
+  }).catch(function (error: any) {
+    console.log(error)
+  });
+  
+}
 
 
 

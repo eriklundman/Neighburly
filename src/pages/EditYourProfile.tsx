@@ -7,6 +7,7 @@ import { getUserInfo, updateDatabase, deleteAccount } from "../firebaseConfig";
 import { toast } from "../toast";
 import { useHistory } from 'react-router-dom';
 import './EditYourProfile.css';
+import ChangePassword from '../components/ChangePassword';
 
 
 
@@ -89,9 +90,7 @@ const EditYourProfile: React.FC = () => {
 
                     </IonRow>
                     <IonRow>
-                        <IonButtons>
-                            <IonButton expand="block" className="ion-text-capitalize" color="secondary">Change password</IonButton>
-                        </IonButtons>
+                        <ChangePassword/>
                     </IonRow>
                 </IonCol>
                 <IonCol></IonCol>

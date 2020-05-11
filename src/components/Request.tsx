@@ -125,7 +125,7 @@ const Request: React.FC<any> = (props) => {
   }, []);
 
   function displayLayout() {
-    console.log(r_stars);
+    
     if (type === "youWillHelp") {
       setText("Helping");
       setName(props.item.r_fn + " " + props.item.r_ln);
