@@ -1,83 +1,150 @@
-import React, {useState, useEffect} from 'react';
-import { IonSegmentButton, IonLabel, IonContent, IonSegment, IonToolbar, IonRow, IonGrid, IonList} from '@ionic/react';
-import Request from '../components/Request';
-import * as firebase from 'firebase'
+import React, { useState, useEffect } from "react";
+import {
+  IonSegmentButton,
+  IonLabel,
+  IonContent,
+  IonSegment,
+  IonToolbar,
+  IonRow,
+  IonGrid,
+  IonList,
+} from "@ionic/react";
+import Request from "../components/Request";
+import * as firebase from "firebase";
 const db = firebase.firestore();
 
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
 const Help: React.FC = () => {
-    const [mode, setMode] = useState('list active helps');
-    const [info, setInfo] = useState([]);
-    const [defValue, setDefValue] = useState("");
-    const[id, setId] = useState<any>()
+  const [info, setInfo] = useState([]);
+  const [defValue, setDefValue] = useState("");
+  const [id, setId] = useState<any>();
 
-    useEffect(() => {
-        setDefValue("activehelps")
-        let userRef: any = firebase.auth().currentUser;
-        setId(userRef.uid);
-        let reqArr: any = [];
-        let requestRef = db.collection("requests")
+  const [activeHelps, setActiveHelps] = useState<number>();
+  const [inactiveHelps, setInctiveHelps] = useState<number>();
 
-        requestRef.onSnapshot(snapshot => {
-            reqArr = [];
-            snapshot.forEach(req => {
-                reqArr.push({ accepted: req.data().accepted, completed: req.data().completed, h_completed: req.data().h_completed, r_completed: req.data().r_completed, req_id: req.id, r_id: req.data().receiver_id, h_id: req.data().helper_id, type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, h_fn: req.data().helper_fn, h_ln: req.data().helper_ln, chatId: req.data().chatId })
 
-            });
-            loadData(reqArr);
-        })
+  useEffect(() => {
+    setDefValue("activehelps");
+    let userRef: any = firebase.auth().currentUser;
+    setId(userRef.uid);
+    let reqArr: any = [];
+    let requestRef = db.collection("requests");
 
-    }, []);
+    requestRef.onSnapshot((snapshot) => {
+      reqArr = [];
+      snapshot.forEach((req) => {
+        reqArr.push({
+          accepted: req.data().accepted,
+          completed: req.data().completed,
+          h_completed: req.data().h_completed,
+          r_completed: req.data().r_completed,
+          req_id: req.id,
+          r_id: req.data().receiver_id,
+          h_id: req.data().helper_id,
+          type: req.data().type,
+          des: req.data().description,
+          r_fn: req.data().receiver_fn,
+          r_ln: req.data().receiver_ln,
+          h_fn: req.data().helper_fn,
+          h_ln: req.data().helper_ln,
+          chatId: req.data().chatId,
+        });
+      });
+      loadData(reqArr);
+    });
+  }, []);
 
-    function loadData(data : any) {
-        setInfo(data)
-
+  useEffect(() => {
+    const myElement: HTMLElement | null = document.getElementById("hej");
+    if (myElement !== null) {
+    const actives1 = myElement.getElementsByClassName("youWillHelpclass")
+    const actives2 = myElement.getElementsByClassName("helpingYouclass")
+    const inactives1 = myElement.getElementsByClassName("iHelpedclass")
+    const inactives2 = myElement.getElementsByClassName("beenHelpedclass")
+      setActiveHelps(actives1.length + actives2.length);
+      setInctiveHelps(inactives1.length + inactives2.length);
+      console.log(myElement)
     }
+  }, [info, defValue]);
 
-    function active() {
-        setMode("list active helps");
-        setDefValue("activehelps");
-    }
+  function loadData(data: any) {
+    setInfo(data);
+  }
 
-    function inactive() {
-        setMode("list inactive helps");
-        setDefValue("inactivehelps");
-    }
+  function active() {
+    setDefValue("activehelps");
+  }
 
-    return (
-        <IonContent>
-            <IonGrid>
-                <IonToolbar>
-                    <IonRow>
-                        <IonSegment onIonChange={e => console.log('Segment selected', e.detail.value)} value={defValue}>
-                            <IonSegmentButton onClick={active} value="activehelps" >
-                                <IonLabel>Ongoing helps</IonLabel>
-                            </IonSegmentButton>
-                            <IonSegmentButton onClick={inactive} value="inactivehelps" >
-                                <IonLabel>Completed helps</IonLabel>
-                            </IonSegmentButton>
-                        </IonSegment>
-                    </IonRow>
-                </IonToolbar>
-                <IonList>
-                    {defValue === "activehelps" ? info.map((item: any, index: number) => (
-                         item.accepted === true && item.completed === false ?
-                            item.h_id === id ? <Request key={index} item={item} type={"youWillHelp"}/>
-                                : item.r_id === id ? <Request key={index} item={item} type={"helpingYou"}/>
-                                : console.log()
-                            : console.log()))
+  function inactive() {
+    setDefValue("inactivehelps");
+  }
 
-                        : info.map((item: any, index: number) => (
-                                item.completed === true && item.h_id === id ? <Request key={index} item={item} type={"iHelped"}/>
-                                    : item.completed === true && item.r_id === id ? <Request key={index} item={item} type={"beenHelped"}/>
-                                    : console.log()
-                    ))}
+  return (
+    <IonContent>
+      <IonGrid>
+        <IonToolbar>
+          <IonRow>
+            <IonSegment
+              onIonChange={(e) =>
+                console.log("Segment selected", e.detail.value)
+              }
+              value={defValue}
+            >
+              <IonSegmentButton onClick={active} value="activehelps">
+                <IonLabel>Ongoing helps</IonLabel>
+              </IonSegmentButton>
+              <IonSegmentButton onClick={inactive} value="inactivehelps">
+                <IonLabel>Completed helps</IonLabel>
+              </IonSegmentButton>
+            </IonSegment>
+          </IonRow>
+        </IonToolbar>
 
-                </IonList>
-            </IonGrid>
-
-        </IonContent>
-    );
-}
+        <IonList id="hej">
+          {defValue === "activehelps"
+            ? info.map((item: any, index: number) =>
+                item.accepted === true && item.completed === false ? (
+                  item.h_id === id ? (
+                    <Request key={index} item={item} type={"youWillHelp"} />
+                  ) : item.r_id === id ? (
+                    <Request key={index} item={item} type={"helpingYou"} />
+                  ) : (
+                  console.log()
+                  )
+                ) : (
+                  console.log()
+                )
+              )
+            : info.map((item: any, index: number) =>
+                item.completed === true && item.h_id === id ? (
+                  <Request key={index} item={item} type={"iHelped"} />
+                ) : item.completed === true && item.r_id === id ? (
+                  <Request key={index} item={item} type={"beenHelped"} />
+                ) : (
+                  console.log()
+                )
+              )}
+        </IonList>
+        {activeHelps === 0 && defValue === "activehelps"?
+        <div className="ion-text-center">
+        <h3>You have no active helps! </h3>
+        <p>Go to the request tab to help someone in need or post your own request</p>
+        </div>
+        :
+        console.log()
+            }
+        
+        {inactiveHelps === 0 && defValue === "inactivehelps"?
+        <div className="ion-text-center">
+        <h3>You have no inactive helps! </h3>
+        <p>This is where all helps will end up when both parties are finished</p>
+        </div>
+        :
+        console.log()
+            }
+      </IonGrid>
+    </IonContent>
+  );
+};
 
 export default Help;

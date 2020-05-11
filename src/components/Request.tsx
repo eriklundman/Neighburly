@@ -4,8 +4,6 @@ import {
   IonButton,
   IonButtons,
   IonItem,
-  IonRow,
-  IonCol,
   IonModal,
   IonBadge,
   IonCardContent,
@@ -180,7 +178,7 @@ const Request: React.FC<any> = (props) => {
   };
 
   return (
-    <IonCard class={props.type}>
+    <IonCard class={props.type + "class"}>
       <IonCardHeader>
         <IonCardSubtitle className={props.type}>{text}</IonCardSubtitle>
 
