@@ -52,15 +52,7 @@
     vertical-align: middle;
     }
     
-.cancel-button{
-  
 
-}
-
-.done-button{
-    color: #bbd0ff;
-
-}
 
 .info-text{
     color: #001e57;
@@ -71,7 +63,7 @@
 }
 
 .rating-design{
-margin-bottom: 1.9em;
+margin-bottom: -0.1em;
 text-align: center;
 
 }
@@ -80,10 +72,11 @@ text-align: center;
     color: #001e57;
     background: #FCFCFC;
 
+
 }
 
 .css-class{
-    --height: 25em;
+    --height: 22em;
     --border-color: #001e57;
     }
     
@@ -96,8 +89,17 @@ text-align: center;
 }
 
 .buttons-design{
-    color: #bbd0ff;
+    margin-top:1em;
+    color: #194afb;
     text-align: center;
     justify-content: center;
 
+}
+
+.cancel-button{
+    width:100%;
+}
+
+.done-button{
+    width:100%;
 }

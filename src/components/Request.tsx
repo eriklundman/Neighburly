@@ -319,18 +319,19 @@ const Request: React.FC<any> = (props) => {
               />
               
             </div>
-        
-        <IonButtons>
+            <IonItem></IonItem>
+        <IonButtons className="buttons-design">
           <IonButton
             className="cancel-button"
-            color="secondary"
-            fill="outline"
+            fill="clear"
+            expand="full"
             onClick={() => setShowAlert(false)}
           >
             Cancel
           </IonButton>
-          <IonButton onClick={() => doneWithRequest()}>Done!</IonButton>
+          <IonButton expand="full" fill="clear" className="done-button" onClick={() => doneWithRequest()}>Done rating!</IonButton>
         </IonButtons>
+
        
         </div>
       </IonModal>
