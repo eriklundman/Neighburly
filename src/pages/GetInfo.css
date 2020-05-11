@@ -1,0 +1,35 @@
+.bullet-design{
+    --bullet-background: #001e57;
+    --bullet-background-active:#194afb;
+    --progress-bar-background:#319534;
+    height: 100%;
+    width: 100%
+}
+
+.text-design{
+    justify-content: center;
+    margin-top: 17em !important;
+}
+
+.text-under-img-design{
+    justify-content: center;
+    margin-top: 5em !important;
+}
+
+.slide-design{
+    justify-content: center;
+}
+
+.swiper-wrapper{
+    height:200px;
+   
+}
+
+.design-img{
+    margin: 6em auto auto;}
+
+.link-color{
+    color: #194afb;
+    text-decoration: none;
+
+}

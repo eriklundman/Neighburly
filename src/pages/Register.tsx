@@ -88,13 +88,13 @@ const Register: React.FC = () => {
                onIonChange={(e: any) => setCPassword(e.target.value)}/></IonItem>
               </IonList>
              <IonItem>
-              <IonLabel color="tertiary"> I accept <Link to="/termsofuse">terms of use</Link></IonLabel>
+              <IonLabel color="tertiary"> I accept <Link className="link-color" to="/termsofuse">Terms of use</Link></IonLabel>
             <IonCheckbox slot="start" checked={checked} onIonChange={e => setChecked(e.detail.checked)} /></IonItem>
 
 
         <IonButton onClick={register}>Register</IonButton>
 
-        <p>Already have an account? <Link to="/login">Login</Link> </p>
+        <p>Already have an account? <Link className="link-color" to="/login">Login</Link> </p>
       </IonContent>
     </IonPage>
   );

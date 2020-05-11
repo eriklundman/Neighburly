@@ -48,7 +48,7 @@ const Login: React.FC = () => {
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>
-            <IonInput className="elsa"
+            <IonInput
           onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
           <IonItem>
           <IonLabel position="floating"> Password</IonLabel>
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
         <IonButton text-color="tertiary"className="ion-text-capitalize" expand="full" onClick={login}>Login</IonButton>
         </IonRow>
         <IonRow>
-        <div className="ion-text-center">New on Neighburly?<Link to="/register">Register here!</Link> </div>
+        <div className="ion-text-center">New on Neighburly? <Link className="link-color" to="/register">Register here!</Link> </div>
         </IonRow>
         </IonGrid>
       </IonContent>

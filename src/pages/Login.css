@@ -4,12 +4,9 @@
 
 }
 
-.Centrera{
-    margin: 0 auto;
-    padding-left: 0 auto;
-}
 
-.elsa {
-    --ion-placeholder-color: #ffffff;
-    --ion-item-color: #ffffff;
+
+.link-color{
+    color: #194afb;
+    text-decoration: underline;
 }

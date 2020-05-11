@@ -76,7 +76,6 @@ text-align: center;
 
 .css-class{
     --height: 22em;
-    --border-color: #001e57;
     }
     
 .title-design{
@@ -97,10 +96,12 @@ text-align: center;
 
 .cancel-button{
     width:100%;
+    color: #194afb;
 }
 
 .done-button{
     width:100%;
+    color: #194afb;
 }
 
 .alert-buttons{
