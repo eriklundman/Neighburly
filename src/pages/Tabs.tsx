@@ -39,7 +39,6 @@ const Tabs: React.FC = () => {
           boolArray = [];
           snapshot.forEach(function (change) {
             let lastMessage = change.data().newMessage;
-              console.log(lastMessage)
             if (lastMessage === userRef.uid || lastMessage === "noNew") {
                 boolArray.push(false);
                 setNewMessage(false)

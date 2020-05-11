@@ -21,6 +21,7 @@ firebase.initializeApp(config);
 const db = firebase.firestore();
 //db.settings({ timestampsInSnapshots: true });
 
+
 export async function loginUser(email: string, password: string) {
   try {
     const res = await firebase.auth().signInWithEmailAndPassword(email, password)
@@ -251,6 +252,7 @@ export function getUserId() {
 }
 
 export async function updateDatabase(radius: any, firstname: any, lastname: any) {
+
   let userRef: any = firebase.auth().currentUser;
 
   if (userRef) {

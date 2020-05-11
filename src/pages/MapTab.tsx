@@ -20,6 +20,7 @@ import RequestBtn from "../components/AddRequest";
 import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
 import RequestOnMap from "../components/RequestOnMap";
 import * as firebase from 'firebase'
+import { useHistory } from "react-router";
 const db = firebase.firestore();
 
 
@@ -29,12 +30,17 @@ const MapTab: React.FC = () => {
 
   const [userPos, setUserPos] = useState({lat:0, lng:0});
   const [userRad, setUserRadius] = useState(0)
+  const history = useHistory()
 
+const redirectCallback = () => {
+  history.replace("helpTab")
+}
 
   const userPosCallback = (userPosFromChild:any, userRadiusFromChild: any) => {
     setUserPos(userPosFromChild);
     setUserRadius (userRadiusFromChild);
   };
+
   const [info, setInfo] = useState([]);
   const [userId, setUserId] = useState<any>();
 
@@ -110,7 +116,7 @@ const MapTab: React.FC = () => {
           </IonList>
           </IonContent>
         </IonModal>
-        <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback}/>
+        <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback} redirectToHelpTab = {redirectCallback}/>
       </IonContent>
      
         <div className="ion-modal-opener">

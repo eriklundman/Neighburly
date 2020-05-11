@@ -21,7 +21,6 @@ const Profile: React.FC = () => {
   useIonViewDidEnter(() => {
     getUserInfo().then((result: any) => {
       if (result !== undefined) {
-        console.log(result);
         setFn(result.firstname);
         setLn(result.lastname);
         setEmail(result.email);
