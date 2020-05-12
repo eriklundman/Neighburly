@@ -24,6 +24,7 @@ const Login: React.FC = () => {
     
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
+      window.location.reload();
       history.replace('/tabs');
       toast("Log in successful!", 1500);
     }
