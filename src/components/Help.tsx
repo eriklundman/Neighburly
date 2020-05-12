@@ -79,7 +79,7 @@ const Help: React.FC = () => {
   function inactive() {
     setDefValue("inactivehelps");
   }
-  
+
   return (
     <IonContent>
       <IonGrid>

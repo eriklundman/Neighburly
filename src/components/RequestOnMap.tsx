@@ -47,7 +47,9 @@ const RequestOnMap: React.FC<any> = (props) => {
     db.collection("users")
       .doc(props.item.r_id)
       .onSnapshot((snapshot: any) => {
-        setStars(snapshot.data().rating + 0.5);
+        if(snapshot.data()) {
+          setStars(snapshot.data().rating + 0.5);
+        }
       })
   },[]);
 

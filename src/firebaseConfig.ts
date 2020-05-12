@@ -175,6 +175,52 @@ export function getYourRequest() {
   return reqArr
 }
 
+export async function waitForAcceptRequest(request_id : any) {
+  let userRef: any = firebase.auth().currentUser;
+
+  try {
+    db.collection("users").doc(userRef.uid).get().then((docu: any) => {
+      if (docu !== undefined) {
+        let reqRef = db.collection('requests')
+        reqRef.doc(request_id).set({
+          helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid, noticeHelper: false
+        }, { merge: true }).then((nada: any) => {
+          toast("Waiting for other person to accept")
+
+        })
+
+      }
+    })
+
+
+  }
+  catch{
+    toast("Error could not accept request")
+  }
+}
+
+export function cancelRequest(request_id : any) {
+  let reqRef = db.collection('requests').doc(request_id);
+
+// Remove the 'capital' field from the document
+  reqRef.update({
+    helper_fn: firebase.firestore.FieldValue.delete(), helper_ln: firebase.firestore.FieldValue.delete(), helper_id: firebase.firestore.FieldValue.delete(), noticeHelper: firebase.firestore.FieldValue.delete()
+  }).then(() => {
+    toast("Request canceled")
+  });
+}
+
+export function removeNoticeHelper (request_id : any) {
+  let reqRef = db.collection('requests').doc(request_id);
+
+// Remove the 'capital' field from the document
+  reqRef.update({
+    noticeHelper: firebase.firestore.FieldValue.delete()
+  }).then(() => {
+
+  });
+}
+
 export async function helpRequest(request_id: any) {
 
   let userRef: any = firebase.auth().currentUser;
@@ -185,7 +231,7 @@ export async function helpRequest(request_id: any) {
       if (docu !== undefined) {
         let reqRef = db.collection('requests')
         reqRef.doc(request_id).set({
-          accepted: true, helper_fn: docu.data().firstname, helper_ln: docu.data().lastname, helper_id: userRef.uid, chatId: chatRoomId
+          accepted: true, chatId: chatRoomId
         }, { merge: true }).then((nada: any) => {
           toast("Request accepted")
 

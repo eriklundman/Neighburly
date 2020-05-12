@@ -6,6 +6,7 @@ import {
   getUserId,
   helpRequest,
   deleteRequest,
+  waitForAcceptRequest
 } from "../firebaseConfig";
 import {
   paw,
@@ -85,7 +86,7 @@ class SimpleMap extends React.Component {
     requestRef.onSnapshot(snapshot => {
       array = [];
       snapshot.forEach(req => {
-        array.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
+        array.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id , h_id: req.data().helper_id})
       });
       this.loadData(array);
     })
@@ -159,7 +160,7 @@ class SimpleMap extends React.Component {
 
   takeRequest = () => {
     this.props.redirectToHelpTab()
-    helpRequest(this.state.req_id);
+    waitForAcceptRequest(this.state.req_id);
   };
 
   eraseRequest = () => {
@@ -257,7 +258,7 @@ class SimpleMap extends React.Component {
               ico = helpCircle;
             }
 
-            if (marker.accepted === false && marker.r_id !== this.state.userId) {
+            if (marker.accepted === false && marker.r_id !== this.state.userId && marker.h_id === undefined) {
               return (
                 <IonButton
                   size="small"
@@ -275,7 +276,7 @@ class SimpleMap extends React.Component {
                 </IonButton>
               );
             }
-            if (marker.accepted === false && marker.r_id === this.state.userId) {
+            if (marker.accepted === false && marker.r_id === this.state.userId && marker.h_id === undefined) {
               return (
                 <IonButton
                   size="small"
