@@ -77,7 +77,7 @@ const Help: React.FC = () => {
   function inactive() {
     setDefValue("inactivehelps");
   }
-
+  
   return (
     <IonContent>
       <IonGrid>
@@ -98,6 +98,7 @@ const Help: React.FC = () => {
             </IonSegment>
           </IonRow>
         </IonToolbar>
+
 
         <IonList id="hej">
           {defValue === "activehelps"

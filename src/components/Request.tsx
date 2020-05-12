@@ -24,7 +24,7 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
-import { giveRating } from "../firebaseConfig";
+import {deleteActiveRequest, giveRating} from "../firebaseConfig";
 import "./Request.css";
 
 import * as firebase from "firebase";
@@ -111,14 +111,17 @@ const Request: React.FC<any> = (props) => {
     db.collection("requests")
       .doc(props.item.req_id)
       .onSnapshot((snapshot: any) => {
-        if (
-          snapshot.data().h_completed === true &&
-          snapshot.data().r_completed === true
-        ) {
-          db.collection("requests").doc(props.item.req_id).update({
-            completed: true,
-          });
+        if (snapshot.data()) {
+          if (
+              snapshot.data().h_completed === true &&
+              snapshot.data().r_completed === true
+          ) {
+            db.collection("requests").doc(props.item.req_id).update({
+              completed: true,
+            });
+          }
         }
+
       });
   }, []);
 
@@ -244,7 +247,7 @@ const Request: React.FC<any> = (props) => {
  
           ) : props.item.completed===true ? (
            
-              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" fill="clear">
+              <IonButton onClick={() => deleteActiveRequest(props.item.req_id, props.item.chatId)} className="ion-done-button" fill="clear">
                 <IonIcon
                   color="danger"
                   icon={trashOutline}

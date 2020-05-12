@@ -19,7 +19,28 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
+/*
+const messaging = firebase.messaging();
+messaging.usePublicVapidKey("BBQDvD44v3X4l-6oyaRrQ9nK9uF6fut2F1It0JDnOZ7LJK-rPkA77kN3zP9GwBtQ-nm_6rntSL1MnrhDrUURNwc");
 //db.settings({ timestampsInSnapshots: true });
+messaging.requestPermission()
+    .then(() => {
+      console.log("have permission")
+      return messaging.getToken()
+    })
+    .then(token => {
+        console.log("Token: ", token)
+      console.log("hej")
+    })
+    .catch(function(err) {
+      console.log("Error occured", err)
+    })
+messaging.onMessage(function(payload) {
+  console.log("onMessage: ", payload)
+})
+*/
+
+
 
 
 export async function loginUser(email: string, password: string) {
@@ -193,6 +214,14 @@ export async function helpRequest(request_id: any) {
 export function deleteRequest(request_id: any) {
   db.collection("requests").doc(request_id).delete().then(function () {
     toast("Request successfully deleted!");
+  }).catch(function (error) {
+    toast("Error removing request");
+  });
+}
+
+export function deleteActiveRequest(request_id : any, chatId : any) {
+  db.collection("chats").doc(chatId).delete().then(function () {
+    deleteRequest(request_id);
   }).catch(function (error) {
     toast("Error removing request");
   });

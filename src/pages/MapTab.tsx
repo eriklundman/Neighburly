@@ -106,7 +106,7 @@ const redirectCallback = () => {
           <IonContent scrollEvents={true}>
           <IonList>
             {info.map((item: any, index: number) => (
-                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true?  <RequestOnMap key={index} item={item} userId={userId}/> : console.log()
+                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true ?  <RequestOnMap key={index} item={item} userId={userId}/> : console.log()
             ))}
 
           </IonList>
