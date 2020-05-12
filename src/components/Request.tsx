@@ -12,6 +12,7 @@ import {
   IonCardSubtitle,
   IonCardHeader,
   IonPopover,
+  IonList,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -216,38 +217,44 @@ const Request: React.FC<any> = (props) => {
           </IonButton>
         </IonCardTitle>
       </IonCardHeader>
-      <IonCardContent>
-        <IonItem lines="none" className="ion-no-padding">
+      <IonCardContent className="card-content">
+        <IonItem lines="none">
           <IonIcon slot="start" color="tertiary" icon={icon} />
+          <div className="rqst-des">
           {props.item.des}
+          </div>
 
           {props.item.r_completed === false &&
           userRef &&
           userRef.uid === props.item.r_id ? (
-           
-              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" color="success" fill="outline">
+            <IonButtons slot="end"> 
+              <IonButton onClick={() => setShowAlert(true)} color="success" fill="outline">
                 Done
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
                 />
               </IonButton>
+              </IonButtons>
         
           ) : props.item.h_completed === false &&
             userRef &&
             userRef.uid === props.item.h_id ? (
-          
-              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" color="success" fill="outline">
+
+          <IonButtons slot="end"> 
+              <IonButton onClick={() => setShowAlert(true)} color="success" fill="outline">
                 Done
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
                 />
               </IonButton>
+              </IonButtons>
  
           ) : props.item.completed===true ? (
            
-              <IonButton onClick={() => deleteActiveRequest(props.item.req_id, props.item.chatId)} className="ion-done-button" fill="clear">
+            <IonButtons slot="end"> 
+               <IonButton onClick={() => deleteActiveRequest(props.item.req_id, props.item.chatId)} className="ion-done-button" fill="clear">
                 <IonIcon
                   color="danger"
                   icon={trashOutline}
@@ -255,9 +262,12 @@ const Request: React.FC<any> = (props) => {
                   size="large"
                 />
               </IonButton>
+              </IonButtons>
 
           ) : (
-            <IonBadge className="ion-done-button" >WAITING...</IonBadge>
+            <IonButtons slot="end"> 
+            <IonBadge>WAITING...</IonBadge>
+            </IonButtons>
           )}
         </IonItem>
 
@@ -270,6 +280,8 @@ const Request: React.FC<any> = (props) => {
             setShowPopover({ open: false, event: undefined })
           }
         >
+          <IonList lines="none">
+            <IonItem>
           <div className="profile-name-request">
             <IonIcon
               slot="end"
@@ -278,8 +290,11 @@ const Request: React.FC<any> = (props) => {
               icon={personCircleOutline}
             />
             {name}
+            </div>
+            </IonItem>
             {userRef && userRef.uid === props.item.h_id ?
             <IonItem>
+              <div style={{ fontSize: 25 }} className="profile-name-request">
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -287,8 +302,9 @@ const Request: React.FC<any> = (props) => {
                 editing={false}
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
-              /></IonItem>:
+              /></div></IonItem>:
               <IonItem>
+              <div style={{ fontSize: 25 }} className="profile-name-request">
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -296,10 +312,14 @@ const Request: React.FC<any> = (props) => {
                 editing={false}
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
-              /></IonItem>
+              /></div></IonItem>
             }
-            <IonButton>Report user</IonButton>
-          </div>
+            <IonItem>
+              <div className="profile-name-request">
+            <IonButton color="danger" shape="round">Report user</IonButton>
+            </div>
+            </IonItem>
+          </IonList>
         </IonPopover>
       </IonCardContent>
 

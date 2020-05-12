@@ -113,8 +113,7 @@ const MakeRequest: React.FC = () => {
           </IonItem>
         <IonItem>
         <div className="information-div">
-         <input className="address-input-field"
-         type="text"
+         <textarea className="address-input-field"
          maxLength = {100}
          value={text}
          placeholder="Enter more information here..."

@@ -9,6 +9,7 @@ import {
   IonCardContent,
   IonPopover,
   IonAlert,
+  IonList,
 } from "@ionic/react";
 import {
   personCircleOutline,
@@ -98,6 +99,8 @@ const RequestOnMap: React.FC<any> = (props) => {
                 setShowPopover({ open: false, event: undefined })
               }
             >
+                <IonList lines="none">
+                <IonItem>
                 <div className="profile-name-request">
             <IonIcon
               slot="end"
@@ -106,6 +109,10 @@ const RequestOnMap: React.FC<any> = (props) => {
               icon={personCircleOutline}
             />
               {props.item.r_fn + " " + props.item.r_ln}
+              </div>
+              </IonItem>
+              <IonItem>
+                  <div style={{ fontSize: 25 }} className="profile-name-request">
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -115,12 +122,21 @@ const RequestOnMap: React.FC<any> = (props) => {
                 emptyStarColor="#bbd0ff"
               />
               </div>
+              </IonItem>
+              <IonItem>
+              <div className="profile-name-request">
+              <IonButton color="danger" shape="round">Report user</IonButton>
+              </div>
+              </IonItem>
+              </IonList>
             </IonPopover>
 
-      <IonCardContent>
+      <IonCardContent className="card-content">
         <IonItem lines="none">
           <IonIcon slot="start" color="tertiary" icon={icon} />
+          <div className="rqst-des">
           {props.item.des}
+          </div>
 
           {props.userId !== props.item.r_id ? (
             <IonButtons slot="end">

@@ -81,7 +81,6 @@ const Help: React.FC = () => {
   return (
     <IonContent>
       <IonGrid>
-        <IonToolbar>
           <IonRow>
             <IonSegment
               onIonChange={(e) =>
@@ -90,14 +89,13 @@ const Help: React.FC = () => {
               value={defValue}
             >
               <IonSegmentButton onClick={active} value="activehelps">
-                <IonLabel>Ongoing helps</IonLabel>
+                <IonLabel color="secondary">Ongoing helps</IonLabel>
               </IonSegmentButton>
               <IonSegmentButton onClick={inactive} value="inactivehelps">
-                <IonLabel>Completed helps</IonLabel>
+                <IonLabel color="secondary">Completed helps</IonLabel>
               </IonSegmentButton>
             </IonSegment>
           </IonRow>
-        </IonToolbar>
 
 
         <IonList id="hej">

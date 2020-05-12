@@ -9,7 +9,7 @@ import {
 } from "../firebaseConfig";
 import {
   paw,
-  flower,
+  flowerSharp,
   helpCircle,
   cart,
 } from "ionicons/icons";
@@ -242,7 +242,7 @@ class SimpleMap extends React.Component {
             } else if (marker.type === "dog-walking") {
               ico = paw;
             } else if (marker.type === "gardening") {
-              ico = flower;
+              ico = flowerSharp;
             } else {
               ico = helpCircle;
             }

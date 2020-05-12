@@ -31,10 +31,9 @@
     top:12%;
 }
 
-.ion-done-button {
-    position: absolute;
-    right:0;
-    bottom:0%;
+.card-content {
+    padding-left: 0em;
+    padding-right: 0em;
 }
 
 .chatt-badge{
@@ -48,7 +47,7 @@
     width:100%;
     display:flex;
     align-items:center;
-    justify-content:left;
+    justify-content:center;
     vertical-align: middle;
     }
     
@@ -106,4 +105,9 @@ text-align: center;
 
 .alert-buttons{
     color: #194afb !important; 
+}
+
+.rqst-des{
+    word-break: break-all;
+    hyphens: auto;
 }

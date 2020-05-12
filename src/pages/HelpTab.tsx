@@ -9,9 +9,7 @@ const HelpTab: React.FC = () => {
   return (
     <IonPage>
       <HeaderLogga/>
-      <IonContent>
         <Help/>     
- </IonContent>
     </IonPage>
   );
 };
