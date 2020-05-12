@@ -1,7 +1,6 @@
 .bullet-design{
     --bullet-background: #001e57;
     --bullet-background-active:#194afb;
-    --progress-bar-background:#319534;
     height: 100%;
     width: 100%
 }

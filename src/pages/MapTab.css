@@ -4,10 +4,31 @@ ion-content ion-toolbar {
 .modalButton{
   margin: 0 auto;
   color: #001e57;
-
 }
 
 .ion-modal-opener{
-  --border-radius: 25px !important;
+  color: #001e57;
+  margin: 0 auto;
+  background: #d5e2ff;
+  width:100%;
+  
+
 }
+
+.modal-text{
+  text-align: center;
+  padding-bottom:0.7em;
+}
+
+.background-color{
+  background:#d5e2ff;
+  background-color:#d5e2ff;
+  color:#001e57;
+}
+
+.cssclass{
+  --background:#d5e2ff;
+  --color:#d5e2ff;
+  }
+
 

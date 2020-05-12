@@ -99,6 +99,7 @@ const closeModalCallback = () => {
         
         
         <IonModal
+          cssClass="cssclass"
           isOpen={showModal}
           swipeToClose={true}
           presentingElement={pageRef.current}
@@ -108,20 +109,20 @@ const closeModalCallback = () => {
               <IonIcon className="modalButton" size="large" icon={chevronDownOutline} />
             </IonButton>
           </IonButtons>
-          <IonContent scrollEvents={true}>
-            <IonItem lines="none">
-            <h2>My requests</h2>
+          <IonContent scrollEvents={true} color="primary-tint">
+            <IonItem lines="none" color="light">
+            <h2 className="background-color">My requests</h2>
             </IonItem>
-          <IonList>
+          <IonList className="background-color">
             {info.map((item: any, index: number) => (
                 item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id===userId?  <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId}/> 
                 : console.log()
             ))}
           </IonList>
-          <IonItem lines="none">
-            <h2>Other requests</h2>
+          <IonItem lines="none" color="light">
+            <h2 className="background-color">Other requests</h2>
             </IonItem>
-          <IonList>
+          <IonList className="background-color">
           {info.map((item: any, index: number) => (
                 item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id!==userId?  <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId}/> 
                 : console.log()
@@ -132,15 +133,17 @@ const closeModalCallback = () => {
         <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback} redirectToHelpTab = {redirectCallback}/>
       </IonContent>
      
-        <div className="ion-modal-opener">
+      <div className="ion-modal-opener">
       
 
-        <IonButton className="ion-modal-opener" expand="full" fill="clear" onClick={() => setShowModal(true)}>
-          <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
-        </IonButton>
+      <IonButton className="modalButton" expand="full" fill="clear" onClick={() => setShowModal(true)}>
+        <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
+      </IonButton>
+
+        
   
-      <div className="ion-text-center">
-          <IonLabel>See a list with all request within your radius</IonLabel>
+      <div className="modal-text">
+          <IonLabel>List all requests within your radius</IonLabel>
           </div>
 
           </div>

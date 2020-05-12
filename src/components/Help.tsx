@@ -11,6 +11,8 @@ import {
 } from "@ionic/react";
 import Request from "../components/Request";
 import * as firebase from "firebase";
+import "./Help.css";
+
 const db = firebase.firestore();
 
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
