@@ -1,5 +1,5 @@
 import React from 'react';
-import {IonIcon, IonButton, IonButtons, IonItem, IonText } from '@ionic/react';
+import {IonIcon, IonButton, IonItem, IonText } from '@ionic/react';
 import { settingsOutline } from 'ionicons/icons';
 
 const SettingsBtn = () => {

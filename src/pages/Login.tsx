@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+import React, { useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonHeader, IonPage, IonLabel, IonList, IonToolbar, IonContent, IonLoading, IonCol, IonGrid, IonRow, IonItem
+  IonPage, IonLabel, IonList, IonContent, IonLoading, IonGrid, IonRow, IonItem
 } from '@ionic/react';
 import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'

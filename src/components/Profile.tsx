@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
-  IonContent,
   IonIcon,
-  IonRow,
-  IonCol,
   useIonViewDidEnter,
-  IonTitle,
-  IonItem,
 } from "@ionic/react";
 import { getUserInfo } from "../firebaseConfig";
 

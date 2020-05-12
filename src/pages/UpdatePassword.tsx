@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol, IonAlert, IonList, IonInput } from '@ionic/react';
+import React, {useState } from 'react';
+import { IonPage, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { newPw } from "../firebaseConfig";
 import * as firebase from 'firebase'
-import HeaderLogga from '../components/HeaderLogga';
 import { toast } from '../toast';
 import { chevronBackOutline } from 'ionicons/icons';
 

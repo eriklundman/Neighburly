@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonSlides, IonButton, IonSlide, IonPage, IonIcon, IonToolbar, IonCol, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonRow, IonGrid } from '@ionic/react';
+import { IonSlides, IonSlide, IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader } from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 import './GetInfo.css';
 import {Link} from 'react-router-dom';

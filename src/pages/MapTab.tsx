@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import {
   IonContent,
-  IonHeader,
   IonPage,
   IonModal,
   IonButton,
@@ -9,9 +8,6 @@ import {
   IonButtons,
   IonList,
   IonLabel,
-  IonFooter,
-  IonToolbar, 
-
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";

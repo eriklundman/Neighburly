@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonItem, IonText } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader} from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 
 

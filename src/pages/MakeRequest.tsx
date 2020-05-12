@@ -8,18 +8,15 @@ import {
   IonBackButton,
   IonButton,
   IonItem,
-  IonTextarea,
   IonRadioGroup,
   IonLabel,
   IonRow,
   IonCol,
   IonRadio,
   IonIcon,
-  IonDatetime,
   IonContent,
   IonHeader,
   IonText,
-  IonInput
 } from "@ionic/react";
 import PlacesAutocomplete from "../components/AddressInput";
 import {

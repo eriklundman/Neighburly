@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { IonPage, IonToolbar, IonGrid, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonIcon, IonButton, IonItemGroup, IonRow, IonCol, IonAlert } from '@ionic/react';
-import { settingsOutline, chevronBackOutline } from 'ionicons/icons';
+import { IonPage, IonToolbar, IonFooter, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonButton, IonRow, IonCol, IonAlert } from '@ionic/react';
+import { chevronBackOutline } from 'ionicons/icons';
 import EditRadius from '../components/EditRadius'
 import EditInfo from '../components/EditInfo';
 import { getUserInfo, updateDatabase, deleteAccount } from "../firebaseConfig";

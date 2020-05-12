@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
+import { IonContent, IonPage} from '@ionic/react';
 import './HelpTab.css';
 import Help from '../components/Help';
 import HeaderLogga from '../components/HeaderLogga';

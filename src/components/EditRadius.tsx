@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { IonIcon, IonButton, IonButtons, IonGrid, IonItem, IonLabel, IonRange, IonRow } from '@ionic/react';
+import React from 'react';
+import { IonIcon, IonGrid, IonItem, IonLabel, IonRange, IonRow } from '@ionic/react';
 import { navigateCircleOutline } from 'ionicons/icons';
 
 

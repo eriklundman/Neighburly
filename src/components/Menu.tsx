@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { IonItem, IonLabel, IonContent, IonIcon, IonButton, IonButtons, IonLoading} from '@ionic/react';
+import { IonItem, IonLabel, IonContent, IonButton, IonButtons, IonLoading} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { logoutUser } from '../firebaseConfig'
 import {toast} from "../toast";

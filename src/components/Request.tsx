@@ -227,8 +227,6 @@ const Request: React.FC<any> = (props) => {
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
-                
-                 
                 />
               </IonButton>
         
@@ -236,12 +234,11 @@ const Request: React.FC<any> = (props) => {
             userRef &&
             userRef.uid === props.item.h_id ? (
           
-              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" fill="clear" color="success">
+              <IonButton onClick={() => setShowAlert(true)} className="ion-done-button" color="success" fill="outline">
+                Done
                 <IonIcon
                   color="success"
                   icon={checkmarkOutline}
-                  slot="icon-only"
-                  size="large"
                 />
               </IonButton>
  
@@ -279,6 +276,7 @@ const Request: React.FC<any> = (props) => {
             />
             {name}
             {userRef && userRef.uid === props.item.h_id ?
+            <IonItem>
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -286,7 +284,8 @@ const Request: React.FC<any> = (props) => {
                 editing={false}
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
-              />:
+              /></IonItem>:
+              <IonItem>
               <StarRatingComponent
                 name="rate1"
                 starCount={5}
@@ -294,8 +293,9 @@ const Request: React.FC<any> = (props) => {
                 editing={false}
                 starColor="#194afb"
                 emptyStarColor="#bbd0ff"
-              />
+              /></IonItem>
             }
+            <IonButton>Report user</IonButton>
           </div>
         </IonPopover>
       </IonCardContent>

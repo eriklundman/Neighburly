@@ -63,7 +63,6 @@ const Help: React.FC = () => {
     const inactives2 = myElement.getElementsByClassName("beenHelpedclass")
       setActiveHelps(actives1.length + actives2.length);
       setInctiveHelps(inactives1.length + inactives2.length);
-      console.log(myElement)
     }
   }, [info, defValue]);
 
@@ -127,8 +126,8 @@ const Help: React.FC = () => {
         </IonList>
         {activeHelps === 0 && defValue === "activehelps"?
         <div className="ion-text-center">
-        <h3>You have no active helps! </h3>
-        <p>Go to the request tab to help someone in need or post your own request</p>
+        <h3>You have no ongoing helps! </h3>
+        <p>Go to the request page to help someone in need or post your own request.</p>
         </div>
         :
         console.log()
@@ -136,8 +135,8 @@ const Help: React.FC = () => {
         
         {inactiveHelps === 0 && defValue === "inactivehelps"?
         <div className="ion-text-center">
-        <h3>You have no inactive helps! </h3>
-        <p>This is where all helps will end up when both parties are finished</p>
+        <h3>You have no completed helps! </h3>
+        <p>This is where the requests will end up after both parties have confirmed it is completed.</p>
         </div>
         :
         console.log()

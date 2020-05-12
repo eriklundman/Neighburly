@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonRow} from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import './MenuTab.css';
 import Menu from '../components/Menu'
 
@@ -12,7 +12,6 @@ const MenuTab: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        
         <Menu/>
       </IonContent>
     </IonPage>
