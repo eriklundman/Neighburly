@@ -61,7 +61,7 @@ export async function registerUser(firstname: string, lastname: string, email: s
   let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
 
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0, have_helped: 0, have_been_helped: 0, reported: []
+      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0, have_helped: 0, have_been_helped: 0
     }).catch(function (error) {
       console.error("Error adding document: ", error);
 
@@ -355,11 +355,13 @@ export function newPw(new_password: string) {
 
 }
 
-export function reportUserFunc(reported_id: any, incident: string, why: string) {
-  db.collection('users').doc(reported_id).update({
-    reported: firebase.firestore.FieldValue.arrayUnion("Incident: " + incident + "\n Why it was inappropriate: " + why)
-  }
-  )
+export function reportUserFunc(reported_id: any, incident: string, why: string, req_id: string) {
+  db.collection('users').doc(reported_id).collection("reports").add({
+    incident: incident, why_inappropriate: why, request_id: req_id
+  })
+  
+  
+  
 }
 
 

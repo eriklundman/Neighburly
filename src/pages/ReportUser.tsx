@@ -53,16 +53,16 @@ const ReportUser: React.FC = (props) => {
             const request: any = location.state.req;
             if (request.h_id) {
                 if (userRef && userRef.uid === request.r_id) {
-                    reportUserFunc(request.h_id, incident, why)
+                    reportUserFunc(request.h_id, incident, why, request.req_id)
 
                 }
                 else if (userRef && userRef.uid === request.h_id) {
-                    reportUserFunc(request.r_id, incident, why)
+                    reportUserFunc(request.r_id, incident, why, request.req_id)
 
                 }
             }
             else {
-                reportUserFunc(request.r_id, incident, why)
+                reportUserFunc(request.r_id, incident, why, request.req_id)
             }
 
             history.push("/mapTab")
