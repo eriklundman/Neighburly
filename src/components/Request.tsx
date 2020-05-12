@@ -29,10 +29,13 @@ import {deleteActiveRequest, giveRating} from "../firebaseConfig";
 import "./Request.css";
 
 import * as firebase from "firebase";
+import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
 
+
 const Request: React.FC<any> = (props) => {
+  const history = useHistory()
   const [notice, setNotice] = useState<any>();
   const [showAlert, setShowAlert] = useState(false);
   const [rating, setRating] = useState(0);
@@ -181,6 +184,11 @@ const Request: React.FC<any> = (props) => {
     }
   };
 
+ const goToReportUser = () => {
+  setShowPopover({ open: false, event: undefined })
+  history.push("/reportuser", {req: props.item})
+ }
+
   return (
     <IonCard class={props.type + "class"}>
       <IonCardHeader>
@@ -316,7 +324,7 @@ const Request: React.FC<any> = (props) => {
             }
             <IonItem>
               <div className="profile-name-request">
-            <IonButton color="danger" shape="round">Report user</IonButton>
+            <IonButton color="danger" shape="round" onClick={goToReportUser}>Report user</IonButton>
             </div>
             </IonItem>
           </IonList>

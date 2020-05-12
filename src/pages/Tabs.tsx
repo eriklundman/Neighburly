@@ -21,6 +21,7 @@ import TermsOfUse from './TermsOfUse';
 import './Tabs.css';
 import * as firebase from "firebase";
 import UpdatePassword from './UpdatePassword';
+import ReportUser from './ReportUser';
 const db = firebase.firestore();
 
 
@@ -73,6 +74,7 @@ const Tabs: React.FC = () => {
         <Route path="/profileTab" component={ProfileTab} exact={true} />
         <Route path="/edityourprofile" component={EditYourProfile}/>
         <Route path="/updatepassword" component={UpdatePassword}/>
+        <Route path="/reportuser" component={ReportUser}/>
         <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">

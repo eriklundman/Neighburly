@@ -51,7 +51,7 @@ const Register: React.FC = () => {
       history.push('/login');
       await toast("You're account has been registered!", 3000);
     }
-    
+    setBusy(false)
   }
 
   return (
