@@ -5,30 +5,20 @@
     width: 100%
 }
 
-.text-design{
-    justify-content: center;
-    margin-top: 17em !important;
-}
-
-.text-under-img-design{
-    justify-content: center;
-    margin-top: 5em !important;
-}
-
 .slide-design{
     justify-content: center;
 }
 
-.swiper-wrapper{
-    height:200px;
-   
-}
-
-.design-img{
-    margin: 6em auto auto;}
 
 .link-color{
     color: #194afb;
     text-decoration: none;
-
 }
+
+.grid{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 20% 50% auto;
+    place-items: center;
+}
+

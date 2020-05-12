@@ -2,3 +2,8 @@
 margin:5% 2%;
 justify-content: center;
 }
+
+.rqst-fab{
+    --box-shadow: 5px 10px 8px #888888;
+    text-shadow: 5px 10px 8px #888888;
+}

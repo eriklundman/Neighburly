@@ -10,10 +10,11 @@ const RequestBtn = () => {
       <div className="ion-text-center">
      
         <IonFab className="request-btn" vertical="top" horizontal="start" slot="fixed">
-          <IonFabButton color="tertiary" size="small" routerLink="/mapTab/makerequest">
+        <IonLabel className="rqst-fab"> Add</IonLabel>
+          <IonFabButton className="rqst-fab" color="tertiary" size="small" routerLink="/mapTab/makerequest">
             <IonIcon icon={addOutline} size="large" />
           </IonFabButton>
-          <IonLabel> Request help </IonLabel>
+          <IonLabel className="rqst-fab"> Request</IonLabel>
           </IonFab>
 
        

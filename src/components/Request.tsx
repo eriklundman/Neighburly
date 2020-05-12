@@ -13,6 +13,7 @@ import {
   IonCardHeader,
   IonPopover,
   IonList,
+  IonAlert,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -30,6 +31,7 @@ import "./Request.css";
 
 import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
+import { toast } from "../toast";
 
 const db = firebase.firestore();
 
@@ -38,6 +40,7 @@ const Request: React.FC<any> = (props) => {
   const history = useHistory()
   const [notice, setNotice] = useState<any>();
   const [showAlert, setShowAlert] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [rating, setRating] = useState(0);
   let userRef: any = firebase.auth().currentUser;
   let type = props.type;
@@ -160,7 +163,7 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     if (rating===0) {
-        
+        return toast("You have to rate before you are done!")
     }
     else {
 
@@ -262,7 +265,7 @@ const Request: React.FC<any> = (props) => {
           ) : props.item.completed===true ? (
            
             <IonButtons slot="end"> 
-               <IonButton onClick={() => deleteActiveRequest(props.item.req_id, props.item.chatId)} className="ion-done-button" fill="clear">
+               <IonButton onClick={() => setShowDeleteAlert(true)} fill="clear">
                 <IonIcon
                   color="danger"
                   icon={trashOutline}
@@ -278,6 +281,19 @@ const Request: React.FC<any> = (props) => {
             </IonButtons>
           )}
         </IonItem>
+
+        <IonAlert
+          isOpen={showDeleteAlert}
+          onDidDismiss={() => setShowDeleteAlert(false)}
+          header={"Delete request"}
+          message={"Are you sure you want to delete this request?"}
+          buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
+          {text:'Delete', 
+          cssClass: 'alert-buttons',
+          handler: () => {
+            deleteActiveRequest(props.item.req_id, props.item.chatId);
+          }}]}
+        />
 
         <IonPopover
           css-class="ion-popover"

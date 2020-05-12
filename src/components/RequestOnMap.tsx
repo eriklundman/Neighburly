@@ -40,7 +40,8 @@ const RequestOnMap: React.FC<any> = (props) => {
     event: undefined,
   });
 
-  const [showAlert, setShowAlert] = useState(false);
+  const [showHelpAlert, setShowHelpAlert] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
 
   useEffect(() => {
     db.collection("users")
@@ -151,7 +152,7 @@ const RequestOnMap: React.FC<any> = (props) => {
               <IonButton
                 color="secondary"
                 shape="round"
-                onClick={() => setShowAlert(true)}
+                onClick={() => setShowHelpAlert(true)}
               >
                 <IonIcon
                   slot="start"
@@ -167,7 +168,7 @@ const RequestOnMap: React.FC<any> = (props) => {
               <IonButton
                 color="danger"
                 shape="round"
-                onClick={() => deleteRequest(props.item.req_id)}
+                onClick={() => setShowDeleteAlert(true)}
               >
                 <IonIcon
                   slot="start"
@@ -181,8 +182,8 @@ const RequestOnMap: React.FC<any> = (props) => {
           )}
         </IonItem>
         <IonAlert
-          isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
+          isOpen={showHelpAlert}
+          onDidDismiss={() => setShowHelpAlert(false)}
           header={"Help " +  props.item.r_fn + "!"}
           message={"Do you want to help " + props.item.r_fn + "?"}
           buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
@@ -190,6 +191,18 @@ const RequestOnMap: React.FC<any> = (props) => {
           cssClass: 'alert-buttons',
           handler: () => {
             helpRequest(props.item.req_id);
+          }}]}
+        />
+        <IonAlert
+          isOpen={showDeleteAlert}
+          onDidDismiss={() => setShowDeleteAlert(false)}
+          header={"Delete request"}
+          message={"Are you sure you want to delete this request?"}
+          buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
+          {text:'Delete', 
+          cssClass: 'alert-buttons',
+          handler: () => {
+            deleteRequest(props.item.req_id);
           }}]}
         />
       </IonCardContent>
