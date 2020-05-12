@@ -4,7 +4,7 @@ import { settingsOutline } from 'ionicons/icons';
 
 const SettingsBtn = () => {
     return(
-        <IonButton fill="outline"> 
+        <IonButton className="edit-profile-button" fill="outline"> 
         <IonItem routerLink="/edityourprofile">
          <IonText>Edit your profile </IonText>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start" />

@@ -9,5 +9,20 @@
   
   .header_logga{
      background-color: #bbd0ff;
-     height: 56px;
+     height: 55px;
+
+  }
+
+  .ios.loggan{
+    width: 206px; 
+    height: 67px;
+    margin: -0.4em auto;
+   /* padding-bottom: 54px;*/
+   padding: 1em;
+  
+  }
+  
+  .ios.header_logga{
+     background-color: #bbd0ff;
+     height: 46px;
   }

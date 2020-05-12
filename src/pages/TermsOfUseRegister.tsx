@@ -1,17 +1,20 @@
 import React from 'react';
-import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader } from '@ionic/react';
+import { chevronBackOutline } from 'ionicons/icons';
 
 
 const TermsOfUseRegister: React.FC = () => {
     return (
         <IonPage>
-            <IonToolbar>
-          <IonTitle>Terms & Conditions</IonTitle>
+        <IonHeader className="ion-text-justify">
+            <IonToolbar color="primary">
+          <IonTitle color="tertiary">Terms & Conditions</IonTitle>
           <IonButtons slot="start">
-          <IonBackButton defaultHref="/register" />
+          <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/register" />
         </IonButtons>
         </IonToolbar>
-        <IonContent scrollEvents={true}>
+        </IonHeader>
+        <IonContent className="ion-padding" scrollEvents={true}>
 <h1>Terms and conditions</h1>
 <p>These terms and conditions (&quot;Terms&quot;, &quot;Agreement&quot;) are an agreement between Mobile Application Developer (&quot;Mobile Application Developer&quot;, &quot;us&quot;, &quot;we&quot; or &quot;our&quot;) and you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;). This Agreement sets forth the general terms and conditions of your use of the Neighburly mobile application and any of its products or services (collectively, &quot;Mobile Application&quot; or &quot;Services&quot;).</p>
 <h2>Accounts and membership</h2>

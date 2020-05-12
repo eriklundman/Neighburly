@@ -8,6 +8,10 @@ import {
   IonButtons,
   IonList,
   IonLabel,
+  IonFooter,
+  IonToolbar, 
+  
+
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
@@ -108,7 +112,6 @@ const redirectCallback = () => {
             {info.map((item: any, index: number) => (
                 item.accepted===false && checkIfInRadius(item.lat, item.lng)===true ?  <RequestOnMap key={index} item={item} userId={userId}/> : console.log()
             ))}
-
           </IonList>
           </IonContent>
         </IonModal>
