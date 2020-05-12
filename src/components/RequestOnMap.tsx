@@ -24,11 +24,13 @@ import "./Request.css";
 import { helpRequest, deleteRequest } from "../firebaseConfig";
 import StarRatingComponent from "react-star-rating-component";
 import * as firebase from "firebase";
+import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
 
 
 const RequestOnMap: React.FC<any> = (props) => {
+  const history = useHistory()
   const [stars, setStars] = useState(3);
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -47,6 +49,12 @@ const RequestOnMap: React.FC<any> = (props) => {
         setStars(snapshot.data().rating + 0.5);
       })
   },[]);
+
+  const goToReportUser = () => {
+    setShowPopover({ open: false, event: undefined })
+    props.closeModal()
+    history.push("/reportuser", {req: props.item})
+   }
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -125,7 +133,7 @@ const RequestOnMap: React.FC<any> = (props) => {
               </IonItem>
               <IonItem>
               <div className="profile-name-request">
-              <IonButton color="danger" shape="round">Report user</IonButton>
+              <IonButton color="danger" shape="round"  onClick={goToReportUser}>Report user</IonButton>
               </div>
               </IonItem>
               </IonList>

@@ -31,12 +31,17 @@ const ReportUser: React.FC = (props) => {
         }
     }
     useEffect(() => {
-        if(location){
+        if (location) {
             const request: any = location.state.req;
-            if (userRef && userRef.uid === request.r_id) {
-                setReportedUser(request.h_fn + " " + request.h_ln)
+            if (request.h_id) {
+                if (userRef && userRef.uid === request.r_id) {
+                    setReportedUser(request.h_fn + " " + request.h_ln)
+                }
+                else if (userRef && userRef.uid === request.h_id) {
+                    setReportedUser(request.r_fn + " " + request.r_ln)
+                }
             }
-            else if (userRef && userRef.uid === request.h_id) {
+            else {
                 setReportedUser(request.r_fn + " " + request.r_ln)
             }
         }
@@ -46,16 +51,21 @@ const ReportUser: React.FC = (props) => {
 
         if (location) {
             const request: any = location.state.req;
-            if (userRef && userRef.uid === request.r_id) {
-                reportUserFunc(request.h_id, incident, why)
-                console.log("report helper")
+            if (request.h_id) {
+                if (userRef && userRef.uid === request.r_id) {
+                    reportUserFunc(request.h_id, incident, why)
+
+                }
+                else if (userRef && userRef.uid === request.h_id) {
+                    reportUserFunc(request.r_id, incident, why)
+
+                }
             }
-            else if (userRef && userRef.uid === request.h_id) {
+            else {
                 reportUserFunc(request.r_id, incident, why)
-                console.log("report receiver")
             }
-            console.log(request)
-            history.push("/helpTab")
+
+            history.push("/mapTab")
         }
 
     }
@@ -75,9 +85,9 @@ const ReportUser: React.FC = (props) => {
                             <IonIcon icon={chevronBackOutline} color="tertiary" />
                         </IonButton>
                     </IonButtons>
-                   
-                        <IonTitle className="ion-text-center" color="tertiary">Report {reportedUser}</IonTitle>
-                        
+
+                    <IonTitle className="ion-text-center" color="tertiary">Report {reportedUser}</IonTitle>
+
                 </IonToolbar>
             </IonHeader>
             <IonContent>

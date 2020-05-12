@@ -33,6 +33,10 @@ const redirectCallback = () => {
   history.replace("helpTab")
 }
 
+const closeModalCallback = () => {
+  setShowModal(false)
+}
+
   const userPosCallback = (userPosFromChild:any, userRadiusFromChild: any) => {
     setUserPos(userPosFromChild);
     setUserRadius (userRadiusFromChild);
@@ -110,7 +114,7 @@ const redirectCallback = () => {
             </IonItem>
           <IonList>
             {info.map((item: any, index: number) => (
-                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id===userId?  <RequestOnMap key={index} item={item} userId={userId}/> 
+                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id===userId?  <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId}/> 
                 : console.log()
             ))}
           </IonList>
@@ -119,7 +123,7 @@ const redirectCallback = () => {
             </IonItem>
           <IonList>
           {info.map((item: any, index: number) => (
-                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id!==userId?  <RequestOnMap key={index} item={item} userId={userId}/> 
+                item.accepted===false && checkIfInRadius(item.lat, item.lng)===true && item.r_id!==userId?  <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId}/> 
                 : console.log()
             ))}
           </IonList>
