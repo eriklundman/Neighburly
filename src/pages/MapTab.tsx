@@ -109,7 +109,7 @@ const closeModalCallback = () => {
               <IonIcon className="modalButton" size="large" icon={chevronDownOutline} />
             </IonButton>
           </IonButtons>
-          <IonContent scrollEvents={true} color="primary-tint">
+          <IonContent scrollEvents={true} color="light">
             <IonItem lines="none" color="light">
             <h2 className="background-color">My requests</h2>
             </IonItem>
