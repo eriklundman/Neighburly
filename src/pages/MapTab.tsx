@@ -130,24 +130,16 @@ const closeModalCallback = () => {
           </IonList>
           </IonContent>
         </IonModal>
-        <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback} redirectToHelpTab = {redirectCallback}/>
-      </IonContent>
-     
-      <div className="ion-modal-opener">
-      
 
-      <IonButton className="modalButton" expand="full" fill="clear" onClick={() => setShowModal(true)}>
+        <SimpleMap userPosition = {userPos} setUserPosition = {userPosCallback} redirectToHelpTab = {redirectCallback}/>
+        
+        <div className="ion-modal-opener">
+      <IonButton className="modalButton2" expand="full" fill="clear" onClick={() => setShowModal(true)}>
         <IonIcon slot="icon-only" size="large" color="tertiary" icon={chevronUpOutline} />
       </IonButton>
-
-        
-  
-      <div className="modal-text">
-          <IonLabel>List all requests within your radius</IonLabel>
+      <p className="modal-text">See all requests within your radius</p>
           </div>
-
-          </div>
-
+      </IonContent>
        
     </IonPage>
   );

@@ -217,7 +217,7 @@ const Request: React.FC<any> = (props) => {
         </IonButton>
 
         <IonCardTitle>
-          <IonButton
+          <IonButton className="ion-no-padding"
             fill="clear"
             color="tertiary"
             onClick={(e) =>

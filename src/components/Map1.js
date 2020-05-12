@@ -187,6 +187,15 @@ class SimpleMap extends React.Component {
     });
   };
 
+  createMapOptions = (maps) => {
+    return{zoomControlOptions: {
+      position: maps.ControlPosition.RIGHT_TOP,
+      style: maps.ZoomControlStyle.SMALL
+    },
+    fullscreenControl:false
+  }
+  }
+
   render() {
     return (
       <div style={{ height: "100%", width: "100%" }}>
@@ -194,6 +203,7 @@ class SimpleMap extends React.Component {
           bootstrapURLKeys={{ key: "AIzaSyB1OBf8rN8thOb-BW9QdiMc06NOuBvFrNI" }}
           defaultCenter={this.props.center}
           center={this.state.userPos}
+          options={this.createMapOptions}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => {

@@ -6,18 +6,29 @@ ion-content ion-toolbar {
   color: #001e57;
 }
 
+.modalButton2{
+  margin: 0 auto;
+  color: #001e57;
+  height: min-content;
+}
+
 .ion-modal-opener{
   color: #001e57;
   margin: 0 auto;
   background: #d5e2ff;
   width:100%;
-  
-
+  height: min-content;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  box-shadow: 2px 2px 30px #888888;
 }
 
 .modal-text{
   text-align: center;
-  padding-bottom:0.7em;
+  margin: 0.5em auto ;
 }
 
 .background-color{

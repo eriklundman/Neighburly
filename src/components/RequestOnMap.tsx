@@ -116,8 +116,9 @@ const RequestOnMap: React.FC<any> = (props) => {
               size="large"
               color="tertiary"
               icon={personCircleOutline}
-            />
+            /><h3>
               {props.item.r_fn + " " + props.item.r_ln}
+              </h3>
               </div>
               </IonItem>
               <IonItem>
