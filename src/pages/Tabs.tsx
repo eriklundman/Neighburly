@@ -37,7 +37,9 @@ const Tabs: React.FC = () => {
     const [showAlert2, setShowAlert2] = useState(false);
     const [alertInfo, setAlertInfo] = useState([]);
     const [helpAccepted, setHelpAccepted] = useState([]);
-    const[rating, setRating] = useState(0)
+    const[rating, setRating] = useState(0);
+    const [messageCounter, setMessageCounter] = useState(0);
+
  //listener for new messages
   useEffect(() => {
     let boolArray: boolean[] = [];
@@ -97,12 +99,17 @@ const Tabs: React.FC = () => {
   }, []);
 
   function checkBoolArray(array : any) {
-     if (array.includes(true)) {
-         console.log("det finns ett nytt meddelande!");
-       return setNewMessage(true);
-     }
-     console.log("du har inga nya meddelanden!");
-     return setNewMessage(false);
+      if (array.includes(true)) {
+          let counter = 0;
+          for (let i in array) {
+              if (array[i]) {
+                  counter++;
+              }
+          }
+          setMessageCounter(counter)
+          return setNewMessage(true)
+      }
+      return setNewMessage(false)
   }
 
 
@@ -148,7 +155,7 @@ const Tabs: React.FC = () => {
           <IonLabel >Menu</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
-          {newMessage && <IonBadge color="danger">1</IonBadge>}
+          {newMessage && <IonBadge color="danger">{messageCounter}</IonBadge>}
           <IonIcon icon={heartOutline} />
           <IonLabel>Helps</IonLabel>
         </IonTabButton>

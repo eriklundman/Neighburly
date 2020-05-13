@@ -30,7 +30,7 @@ const Help: React.FC = () => {
     let userRef: any = firebase.auth().currentUser;
     setId(userRef.uid);
     let reqArr: any = [];
-    let requestRef = db.collection("requests");
+    let requestRef = db.collection("requests").orderBy("timeStamp", "desc");
 
     requestRef.onSnapshot((snapshot) => {
       reqArr = [];

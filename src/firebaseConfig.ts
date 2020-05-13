@@ -231,7 +231,7 @@ export async function helpRequest(request_id: any) {
       if (docu !== undefined) {
         let reqRef = db.collection('requests')
         reqRef.doc(request_id).set({
-          accepted: true, chatId: chatRoomId
+          accepted: true, chatId: chatRoomId, timeStamp: Date.now()
         }, { merge: true }).then((nada: any) => {
           toast("Request accepted")
 
@@ -239,7 +239,7 @@ export async function helpRequest(request_id: any) {
 
         reqRef.doc(request_id).get().then((req: any) => {
           db.collection("chats").doc(req.data().chatId).update({
-            participants: firebase.firestore.FieldValue.arrayUnion(req.data().receiver_id)
+            participants: firebase.firestore.FieldValue.arrayUnion(req.data().helper_id)
           }).then(nada => {
 
           })
