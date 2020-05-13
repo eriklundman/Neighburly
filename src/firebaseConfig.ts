@@ -1,10 +1,5 @@
 import * as firebase from 'firebase'
-
-import React from 'react';
-
 import { toast } from "./toast";
-import { useHistory } from 'react-router-dom';
-
 
 const config = {
   apiKey: "AIzaSyCjzRHhY9FAUQ0yoxWN9pKF3MwDtGrtRdw",
@@ -19,6 +14,7 @@ const config = {
 
 firebase.initializeApp(config);
 const db = firebase.firestore();
+
 /*
 const messaging = firebase.messaging();
 messaging.usePublicVapidKey("BBQDvD44v3X4l-6oyaRrQ9nK9uF6fut2F1It0JDnOZ7LJK-rPkA77kN3zP9GwBtQ-nm_6rntSL1MnrhDrUURNwc");
@@ -308,7 +304,7 @@ export async function getUserInfo() {
         return doc.data();
       } else {
         // doc.data() will be undefined in this case
-        console.log("No such document!");
+        console.log("No such document or logged in as Admin!");
 
 
       }
@@ -401,11 +397,28 @@ export function newPw(new_password: string) {
 }
 
 export function reportUserFunc(reported_id: any, incident: string, why: string, req_id: string) {
-  db.collection('users').doc(reported_id).collection("reports").add({
-    incident: incident, why_inappropriate: why, request_id: req_id
+  db.collection("reports").add({
+    incident: incident, why_inappropriate: why, request_id: req_id, reported_user_id: reported_id
+  }).catch(function(error: any){
+    console.log(error)
   })
   
+}
+
+export function blockUser(reported_id: string){
   
+  db.collection("users").doc(reported_id).get().then((blocked_user: any)=>{
+    
+    db.collection("blocked_users").doc(reported_id).set({
+      blocked_email: blocked_user.data().email , blocked_firstname: blocked_user.data().firstname, blocked_lastname: blocked_user.data().lastname
+    }).catch(function(error: any){
+      console.log(error)
+    })
+
+  }).catch(function(error: any){
+      console.log(error)
+    })
+
   
 }
 

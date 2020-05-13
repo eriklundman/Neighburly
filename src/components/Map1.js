@@ -159,7 +159,6 @@ class SimpleMap extends React.Component {
   };
 
   takeRequest = () => {
-    this.props.redirectToHelpTab()
     waitForAcceptRequest(this.state.req_id);
   };
 
