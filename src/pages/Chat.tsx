@@ -20,6 +20,8 @@ const Chat: React.FC<any> = (props) => {
     const [id , setId] = useState<any>("");
     const [chats, setChats] = useState([]);
     const [notice, setNotice] = useState("noNew");
+    const [user1, setUser1] = useState("");
+    const [user2, setUser2] = useState("");
 
     const chatId = props.match.params.id;
     let unsubscribe : any;
@@ -42,6 +44,8 @@ const Chat: React.FC<any> = (props) => {
     function updateMessages(data : any) {
         setChats(data.messages);
         setNotice(data.newMessage);
+        setUser1(data.names[0]);
+        setUser2(data.names[1]);
         ScrollToBottom()
 
     }
@@ -82,7 +86,10 @@ const Chat: React.FC<any> = (props) => {
             {notice === "noNew" || notice === id ? console.log() : updateNotice(chatId)}
            <IonHeader>
           <IonToolbar color="primary">
-        <IonTitle color="tertiary">Chat</IonTitle>
+              {user1 === fn ?
+                  <IonTitle color="tertiary">{user2}</IonTitle> :
+                  <IonTitle color="tertiary">{user1}</IonTitle>}
+
         <IonButtons slot="start">
         <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/HelpTab" />
       </IonButtons>

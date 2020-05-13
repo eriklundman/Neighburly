@@ -102,7 +102,7 @@ export async function createRequest(text: string, selected: string, coords: any)
 
 async function createChatRoom(uid: any) {
   return db.collection("chats").add({
-    messages: [], newMessage: "noNew", participants: [uid]
+    messages: [], newMessage: "noNew"
   }).then(docRef => {
     return docRef.id
   })
@@ -124,6 +124,7 @@ export function storeMessage(message: string, chatId: string, firstName: any) {
     toast("Meddelandet kunde inte skickas")
   }
 }
+
 
 export function updateNotice(chatId: string) {
 
@@ -188,11 +189,8 @@ export async function waitForAcceptRequest(request_id : any) {
           toast("Waiting for other person to accept")
 
         })
-
       }
     })
-
-
   }
   catch{
     toast("Error could not accept request")
@@ -239,7 +237,8 @@ export async function helpRequest(request_id: any) {
 
         reqRef.doc(request_id).get().then((req: any) => {
           db.collection("chats").doc(req.data().chatId).update({
-            participants: firebase.firestore.FieldValue.arrayUnion(req.data().helper_id)
+            participants: [req.data().helper_id, req.data().receiver_id],
+            names: [req.data().helper_fn, req.data().receiver_fn]
           }).then(nada => {
 
           })
