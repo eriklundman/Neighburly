@@ -46,9 +46,9 @@ const ProfileTab: React.FC = () => {
           <IonContent>
 
       <Profile />
-      <p className="your-rating-text">Your rating</p>
-        <IonRow>
-          <IonCol className="ion-text-center">
+
+          <IonCol className="text-design">
+          <p className="rate-text">Your rating</p>
             <div style={{ fontSize: 45 }}>
               <StarRatingComponent
                 name="rate1"
@@ -60,12 +60,10 @@ const ProfileTab: React.FC = () => {
               />
             </div>
           </IonCol>
-        </IonRow>
-        <IonRow>
           <IonCol size="1"></IonCol>
           <IonCol className="ion-text-center">
             {value === "helper" ? (
-              <div>
+              <div className="rate-text">
                 <p>You have helped</p>
                 <h2>{helps}</h2>
                 <p>people</p>
@@ -79,16 +77,15 @@ const ProfileTab: React.FC = () => {
             )}
           </IonCol>
 
-          <IonCol size="1"></IonCol>
-        </IonRow>
 
-        <IonRow>
-          <IonCol></IonCol>
+          <IonRow>
+            <IonCol></IonCol>
           <IonCol>
             <SettingsBtn />
           </IonCol>
           <IonCol></IonCol>
         </IonRow>
+         
       </IonContent>
 
       <IonRow className="ion-align-items-stretch">

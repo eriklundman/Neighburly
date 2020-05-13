@@ -5,6 +5,8 @@ import * as firebase from 'firebase'
 import { toast } from '../toast';
 import { chevronBackOutline } from 'ionicons/icons';
 import { reportUserFunc } from "../firebaseConfig";
+import "./ReportUser.css";
+
 
 
 const ReportUser: React.FC = (props) => {
@@ -90,11 +92,11 @@ const ReportUser: React.FC = (props) => {
 
                 </IonToolbar>
             </IonHeader>
-            <IonContent>
+            <IonContent className="ion-padding">
                 <IonGrid>
                     <IonList>
 
-                        <IonLabel> What have the user you want to report done?
+                        <IonLabel className="text-design"> What have the user you want to report done?
                         In this field you describe what the user have
                         written or done that may have been inappropriate.
                         </IonLabel>
@@ -107,7 +109,7 @@ const ReportUser: React.FC = (props) => {
                                 onIonChange={(e: any) => setIncident(e.target.value)} />
                         </IonItem>
 
-                        <IonLabel> Why was the behaviour not suitable for this app?
+                        <IonLabel className="text-design"> Why was the behaviour not suitable for this app?
                         Here you describe why the incident should be considered
                         inappropriate.
                         </IonLabel>

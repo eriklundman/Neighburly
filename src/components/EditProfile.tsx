@@ -4,12 +4,12 @@ import { settingsOutline } from 'ionicons/icons';
 
 const SettingsBtn = () => {
     return(
-        <IonButton className="edit-profile-button" fill="outline"> 
-        <IonItem routerLink="/edityourprofile">
+      <IonButton className="edit-profile-button" fill="outline"> 
+        <IonItem routerLink="/edityourprofile" detail={false}>
          <IonText>Edit your profile </IonText>
         <IonIcon color="tertiary" icon={settingsOutline} slot="start" />
       </IonItem>
-        </IonButton>
+      </IonButton>
        
        
     );

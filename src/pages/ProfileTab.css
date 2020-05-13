@@ -2,7 +2,12 @@ ion-content ion-toolbar {
   --background: translucent;
 }
 
-.your-rating-text{
+.text-design{
   text-align: center;
 }
+
+.rate-text{
+  padding-top: 7vh;
+}
+
 
