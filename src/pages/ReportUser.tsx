@@ -141,7 +141,7 @@ const ReportUser: React.FC = (props) => {
 
                     </IonList>
                     <IonRow>
-                        <IonButton fill="clear"className="report-button" expand="full" onClick={confirm}>Report the User</IonButton>
+                        <IonButton fill="clear"className="report-button" expand="full" onClick={confirm}>Report {reportedUser}</IonButton>
                     </IonRow>
                     <IonAlert
                         isOpen={showAlert}
