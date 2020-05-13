@@ -42,59 +42,59 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h2>The map!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p>On the map you can see the requests, help people by clicking on them and make your own request by clicking on the "add request" button.</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h2>Make a help request!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p>After klicking the "add request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h2>Help someone!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p>When you want to help someone you click on the request icons on the map. You can also see a list with all requests within your set radius.</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h2>Change your radius!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p>If you go to Profile --> Edit your profile you will be able to change your radius.</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h2>!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>

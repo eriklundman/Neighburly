@@ -7,10 +7,12 @@ import {
   IonLabel,
   IonRow,
   IonCol,
+  IonHeader,
+  IonImg,
+  IonToolbar,
 } from "@ionic/react";
 import "./ProfileTab.css";
 import Profile from "../components/Profile";
-import HeaderLogga from "../components/HeaderLogga";
 import SettingsBtn from "../components/EditProfile";
 import StarRatingComponent from "react-star-rating-component";
 import * as firebase from "firebase";
@@ -42,7 +44,11 @@ const ProfileTab: React.FC = () => {
 
   return (
     <IonPage>
-          <HeaderLogga />
+      <IonHeader>
+        <IonToolbar class="header-toolbar">
+      <IonImg className="loggan" src="assets/icon/logga3.png"> </IonImg>
+      </IonToolbar>
+      </IonHeader>
           <IonContent>
 
       <Profile />

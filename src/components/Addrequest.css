@@ -1,9 +1,13 @@
 .request-btn {
 margin:5% 2%;
-justify-content: center;
+display: flex;
+flex-direction: column;
+align-items:center;
 }
 
 .rqst-fab{
-    --box-shadow: 5px 10px 8px #888888;
-    text-shadow: 5px 10px 8px #888888;
+    --box-shadow: 3px 3px 1px #bbd0ff;
+    text-shadow: 3px 3px 1px #bbd0ff;
+    font-weight: bold;
+
 }

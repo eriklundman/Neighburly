@@ -7,10 +7,10 @@ import "./Addrequest.css";
 const RequestBtn = () => {
     return(
       
-      <div className="ion-text-center">
+      <div>
      
         <IonFab className="request-btn" vertical="top" horizontal="start" slot="fixed">
-        <IonLabel className="rqst-fab"> Add</IonLabel>
+        <IonLabel className="rqst-fab">Add</IonLabel>
           <IonFabButton className="rqst-fab" color="tertiary" size="small" routerLink="/mapTab/makerequest">
             <IonIcon icon={addOutline} size="large" />
           </IonFabButton>

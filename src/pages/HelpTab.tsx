@@ -1,14 +1,17 @@
 import React from 'react';
-import { IonContent, IonPage} from '@ionic/react';
+import {IonPage, IonHeader, IonToolbar, IonImg} from '@ionic/react';
 import './HelpTab.css';
 import Help from '../components/Help';
-import HeaderLogga from '../components/HeaderLogga';
 
 
 const HelpTab: React.FC = () => {
   return (
     <IonPage>
-      <HeaderLogga/>
+      <IonHeader>
+        <IonToolbar className="header-toolbar">
+      <IonImg className="loggan" src="assets/icon/logga3.png"> </IonImg>
+      </IonToolbar>
+      </IonHeader>
         <Help/>     
     </IonPage>
   );
