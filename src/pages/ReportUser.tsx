@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonPage, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput, IonAlert, IonIcon } from '@ionic/react';
+import { IonPage, IonText, IonCol, IonRadio, IonRadioGroup, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput, IonAlert, IonIcon } from '@ionic/react';
 import { useHistory, useLocation } from 'react-router-dom';
 import * as firebase from 'firebase'
 import { toast } from '../toast';
@@ -20,6 +20,8 @@ const ReportUser: React.FC = (props) => {
     const [incident, setIncident] = useState('')
     const [why, setWhy] = useState('')
     const [showAlert, setShowAlert] = useState(false)
+    const [selected, setSelected] = useState<string>("alt1");
+
 
     const confirm = () => {
         if (incident.trim() === '') {
@@ -94,15 +96,33 @@ const ReportUser: React.FC = (props) => {
             </IonHeader>
             <IonContent className="ion-padding">
                 <IonGrid>
-                    <IonList>
-
+                <IonRadioGroup>
+            
+              <IonRow className="ion-justify-content-center">
+            <IonText> <h4> Pick a category of the report </h4></IonText></IonRow>
+            <IonRow className="iion-justify-content-around">
+                <IonRadio className="radio-design" value="alt1" />
+                <IonLabel color="tertiary"> alt 1</IonLabel></IonRow>
+               <IonRow>
+                   <IonCol className="ion-justify-content-center">
+                   <IonRadio className="radio-design" value="alt2" />
+                <IonLabel color="tertiary"> alt 2</IonLabel></IonCol></IonRow>
+                <IonCol></IonCol>
+                <IonRow>
+                <IonRadio className="radio-design" value="alt3" />
+                <IonLabel color="tertiary"> alt 3</IonLabel></IonRow>
+                <IonRow>
+                <IonRadio className="radio-design" value="alt4" />
+                <IonLabel color="tertiary"> alt 4</IonLabel></IonRow>
+                </IonRadioGroup>
+                <IonList>
                         <IonLabel className="text-design"> What have the user you want to report done?
                         In this field you describe what the user have
                         written or done that may have been inappropriate.
                         </IonLabel>
                         <IonItem>
-                            <IonLabel position="floating">
-                                Explain what the incident here:
+                            <IonLabel color="secondary" position="floating">
+                                Explain the incident here:
                             </IonLabel>
 
                             <IonInput
@@ -114,14 +134,14 @@ const ReportUser: React.FC = (props) => {
                         inappropriate.
                         </IonLabel>
                         <IonItem>
-                            <IonLabel position="floating"> Explain why it was inappropriate here: </IonLabel>
+                            <IonLabel color="secondary" position="floating"> Explain why it was inappropriate here: </IonLabel>
                             <IonInput
                                 onIonChange={(e: any) => setWhy(e.target.value)} />
                         </IonItem>
 
                     </IonList>
                     <IonRow>
-                        <IonButton text-color="tertiary" className="ion-text-capitalize" expand="full" onClick={confirm}>Report the User</IonButton>
+                        <IonButton fill="clear"className="report-button" expand="full" onClick={confirm}>Report the User</IonButton>
                     </IonRow>
                     <IonAlert
                         isOpen={showAlert}

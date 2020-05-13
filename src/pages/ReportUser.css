@@ -1,0 +1,13 @@
+.report-button{
+    text-transform: capitalize;
+    background: #c7434b;
+}
+
+.radio-design{
+    padding-top: 2%;
+    justify-content: center;
+    --border-radius: #001e57;
+    --color: #001e57;
+    --color-checked: #001e57;;
+    --inner-border-radius: #001e57;
+}
