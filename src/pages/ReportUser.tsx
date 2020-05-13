@@ -100,20 +100,21 @@ const ReportUser: React.FC = (props) => {
             
               <IonRow className="ion-justify-content-center">
             <IonText> <h4> Pick a category of the report </h4></IonText></IonRow>
-            <IonRow className="iion-justify-content-around">
-                <IonRadio className="radio-design" value="alt1" />
-                <IonLabel color="tertiary"> alt 1</IonLabel></IonRow>
-               <IonRow>
+            <IonRow className="hallo">
+                   <IonCol className="ion-justify-content-center">
+                   <IonRadio className="radio-design" value="alt1" />
+                <IonLabel color="tertiary"> alt 1</IonLabel></IonCol></IonRow>
+                <IonCol></IonCol>
+               <IonRow className="hallo">
                    <IonCol className="ion-justify-content-center">
                    <IonRadio className="radio-design" value="alt2" />
                 <IonLabel color="tertiary"> alt 2</IonLabel></IonCol></IonRow>
                 <IonCol></IonCol>
                 <IonRow>
-                <IonRadio className="radio-design" value="alt3" />
-                <IonLabel color="tertiary"> alt 3</IonLabel></IonRow>
-                <IonRow>
-                <IonRadio className="radio-design" value="alt4" />
-                <IonLabel color="tertiary"> alt 4</IonLabel></IonRow>
+                   <IonCol className="ion-justify-content-center">
+                   <IonRadio className="radio-design" value="alt3" />
+                <IonLabel color="tertiary"> alt 3</IonLabel></IonCol></IonRow>
+                <IonCol></IonCol>
                 </IonRadioGroup>
                 <IonList>
                         <IonLabel className="text-design"> What have the user you want to report done?
@@ -121,23 +122,22 @@ const ReportUser: React.FC = (props) => {
                         written or done that may have been inappropriate.
                         </IonLabel>
                         <IonItem>
-                            <IonLabel color="secondary" position="floating">
-                                Explain the incident here:
-                            </IonLabel>
+                            <div className="information-div">
+                            <textarea className="address-input-field"
+                                     placeholder="Explain the incident here..."
 
-                            <IonInput
-                                onIonChange={(e: any) => setIncident(e.target.value)} />
-                        </IonItem>
-
+                                onChange={(e: any) => setIncident(e.target.value)} />
+                        </div></IonItem>
                         <IonLabel className="text-design"> Why was the behaviour not suitable for this app?
                         Here you describe why the incident should be considered
                         inappropriate.
                         </IonLabel>
                         <IonItem>
-                            <IonLabel color="secondary" position="floating"> Explain why it was inappropriate here: </IonLabel>
-                            <IonInput
-                                onIonChange={(e: any) => setWhy(e.target.value)} />
-                        </IonItem>
+                        <div className="information-div">
+                            <textarea className="address-input-field"
+                                     placeholder="Explain why here..."
+                                onChange={(e: any) => setWhy(e.target.value)} />
+                       </div></IonItem>
 
                     </IonList>
                     <IonRow>

@@ -1,6 +1,7 @@
 .report-button{
     text-transform: capitalize;
     background: #c7434b;
+    color:#ffffff;
 }
 
 .radio-design{
@@ -10,4 +11,27 @@
     --color: #001e57;
     --color-checked: #001e57;;
     --inner-border-radius: #001e57;
+}
+
+.description-input-text{
+    margin: 1em 0em;
+    width: 100%;
+    background: transparent;
+    outline:#bbd0ff;
+    box-sizing: border-box;
+    padding: 0.8em;
+    border: 0.2em solid #bbd0ff;
+
+}
+
+   
+
+.description-input-text:focus{
+    border: 0.2em solid #194afb;
+
+}
+
+.hallo{
+    margin-top:0em;
+    margin-bottom: 0em;
 }
