@@ -6,7 +6,8 @@
     border-radius: .7em;
     padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
-    margin: 1em 1em 1em auto
+    margin: 1em 1em 1em auto;
+    font-size: 1.2em;
 
 }
 
@@ -19,13 +20,16 @@
     margin: 0em 1em 0.8em 1em;
     padding: 0.3em 0.6em 0.5em 0.5em;
     width: fit-content;
+    font-size: 1.2em;
+
 
 
 
 }
 
 .sendButton{
-    color: #ffffff;
+    background: #ffffff;
+   
 }
 
 
@@ -42,3 +46,25 @@
     padding-bottom: 0.1em;
     font-size: x-small;
 }
+
+.design-text-area{
+    background:#ffffff;
+    border-radius: 2em;
+    display: inline-block;
+    font-size: 1.2em;
+    margin:0.3em;
+    align-items: center;
+
+  
+} 
+
+.send-area{
+    display: grid;
+    width:100%;
+    grid-template-columns: 85% 15%;
+    place-items: stretch;
+    align-items:center;
+}
+
+
+

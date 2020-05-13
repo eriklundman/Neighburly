@@ -117,12 +117,15 @@ const Chat: React.FC<any> = (props) => {
                     <IonLabel id="bottom"></IonLabel>
             </IonContent>
             <IonFooter>
-                <IonItem>
-                    <IonLabel position="floating"> Message</IonLabel>
-                    <IonInput value={message} type="text"
-                              onIonChange={(e: any) => setMessage(e.target.value)} />
-                    <IonButton color="secondary"fill="outline" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
-                </IonItem>
+                <IonItem color="light">
+                    <div className="send-area">
+                    <textarea className="design-text-area"
+                            placeholder=" Message"
+                            value={message}
+                            onChange={(e: any) => setMessage(e.target.value)} />
+                    <IonButton color="secondary" fill="clear" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
+                    </div> 
+                    </IonItem>
             </IonFooter>
         </IonPage>
     );
