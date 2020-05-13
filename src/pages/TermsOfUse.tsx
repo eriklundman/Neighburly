@@ -6,7 +6,7 @@ import { chevronBackOutline } from 'ionicons/icons';
 const TermsOfUse: React.FC = () => {
     return (
         <IonPage>
-            <IonHeader className="ion-text-justify">
+            <IonHeader>
             <IonToolbar color="primary">
           <IonTitle color="tertiary">Terms & Conditions</IonTitle>
           <IonButtons slot="start">

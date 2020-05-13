@@ -18,7 +18,7 @@
 .grid{
     height: 100%;
     display: grid;
-    grid-template-rows: 20% 50% auto;
+    grid-template-rows: 20% 40% auto;
     place-items: center;
 }
 

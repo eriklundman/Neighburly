@@ -52,7 +52,7 @@
 
 .info-text{
     color: #001e57;
-    width: 60%;
+    width: 90%;
     padding-top: 1em;
     margin: auto auto;
     text-align: center;
@@ -67,8 +67,6 @@ text-align: center;
 .rating-box{
     color: #001e57;
     background: #FCFCFC;
-
-
 }
 
 .css-class{
@@ -79,8 +77,6 @@ text-align: center;
     margin: 3em auto 0em auto;
     text-align: center;
     color: #001e57;
-
-
 }
 
 .buttons-design{
@@ -88,7 +84,6 @@ text-align: center;
     color: #194afb;
     text-align: center;
     justify-content: center;
-
 }
 
 .cancel-button{

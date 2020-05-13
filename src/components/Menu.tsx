@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { IonItem, IonLabel, IonContent, IonButton, IonButtons, IonLoading} from '@ionic/react';
+import { IonItem, IonLabel, IonContent, IonLoading, IonIcon} from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { logoutUser } from '../firebaseConfig'
 import {toast} from "../toast";
+import { trophyOutline } from 'ionicons/icons';
 
 
 const Menu: React.FC = () => {
@@ -19,19 +20,21 @@ const Menu: React.FC = () => {
   }
   return (
     <IonContent>
-      <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
+    <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
+  <IonItem detail={true} routerLink="/menuTab/top10/">
+  <IonLabel> Top 10  </IonLabel>
+  <IonIcon color="warning" icon={trophyOutline}></IonIcon>
+</IonItem>
 <IonItem detail={true} routerLink="/menuTab/info/">
   <IonLabel> Info </IonLabel>
 </IonItem>
 <IonItem detail={true} routerLink="/menuTab/termsandconditions/">
   <IonLabel> Terms & Conditions </IonLabel>
 </IonItem>
-<IonItem>
-  <IonButtons>
-  <IonButton onClick ={logout} className="ion-text-capitalize" color="danger">
+<IonItem button onClick = {logout}>
+ <IonLabel color="danger">
     Log Out
-  </IonButton>
-  </IonButtons>
+    </IonLabel>
 </IonItem>
 </IonContent>
 );

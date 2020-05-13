@@ -7,7 +7,7 @@ import {
     IonTabBar,
     IonTabButton,
     IonTabs,
-    IonBadge, IonModal, IonContent, IonButtons, IonButton, IonItem
+    IonBadge, IonModal, IonContent, IonButtons, IonButton, IonItem, IonCard
 } from '@ionic/react';
 import { personOutline, navigateCircleOutline, heartOutline, menuOutline } from 'ionicons/icons';
 import MenuTab from './MenuTab';
@@ -18,6 +18,7 @@ import MakeRequest from './MakeRequest';
 import EditYourProfile from './EditYourProfile';
 import GetInfo from './GetInfo';
 import TermsOfUse from './TermsOfUse';
+import topTen from './topTen';
 import './Tabs.css';
 import * as firebase from "firebase";
 import UpdatePassword from './UpdatePassword';
@@ -138,6 +139,7 @@ const Tabs: React.FC = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/menuTab" component={MenuTab} exact={true} />
+        <Route path="/menuTab/top10/" component={topTen}/>
         <Route path="/menuTab/info/" component={GetInfo}/>
         <Route path="/menuTab/termsandconditions/" component={TermsOfUse}/>
         <Route path="/helpTab" component={HelpTab} exact={true} />
@@ -171,8 +173,8 @@ const Tabs: React.FC = () => {
     </IonTabs>
 
         {alertInfo.map((item: any, index: number) =>
-        <IonModal key={index} cssClass="css-class" isOpen={showAlert} backdropDismiss={false}>
-            <div className="rating-box">
+        <IonModal key={index} cssClass="accepted-modal" isOpen={showAlert} backdropDismiss={false}>
+            <IonCard className="accepted-card">
                 <h3 className="title-design">{item.fn } {item.ln[0]} wants to help!</h3>
                 <div  className="rating-design"
                       style={{ fontSize: 25 }}>
@@ -189,10 +191,10 @@ const Tabs: React.FC = () => {
                 <h5 className="info-text">Your request:</h5>
                 <p className="info-text">{item.description}</p>
 
-                <p className="info-text">If you accept you can chat and make arrangements</p>
+                <p className="info-text" style={{fontWeight:"bold"}}>Accept to chat and make arrangements</p>
 
                 <IonItem></IonItem>
-            <IonButtons className="buttons-design">
+            <IonButtons className="buttons-accepted">
                 <IonButton
                     className="cancel-button"
                     fill="clear"
@@ -203,21 +205,19 @@ const Tabs: React.FC = () => {
                 </IonButton>
                 <IonButton expand="full" fill="clear" className="done-button" onClick={() => acceptRequest(item.req_id)}>Accept request</IonButton>
             </IonButtons>
-            </div>
+            </IonCard>
         </IonModal>)
         }
 
         {helpAccepted.map((item: any, index: number) =>
-            <IonModal key={index} cssClass="css-class" isOpen={showAlert2} backdropDismiss={false}>
-                <div className="rating-box">
+            <IonModal key={index} cssClass="accepted-modal" isOpen={showAlert2} backdropDismiss={false}>
+                <IonCard className="accepted-card">
                     <h3 className="title-design">{item.fn } {item.ln[0]} has accepted your help!</h3>
-
                     <h5 className="info-text">Go and chat right now!</h5>
-                    <p className="info-text">If you choose not to chat right now, you can always do it later in "Helps"</p>
-
+                    <p className="info-text">If you choose not to chat right now, you can always do it later in <b>Helps</b></p>
 
                     <IonItem></IonItem>
-                    <IonButtons className="buttons-design">
+                    <IonButtons className="buttons-accepted">
                         <IonButton
                             className="cancel-button"
                             fill="clear"
@@ -228,7 +228,7 @@ const Tabs: React.FC = () => {
                         </IonButton>
                         <IonButton expand="full" fill="clear" className="done-button" onClick={() => helpNow(item.req_id, item.chatId)}>Chat now!</IonButton>
                     </IonButtons>
-                </div>
+                </IonCard>
             </IonModal>)
         }
 

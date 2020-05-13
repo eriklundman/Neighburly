@@ -34,7 +34,7 @@ const GetInfo: React.FC = () => {
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p style={{fontWeight:"bold"}}>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
         </div>
         </div>
 
@@ -94,7 +94,20 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>!</h2>
+        <h2>If you forget!</h2>
+        </div>
+        <div>
+        <IonImg src="assets/icon/logga3.png"/>
+        </div>
+        <div>
+        <p>You will always be able to read this information in the menu under the "info" section</p>
+        </div>
+        </div>
+      </IonSlide>
+      <IonSlide>
+      <div className="grid">
+          <div>
+        <h2>Get started!</h2>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>

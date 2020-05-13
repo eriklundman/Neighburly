@@ -5,3 +5,19 @@
     --color: var(--ion-tab-bar-color, var(--ion-color-step-600, #001e57));
     --color-selected: #194afb;
 }
+
+.accepted-modal {
+    height: auto !important; 
+    --background: transparent;
+}
+
+.accepted-card{
+    top:10%;
+}
+
+.buttons-accepted{
+    margin:1em;
+    color: #194afb;
+    text-align: center;
+    justify-content: center;
+}
