@@ -3,3 +3,11 @@
     text-decoration: underline;
 }
 
+.header-toolbar-reg{
+    --background:#bbd0ff;
+  }
+  
+  .loggan-reg{
+    margin: -0.4em auto;
+   padding: 1em;
+  }

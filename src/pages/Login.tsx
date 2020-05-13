@@ -3,13 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonPage, IonLabel, IonList, IonContent, IonLoading, IonGrid, IonRow, IonItem
+  IonPage, IonLabel, IonList, IonContent, IonLoading, IonGrid, IonRow, IonItem, IonHeader, IonToolbar, IonImg
 } from '@ionic/react';
-import HeaderLogga from '../components/HeaderLogga'
 import { loginUser } from '../firebaseConfig'
 import { toast } from "../toast";
 import './Login.css';
-
 
 const Login: React.FC = () => {
 
@@ -29,23 +27,20 @@ const Login: React.FC = () => {
       toast("Log in successful!", 1500);
     }
     setBusy(false)
-    
-
   }
 
 
   return (
 
     <IonPage>
-      
-             <HeaderLogga/>
-        
-
+      <IonHeader>
+        <IonToolbar className="header-toolbar-login">
+      <IonImg className="loggan-login" src="assets/icon/logga3.png"> </IonImg>
+      </IonToolbar>
+      </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
-
       <IonContent>
         <IonGrid>
-
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>

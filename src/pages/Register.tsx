@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+import React, { useState} from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   IonLabel,
   IonButton,
@@ -9,11 +9,14 @@ import {
   IonLoading,
   IonList,
   IonItem,
-  IonCheckbox
+  IonCheckbox,
+  IonHeader,
+  IonToolbar,
+  IonImg
 } from '@ionic/react';
 import { registerUser } from '../firebaseConfig'
+import "./Register.css"
 import { toast } from "../toast";
-import HeaderLogga from '../components/HeaderLogga';
 
 
 const Register: React.FC = () => {
@@ -57,7 +60,11 @@ const Register: React.FC = () => {
   return (
 
     <IonPage>
-          <HeaderLogga/>
+         <IonHeader>
+        <IonToolbar className="header-toolbar-reg">
+      <IonImg className="loggan-reg" src="assets/icon/logga3.png"> </IonImg>
+      </IonToolbar>
+      </IonHeader>
       <IonLoading message="Please wait..." duration={0} isOpen={busy} />
     
       <IonContent>

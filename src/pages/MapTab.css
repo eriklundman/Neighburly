@@ -29,6 +29,7 @@ ion-content ion-toolbar {
 .modal-text{
   text-align: center;
   margin: 0.5em auto ;
+  font-weight: bold;
 }
 
 .background-color{

@@ -1,11 +1,8 @@
 .header-toolbar{
-  background-color:#bbd0ff;
+  --background:#bbd0ff;
 }
 
 .loggan{
-  width: 225px; 
-  height: 74px;
   margin: -0.4em auto;
- /* padding-bottom: 54px;*/
  padding: 1em;
 }

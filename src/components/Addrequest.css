@@ -6,8 +6,17 @@ align-items:center;
 }
 
 .rqst-fab{
-    --box-shadow: 3px 3px 1px #bbd0ff;
-    text-shadow: 3px 3px 1px #bbd0ff;
+    text-shadow: 3px 2px 2px #bbd0ff;
     font-weight: bold;
+    color: #001e57;
+
+}
+
+.rqst-fab-btn{
+    box-shadow: 3px 2px 2px  #bbd0ff;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #001e57;
 
 }

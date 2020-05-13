@@ -4,6 +4,7 @@ import Marker from "./MapMarker";
 import {
   getUserInfo,
   getUserId,
+  helpRequest,
   deleteRequest,
   waitForAcceptRequest
 } from "../firebaseConfig";

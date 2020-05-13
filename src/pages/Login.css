@@ -4,6 +4,14 @@
 
 }
 
+.header-toolbar-login{
+    --background:#bbd0ff;
+  }
+  
+  .loggan-login{
+    margin: -0.4em auto;
+   padding: 1em;
+  }
 
 
 .link-color{

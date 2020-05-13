@@ -10,7 +10,6 @@ import {
   IonContent,
   IonButton,
   IonAlert,
-  IonItem,
 } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 import EditRadius from "../components/EditRadius";
