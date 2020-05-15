@@ -422,7 +422,17 @@ export function blockUser(reported_id: string){
       console.log(error)
     })
 
-  
+}
+
+export function unBlockUser(reported_id: string){
+
+ 
+    db.collection("blocked_users").doc(reported_id).delete().then(function () {
+      toast("User unblocked successfully!");
+    }).catch(function (error) {
+      toast("Error unblocking user");
+    });
+
 }
 
 

@@ -17,7 +17,7 @@ import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
 import { toast } from "../toast";
 import { trashOutline } from "ionicons/icons";
-import { blockUser } from "../firebaseConfig";
+import { blockUser, unBlockUser } from "../firebaseConfig";
 
 
 
@@ -30,16 +30,32 @@ const ReportsAdmin: React.FC<any> = (props) => {
     const [rep_name, setRep_name] = useState("")
     const [why, setWhy] = useState("")
     const [incident, setIncident] = useState("")
+    const [blocked, setBlocked] = useState(false)
 
-    const [showAlert, setShowAlert] = useState(false)
+    const [showAlert1, setShowAlert1] = useState(false)
+    const [showAlert2, setShowAlert2] = useState(false)
 
 
     useEffect(() => {
         setIncident(props.report.incident)
         setWhy(props.report.why)
+
         db.collection("users").doc(props.report.reported_user_id).onSnapshot((snapshot: any) => {
             setRep_name(snapshot.data().firstname + " " + snapshot.data().lastname)
+
+            
+
         })
+
+        let blockRef: any = db.collection("blocked_users")
+        if(blockRef){
+            blockRef.doc(props.report.reported_user_id).onSnapshot((snapshot: any) => {
+                if(snapshot.data()){
+                setBlocked(true)
+                }
+            })
+        }
+            
 
     }, []);
 
@@ -58,14 +74,22 @@ const ReportsAdmin: React.FC<any> = (props) => {
             </IonCardHeader>
             <IonCardContent>
                 <IonButtons>
-                    <IonButton onClick={() => setShowAlert(true)} color="danger">
-                    
-                Block
-                    </IonButton>
+                    {blocked === true ?
+                    (<IonButton onClick={() => setShowAlert2(true)} color="success">
+
+                    Unblock
+                </IonButton>):
+                        (<IonButton onClick={() => setShowAlert1(true)} color="danger">
+
+                            Block
+                        </IonButton>) 
+
+                        
+                    }
                 </IonButtons>
                 <IonAlert
-                    isOpen={showAlert}
-                    onDidDismiss={() => setShowAlert(false)}
+                    isOpen={showAlert1}
+                    onDidDismiss={() => setShowAlert1(false)}
                     header={"Block Reported User"}
                     message={"Are you sure you want to block this user from using the app?"}
                     buttons={[{ text: 'Cancel', cssClass: 'alert-buttons' },
@@ -74,6 +98,20 @@ const ReportsAdmin: React.FC<any> = (props) => {
                         cssClass: 'alert-buttons',
                         handler: () => {
                             blockUser(props.report.reported_user_id);
+                        }
+                    }]}
+                />
+                <IonAlert
+                    isOpen={showAlert2}
+                    onDidDismiss={() => setShowAlert2(false)}
+                    header={"Unblock User"}
+                    message={"Are you sure you want to unblock this user?"}
+                    buttons={[{ text: 'Cancel', cssClass: 'alert-buttons' },
+                    {
+                        text: 'Unblock User',
+                        cssClass: 'alert-buttons',
+                        handler: () => {
+                            unBlockUser(props.report.reported_user_id);
                         }
                     }]}
                 />

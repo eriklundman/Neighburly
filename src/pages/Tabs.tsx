@@ -97,6 +97,8 @@ const Tabs: React.FC = () => {
               })
               setHelpAccepted(array);
           })
+
+          
   }, []);
 
   function checkBoolArray(array : any) {
