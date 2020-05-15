@@ -2,7 +2,8 @@
   --background:#bbd0ff;
 }
 
-.loggan{
-  margin: -0.4em auto;
- padding: 1em;
+.loggan-help{
+  margin: auto;
+ padding: 0.5em;
+ width: 9em;
 }

@@ -12,10 +12,8 @@
   background-color:#bbd0ff;
 }
 
-.loggan{
-  width: 225px; 
-  height: 74px;
-  margin: -0.4em auto;
- /* padding-bottom: 54px;*/
- padding: 1em;
+.loggan-profile{
+  margin: auto;
+ padding: 0.5em;
+ width: 9em;
 }

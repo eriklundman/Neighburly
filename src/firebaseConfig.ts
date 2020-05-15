@@ -57,7 +57,7 @@ export async function registerUser(firstname: string, lastname: string, email: s
   let res = firebase.auth().createUserWithEmailAndPassword(email, password).then((cred: any) => {
 
     db.collection('users').doc(cred.user.uid).set({
-      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0, have_helped: 0, have_been_helped: 0
+      firstname, lastname, email, radius: 5000, numb_of_ratings: 0, rating: 0, have_helped: 0, have_been_helped: 0, score: 0
     }).catch(function (error) {
       console.error("Error adding document: ", error);
 
@@ -358,18 +358,21 @@ export function giveRating(new_rating: any, userId: any, helper: boolean) {
   userData.get().then((doc: any) => {
     if (doc !== undefined) {
       let nr = ((doc.data().rating) * (doc.data().numb_of_ratings) + new_rating) / ((doc.data().numb_of_ratings) + 1)
+
+      let new_have_helped = doc.data().have_helped + helped
+      let new_have_been_helped = doc.data().have_been_helped + received
+
       userData.update({
         numb_of_ratings: firebase.firestore.FieldValue.increment(1),
         rating: nr,
-        have_helped: firebase.firestore.FieldValue.increment(helped),
-        have_been_helped: firebase.firestore.FieldValue.increment(received)
-
+        have_helped: new_have_helped,
+        have_been_helped: new_have_been_helped,
+        score: new_have_helped * nr
       })
     }
   })
 
 }
-
 
 
 export function deleteAccount() {

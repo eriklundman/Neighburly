@@ -9,7 +9,7 @@ const HelpTab: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar className="header-toolbar">
-      <IonImg className="loggan" src="assets/icon/logga3.png"> </IonImg>
+      <IonImg className="loggan-help" src="assets/icon/logga3.png"> </IonImg>
       </IonToolbar>
       </IonHeader>
         <Help/>     

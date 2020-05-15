@@ -46,7 +46,7 @@ const ProfileTab: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar class="header-toolbar">
-      <IonImg className="loggan" src="assets/icon/logga3.png"> </IonImg>
+      <IonImg className="loggan-profile" src="assets/icon/logga3.png"> </IonImg>
       </IonToolbar>
       </IonHeader>
           <IonContent>
