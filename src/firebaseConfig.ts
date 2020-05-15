@@ -367,7 +367,7 @@ export function giveRating(new_rating: any, userId: any, helper: boolean) {
         rating: nr,
         have_helped: new_have_helped,
         have_been_helped: new_have_been_helped,
-        score: new_have_helped * nr
+        score: (new_have_helped * nr) + new_have_been_helped
       })
     }
   })
