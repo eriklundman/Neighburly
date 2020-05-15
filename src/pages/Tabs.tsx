@@ -45,7 +45,7 @@ const Tabs: React.FC = () => {
   useEffect(() => {
     let boolArray: boolean[] = [];
     let userRef : any = firebase.auth().currentUser;
-    db.collection("chats").where('participants', 'array-contains',
+    let unsubscribe = db.collection("chats").where('participants', 'array-contains',
         userRef.uid)
         .onSnapshot(function (snapshot) {
           boolArray = [];
@@ -63,7 +63,7 @@ const Tabs: React.FC = () => {
           checkBoolArray(boolArray)
         });
     //listener for when helper want to help
-    db.collection("requests").where('accepted', '==', false).where('receiver_id', '==', userRef.uid)
+    let unsubscribe2 = db.collection("requests").where('accepted', '==', false).where('receiver_id', '==', userRef.uid)
         .onSnapshot(function(snapshot) {
             let infoArr : any = [];
             snapshot.forEach(function(change) {
@@ -85,7 +85,7 @@ const Tabs: React.FC = () => {
         })
 
       //listener for when receiver have accepted the help
-      db.collection("requests").where("accepted", "==", true).where("helper_id", "==", userRef.uid).where("noticeHelper", "==", false)
+      let unsubscribe3 = db.collection("requests").where("accepted", "==", true).where("helper_id", "==", userRef.uid).where("noticeHelper", "==", false)
           .onSnapshot(function(snapshot) {
               let array : any = [];
               snapshot.forEach(function(change) {
@@ -97,8 +97,7 @@ const Tabs: React.FC = () => {
               })
               setHelpAccepted(array);
           })
-
-          
+      return () => {unsubscribe(); unsubscribe2(); unsubscribe3()}
   }, []);
 
   function checkBoolArray(array : any) {

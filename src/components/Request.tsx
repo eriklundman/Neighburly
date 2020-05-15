@@ -80,13 +80,13 @@ const Request: React.FC<any> = (props) => {
   useEffect(() => {
     
 
-    db.collection("users")
+    let unsubscribe = db.collection("users")
       .doc(props.item.r_id)
       .onSnapshot((snapshot: any) => {
         setR_stars(snapshot.data().rating + 0.5)
       });
 
-    db.collection("users")
+    let unsubscribe2 = db.collection("users")
       .doc(props.item.h_id)
       .onSnapshot((snapshot: any) => {
         setH_stars(snapshot.data().rating + 0.5)
@@ -94,9 +94,9 @@ const Request: React.FC<any> = (props) => {
       });
 
     displayLayout();
-
+      let unsubscribe3 : any;
       if (props.item.chatId) {
-      db.collection("chats")
+      unsubscribe3 = db.collection("chats")
         .where(
           firebase.firestore.FieldPath.documentId(),
           "==",
@@ -115,7 +115,7 @@ const Request: React.FC<any> = (props) => {
         });
     }
 
-    db.collection("requests")
+    let unsubscribe4 = db.collection("requests")
       .doc(props.item.req_id)
       .onSnapshot((snapshot: any) => {
         if (snapshot.data()) {
@@ -130,6 +130,7 @@ const Request: React.FC<any> = (props) => {
         }
 
       });
+      return () => {unsubscribe(); unsubscribe2(); unsubscribe3(); unsubscribe4()}
   }, []);
 
   function displayLayout() {

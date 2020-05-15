@@ -29,9 +29,8 @@ const Help: React.FC = () => {
     let userRef: any = firebase.auth().currentUser;
     setId(userRef.uid);
     let reqArr: any = [];
-    let requestRef = db.collection("requests").orderBy("timeStamp", "desc");
-
-    requestRef.onSnapshot((snapshot) => {
+    let unsubscribe = db.collection("requests").orderBy("timeStamp", "desc")
+        .onSnapshot((snapshot) => {
       reqArr = [];
       snapshot.forEach((req) => {
         reqArr.push({
@@ -53,6 +52,7 @@ const Help: React.FC = () => {
       });
       loadData(reqArr);
     });
+    return () => {unsubscribe()}
   }, []);
 
   useEffect(() => {

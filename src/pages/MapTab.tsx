@@ -7,7 +7,7 @@ import {
   IonIcon,
   IonButtons,
   IonList,
-  IonItem,
+  IonItem, IonFooter,
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
@@ -143,6 +143,10 @@ const MapTab: React.FC = () => {
               ))}
             </IonList>
           </IonContent>
+          <IonFooter>
+            <div className="changeInfo">edit radius in <b>Profile</b>
+            </div>
+            </IonFooter>
         </IonModal>
 
         <SimpleMap userPosition={userPos} setUserPosition={userPosCallback} />
@@ -154,7 +158,6 @@ const MapTab: React.FC = () => {
           <p className="modal-text">See all requests within your radius</p>
         </div>
       </IonContent>
-
     </IonPage>
   );
 };

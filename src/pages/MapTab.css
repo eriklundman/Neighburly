@@ -38,11 +38,17 @@ ion-content ion-toolbar {
   background:#d5e2ff;
   background-color:#d5e2ff;
   color:#001e57;
+  margin-top: 0.3em;
 }
 
 .cssclass{
   --background:#d5e2ff;
   --color:#d5e2ff;
   }
+
+.changeInfo {
+  font-size: 0.8em;
+  text-align: center;
+}
 
 

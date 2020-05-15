@@ -65,7 +65,7 @@ return (
                 <IonBadge slot="end">{Math.round(item.score)}</IonBadge>
                 </IonItem> 
             }
-            </IonList>           
+            </IonList>
         )}
 
         </IonContent>
