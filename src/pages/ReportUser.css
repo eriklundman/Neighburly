@@ -13,20 +13,19 @@
     --inner-border-radius: #001e57;
 }
 
-.description-input-text{
+
+.report-input-field{
     margin: 1em 0em;
     width: 100%;
     background: transparent;
     outline:#bbd0ff;
-    box-sizing: border-box;
     padding: 0.8em;
     border: 0.2em solid #bbd0ff;
-
 }
 
    
 
-.description-input-text:focus{
+.report-input-field:focus{
     border: 0.2em solid #194afb;
 
 }

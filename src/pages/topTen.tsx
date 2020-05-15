@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IonPage, IonHeader, IonContent, IonToolbar, IonTitle, IonButtons, IonBackButton, IonItem, IonLabel, useIonViewDidEnter, IonBadge, IonList } from '@ionic/react';
+import { IonPage, IonHeader, IonContent, IonToolbar, IonTitle, IonButtons, IonBackButton, IonItem, IonLabel, useIonViewDidEnter, IonBadge, IonList, IonLoading } from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 import * as firebase from "firebase";
 import './topTen.css'
@@ -9,8 +9,10 @@ const db = firebase.firestore();
 const TopTen: React.FC = () => { 
 
     const [info, setInfo] = useState([])
+    const [busy, setBusy] = useState<boolean>(false)
     
 useIonViewDidEnter(() => {
+    setBusy(true)
     let reqArr: any = [];
     let userRef = db.collection("users").orderBy("score", "desc").limit(10);
 
@@ -26,6 +28,7 @@ useIonViewDidEnter(() => {
         });
       });
       loadData(reqArr);
+      setBusy(false)
     });
 }
       }, []);
@@ -47,6 +50,7 @@ return (
             </IonToolbar>
 
         </IonHeader>
+        <IonLoading spinner="circles" translucent={true} duration={0} isOpen={busy} />
         <IonContent>
         {info && info.map((item: any, index: number) => 
             <IonList> 

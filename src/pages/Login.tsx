@@ -58,13 +58,18 @@ const Login: React.FC = () => {
         <IonInput
           type="password"
           onIonChange={(e: any) => setPassword(e.target.value)} /></IonItem>
-          </IonList>
-        <IonRow>
+          
+
+          <IonItem lines="none">
+    
         <IonButton text-color="tertiary"className="ion-text-capitalize" expand="full" onClick={login}>Login</IonButton>
-        </IonRow>
-        <IonRow>
-        <div className="ion-text-center">New on Neighburly? <Link className="link-color" to="/register">Register here!</Link> </div>
-        </IonRow>
+        </IonItem>
+        </IonList>
+       
+       <IonItem lines="none">
+        <div>New on Neighburly? <Link className="link-color" to="/register">Register here!</Link> </div>
+        </IonItem>
+ 
         </IonGrid>
       </IonContent>
     </IonPage>

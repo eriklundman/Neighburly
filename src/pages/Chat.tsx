@@ -7,7 +7,7 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol
+    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol, IonTextarea
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -119,11 +119,14 @@ const Chat: React.FC<any> = (props) => {
             <IonFooter>
                 <IonItem color="light">
                     <div className="send-area">
-                    <textarea className="design-text-area"
+                    <IonTextarea
+                            autoGrow={true}
+                            rows={1}
+                            className="design-text-area"
                             placeholder=" Message"
                             value={message}
-                            onChange={(e: any) => setMessage(e.target.value)} />
-                    <IonButton color="secondary" fill="outline" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
+                            onIonChange={(e: any) => setMessage(e.target.value)}/>
+                    <IonButton fill="outline" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
                     </div> 
                     </IonItem>
             </IonFooter>

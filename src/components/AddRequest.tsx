@@ -11,7 +11,7 @@ const RequestBtn = () => {
      
         <IonFab className="request-btn" vertical="top" horizontal="start" slot="fixed">
         <IonLabel className="rqst-fab">Add</IonLabel>
-          <IonFabButton className="rqst-fab-btn" color="primary" routerLink="/mapTab/makerequest">
+          <IonFabButton className="rqst-fab-btn" color="primary" size="small" routerLink="/mapTab/makerequest">
             <IonIcon icon={addOutline} size="large" />
           </IonFabButton>
           <IonLabel className="rqst-fab"> Request</IonLabel>

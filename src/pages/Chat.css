@@ -22,14 +22,13 @@
     width: fit-content;
     font-size: 1.2em;
 
-
-
-
 }
 
 .sendButton{
-    background: #ffffff;
-   
+    margin-left: 1em;
+    --background: #ffffff;
+    --color:#194afb;
+    --border-color: #194afb;
 }
 
 
@@ -49,19 +48,19 @@
 
 .design-text-area{
     background:#ffffff;
-    border-radius: 2em;
-    display: inline-block;
-    font-size: 1.2em;
-    margin:0.3em;
+    border-radius: 1.5em;
+    margin-top:0.3em;
+    margin-bottom: 0.3em;
     align-items: center;
-
-  
+    padding-left: 0.5em;
+    max-height: 6em;
+    overflow-y: auto;
 } 
 
 .send-area{
     display: grid;
     width:100%;
-    grid-template-columns: 85% 15%;
+    grid-template-columns: 80% 20%;
     place-items: stretch;
     align-items:center;
 }

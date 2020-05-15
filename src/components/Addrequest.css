@@ -6,14 +6,13 @@ align-items:center;
 }
 
 .rqst-fab{
-    text-shadow: 3px 2px 2px #bbd0ff;
     font-weight: bold;
     color: #001e57;
 
 }
 
 .rqst-fab-btn{
-    box-shadow: 3px 2px 2px  #bbd0ff;
+    box-shadow: 1px 1px 10px  #001e57;
     border-radius: 50%;
     border-width: 2px;
     border-style: solid;

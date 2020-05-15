@@ -18,7 +18,7 @@ import MakeRequest from './MakeRequest';
 import EditYourProfile from './EditYourProfile';
 import GetInfo from './GetInfo';
 import TermsOfUse from './TermsOfUse';
-import topTen from './topTen';
+import TopTen from './topTen';
 import './Tabs.css';
 import * as firebase from "firebase";
 import UpdatePassword from './UpdatePassword';
@@ -141,7 +141,7 @@ const Tabs: React.FC = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/menuTab" component={MenuTab} exact={true} />
-        <Route path="/menuTab/top10/" component={topTen}/>
+        <Route path="/menuTab/top10/" component={TopTen}/>
         <Route path="/menuTab/info/" component={GetInfo}/>
         <Route path="/menuTab/termsandconditions/" component={TermsOfUse}/>
         <Route path="/helpTab" component={HelpTab} exact={true} />
