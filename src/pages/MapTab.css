@@ -4,6 +4,8 @@ ion-content ion-toolbar {
 .modalButton{
   margin: 0 auto;
   color: #001e57;
+  background: #d5e2ff;
+
 }
 
 .modalButton2{

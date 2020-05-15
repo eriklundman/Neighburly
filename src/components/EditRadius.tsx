@@ -1,13 +1,14 @@
 import React from 'react';
 import { IonIcon, IonGrid, IonItem, IonLabel, IonRange, IonRow } from '@ionic/react';
 import { navigateCircleOutline } from 'ionicons/icons';
+import "./EditRadius.css";
 
 
 
 const EditRadius: React.FC<any> = props => {
   return (
 
-    <IonItem>
+    <IonItem lines="none" className="edit-radius">
       <IonGrid>
       <IonRow className="ion-align-items-center">
       <IonIcon size="large" color="tertiary" icon={navigateCircleOutline} />
