@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       <IonImg className="loggan-login" src="assets/icon/logga3.png"> </IonImg>
       </IonToolbar>
       </IonHeader>
-      <IonLoading message="Please wait..." duration={0} isOpen={busy} />
+      <IonLoading spinner="circles" message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
         <IonGrid>
           <IonList>

@@ -123,7 +123,7 @@ const Chat: React.FC<any> = (props) => {
                             placeholder=" Message"
                             value={message}
                             onChange={(e: any) => setMessage(e.target.value)} />
-                    <IonButton color="secondary" fill="clear" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
+                    <IonButton color="secondary" fill="outline" className="sendButton" slot="end" onClick={sendMessage}>Send</IonButton>
                     </div> 
                     </IonItem>
             </IonFooter>
