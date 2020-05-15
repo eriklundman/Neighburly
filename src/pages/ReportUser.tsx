@@ -40,7 +40,7 @@ const ReportUser: React.FC = (props) => {
   const [incident, setIncident] = useState("");
   const [why, setWhy] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [selected, setSelected] = useState<string>("alt1");
+  const [selected, setSelected] = useState<string>("Innapropriate_content");
 
   const confirm = () => {
     if (incident.trim() === "") {
@@ -71,14 +71,14 @@ const ReportUser: React.FC = (props) => {
       const request: any = location.state.req;
       if (request.h_id) {
         if (userRef && userRef.uid === request.r_id) {
-          reportUserFunc(request.h_id, incident, why, request.req_id);
+          reportUserFunc(request.h_id, incident, why, request.req_id, selected);
         } else if (userRef && userRef.uid === request.h_id) {
-          reportUserFunc(request.r_id, incident, why, request.req_id);
+          reportUserFunc(request.r_id, incident, why, request.req_id, selected);
         }
       } else {
-        reportUserFunc(request.r_id, incident, why, request.req_id);
+        reportUserFunc(request.r_id, incident, why, request.req_id, selected);
       }
-
+      toast("User reported to the Neighburly administration")
       history.push("/mapTab");
     }
   };
@@ -105,19 +105,19 @@ const ReportUser: React.FC = (props) => {
       <IonContent className="ion-padding">
         <IonRadioGroup value={selected} onIonChange={e => setSelected(e.detail.value)}>
           <IonText>
-            <h4> Pick a category of the report </h4>
+            <h4> What is the reason behind the report? </h4>
           </IonText>
 
             <IonItem lines="none">
-          <IonRadio className="radio-design" value="alt1" />
+          <IonRadio className="radio-design" value="Innapropriate_content" />
           <IonLabel color="tertiary">Innapropriate content</IonLabel>
           </IonItem>
           <IonItem lines="none">
-          <IonRadio className="radio-design" value="alt2" />
+          <IonRadio className="radio-design" value="Spam/Marketing" />
           <IonLabel color="tertiary"> Spam/Marketing</IonLabel>
           </IonItem>
           <IonItem lines="none">
-          <IonRadio className="radio-design" value="alt3" />
+          <IonRadio className="radio-design" value="Harassment" />
           <IonLabel color="tertiary">Harassment</IonLabel>
           </IonItem>
         </IonRadioGroup>

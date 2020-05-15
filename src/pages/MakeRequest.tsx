@@ -53,7 +53,6 @@ const MakeRequest: React.FC = () => {
         history.push('/tabs');
         setText("")
         setSelected("other")
-        setCoords([])
       }
     }
   }

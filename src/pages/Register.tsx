@@ -72,14 +72,17 @@ const Register: React.FC = () => {
           <IonItem>
             <IonLabel color="tertiary" position="floating"> First name</IonLabel>
            <IonInput 
+           type="text"
              onIonChange={(e: any) => setFirstname(e.target.value)}/></IonItem>
              <IonItem>
              <IonLabel color="tertiary" position="floating"> Last name</IonLabel>            
              <IonInput
+             type="text"
              onIonChange={(e: any) => setLastname(e.target.value)}/></IonItem>
              <IonItem>
              <IonLabel color="tertiary" position="floating"> Email address</IonLabel>
              <IonInput
+             type="email"
               onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
               <IonItem>
               <IonLabel color="tertiary" position="floating"> Password</IonLabel>

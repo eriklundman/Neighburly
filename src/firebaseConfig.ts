@@ -399,9 +399,9 @@ export function newPw(new_password: string) {
 
 }
 
-export function reportUserFunc(reported_id: any, incident: string, why: string, req_id: string) {
+export function reportUserFunc(reported_id: any, incident: string, why: string, req_id: string, selected: string) {
   db.collection("reports").add({
-    incident: incident, why_inappropriate: why, request_id: req_id, reported_user_id: reported_id
+    incident: incident, why_inappropriate: why, request_id: req_id, reported_user_id: reported_id, type: selected
   }).catch(function(error: any){
     console.log(error)
   })
