@@ -1,0 +1,18 @@
+.blocked-grid{
+    height: 100%;
+    align-items: center;
+    display: grid;
+    text-align: center;
+    grid-template-rows: 10% 40% 10% 40%
+}
+
+.header-toolbar{
+    background-color:#bbd0ff;
+  }
+  
+  .loggan-block{
+  margin: auto;
+   padding: 0.5em;
+   width: 9em;
+  }
+

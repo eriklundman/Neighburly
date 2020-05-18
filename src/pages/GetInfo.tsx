@@ -44,11 +44,11 @@ const GetInfo: React.FC = () => {
           <div>
         <h2>The map!</h2>
         </div>
-        <div>
-        <IonImg src="assets/icon/logga3.png"/>
+        <div className="design-image">
+        <IonImg src="assets/icon/infoMap.png"/>
         </div>
         <div>
-        <p>On the map you can see the requests, help people by clicking on them and make your own request by clicking on the "add request" button.</p>
+        <p>On the map you can see <span className="text-success">others requests</span>, help people by clicking on them and make <span className="text-warning">your own</span> request by clicking on the <span className="text-danger">"add request"</span> button.</p>
         </div>
         </div>
       </IonSlide>
