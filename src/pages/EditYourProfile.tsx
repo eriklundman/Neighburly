@@ -91,8 +91,11 @@ const EditYourProfile: React.FC = () => {
       </IonHeader>
 
       <IonContent scrollEvents={true}>
+      <div className="edit-profile-container">
+        <div>
         <EditRadius radius={radius} setRadius={setRadius} />
-
+        </div>
+        <div>
         <EditInfo
           userfn={userfn}
           userln={userln}
@@ -101,12 +104,17 @@ const EditYourProfile: React.FC = () => {
           ln={ln}
           setln={setln}
         />
+
         <ChangePassword />
+        </div>
+        <div>
        
-          <IonButton expand="full" className="hej" fill="outline" onClick={update}>
+          <IonButton expand="block" className="hej" onClick={update}>
             Save changes
           </IonButton>
+          </div>
 
+      </div>
       </IonContent>
 
       <IonFooter>

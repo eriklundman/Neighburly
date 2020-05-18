@@ -106,7 +106,7 @@ text-align: center;
 }
 
 .center-btn{
-    z-index: 1;
+    visibility: inherit;
     position: fixed;
     height: fit-content;
     width: fit-content;
