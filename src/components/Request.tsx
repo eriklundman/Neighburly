@@ -80,17 +80,15 @@ const Request: React.FC<any> = (props) => {
   useEffect(() => {
     
 
-    let unsubscribe = db.collection("users")
-      .doc(props.item.r_id)
+    let unsubscribe = db.collection("users").doc(props.item.r_id)
       .onSnapshot((snapshot: any) => {
         setR_stars(snapshot.data().rating + 0.5)
       });
 
-    let unsubscribe2 = db.collection("users")
-      .doc(props.item.h_id)
+    let unsubscribe2 = db.collection("users").doc(props.item.h_id)
       .onSnapshot((snapshot: any) => {
         setH_stars(snapshot.data().rating + 0.5)
-        
+
       });
 
     displayLayout();

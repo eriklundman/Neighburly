@@ -21,7 +21,7 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import "./Request.css";
-import { helpRequest, deleteRequest } from "../firebaseConfig";
+import {deleteRequest, waitForAcceptRequest} from "../firebaseConfig";
 import StarRatingComponent from "react-star-rating-component";
 import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
@@ -193,7 +193,7 @@ const RequestOnMap: React.FC<any> = (props) => {
           {text:'Help', 
           cssClass: 'alert-buttons',
           handler: () => {
-            helpRequest(props.item.req_id);
+            waitForAcceptRequest(props.item.req_id);
           }}]}
         />
         <IonAlert

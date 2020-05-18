@@ -67,7 +67,7 @@ const MapTab: React.FC = () => {
       requestRef.onSnapshot(snapshot => {
         reqArr = [];
         snapshot.forEach(req => {
-          reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id })
+          reqArr.push({ accepted: req.data().accepted, req_id: req.id, lat: req.data().coordinates[0], lng: req.data().coordinates[1], type: req.data().type, des: req.data().description, r_fn: req.data().receiver_fn, r_ln: req.data().receiver_ln, r_id: req.data().receiver_id, h_id: req.data().helper_id })
         });
 
         loadData(reqArr);
@@ -129,7 +129,7 @@ const MapTab: React.FC = () => {
             </IonItem>
             <IonList className="background-color">
               {info.map((item: any, index: number) => (
-                item.accepted === false && checkIfInRadius(item.lat, item.lng) === true && item.r_id === userId ? <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId} />
+                item.accepted === false && checkIfInRadius(item.lat, item.lng) === true && item.r_id === userId && item.h_id === undefined ? <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId} />
                   : console.log()
               ))}
             </IonList>
@@ -138,7 +138,7 @@ const MapTab: React.FC = () => {
             </IonItem>
             <IonList className="background-color">
               {info.map((item: any, index: number) => (
-                item.accepted === false && checkIfInRadius(item.lat, item.lng) === true && item.r_id !== userId ? <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId} />
+                item.accepted === false && checkIfInRadius(item.lat, item.lng) === true && item.r_id !== userId && item.h_id === undefined ? <RequestOnMap key={index} item={item} closeModal={closeModalCallback} userId={userId} />
                   : console.log()
               ))}
             </IonList>

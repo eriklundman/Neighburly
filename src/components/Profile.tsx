@@ -1,27 +1,13 @@
-import React, { useState} from "react";
+import React from "react";
 import {
   IonIcon,
-  useIonViewDidEnter,
 } from "@ionic/react";
-import { getUserInfo } from "../firebaseConfig";
-
 import { personCircleOutline} from "ionicons/icons";
 import "./Profile.css";
 
-const Profile: React.FC = () => {
-  const [fn, setFn] = useState("");
-  const [ln, setLn] = useState("");
-  const [email, setEmail] = useState("");
+const Profile: React.FC<any> = (props) => {
 
-  useIonViewDidEnter(() => {
-    getUserInfo().then((result: any) => {
-      if (result !== undefined) {
-        setFn(result.firstname);
-        setLn(result.lastname);
-        setEmail(result.email);
-      }
-    });
-  });
+
 
   return (
     
@@ -33,7 +19,7 @@ const Profile: React.FC = () => {
             icon={personCircleOutline}
           />
           <h3 color="tertiary">
-            {fn} {ln}
+            {props.fn} {props.ln}
           </h3>
         </div>
      

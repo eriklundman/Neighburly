@@ -2,6 +2,17 @@
     background:#bbd0ff;
 }
 
-.segment-help{
-    height:3em;
+
+.segment-help {
+    height: 3em;
+}
+
+.segmentNotice {
+    position: absolute;
+    left: 9.5em;
+}
+.segmentNotice2 {
+    position: absolute;
+    left: 11em;
+
 }

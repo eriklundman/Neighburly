@@ -28,17 +28,22 @@ const ProfileTab: React.FC = () => {
   const [helps, setHelps] = useState(0);
   const [receives, setReceives] = useState(0);
   const [score, setScore] = useState(0);
+  const [fn, setFn] = useState("");
+  const [ln, setLn] = useState("");
 
   useEffect(() => {
     let userRef: any = firebase.auth().currentUser;
     db.collection("users")
       .doc(userRef.uid)
       .onSnapshot((snapshot: any) => {
+
         if (snapshot.data()) {
           setStars(snapshot.data().rating + 0.5);
           setHelps(snapshot.data().have_helped);
           setReceives(snapshot.data().have_been_helped);
           setScore(snapshot.data().score);
+          setFn(snapshot.data().firstname);
+          setLn(snapshot.data().lastname);
         }
       });
   }, []);
@@ -54,8 +59,9 @@ const ProfileTab: React.FC = () => {
       <IonContent>
         <div className="profile-grid">
           <div>
-            <Profile />
+            <Profile fn={fn} ln={ln} />
           </div>
+
 
           <div className="text-design">
             <h6 className="rate-text">Rating</h6>

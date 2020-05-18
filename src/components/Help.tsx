@@ -6,7 +6,7 @@ import {
   IonSegment,
   IonRow,
   IonGrid,
-  IonList,
+  IonList, IonBadge,
 } from "@ionic/react";
 import Request from "../components/Request";
 import * as firebase from "firebase";
@@ -89,10 +89,13 @@ const Help: React.FC = () => {
               }
               value={defValue}
             >
+
               <IonSegmentButton className="segment-help" onClick={active} value="activehelps">
+                <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Ongoing helps</IonLabel>
               </IonSegmentButton>
               <IonSegmentButton className="segment-help" onClick={inactive} value="inactivehelps">
+                <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Completed helps</IonLabel>
               </IonSegmentButton>
             </IonSegment>
