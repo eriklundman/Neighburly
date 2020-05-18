@@ -106,9 +106,12 @@ text-align: center;
 }
 
 .center-btn{
+    z-index: 1;
     position: fixed;
+    height: fit-content;
+    width: fit-content;
     right: 0em; 
-    bottom: 2em;
+    bottom: 3em;
     font-size: 2em;
 }
 
