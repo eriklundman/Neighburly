@@ -76,41 +76,31 @@ const MakeRequest: React.FC = () => {
               <IonItem lines="none">
             <IonText> <h3> Pick type of request </h3></IonText>
             </IonItem>
-            <IonRow>
-              <IonCol>
+       
                 <IonItem className="request-option" lines="none">
-                <IonRadio className="radioDesign" value="dog-walking" />
+                <IonRadio slot="start" className="radioDesign" value="dog-walking" />
                 <IonLabel color="tertiary"> Dog walking</IonLabel>
                 <IonIcon slot="end" color="tertiary" icon={pawOutline} size="large" />
                 </IonItem>
-              </IonCol>
-
-              <IonCol>
+            
+           
                 <IonItem lines="none">
-                <IonRadio className="radioDesign" value="gardening" />
+                <IonRadio slot="start" className="radioDesign" value="gardening" />
                 <IonLabel color="tertiary"> Gardening</IonLabel>
                 <IonIcon slot="end" color="tertiary" icon={flowerOutline} size="large" />
                 </IonItem>
-              </IonCol>
-            </IonRow>
-
-            <IonRow>
-              <IonCol>
+              
                 <IonItem lines="none">
-                <IonRadio className="radioDesign" value="other" />
+                <IonRadio slot="start" className="radioDesign" value="other" />
                 <IonLabel color="tertiary"> Other</IonLabel>
                 <IonIcon slot="end" color="tertiary" icon={helpCircleOutline} size="large" />
                 </IonItem>
-              </IonCol>
 
-              <IonCol>
                 <IonItem lines="none">
-                <IonRadio className="radioDesign" value="shopping" />
+                <IonRadio slot="start" className="radioDesign" value="shopping" />
                 <IonLabel color="tertiary"> Shopping</IonLabel>
                 <IonIcon slot="end" color="tertiary" icon={cartOutline} size="large" />
                 </IonItem>
-              </IonCol>
-            </IonRow>
 
           </IonRadioGroup>
 

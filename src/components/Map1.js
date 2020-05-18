@@ -200,6 +200,10 @@ class SimpleMap extends React.Component {
    this.setState({center:this.state.userPos})
   }
 
+  _onChange = ({center}) => {
+    this.setState({center:center})
+  }
+
   render() {
     return (
       <div style={{ height: "100%", width: "100%" }}>
@@ -208,6 +212,7 @@ class SimpleMap extends React.Component {
           defaultCenter={this.props.center}
           center={this.state.center}
           options={this.createMapOptions}
+          onChange={this._onChange}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
           onGoogleApiLoaded={({ map, maps }) => {
