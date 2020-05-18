@@ -35,7 +35,6 @@ useIonViewDidEnter(() => {
 
       function loadData(data: any) {
         setInfo(data);
-        console.log(data)
       }
     
 return (
@@ -52,21 +51,21 @@ return (
         </IonHeader>
         <IonLoading spinner="circles" translucent={true} duration={0} isOpen={busy} />
         <IonContent>
+        <IonList> 
         {info && info.map((item: any, index: number) => 
-            <IonList> 
-                {index === 0 ?
-                <IonItem> 
+                index === 0 ?
+                <IonItem key={index}> 
                 <IonLabel className="best-score">{index + 1 +". " + item.fn + " " + item.ln[0]}</IonLabel>
                 <IonBadge slot="end" color="success">{Math.round(item.score)}</IonBadge>
                 </IonItem> 
                 :
-                <IonItem> 
+                <IonItem key={index}> 
                 <IonLabel>{index + 1 +". " + item.fn + " " + item.ln[0]}</IonLabel>
                 <IonBadge slot="end">{Math.round(item.score)}</IonBadge>
                 </IonItem> 
-            }
-            </IonList>
+                   
         )}
+         </IonList>    
 
         </IonContent>
     </IonPage>

@@ -47,7 +47,7 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonLoading spinner="circles" message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
-        <IonGrid>
+
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>
@@ -58,19 +58,18 @@ const Login: React.FC = () => {
         <IonInput
           type="password"
           onIonChange={(e: any) => setPassword(e.target.value)} /></IonItem>
-          
+        
+        <IonButton text-color="tertiary" expand="full" className="login-button" onClick={login}>Login</IonButton>
 
-          <IonItem lines="none">
-    
-        <IonButton text-color="tertiary"className="ion-text-capitalize" expand="full" onClick={login}>Login</IonButton>
-        </IonItem>
+
+        
         </IonList>
        
        <IonItem lines="none">
         <div>New on Neighburly? <Link className="link-color" to="/register">Register here!</Link> </div>
         </IonItem>
  
-        </IonGrid>
+
       </IonContent>
     </IonPage>
 

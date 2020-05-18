@@ -23,9 +23,6 @@
     border: 0.2em solid #bbd0ff;
 
 }
-
-   
-
 .description-input-text:focus{
     border: 0.2em solid #194afb;
 
@@ -33,4 +30,8 @@
 
 .information-div{
     width: 100%;
+}
+
+.submit-rqst{
+    margin-top: 2em;
 }

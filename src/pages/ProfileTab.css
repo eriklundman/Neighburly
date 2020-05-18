@@ -3,17 +3,28 @@
   text-align: center;
 }
 
-.rate-text{
-  padding-top: 7vh;
-}
-
 
 .header-toolbar{
   background-color:#bbd0ff;
 }
 
 .loggan-profile{
-  margin: auto;
+margin: auto;
  padding: 0.5em;
  width: 9em;
+}
+
+.score-badge{
+  font-size: 1.5em;
+}
+
+.profile-grid{
+  height: 100%;
+  place-items: center;
+  display: grid;
+  grid-template-rows: 18% 18% 18% 26% 20%
+}
+
+.segment-profile{
+  height:3em;
 }

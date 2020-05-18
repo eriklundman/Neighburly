@@ -188,7 +188,7 @@ class SimpleMap extends React.Component {
 
   createMapOptions = (maps) => {
     return{zoomControlOptions: {
-      position: maps.ControlPosition.RIGHT_TOP,
+      position: maps.ControlPosition.RIGHT_CENTER,
       style: maps.ZoomControlStyle.SMALL
     },
     fullscreenControl:false
@@ -200,7 +200,7 @@ class SimpleMap extends React.Component {
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyB1OBf8rN8thOb-BW9QdiMc06NOuBvFrNI" }}
-          defaultCenter={this.props.center}
+          defaultCenter={this.state.userPos}
           center={this.state.userPos}
           options={this.createMapOptions}
           defaultZoom={this.props.zoom}

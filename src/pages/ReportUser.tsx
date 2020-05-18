@@ -2,25 +2,19 @@ import React, { useState, useEffect } from "react";
 import {
   IonPage,
   IonText,
-  IonCol,
   IonRadio,
   IonRadioGroup,
   IonToolbar,
-  IonGrid,
   IonTitle,
   IonHeader,
   IonButtons,
-  IonBackButton,
   IonContent,
   IonLabel,
   IonItem,
   IonButton,
-  IonRow,
   IonList,
-  IonInput,
   IonAlert,
   IonIcon,
-  IonTextarea,
 } from "@ionic/react";
 import { useHistory, useLocation } from "react-router-dom";
 import * as firebase from "firebase";
@@ -109,21 +103,21 @@ const ReportUser: React.FC = (props) => {
           </IonText>
 
             <IonItem lines="none">
-          <IonRadio className="radio-design" value="Innapropriate_content" />
+          <IonRadio slot="start" className="radio-design" value="Innapropriate_content" />
           <IonLabel color="tertiary">Innapropriate content</IonLabel>
           </IonItem>
           <IonItem lines="none">
-          <IonRadio className="radio-design" value="Spam/Marketing" />
+          <IonRadio slot="start" className="radio-design" value="Spam/Marketing" />
           <IonLabel color="tertiary"> Spam/Marketing</IonLabel>
           </IonItem>
           <IonItem lines="none">
-          <IonRadio className="radio-design" value="Harassment" />
+          <IonRadio slot="start" className="radio-design" value="Harassment" />
           <IonLabel color="tertiary">Harassment</IonLabel>
           </IonItem>
         </IonRadioGroup>
         <IonList>
           <h4> What did {reportedUser} do?</h4>
-          <IonLabel className="text-design">
+          <IonLabel>
             In the field below you describe what the user did
             that you perceived as inappropriate.
           </IonLabel>
@@ -139,7 +133,7 @@ const ReportUser: React.FC = (props) => {
 
           </IonItem>
           <h4> Why was it wrong?</h4>
-          <IonLabel className="text-design">
+          <IonLabel>
             Here you describe why you thought the incident(s) were
             inappropriate.
           </IonLabel>

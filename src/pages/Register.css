@@ -12,3 +12,14 @@
    padding: 0.5em;
    width: 9em;
   }
+
+  .register-button{
+    text-transform: capitalize;
+    margin-top: 2em ;
+    }
+
+    .accept-terms{
+      margin-top: 1em ;
+    }
+
+  

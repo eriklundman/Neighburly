@@ -73,34 +73,42 @@ const MakeRequest: React.FC = () => {
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
 
-              <IonRow className="ion-justify-content-center">
+              <IonRow>
             <IonText> <h3> Pick type of request </h3></IonText>
             </IonRow>
             <IonRow>
-              <IonCol className="ion-justify-content-center">
+              <IonCol>
+                <IonItem className="request-option" lines="none">
                 <IonRadio className="radioDesign" value="dog-walking" />
                 <IonLabel color="tertiary"> Dog walking</IonLabel>
-                <IonIcon color="tertiary" icon={pawOutline} size="large" />
+                <IonIcon slot="end" color="tertiary" icon={pawOutline} size="large" />
+                </IonItem>
               </IonCol>
 
               <IonCol>
+                <IonItem lines="none">
                 <IonRadio className="radioDesign" value="gardening" />
                 <IonLabel color="tertiary"> Gardening</IonLabel>
-                <IonIcon color="tertiary" icon={flowerOutline} size="large" />
+                <IonIcon slot="end" color="tertiary" icon={flowerOutline} size="large" />
+                </IonItem>
               </IonCol>
             </IonRow>
 
             <IonRow>
               <IonCol>
+                <IonItem lines="none">
                 <IonRadio className="radioDesign" value="other" />
                 <IonLabel color="tertiary"> Other</IonLabel>
-                <IonIcon color="tertiary" icon={helpCircleOutline} size="large" />
+                <IonIcon slot="end" color="tertiary" icon={helpCircleOutline} size="large" />
+                </IonItem>
               </IonCol>
 
               <IonCol>
+                <IonItem lines="none">
                 <IonRadio className="radioDesign" value="shopping" />
                 <IonLabel color="tertiary"> Shopping</IonLabel>
-                <IonIcon color="tertiary" icon={cartOutline} size="large" />
+                <IonIcon slot="end" color="tertiary" icon={cartOutline} size="large" />
+                </IonItem>
               </IonCol>
             </IonRow>
 
@@ -110,7 +118,7 @@ const MakeRequest: React.FC = () => {
         <IonItem className="description-input" >
           <IonLabel style={{fontSize: 12}}>Short description of your request (maximum 100 characters)</IonLabel>
           </IonItem>
-        <IonItem>
+        <IonItem lines="none">
         <div className="information-div">
          <textarea className="address-input-field"
          maxLength = {100}
@@ -124,10 +132,10 @@ const MakeRequest: React.FC = () => {
           <IonItem>
         <IonLabel style={{fontSize: 12}}>Request location (Be as specific as you want)</IonLabel>
         </IonItem >
-        <IonItem>
+        <IonItem lines="none">
         <PlacesAutocomplete coords={coords} setCoords={setCoords} />
         </IonItem>
-        <IonButton expand='block' onClick={sendRequest}>Submit request
+        <IonButton className="submit-rqst" expand='block' onClick={sendRequest}>Submit request
         </IonButton>
         </IonContent>
         </IonPage>

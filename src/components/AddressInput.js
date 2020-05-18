@@ -4,7 +4,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import { IonList } from "@ionic/react";
+import { IonList, IonItem } from "@ionic/react";
 import "./AddressInput.css";
 
 const PlacesAutocomplete = (props) => {

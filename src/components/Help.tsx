@@ -89,10 +89,10 @@ const Help: React.FC = () => {
               }
               value={defValue}
             >
-              <IonSegmentButton onClick={active} value="activehelps">
+              <IonSegmentButton className="segment-help" onClick={active} value="activehelps">
                 <IonLabel color="secondary">Ongoing helps</IonLabel>
               </IonSegmentButton>
-              <IonSegmentButton onClick={inactive} value="inactivehelps">
+              <IonSegmentButton className="segment-help" onClick={inactive} value="inactivehelps">
                 <IonLabel color="secondary">Completed helps</IonLabel>
               </IonSegmentButton>
             </IonSegment>

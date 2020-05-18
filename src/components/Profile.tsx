@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
   IonIcon,
   useIonViewDidEnter,
 } from "@ionic/react";
 import { getUserInfo } from "../firebaseConfig";
 
-import { personCircleOutline, codeSlashOutline } from "ionicons/icons";
+import { personCircleOutline} from "ionicons/icons";
 import "./Profile.css";
 
 const Profile: React.FC = () => {

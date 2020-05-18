@@ -95,14 +95,17 @@ const Register: React.FC = () => {
                type="password"
                onIonChange={(e: any) => setCPassword(e.target.value)}/></IonItem>
               </IonList>
-             <IonItem>
+             <IonItem className="accept-terms" lines="none">
+             <IonCheckbox slot="start" checked={checked} onIonChange={e => setChecked(e.detail.checked)} />
               <IonLabel color="tertiary"> I accept <Link className="link-color" to="/termsofuse">Terms of use</Link></IonLabel>
-            <IonCheckbox slot="start" checked={checked} onIonChange={e => setChecked(e.detail.checked)} /></IonItem>
+            </IonItem>
 
 
-        <IonButton onClick={register}>Register</IonButton>
+        <IonButton className="register-button" expand="full" onClick={register}>Register</IonButton>
 
+        <IonItem lines="none">
         <p>Already have an account? <Link className="link-color" to="/login">Login</Link> </p>
+        </IonItem>
       </IonContent>
     </IonPage>
   );

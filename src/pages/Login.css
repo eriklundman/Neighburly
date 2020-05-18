@@ -19,3 +19,10 @@
     color: #194afb;
     text-decoration: underline;
 }
+
+.login-button{
+text-transform: capitalize;
+
+margin-top: 2em ;
+
+}
