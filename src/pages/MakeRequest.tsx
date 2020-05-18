@@ -73,9 +73,9 @@ const MakeRequest: React.FC = () => {
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
 
-              <IonRow>
+              <IonItem lines="none">
             <IonText> <h3> Pick type of request </h3></IonText>
-            </IonRow>
+            </IonItem>
             <IonRow>
               <IonCol>
                 <IonItem className="request-option" lines="none">

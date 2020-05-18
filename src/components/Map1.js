@@ -12,6 +12,7 @@ import {
   flowerSharp,
   helpCircle,
   cart,
+  navigateCircleSharp,
 } from "ionicons/icons";
 import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
 
@@ -195,13 +196,17 @@ class SimpleMap extends React.Component {
   }
   }
 
+  setCenter = () => {
+   this.setState({center:this.state.userPos})
+  }
+
   render() {
     return (
       <div style={{ height: "100%", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyB1OBf8rN8thOb-BW9QdiMc06NOuBvFrNI" }}
-          defaultCenter={this.state.userPos}
-          center={this.state.userPos}
+          defaultCenter={this.props.center}
+          center={this.state.center}
           options={this.createMapOptions}
           defaultZoom={this.props.zoom}
           yesIWantToUseGoogleMapApiInternals
@@ -300,6 +305,8 @@ class SimpleMap extends React.Component {
             color="blue"
           />
         </GoogleMapReact>
+        <IonButton fill="clear" className="center-btn" onClick={()=>{this.setCenter()}}>
+          <IonIcon color="secondary" slot="icon-only" icon={navigateCircleSharp}></IonIcon></IonButton>
       </div>
     );
   }
