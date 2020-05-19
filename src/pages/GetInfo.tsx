@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 const slideOpts = {
     initialSlide: 0,
     speed: 400,
+    zoom:true,
   };
 
 const GetInfo: React.FC = () => {
@@ -45,10 +46,10 @@ const GetInfo: React.FC = () => {
         <h2>The map!</h2>
         </div>
         <div className="design-image">
-        <IonImg src="assets/icon/infoMap.png"/>
+        <IonImg src="assets/icon/infoMap2.png"/>
         </div>
         <div>
-        <p>On the map you can see <span className="text-success">others requests</span>, help people by clicking on them and make <span className="text-warning">your own</span> request by clicking on the <span className="text-danger">"add request"</span> button.</p>
+        <p>On the map you can see <b className="text-success">others requests</b>, help people by clicking on them and make <b className="text-warning">your own request</b> by clicking on the <b className="text-danger">"add request"</b> button.</p>
         </div>
         </div>
       </IonSlide>
