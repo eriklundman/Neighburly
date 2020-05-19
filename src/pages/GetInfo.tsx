@@ -10,6 +10,7 @@ const slideOpts = {
     initialSlide: 0,
     speed: 400,
     zoom:true,
+
   };
 
 const GetInfo: React.FC = () => {
@@ -35,7 +36,7 @@ const GetInfo: React.FC = () => {
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p style={{fontWeight:"bold"}}>In the following slides you will get a tutorial on how to get started with the Neighburly app</p>
+        <p style={{fontWeight:"bold"}}>In the following slides you will get a tutorial on how to get started with the Neighburly app.</p>
         </div>
         </div>
 
@@ -59,7 +60,7 @@ const GetInfo: React.FC = () => {
         <h2>Make a help request!</h2>
         </div>
         <div>
-        <IonImg src="assets/icon/logga3.png"/>
+        <IonImg src="assets/icon/infoAdd.png"/>
         </div>
         <div>
         <p>After klicking the "add request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
@@ -72,10 +73,10 @@ const GetInfo: React.FC = () => {
         <h2>Help someone!</h2>
         </div>
         <div>
-        <IonImg src="assets/icon/logga3.png"/>
+        <IonImg src="assets/icon/infoHelp.png"/>
         </div>
         <div>
-        <p>When you want to help someone you click on the request icons on the map. You can also see a list with all requests within your set radius.</p>
+        <p>When you want to help someone you click on the <b className="text-danger">request icon </b> on the map, click <b className="text-warning">"help"</b>. You can also see a <b className="text-success">list</b> with all requests within your set radius.</p>
         </div>
         </div>
       </IonSlide>
@@ -85,10 +86,36 @@ const GetInfo: React.FC = () => {
         <h2>Change your radius!</h2>
         </div>
         <div>
+        <IonImg src="assets/icon/infoProfile.png"/>
+        </div>
+        <div>
+        <p>In your profile you can see your <b className="text-secondary">rating</b> and <b className="text-warning">score</b>, how many people you have <b className="text-success">helped and been helped by</b>. You can also <b className="text-danger">edit your profile</b>.</p>
+        </div>
+        </div>
+      </IonSlide>
+      <IonSlide>
+      <div className="grid">
+          <div>
+        <h2>Change your radius!</h2>
+        </div>
+        <div>
+        <IonImg src="assets/icon/infoRadius.png"/>
+        </div>
+        <div>
+        <p>When you press the button "Edit your profile" you will be able to <b className="text-success">change your radius</b>.</p>
+        </div>
+        </div>
+      </IonSlide>
+      <IonSlide>
+      <div className="grid">
+          <div>
+        <h2>Your requests!</h2>
+        </div>
+        <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p>If you go to Profile --> Edit your profile you will be able to change your radius.</p>
+          <p>You can find your <b className="text-warning">on-going</b> and <b className="text-danger">completed</b> requests here, this is also where you reach the <b className="text-success">chat</b>.</p>
         </div>
         </div>
       </IonSlide>
@@ -98,10 +125,10 @@ const GetInfo: React.FC = () => {
         <h2>If you forget!</h2>
         </div>
         <div>
-        <IonImg src="assets/icon/logga3.png"/>
+        <IonImg src="assets/icon/infoMenu.png"/>
         </div>
         <div>
-        <p>You will always be able to read this information in the menu under the "info" section</p>
+        <p>You will always be able to read this information in the menu under the <b className="text-success">"info"</b> section.</p>
         </div>
         </div>
       </IonSlide>
@@ -114,7 +141,7 @@ const GetInfo: React.FC = () => {
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <Link className="link-color" to="/mapTab">Continue to Neighburly!</Link>
+       <b> <Link className="link-color" to="/mapTab">Continue to Neighburly!</Link></b>
         </div>
         </div>
       </IonSlide>

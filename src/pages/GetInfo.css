@@ -30,6 +30,10 @@
     color:#ffc409;
 }
 
+.text-secondary{
+    color:#194afb;
+}
+
 .grid{
     height: 100%;
     display: grid;
