@@ -49,15 +49,13 @@ const db = firebase.firestore();
       </IonHeader>
             <IonContent className="ion-padding">
                     <div className="blocked-grid">
-                        <h3>You have been blocked</h3>
+                        <h2 className="text-danger">You have been blocked</h2>
                         <div>
                   <p>You are blocked from using Neighburly. An user has reported that you have broken the rules regarding: </p>
                   </div>
-                  <div>{blockType}
-
-
-                  </div>
-                  <div>
+                  <h4> <b className="text-danger">{blockType}</b>
+                  </h4>
+                  <div className="bottom-text">
                   <p>If you want more information about the report, or believe that the report is not correct, please contact the Neighburly team at <b>neighburly@website.com.</b> </p>
                   </div>
     </div> </IonContent>

@@ -16,3 +16,17 @@
    width: 9em;
   }
 
+
+.text-danger{
+    color:#c7434b;
+}
+ /*dessa funkar ej än:
+  .top-text{
+       align-items: end !important;
+
+  }
+
+  .bottom-text{
+    align-items: start !important;
+
+  }*/
