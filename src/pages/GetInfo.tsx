@@ -46,10 +46,10 @@ const GetInfo: React.FC = () => {
           <div>
         <h2>The map!</h2>
         </div>
-        <div className="design-image">
-        <IonImg src="assets/icon/infoMap.png"/>
+        <div className="image-container">
+        <IonImg className="image-slide" src="assets/icon/infoMap.png"/>
         </div>
-        <div>
+        <div className="text-container">
         <p>On the map you can see <b className="text-success">others requests</b>, help people by clicking on them and make <b className="text-warning">your own request</b> by clicking on the <b className="text-danger">"add request"</b> button.</p>
         </div>
         </div>

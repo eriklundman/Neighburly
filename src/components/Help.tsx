@@ -6,7 +6,7 @@ import {
   IonSegment,
   IonRow,
   IonGrid,
-  IonList, IonBadge,
+  IonList, IonBadge, IonLoading,
 } from "@ionic/react";
 import Request from "../components/Request";
 import * as firebase from "firebase";
@@ -19,7 +19,6 @@ const Help: React.FC = () => {
   const [info, setInfo] = useState([]);
   const [defValue, setDefValue] = useState("");
   const [id, setId] = useState<any>();
-
   const [activeHelps, setActiveHelps] = useState<number>();
   const [inactiveHelps, setInctiveHelps] = useState<number>();
 
@@ -56,7 +55,7 @@ const Help: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const myElement: HTMLElement | null = document.getElementById("hej");
+    const myElement: HTMLElement | null = document.getElementById("help-list");
     if (myElement !== null) {
     const actives1 = myElement.getElementsByClassName("youWillHelpclass")
     const actives2 = myElement.getElementsByClassName("helpingYouclass")
@@ -71,14 +70,6 @@ const Help: React.FC = () => {
     setInfo(data);
   }
 
-  function active() {
-    setDefValue("activehelps");
-  }
-
-  function inactive() {
-    setDefValue("inactivehelps");
-  }
-
   return (
     <IonContent>
       <IonGrid>
@@ -90,11 +81,11 @@ const Help: React.FC = () => {
               value={defValue}
             >
 
-              <IonSegmentButton className="segment-help" onClick={active} value="activehelps">
+              <IonSegmentButton className="segment-help" onClick={()=>setDefValue("activehelps")} value="activehelps">
                 <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Ongoing helps</IonLabel>
               </IonSegmentButton>
-              <IonSegmentButton className="segment-help" onClick={inactive} value="inactivehelps">
+              <IonSegmentButton className="segment-help" onClick={()=>setDefValue("inactivehelps")} value="inactivehelps">
                 <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Completed helps</IonLabel>
               </IonSegmentButton>
@@ -102,7 +93,7 @@ const Help: React.FC = () => {
           </IonRow>
 
 
-        <IonList id="hej">
+        <IonList id="help-list">
           {defValue === "activehelps"
             ? info.map((item: any, index: number) =>
                 item.accepted === true && item.completed === false ? (

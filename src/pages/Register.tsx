@@ -101,7 +101,7 @@ const Register: React.FC = () => {
             </IonItem>
 
 
-        <IonButton className="register-button" expand="full" onClick={register}>Register</IonButton>
+        <IonButton className="register-button" expand="block" onClick={register}>Register</IonButton>
 
         <IonItem lines="none">
         <p>Already have an account? <Link className="link-color" to="/login">Login</Link> </p>

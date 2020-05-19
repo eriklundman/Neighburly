@@ -14,7 +14,7 @@ import {
   cart,
   navigateCircleSharp,
 } from "ionicons/icons";
-import { IonIcon, IonButton, IonAlert, withIonLifeCycle } from "@ionic/react";
+import { IonIcon, IonButton, IonAlert, withIonLifeCycle, IonButtons } from "@ionic/react";
 
 import { Plugins } from "@capacitor/core";
 import * as firebase from 'firebase'
@@ -206,7 +206,7 @@ class SimpleMap extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "100%", width: "100%" }}>
+      <div style={{ height: "100%", width: "100%", position:"relative" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyB1OBf8rN8thOb-BW9QdiMc06NOuBvFrNI" }}
           defaultCenter={this.props.center}

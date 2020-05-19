@@ -13,7 +13,7 @@ import {
 import SimpleMap from "../components/Map1";
 import "./MapTab.css";
 import RequestBtn from "../components/AddRequest";
-import { chevronUpOutline, chevronDownOutline } from "ionicons/icons";
+import { chevronUpOutline, chevronDownOutline, informationCircleOutline } from "ionicons/icons";
 import RequestOnMap from "../components/RequestOnMap";
 import * as firebase from 'firebase'
 import { useHistory } from "react-router";
@@ -144,7 +144,12 @@ const MapTab: React.FC = () => {
             </IonList>
           </IonContent>
           <IonFooter>
-            <div className="changeInfo">edit radius in <b>Profile</b>
+            <div
+            className="changeInfo">
+              <IonIcon icon={informationCircleOutline}></IonIcon>
+              <div>
+              Go to <b> Profile</b> to edit your radius
+              </div>
             </div>
             </IonFooter>
         </IonModal>

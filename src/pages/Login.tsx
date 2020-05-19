@@ -59,7 +59,7 @@ const Login: React.FC = () => {
           type="password"
           onIonChange={(e: any) => setPassword(e.target.value)} /></IonItem>
         
-        <IonButton text-color="tertiary" expand="full" className="login-button" onClick={login}>Login</IonButton>
+        <IonButton text-color="tertiary" expand="block" className="login-button" onClick={login}>Login</IonButton>
 
 
         

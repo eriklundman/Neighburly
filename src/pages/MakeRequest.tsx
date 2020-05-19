@@ -123,7 +123,7 @@ const MakeRequest: React.FC = () => {
         <IonLabel style={{fontSize: 12}}>Request location (Be as specific as you want)</IonLabel>
         </IonItem >
         <IonItem lines="none">
-        <PlacesAutocomplete coords={coords} setCoords={setCoords} />
+        <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
         </IonItem>
         <IonButton className="submit-rqst" expand='block' onClick={sendRequest}>Submit request
         </IonButton>
