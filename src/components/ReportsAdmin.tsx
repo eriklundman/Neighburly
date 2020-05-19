@@ -39,7 +39,7 @@ const ReportsAdmin: React.FC<any> = (props) => {
     useEffect(() => {
         setIncident(props.report.incident)
         setWhy(props.report.why)
-
+        
         db.collection("users").doc(props.report.reported_user_id).onSnapshot((snapshot: any) => {
             setRep_name(snapshot.data().firstname + " " + snapshot.data().lastname)
 

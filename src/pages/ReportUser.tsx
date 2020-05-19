@@ -24,7 +24,6 @@ import { reportUserFunc } from "../firebaseConfig";
 import "./ReportUser.css";
 
 const ReportUser: React.FC = (props) => {
-  const db = firebase.firestore();
   let userRef: any = firebase.auth().currentUser;
   const history = useHistory();
 
