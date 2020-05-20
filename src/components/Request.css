@@ -96,6 +96,10 @@ text-align: center;
     color: #194afb;
 }
 
+.done-btn{
+    box-shadow: 1px 3px 2px  #001e57;
+}
+
 .alert-buttons{
     color: #194afb !important; 
 }
