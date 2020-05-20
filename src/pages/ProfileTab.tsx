@@ -57,10 +57,44 @@ const ProfileTab: React.FC = () => {
           </IonImg>
         </IonToolbar>
       </IonHeader>
+
+      <IonRow className="ion-align-items-stretch">
+        <IonSegment 
+          value={value}
+          onIonChange={(e) => console.log("Segment selected", e.detail.value)}
+        >
+          <IonSegmentButton className="segment-profile" onClick={() => setValue("helper")} value="helper">
+            <IonLabel color="secondary">Helper</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton className="segment-profile"
+            onClick={() => setValue("receiver")}
+            value="receiver"
+          >
+            <IonLabel color="secondary">Receiver</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+      </IonRow>
       <IonContent>
         <div className="profile-grid">
           <div>
             <Profile fn={fn} ln={ln} />
+          </div>
+         
+      <div className="info-text">
+            {value === "helper" ? (
+              <div>
+                <h6>You have helped</h6>
+                <h2>{helps}</h2>
+                <h6>people</h6>            
+              </div>
+            ) : (
+              
+              <div>
+                <h6>You have been helped</h6>
+                <h2>{receives}</h2>
+                <h6>times</h6>
+              </div>
+            )}
           </div>
 
 
@@ -84,45 +118,13 @@ const ProfileTab: React.FC = () => {
               {Math.round(score)}
             </IonChip>
           </div>
-
-          <div className="ion-text-center">
-            {value === "helper" ? (
-              <div>
-                <h6>You have helped</h6>
-                <h2>{helps}</h2>
-                <h6>people</h6>
-              </div>
-            ) : (
-              <div>
-                <h6>You have been helped</h6>
-                <h2>{receives}</h2>
-                <h6>times</h6>
-              </div>
-            )}
-          </div>
-
           <div>
-            <SettingsBtn />
-          </div>
+              <SettingsBtn />
+            </div>
+         
         </div>
       </IonContent>
 
-      <IonRow className="ion-align-items-stretch">
-        <IonSegment
-          value={value}
-          onIonChange={(e) => console.log("Segment selected", e.detail.value)}
-        >
-          <IonSegmentButton className="segment-profile" onClick={() => setValue("helper")} value="helper">
-            <IonLabel color="secondary">Helper</IonLabel>
-          </IonSegmentButton>
-          <IonSegmentButton className="segment-profile"
-            onClick={() => setValue("receiver")}
-            value="receiver"
-          >
-            <IonLabel color="secondary">Receiver</IonLabel>
-          </IonSegmentButton>
-        </IonSegment>
-      </IonRow>
     </IonPage>
   );
 };

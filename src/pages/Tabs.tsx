@@ -9,7 +9,7 @@ import {
     IonTabs,
     IonBadge, IonModal, IonContent, IonButtons, IonButton, IonItem, IonCard
 } from '@ionic/react';
-import { personOutline, navigateCircleOutline, heartOutline, menuOutline } from 'ionicons/icons';
+import { person, navigateCircle, heart, menu } from 'ionicons/icons';
 import MenuTab from './MenuTab';
 import HelpTab from './HelpTab';
 import MapTab from './MapTab';
@@ -133,6 +133,7 @@ const Tabs: React.FC = () => {
       removeNoticeHelper(req_id);
 
   }
+  
 
 
   return (
@@ -154,20 +155,20 @@ const Tabs: React.FC = () => {
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton className="tabColor" tab="menuTab" href="/menuTab">
-          <IonIcon icon={menuOutline} />
+          <IonIcon icon={menu} />
           <IonLabel >Menu</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
           {newMessage && <IonBadge color="danger">{messageCounter}</IonBadge>}
-          <IonIcon icon={heartOutline} />
+          <IonIcon icon={heart} />
           <IonLabel>Helps</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="mapTab" href="/mapTab">
-          <IonIcon icon={navigateCircleOutline} />
+          <IonIcon icon={navigateCircle} />
           <IonLabel>Requests</IonLabel>
         </IonTabButton>
         <IonTabButton className="tabColor" tab="profileTab" href="/profileTab">
-          <IonIcon icon={personOutline} />
+          <IonIcon icon={person} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>
