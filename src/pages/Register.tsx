@@ -14,7 +14,7 @@ import {
   IonToolbar,
   IonImg
 } from '@ionic/react';
-import { registerUser } from '../firebaseConfig'
+import { registerUser, sendVerEmail } from '../firebaseConfig'
 import "./Register.css"
 import { toast } from "../toast";
 
@@ -51,6 +51,7 @@ const Register: React.FC = () => {
     setBusy(true);
     const res = await registerUser(firstname, lastname, email, password);
     if (res) {
+      sendVerEmail()
       history.push('/login');
       await toast("You're account has been registered!", 3000);
     }

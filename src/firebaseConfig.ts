@@ -74,6 +74,20 @@ export async function registerUser(firstname: string, lastname: string, email: s
 
 }
 
+export function sendVerEmail(){
+  let user: any = firebase.auth().currentUser;
+  if (user){
+    user.sendEmailVerification().then(function() {
+      console.log("Email sent")
+    }).catch(function(error: any) {
+      console.log(error);
+    });
+  }
+  else{
+    toast("inte inloggad")
+  }
+
+}
 
 
 export async function createRequest(text: string, selected: string, coords: any) {

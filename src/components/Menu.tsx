@@ -15,6 +15,7 @@ const Menu: React.FC = () => {
     await logoutUser();
     setBusy(false);
     history.replace('/login')
+    window.location.reload();
     await toast("Logged out")
 
   }

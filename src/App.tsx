@@ -33,9 +33,10 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { getCurrentUser } from './firebaseConfig';
+import { getCurrentUser, logoutUser } from './firebaseConfig';
 import AdminPage from './pages/AdminPage';
 import BlockedPage from './pages/BlockedPage';
+import { toast } from './toast';
 
 
 
@@ -71,11 +72,16 @@ const App: React.FC = () => {
     
 
     getCurrentUser().then((user: any) => {
-      if (user) {       
+      if (user && user.emailVerified) {       
           window.history.replaceState({}, '', '/tabs')
+          toast("Log in successful!", 1500);
       }
       else {
         window.history.replaceState({}, '', '/')
+        if(user && !user.emailVerified){
+          logoutUser()
+          toast("Email not verified")
+        }
       }
       setBusy(false)
     })
