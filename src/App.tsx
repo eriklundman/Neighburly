@@ -72,16 +72,16 @@ const App: React.FC = () => {
     
 
     getCurrentUser().then((user: any) => {
-      if (user && user.emailVerified) {       
+      if (user /*&& user.emailVerified*/) {       
           window.history.replaceState({}, '', '/tabs')
           toast("Log in successful!", 1500);
       }
       else {
         window.history.replaceState({}, '', '/')
-        if(user && !user.emailVerified){
+        /*if(user && !user.emailVerified){*/
           logoutUser()
           toast("Email not verified")
-        }
+       // }
       }
       setBusy(false)
     })

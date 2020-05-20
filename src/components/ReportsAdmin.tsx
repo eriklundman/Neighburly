@@ -54,6 +54,9 @@ const ReportsAdmin: React.FC<any> = (props) => {
                 if(snapshot.data()){
                 setBlocked(true)
                 }
+                else{
+                    setBlocked(false)
+                }
             })
         }
             
