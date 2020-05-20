@@ -35,3 +35,13 @@
 .submit-rqst{
     margin-top: 2em;
 }
+
+.add-grid{
+    height: 100%;
+    padding-bottom: 10%;
+    place-items: stretch;
+    display: grid;
+    grid-template-rows: 50% 25% 25%
+  }
+
+

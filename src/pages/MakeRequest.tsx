@@ -68,7 +68,8 @@ const MakeRequest: React.FC = () => {
               </IonButtons>
             </IonToolbar>
         </IonHeader>
-
+          <div className="add-grid">
+            <div>
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
@@ -103,30 +104,34 @@ const MakeRequest: React.FC = () => {
                 </IonItem>
 
           </IonRadioGroup>
-
+          </div>
         <div>
-        <IonItem className="description-input" >
-          <IonLabel style={{fontSize: 12}}>Short description of your request (maximum 100 characters)</IonLabel>
+        <IonItem lines="none">
+          <b>Short description (maximum 100 characters)</b>
           </IonItem>
         <IonItem lines="none">
         <div className="information-div">
          <textarea className="address-input-field"
          maxLength = {100}
          value={text}
-         placeholder="Enter more information here..."
+         placeholder="Short description of your request..."
          onChange={(e) => setText(e.target.value!)}
          /></div></IonItem>
          
 
         </div>
-          <IonItem>
-        <IonLabel style={{fontSize: 12}}>Request location (Be as specific as you want)</IonLabel>
+        <div>
+          <IonItem lines="none">
+        <b>Where do you want help?</b>
         </IonItem >
         <IonItem lines="none">
         <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
         </IonItem>
+
         <IonButton className="submit-rqst" expand='block' onClick={sendRequest}>Submit request
         </IonButton>
+        </div>
+        </div>
         </IonContent>
         </IonPage>
 );
