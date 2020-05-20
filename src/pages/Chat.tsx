@@ -23,6 +23,7 @@ const Chat: React.FC<any> = (props) => {
     const [user1, setUser1] = useState("");
     const [user2, setUser2] = useState("");
     const chat = useRef<HTMLIonTextareaElement>(null);
+    const chatPage = useRef<HTMLIonContentElement>(null);
 
     const chatId = props.match.params.id;
     let unsubscribe : any;
@@ -47,7 +48,6 @@ const Chat: React.FC<any> = (props) => {
         setNotice(data.newMessage);
         setUser1(data.names[0]);
         setUser2(data.names[1]);
-        ScrollToBottom()
 
     }
 
@@ -56,6 +56,7 @@ const Chat: React.FC<any> = (props) => {
         if (message !== "") {
             storeMessage(message, chatId , fn)
             setMessage("")
+            chat.current?.setFocus()
             //retrieveMessages(chatId).then((data : any) => {
              //   setChats(data.messages);
            // })
@@ -83,7 +84,8 @@ const Chat: React.FC<any> = (props) => {
     });
 
     useIonViewDidEnter(() => {
-        chat.current?.setFocus()
+        chatPage.current?.scrollToBottom(200);
+        chat.current?.setFocus();
     })
 
     return (
@@ -100,7 +102,7 @@ const Chat: React.FC<any> = (props) => {
       </IonButtons>
       </IonToolbar>
       </IonHeader>
-            <IonContent>
+            <IonContent ref={chatPage}>
                     <div >
                         {chats.map((item: any, index: number) => (item.uId === id ?
 

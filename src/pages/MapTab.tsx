@@ -106,7 +106,7 @@ const MapTab: React.FC = () => {
 
   return (
     <IonPage ref={pageRef}>
-      <IonContent>
+      <IonContent scrollY={false}>
 
 
         <RequestBtn />

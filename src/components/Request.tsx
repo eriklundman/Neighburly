@@ -27,9 +27,6 @@ import {
   personCircleOutline,
   trashOutline,
   ellipsisHorizontal,
-  share,
-  heart,
-  ellipseOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { deleteActiveRequest, giveRating } from "../firebaseConfig";
@@ -55,13 +52,6 @@ const Request: React.FC<any> = (props) => {
   const [h_stars, setH_stars] = useState(0);
   const [r_stars, setR_stars] = useState(0);
   const [stars, setStars] = useState(0);
-  const [showMenuPopover, setShowMenuPopover] = useState<{
-    open: boolean;
-    event: Event | undefined;
-  }>({
-    open: false,
-    event: undefined,
-  });
 
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -256,9 +246,8 @@ const Request: React.FC<any> = (props) => {
             <IonButtons slot="end">
               <IonButton
                 onClick={(e) =>
-                  setShowMenuPopover({ open: true, event: e.nativeEvent })
+                  setShowActionSheet(true)
                 }
-                color="success"
                 fill="clear"
               >
                 <IonIcon color="tertiary" icon={ellipsisHorizontal} />
@@ -270,10 +259,9 @@ const Request: React.FC<any> = (props) => {
             <IonButtons slot="end">
               <IonButton
                 onClick={() => setShowActionSheet(true)}
-                color="success"
                 fill="clear"
               >
-                <IonIcon icon={ellipsisHorizontal} />
+                <IonIcon color="tertiary" icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
           ) : props.item.completed === true ? (
@@ -303,7 +291,7 @@ const Request: React.FC<any> = (props) => {
               icon: checkmarkOutline,
               cssClass: "action-sheet-done",
               handler: () => {
-                console.log("Share clicked");
+                setShowAlert(true);
               }
             },{
               text: 'Delete request',
@@ -316,34 +304,10 @@ const Request: React.FC<any> = (props) => {
               text: 'Cancel',
               role: 'cancel',
               cssClass: 'action-sheet-cancel',
-              handler: () => {
-                console.log('Cancel clicked');
-              }
             }
             
           ]}
         ></IonActionSheet>
-
-        <IonPopover
-          isOpen={showMenuPopover.open}
-          event={showMenuPopover.event}
-          onDidDismiss={(e) =>
-            setShowMenuPopover({ open: false, event: undefined })
-          }
-        >
-          <IonItem
-            detail={false}
-            button={true}
-            onClick={() => setShowAlert(true)}
-          >
-            <IonLabel color="success">Mark as done</IonLabel>
-            <IonIcon color="success" slot="end" icon={checkmarkOutline} />
-          </IonItem>
-          <IonItem detail={false} lines="none" button={true}>
-            <IonLabel color="danger">Delete request</IonLabel>
-            <IonIcon color="danger" slot="end" icon={trashOutline} />
-          </IonItem>
-        </IonPopover>
 
         <IonAlert
           isOpen={showDeleteAlert}
@@ -363,11 +327,11 @@ const Request: React.FC<any> = (props) => {
         />
 
         <IonPopover
-          css-class="ion-popover"
+          cssClass="ion-popover"
           animated={true}
           isOpen={showPopover.open}
           event={showPopover.event}
-          onDidDismiss={(e) =>
+          onDidDismiss={() =>
             setShowPopover({ open: false, event: undefined })
           }
         >

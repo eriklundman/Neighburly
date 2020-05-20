@@ -47,12 +47,12 @@ ion-content ion-toolbar {
   }
 
 .changeInfo {
-  font-size: 0.8em;
   display:flex;
   align-items:center;
   justify-content:center;
   vertical-align: middle;
   margin-bottom: 1em;
+  margin-top: 0.5em;
 }
 
 

@@ -131,7 +131,7 @@ const EditYourProfile: React.FC = () => {
           <IonAlert
             isOpen={showDeleteAlert}
             onDidDismiss={() => setShowDeleteAlert(false)}
-            header={"Confirm!"}
+            header={"Delete Account"}
             message={"Are you sure you want to delete your account?"}
             buttons={[
               "Cancel",
