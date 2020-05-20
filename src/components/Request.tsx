@@ -263,6 +263,7 @@ const Request: React.FC<any> = (props) => {
             userRef.uid === props.item.h_id ? (
             <IonButtons slot="end">
               <IonButton
+                shape="round"
                 onClick={() => setShowAlert(true)}
                 color="success"
                 fill="solid"
