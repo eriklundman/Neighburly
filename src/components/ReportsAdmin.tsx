@@ -9,15 +9,15 @@ import {
     IonButton,
     IonButtons,
     IonAlert,
+    IonItem,
     IonIcon,
 
 } from "@ionic/react";
 
+import './ReportsAdmin.css'
 import * as firebase from "firebase";
-import { useHistory } from "react-router-dom";
-import { toast } from "../toast";
-import { trashOutline } from "ionicons/icons";
 import { blockUser, unBlockUser } from "../firebaseConfig";
+import { closeOutline } from "ionicons/icons";
 
 
 
@@ -63,17 +63,28 @@ const ReportsAdmin: React.FC<any> = (props) => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonCardTitle>
-                    Reported User: <b>{" " + rep_name}</b><br></br><br></br>
-
-                </IonCardTitle>
-                <IonCardSubtitle>
-                    Incident description: <br></br>{" " + incident}<br></br><br></br>
-                Why incident may be inappropriate: <br></br>{" " + why}<br></br><br></br>
+                <IonButton className="delete-report-btn" fill="clear">
+                    <IonIcon color="tertiary" icon={closeOutline}></IonIcon>
+                </IonButton>
+            <IonCardSubtitle>
+                Reported User
                 </IonCardSubtitle>
+                <IonCardTitle>
+                    {rep_name}
+                </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-                <IonButtons>
+                <div>
+                <b>Incident description: </b>
+                <p>{incident}</p>
+                </div>
+                <div className="why-div">
+                <b>Why incident may be inappropriate:</b>
+                <p>{why}</p>
+                </div>
+            
+            <IonItem lines="none">
+                <IonButtons slot="end">
                     {blocked === true ?
                     (<IonButton onClick={() => setShowAlert2(true)} color="success">
 
@@ -87,6 +98,8 @@ const ReportsAdmin: React.FC<any> = (props) => {
                         
                     }
                 </IonButtons>
+                </IonItem>
+                
                 <IonAlert
                     isOpen={showAlert1}
                     onDidDismiss={() => setShowAlert1(false)}

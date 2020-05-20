@@ -83,7 +83,7 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Change your radius!</h2>
+        <h2>Your profile!</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoProfile.png"/>
