@@ -219,7 +219,6 @@ const Request: React.FC<any> = (props) => {
         <IonButton
           fill="clear"
           className="ion-chat-button"
-          size="large"
           onClick={removeNotice}
           routerLink={`/chat/${props.item.chatId}`}
         >
