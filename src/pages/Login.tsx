@@ -66,6 +66,9 @@ const Login: React.FC = () => {
        <IonItem lines="none">
         <div>New on Neighburly? <Link className="link-color" to="/register">Register here!</Link> </div>
         </IonItem>
+        <IonItem lines="none">
+        <div>Forgot password? <Link className="link-color" to="/forgotpassword">Reset password!</Link> </div>
+        </IonItem>
  
 
       </IonContent>

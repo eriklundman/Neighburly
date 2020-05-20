@@ -37,6 +37,7 @@ import { getCurrentUser, logoutUser } from './firebaseConfig';
 import AdminPage from './pages/AdminPage';
 import BlockedPage from './pages/BlockedPage';
 import { toast } from './toast';
+import ForgotPassword from './pages/ForgotPasswordPage';
 
 
 
@@ -54,6 +55,7 @@ const RoutingSystem: React.FC = () => {
         <Route path="/chat/:id" component={Chat} exact />
         <Route path="/adminpage" component={AdminPage} exact />
         <Route path="/blockedpage" component={BlockedPage} exact />
+        <Route path="/forgotpassword" component={ForgotPassword} exact />
         <Route path="/" render={() => <Redirect to="/login" />} exact={true} />
       </IonRouterOutlet>
     </IonReactRouter>
@@ -74,13 +76,13 @@ const App: React.FC = () => {
     getCurrentUser().then((user: any) => {
       if (user /*&& user.emailVerified*/) {       
           window.history.replaceState({}, '', '/tabs')
-          toast("Log in successful!", 1500);
+          //toast("Log in successful!", 1500);
       }
       else {
         window.history.replaceState({}, '', '/')
         /*if(user && !user.emailVerified){*/
           logoutUser()
-          toast("Email not verified")
+          //toast("Email not verified")
        // }
       }
       setBusy(false)
