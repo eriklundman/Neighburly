@@ -5,10 +5,6 @@
     --inner-border-radius: #001e57;
 }
 
-.textDesign{
-    text-size-adjust: 30px;
-}
-
 .description-input{
     --highlight-height: 2px;
 }
@@ -30,18 +26,14 @@
 
 .information-div{
     width: 100%;
+    margin-bottom: 1em;
+}
+
+.what-do-you-want-text{
+    margin-top: 1em;
 }
 
 .submit-rqst{
     margin-top: 2em;
 }
-
-/*.add-grid{
-    height: 100%;
-    padding-bottom: 10%;
-    place-items: stretch;
-    display: grid;
-    grid-template-rows: 50% 25% 25%
-  }*/
-
 

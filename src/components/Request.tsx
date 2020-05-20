@@ -335,7 +335,7 @@ const Request: React.FC<any> = (props) => {
         />
 
         <IonPopover
-          cssClass="ion-popover"
+        cssClass="ion-popover"
           animated={true}
           isOpen={showPopover.open}
           event={showPopover.event}
@@ -343,8 +343,8 @@ const Request: React.FC<any> = (props) => {
             setShowPopover({ open: false, event: undefined })
           }
         >
-          <IonList lines="none">
-            <IonItem>
+          <div className="ion-popover">
+
               <div className="profile-name-request">
                 <IonIcon
                   slot="end"
@@ -354,10 +354,10 @@ const Request: React.FC<any> = (props) => {
                 />
                 {name}
               </div>
-            </IonItem>
+
             {userRef && userRef.uid === props.item.h_id ? (
-              <IonItem>
-                <div style={{ fontSize: 25 }} className="profile-name-request">
+
+                <div style={{ fontSize: 27 }} className="profile-name-request">
                   <StarRatingComponent
                     name="rate1"
                     starCount={5}
@@ -367,10 +367,10 @@ const Request: React.FC<any> = (props) => {
                     emptyStarColor="#bbd0ff"
                   />
                 </div>
-              </IonItem>
+
             ) : (
-              <IonItem>
-                <div style={{ fontSize: 25 }} className="profile-name-request">
+
+                <div style={{ fontSize: 27 }} className="profile-name-request">
                   <StarRatingComponent
                     name="rate1"
                     starCount={5}
@@ -380,20 +380,20 @@ const Request: React.FC<any> = (props) => {
                     emptyStarColor="#bbd0ff"
                   />
                 </div>
-              </IonItem>
+
             )}
-            <IonItem>
-              <div className="profile-name-request">
+
+              <div className="report-user-btn">
                 <IonButton
+                  expand="block"
                   color="danger"
-                  shape="round"
                   onClick={goToReportUser}
                 >
                   Report user
                 </IonButton>
               </div>
-            </IonItem>
-          </IonList>
+
+          </div>
         </IonPopover>
       </IonCardContent>
 

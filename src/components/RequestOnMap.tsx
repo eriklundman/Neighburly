@@ -9,7 +9,6 @@ import {
   IonCardContent,
   IonPopover,
   IonAlert,
-  IonList,
 } from "@ionic/react";
 import {
   personCircleOutline,
@@ -21,16 +20,15 @@ import {
   trashOutline,
 } from "ionicons/icons";
 import "./Request.css";
-import {deleteRequest, waitForAcceptRequest} from "../firebaseConfig";
+import { deleteRequest, waitForAcceptRequest } from "../firebaseConfig";
 import StarRatingComponent from "react-star-rating-component";
 import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
 
-
 const RequestOnMap: React.FC<any> = (props) => {
-  const history = useHistory()
+  const history = useHistory();
   const [stars, setStars] = useState(3);
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -47,17 +45,17 @@ const RequestOnMap: React.FC<any> = (props) => {
     db.collection("users")
       .doc(props.item.r_id)
       .onSnapshot((snapshot: any) => {
-        if(snapshot.data()) {
+        if (snapshot.data()) {
           setStars(snapshot.data().rating + 0.5);
         }
-      })
-  },[]);
+      });
+  }, []);
 
   const goToReportUser = () => {
-    setShowPopover({ open: false, event: undefined })
-    props.closeModal()
-    history.push("/reportuser", {req: props.item})
-   }
+    setShowPopover({ open: false, event: undefined });
+    props.closeModal();
+    history.push("/reportuser", { req: props.item });
+  };
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -102,53 +100,46 @@ const RequestOnMap: React.FC<any> = (props) => {
       </IonCardHeader>
 
       <IonPopover
-              css-class="ion-popover"
-              animated={true}
-              isOpen={showPopover.open}
-              event={showPopover.event}
-              onDidDismiss={(e) =>
-                setShowPopover({ open: false, event: undefined })
-              }
-            >
-                <IonList lines="none">
-                <IonItem>
-                <div className="profile-name-request">
+        css-class="ion-popover"
+        animated={true}
+        isOpen={showPopover.open}
+        event={showPopover.event}
+        onDidDismiss={(e) => setShowPopover({ open: false, event: undefined })}
+      >
+        <div className="ion-popover">
+          <div className="profile-name-request">
             <IonIcon
               slot="end"
               size="large"
               color="tertiary"
               icon={personCircleOutline}
-            /><h3>
-              {props.item.r_fn + " " + props.item.r_ln}
-              </h3>
-              </div>
-              </IonItem>
-              <IonItem>
-                  <div style={{ fontSize: 25 }} className="profile-name-request">
-              <StarRatingComponent
-                name="rate1"
-                starCount={5}
-                value={stars}
-                editing={false}
-                starColor="#194afb"
-                emptyStarColor="#bbd0ff"
-              />
-              </div>
-              </IonItem>
-              <IonItem>
-              <div className="profile-name-request">
-              <IonButton color="danger" shape="round"  onClick={goToReportUser}>Report user</IonButton>
-              </div>
-              </IonItem>
-              </IonList>
-            </IonPopover>
+            />
+            <h3>{props.item.r_fn + " " + props.item.r_ln}</h3>
+          </div>
+
+          <div style={{ fontSize: 27 }} className="profile-name-request">
+            <StarRatingComponent
+              name="rate1"
+              starCount={5}
+              value={stars}
+              editing={false}
+              starColor="#194afb"
+              emptyStarColor="#bbd0ff"
+            />
+          </div>
+      
+          <div className="report-user-btn">
+            <IonButton color="danger" expand="block" onClick={goToReportUser}>
+              Report user
+            </IonButton>
+          </div>
+        </div>
+      </IonPopover>
 
       <IonCardContent className="card-content">
         <IonItem lines="none" onClick={() => setShowHelpAlert(true)}>
           <IonIcon slot="start" color="tertiary" icon={icon} />
-          <div className="rqst-des" >
-          {props.item.des}
-          </div>
+          <div className="rqst-des">{props.item.des}</div>
 
           {props.userId !== props.item.r_id ? (
             <IonButtons slot="end">
@@ -187,26 +178,34 @@ const RequestOnMap: React.FC<any> = (props) => {
         <IonAlert
           isOpen={showHelpAlert}
           onDidDismiss={() => setShowHelpAlert(false)}
-          header={"Help " +  props.item.r_fn + "!"}
+          header={"Help " + props.item.r_fn + "!"}
           message={"Do you want to help " + props.item.r_fn + "?"}
-          buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
-          {text:'Help', 
-          cssClass: 'alert-buttons',
-          handler: () => {
-            waitForAcceptRequest(props.item.req_id);
-          }}]}
+          buttons={[
+            { text: "Cancel", cssClass: "alert-buttons" },
+            {
+              text: "Help",
+              cssClass: "alert-buttons",
+              handler: () => {
+                waitForAcceptRequest(props.item.req_id);
+              },
+            },
+          ]}
         />
         <IonAlert
           isOpen={showDeleteAlert}
           onDidDismiss={() => setShowDeleteAlert(false)}
           header={"Delete request"}
           message={"Are you sure you want to delete this request?"}
-          buttons={[{text:'Cancel', cssClass:'alert-buttons'}, 
-          {text:'Delete', 
-          cssClass: 'alert-buttons',
-          handler: () => {
-            deleteRequest(props.item.req_id);
-          }}]}
+          buttons={[
+            { text: "Cancel", cssClass: "alert-buttons" },
+            {
+              text: "Delete",
+              cssClass: "alert-buttons",
+              handler: () => {
+                deleteRequest(props.item.req_id);
+              },
+            },
+          ]}
         />
       </IonCardContent>
     </IonCard>

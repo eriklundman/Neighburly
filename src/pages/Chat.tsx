@@ -48,6 +48,7 @@ const Chat: React.FC<any> = (props) => {
         setNotice(data.newMessage);
         setUser1(data.names[0]);
         setUser2(data.names[1]);
+        chatPage.current?.scrollToBottom(200);
 
     }
 
@@ -63,13 +64,7 @@ const Chat: React.FC<any> = (props) => {
 
         }
     }
-    function ScrollToBottom(){
-        let element : any = document.getElementById("bottom");
-        // I can't remember why I added a short timeout,
-        // but you might be able to use ngzone instead.
-        // the below works great though.
-        setTimeout(()=>{element.scrollIntoView({behavior: 'smooth'})},100);
-    }
+    
     function date(timeStamp : any) {
         let date = new Date(timeStamp);
         // test.toLocaleDateString()
@@ -121,7 +116,6 @@ const Chat: React.FC<any> = (props) => {
                         ))}
 
                     </div>
-                    <IonLabel id="bottom"></IonLabel>
             </IonContent>
             <IonFooter>
                 <IonItem color="light">

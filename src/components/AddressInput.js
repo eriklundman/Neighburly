@@ -4,7 +4,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import { IonList} from "@ionic/react";
+import { IonList, IonItem, IonLabel} from "@ionic/react";
 import "./AddressInput.css";
 
 const PlacesAutocomplete = (props) => {
@@ -57,7 +57,11 @@ const PlacesAutocomplete = (props) => {
 
       return (
         <IonList key={id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
+          <IonItem> 
+            <IonLabel>
+          <b>{main_text}</b> <p>{secondary_text}</p>
+          </IonLabel>
+          </IonItem>
         </IonList>
       );
     });
@@ -73,7 +77,7 @@ const PlacesAutocomplete = (props) => {
       />
 
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && <IonList className="address-list">{renderSuggestions()}</IonList>}
     </div>
   );
 };

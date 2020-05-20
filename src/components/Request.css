@@ -47,8 +47,8 @@
     display:flex;
     align-items:center;
     vertical-align: middle;
+    margin: 0.5em;
     }
-    
 
 .info-text{
     color: #001e57;
@@ -122,6 +122,19 @@ text-align: center;
 
 .action-sheet-cancel{
     --button-color: #194afb;
+}
+
+.ion-popover{
+    padding: 1em;
+    display:grid;
+    grid-template-rows: auto;
+    justify-items: center;
+    --width:fit-content
+}
+
+.report-user-btn{
+    margin-top: 1em;
+justify-self: stretch;
 }
 
 

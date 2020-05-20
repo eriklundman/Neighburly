@@ -10,9 +10,18 @@
     box-sizing: border-box;
     padding: 0.8em;
     border: 0.2em solid #bbd0ff;
+    margin-bottom: 0em;
 }
 
 .address-input-field:focus{
     border: 0.2em solid #194afb;
 
+}
+
+.address-list{
+    margin-top: 0em;
+    border-left: solid;
+    border-bottom: solid;
+    border-right: solid;
+    border-width: 1px 1px 1px 1px;
 }
