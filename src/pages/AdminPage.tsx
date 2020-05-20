@@ -24,7 +24,8 @@ const AdminPage: React.FC = () => {
                         incident: report.data().incident,
                         why: report.data().why_inappropriate,
                         reported_user_id: report.data().reported_user_id,
-                        type_of_incident: report.data().type
+                        type_of_incident: report.data().type,
+                        report_id: report.id
                     });
                 })
                 loadData(repArr);

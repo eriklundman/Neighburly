@@ -16,7 +16,7 @@ import {
 
 import './ReportsAdmin.css'
 import * as firebase from "firebase";
-import { blockUser, unBlockUser } from "../firebaseConfig";
+import { blockUser, unBlockUser, deleteReport } from "../firebaseConfig";
 import { closeOutline } from "ionicons/icons";
 
 
@@ -34,6 +34,7 @@ const ReportsAdmin: React.FC<any> = (props) => {
 
     const [showAlert1, setShowAlert1] = useState(false)
     const [showAlert2, setShowAlert2] = useState(false)
+    const [showAlert3, setShowAlert3] = useState(false)
 
 
     useEffect(() => {
@@ -63,7 +64,7 @@ const ReportsAdmin: React.FC<any> = (props) => {
     return (
         <IonCard>
             <IonCardHeader>
-                <IonButton className="delete-report-btn" fill="clear">
+                <IonButton className="delete-report-btn" fill="clear" onClick={() => setShowAlert3(true)} >
                     <IonIcon color="tertiary" icon={closeOutline}></IonIcon>
                 </IonButton>
             <IonCardSubtitle>
@@ -125,6 +126,20 @@ const ReportsAdmin: React.FC<any> = (props) => {
                         cssClass: 'alert-buttons',
                         handler: () => {
                             unBlockUser(props.report.reported_user_id);
+                        }
+                    }]}
+                />
+                <IonAlert
+                    isOpen={showAlert3}
+                    onDidDismiss={() => setShowAlert3(false)}
+                    header={"Delete Report"}
+                    message={"Are you sure you want to delete this report?"}
+                    buttons={[{ text: 'Cancel', cssClass: 'alert-buttons' },
+                    {
+                        text: 'Delete Report',
+                        cssClass: 'alert-buttons',
+                        handler: () => {
+                            deleteReport(props.report.report_id);
                         }
                     }]}
                 />

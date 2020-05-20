@@ -435,4 +435,12 @@ export function unBlockUser(reported_id: string){
 
 }
 
+export function deleteReport(id: string){
+  db.collection("reports").doc(id).delete().then(function(){
+    toast("Report successfully deleted!")
+  }).catch(function (error) {
+    toast("Error deleting report: " + error);
+  });
+}
+
 
