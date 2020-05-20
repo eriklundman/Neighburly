@@ -48,7 +48,7 @@ const Request: React.FC<any> = (props) => {
   let type = props.type;
   const [name, setName] = useState<any>();
   const [text, setText] = useState<any>();
-
+  const [pending, setPending] = useState("");
   const [h_stars, setH_stars] = useState(0);
   const [r_stars, setR_stars] = useState(0);
   const [stars, setStars] = useState(0);
@@ -124,14 +124,21 @@ const Request: React.FC<any> = (props) => {
       .doc(props.item.req_id)
       .onSnapshot((snapshot: any) => {
         if (snapshot.data()) {
-          if (
-            snapshot.data().h_completed === true &&
-            snapshot.data().r_completed === true
-          ) {
+          let data = snapshot.data();
+          if (data.h_completed === true && data.r_completed === true) {
             db.collection("requests").doc(props.item.req_id).update({
               completed: true,
             });
           }
+
+          if (data.helper_id === userRef.uid && data.completed === false && data.r_completed === true) {
+            setPending( props.item.r_fn + " has marked this as done");
+          }
+
+          if (data.receiver_id === userRef.uid && data.completed === false && data.h_completed === true) {
+            setPending(props.item.h_fn + " has marked this as done");
+          }
+
         }
       });
     return () => {
@@ -202,6 +209,7 @@ const Request: React.FC<any> = (props) => {
     <IonCard class={props.type + "class"}>
       <IonCardHeader>
         <IonCardSubtitle className={props.type}>{text}</IonCardSubtitle>
+        <IonBadge color="success">{pending}</IonBadge>
 
         {notice && (
           <IonBadge className="chatt-badge" color="danger">
