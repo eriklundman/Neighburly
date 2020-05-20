@@ -15,6 +15,7 @@ import {
   IonList,
   IonAlert,
   IonLabel,
+  IonActionSheet,
 } from "@ionic/react";
 import {
   chatbubblesOutline,
@@ -26,6 +27,9 @@ import {
   personCircleOutline,
   trashOutline,
   ellipsisHorizontal,
+  share,
+  heart,
+  ellipseOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { deleteActiveRequest, giveRating } from "../firebaseConfig";
@@ -66,6 +70,8 @@ const Request: React.FC<any> = (props) => {
     open: false,
     event: undefined,
   });
+
+  const [showActionSheet, setShowActionSheet] = useState(false);
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -263,12 +269,11 @@ const Request: React.FC<any> = (props) => {
             userRef.uid === props.item.h_id ? (
             <IonButtons slot="end">
               <IonButton
-                className="done-btn"
-                onClick={() => setShowAlert(true)}
+                onClick={() => setShowActionSheet(true)}
                 color="success"
-                fill="solid"
+                fill="clear"
               >
-                <IonIcon  icon={checkmarkOutline} />
+                <IonIcon icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
           ) : props.item.completed === true ? (
@@ -289,6 +294,36 @@ const Request: React.FC<any> = (props) => {
           )}
         </IonItem>
 
+        <IonActionSheet
+          isOpen={showActionSheet}
+          onDidDismiss={() => setShowActionSheet(false)}
+          buttons={[
+            {
+              text: "Mark as done",
+              icon: checkmarkOutline,
+              cssClass: "action-sheet-done",
+              handler: () => {
+                console.log("Share clicked");
+              }
+            },{
+              text: 'Delete request',
+              role:'destructive',
+              icon: trashOutline,
+              handler: () => {
+                console.log('Favorite clicked');
+              }
+            },{
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'action-sheet-cancel',
+              handler: () => {
+                console.log('Cancel clicked');
+              }
+            }
+            
+          ]}
+        ></IonActionSheet>
+
         <IonPopover
           isOpen={showMenuPopover.open}
           event={showMenuPopover.event}
@@ -296,8 +331,18 @@ const Request: React.FC<any> = (props) => {
             setShowMenuPopover({ open: false, event: undefined })
           }
         >
-          <IonItem button={true} onClick={() => setShowAlert(true)} > <IonLabel color="success" >Mark as done</IonLabel></IonItem>
-          <IonItem button={true}><IonLabel color="danger" >Delete request</IonLabel></IonItem>
+          <IonItem
+            detail={false}
+            button={true}
+            onClick={() => setShowAlert(true)}
+          >
+            <IonLabel color="success">Mark as done</IonLabel>
+            <IonIcon color="success" slot="end" icon={checkmarkOutline} />
+          </IonItem>
+          <IonItem detail={false} lines="none" button={true}>
+            <IonLabel color="danger">Delete request</IonLabel>
+            <IonIcon color="danger" slot="end" icon={trashOutline} />
+          </IonItem>
         </IonPopover>
 
         <IonAlert

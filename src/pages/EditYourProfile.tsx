@@ -10,6 +10,8 @@ import {
   IonContent,
   IonButton,
   IonAlert,
+  IonItem,
+  IonLabel,
 } from "@ionic/react";
 import { chevronBackOutline } from "ionicons/icons";
 import EditRadius from "../components/EditRadius";
@@ -114,16 +116,17 @@ const EditYourProfile: React.FC = () => {
           </IonButton>
           </div>
 
+          <div>
+            <IonItem lines="full"></IonItem>
+            <IonItem button={true} detail={false} onClick={deleteClicked} lines="full">
+            <IonLabel color="danger">
+              Delete account
+            </IonLabel>
+          </IonItem>
+          </div>
+
       </div>
       </IonContent>
-
-      <IonFooter>
-        <IonToolbar>
-          <IonButtons>
-            <IonButton color="danger" onClick={deleteClicked}>
-              Delete account
-            </IonButton>
-          </IonButtons>
 
           <IonAlert
             isOpen={showDeleteAlert}
@@ -141,8 +144,6 @@ const EditYourProfile: React.FC = () => {
               },
             ]}
           />
-        </IonToolbar>
-      </IonFooter>
     </IonPage>
   );
 };

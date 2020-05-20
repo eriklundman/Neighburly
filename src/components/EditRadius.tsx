@@ -8,7 +8,7 @@ import "./EditRadius.css";
 const EditRadius: React.FC<any> = props => {
   return (
 
-    <IonItem className="edit-radius">
+    <IonItem lines="full" className="edit-radius">
       <IonGrid>
       <IonRow className="center-radius">
       <IonIcon size="large" color="tertiary" icon={navigateCircleOutline} />

@@ -13,6 +13,7 @@ import {
   IonItem,
   IonBadge,
   IonGrid,
+  IonChip,
 } from "@ionic/react";
 import "./ProfileTab.css";
 import Profile from "../components/Profile";
@@ -79,9 +80,9 @@ const ProfileTab: React.FC = () => {
 
           <div className="text-design">
             <h6>Score</h6>
-            <IonBadge color="success" className="score-badge">
+            <IonChip color="success" className="score-badge">
               {Math.round(score)}
-            </IonBadge>
+            </IonChip>
           </div>
 
           <div className="ion-text-center">

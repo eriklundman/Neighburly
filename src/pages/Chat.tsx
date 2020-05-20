@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import * as firebase from 'firebase'
 import {
     IonContent,
@@ -7,7 +7,7 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol, IonTextarea
+    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol, IonTextarea, useIonViewDidEnter
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";
@@ -22,6 +22,7 @@ const Chat: React.FC<any> = (props) => {
     const [notice, setNotice] = useState("noNew");
     const [user1, setUser1] = useState("");
     const [user2, setUser2] = useState("");
+    const chat = useRef<HTMLIonTextareaElement>(null);
 
     const chatId = props.match.params.id;
     let unsubscribe : any;
@@ -81,6 +82,10 @@ const Chat: React.FC<any> = (props) => {
 
     });
 
+    useIonViewDidEnter(() => {
+        chat.current?.setFocus()
+    })
+
     return (
         <IonPage>
             {notice === "noNew" || notice === id ? console.log() : updateNotice(chatId)}
@@ -120,6 +125,7 @@ const Chat: React.FC<any> = (props) => {
                 <IonItem color="light">
                     <div className="send-area">
                     <IonTextarea
+                            ref={chat}
                             autoGrow={true}
                             rows={1}
                             className="design-text-area"

@@ -5,6 +5,7 @@ import { newPw } from "../firebaseConfig";
 import * as firebase from 'firebase'
 import { toast } from '../toast';
 import { chevronBackOutline } from 'ionicons/icons';
+import './UpdatePassword.css'
 
 
 const UpdatePassword: React.FC = () => {
@@ -54,7 +55,6 @@ const UpdatePassword: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <IonGrid>
 
                     <IonList>
                         <IonItem>
@@ -73,10 +73,9 @@ const UpdatePassword: React.FC = () => {
                                 type="password"
                                 onIonChange={(e: any) => setNewControlPassword(e.target.value)} /></IonItem>
                     </IonList>
-                    <IonRow>
-                        <IonButton text-color="tertiary" className="ion-text-capitalize" expand="full" onClick={changePw}>Update Password</IonButton>
-                    </IonRow>
-                </IonGrid>
+
+                        <IonButton text-color="tertiary" className="update-password-btn" expand="block" onClick={changePw}>Update Password</IonButton>
+
             </IonContent>
         </IonPage>
 
