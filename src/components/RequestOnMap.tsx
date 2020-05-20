@@ -144,9 +144,9 @@ const RequestOnMap: React.FC<any> = (props) => {
             </IonPopover>
 
       <IonCardContent className="card-content">
-        <IonItem lines="none">
+        <IonItem lines="none" onClick={() => setShowHelpAlert(true)}>
           <IonIcon slot="start" color="tertiary" icon={icon} />
-          <div className="rqst-des">
+          <div className="rqst-des" >
           {props.item.des}
           </div>
 
