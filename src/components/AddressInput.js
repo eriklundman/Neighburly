@@ -69,7 +69,7 @@ const PlacesAutocomplete = (props) => {
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Request location, be as specific as you want..."
+        placeholder="Request location..."
       />
 
       {/* We can use the "status" to decide whether we should display the dropdown or not */}

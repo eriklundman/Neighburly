@@ -68,8 +68,6 @@ const MakeRequest: React.FC = () => {
               </IonButtons>
             </IonToolbar>
         </IonHeader>
-          <div className="add-grid">
-            <div>
           <IonRadioGroup
             value={selected}
             onIonChange={(e) => setSelected(e.detail.value)}>
@@ -104,10 +102,9 @@ const MakeRequest: React.FC = () => {
                 </IonItem>
 
           </IonRadioGroup>
-          </div>
         <div>
         <IonItem lines="none">
-          <b>Short description (maximum 100 characters)</b>
+          <b>Short description (max 100 characters)</b>
           </IonItem>
         <IonItem lines="none">
         <div className="information-div">
@@ -120,9 +117,8 @@ const MakeRequest: React.FC = () => {
          
 
         </div>
-        <div>
           <IonItem lines="none">
-        <b>Where do you want help?</b>
+        <b>Where do you want help? Be as specific as you want!</b>
         </IonItem >
         <IonItem lines="none">
         <PlacesAutocomplete coords={coords} setCoords={setCoords}/>
@@ -130,8 +126,7 @@ const MakeRequest: React.FC = () => {
 
         <IonButton className="submit-rqst" expand='block' onClick={sendRequest}>Submit request
         </IonButton>
-        </div>
-        </div>
+        
         </IonContent>
         </IonPage>
 );
