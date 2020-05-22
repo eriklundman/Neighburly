@@ -11,6 +11,7 @@ import {
 import Request from "../components/Request";
 import * as firebase from "firebase";
 import "./Help.css";
+import {deleteActiveRequest} from "../firebaseConfig";
 
 const db = firebase.firestore();
 
@@ -47,7 +48,13 @@ const Help: React.FC = () => {
           h_fn: req.data().helper_fn,
           h_ln: req.data().helper_ln,
           chatId: req.data().chatId,
+          h_deleted: req.data().h_deleted,
+          r_deleted: req.data().r_deleted
         });
+
+        if (req.data().h_deleted && req.data().r_deleted) {
+          deleteActiveRequest(req.id, req.data().chatId);
+        }
       });
       loadData(reqArr);
     });
@@ -97,9 +104,9 @@ const Help: React.FC = () => {
           {defValue === "activehelps"
             ? info.map((item: any, index: number) =>
                 item.accepted === true && item.completed === false ? (
-                  item.h_id === id ? (
+                  item.h_id === id && item.h_deleted === false ? (
                     <Request key={index} item={item} type={"youWillHelp"} />
-                  ) : item.r_id === id ? (
+                  ) : item.r_id === id && item.r_deleted === false ? (
                     <Request key={index} item={item} type={"helpingYou"} />
                   ) : (
                   console.log()
@@ -109,9 +116,9 @@ const Help: React.FC = () => {
                 )
               )
             : info.map((item: any, index: number) =>
-                item.completed === true && item.h_id === id ? (
+                item.completed === true && item.h_id === id && item.h_deleted === false ? (
                   <Request key={index} item={item} type={"iHelped"} />
-                ) : item.completed === true && item.r_id === id ? (
+                ) : item.completed === true && item.r_id === id && item.r_deleted === false ? (
                   <Request key={index} item={item} type={"beenHelped"} />
                 ) : (
                   console.log()

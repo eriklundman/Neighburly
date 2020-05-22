@@ -97,7 +97,7 @@ export async function createRequest(text: string, selected: string, coords: any)
     db.collection("users").doc(userRef.uid).get().then((docu: any) => {
       if (docu !== undefined) {
         db.collection('requests').doc().set({
-          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, r_completed: false, h_completed: false
+          receiver_id: userRef.uid, description: text, type: selected, coordinates: coords, receiver_fn: docu.data().firstname, receiver_ln: docu.data().lastname, accepted: false, completed: false, r_completed: false, h_completed: false, r_deleted: false, h_deleted: false
         });
       }
     });
@@ -268,9 +268,9 @@ export async function helpRequest(request_id: any) {
 
 export function deleteRequest(request_id: any) {
   db.collection("requests").doc(request_id).delete().then(function () {
-    toast("Request successfully deleted!");
+
   }).catch(function (error) {
-    toast("Error removing request");
+
   });
 }
 

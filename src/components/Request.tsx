@@ -43,15 +43,21 @@ const Request: React.FC<any> = (props) => {
   const [notice, setNotice] = useState<any>();
   const [showAlert, setShowAlert] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
+  const [showForceRateAlert, setShowForceRateAlert] = useState(false);
+  const [showHasRatedAlert, setShowHasRatedAlert] = useState(false);
+  const [hasRated, setHasRated] = useState(false);
   const [rating, setRating] = useState(0);
   let userRef: any = firebase.auth().currentUser;
   let type = props.type;
   const [name, setName] = useState<any>();
   const [text, setText] = useState<any>();
   const [pending, setPending] = useState("");
+  const [deleteMessage, setDeleteMessage] = useState("");
+  const [completeMessage, setCompleteMessage] = useState("");
   const [h_stars, setH_stars] = useState(0);
   const [r_stars, setR_stars] = useState(0);
   const [stars, setStars] = useState(0);
+  const [otherAccept, setOtherAccept] = useState(false);
 
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -133,10 +139,29 @@ const Request: React.FC<any> = (props) => {
 
           if (data.helper_id === userRef.uid && data.completed === false && data.r_completed === true) {
             setPending( props.item.r_fn + " has marked this as done");
+            //här måste man ratea innan delete
+            setOtherAccept(true);
           }
 
           if (data.receiver_id === userRef.uid && data.completed === false && data.h_completed === true) {
             setPending(props.item.h_fn + " has marked this as done");
+            //här måste man ratera innan delete
+            setOtherAccept(true);
+          }
+
+          if (data.helper_id === userRef.uid && data.completed === false && data.h_completed === true) {
+            setCompleteMessage("Waiting for " + props.item.r_fn + " to mark as done");
+            setHasRated(true);
+            //här ska man inte kunna ratea igen
+          }
+          if (data.receiver_id === userRef.uid && data.completed === false && data.r_completed === true) {
+            setCompleteMessage("Waiting for " + props.item.h_fn + " to mark as done");
+            setHasRated(true);
+            //här ska man inte kunna ratea igen
+          }
+          if (data.r_deleted || data.h_deleted) {
+            setDeleteMessage("Other user has deleted request")
+            setCompleteMessage("");
           }
 
         }
@@ -200,6 +225,25 @@ const Request: React.FC<any> = (props) => {
     }
   };
 
+  function removeRequest() {
+    if (userRef.uid === props.item.h_id) {
+
+      db.collection("requests").doc(props.item.req_id).update({
+        h_deleted: true,
+      });
+      db.collection("chats").doc(props.item.chatId).update( {
+        participants: firebase.firestore.FieldValue.arrayRemove(userRef.uid)
+      })
+    } else if (userRef.uid === props.item.r_id) {
+      db.collection("requests").doc(props.item.req_id).update({
+        r_deleted: true,
+      });
+      db.collection("chats").doc(props.item.chatId).update( {
+        participants: firebase.firestore.FieldValue.arrayRemove(userRef.uid)
+      })
+    }
+  }
+
   const goToReportUser = () => {
     setShowPopover({ open: false, event: undefined });
     history.push("/reportuser", { req: props.item });
@@ -210,6 +254,8 @@ const Request: React.FC<any> = (props) => {
       <IonCardHeader>
         <IonCardSubtitle className={props.type}>{text}</IonCardSubtitle>
         <IonBadge color="success">{pending}</IonBadge>
+        <IonBadge color="danger">{deleteMessage}</IonBadge>
+        <IonBadge>{completeMessage}</IonBadge>
 
         {notice && (
           <IonBadge className="chatt-badge" color="danger">
@@ -284,9 +330,16 @@ const Request: React.FC<any> = (props) => {
               </IonButton>
             </IonButtons>
           ) : (
-            <IonButtons slot="end">
-              <IonBadge>WAITING...</IonBadge>
-            </IonButtons>
+              <IonButtons slot="end">
+                <IonButton
+                    onClick={(e) =>
+                        setShowActionSheet(true)
+                    }
+                    fill="clear"
+                >
+                  <IonIcon color="tertiary" icon={ellipsisHorizontal} />
+                </IonButton>
+              </IonButtons>
           )}
         </IonItem>
 
@@ -299,14 +352,14 @@ const Request: React.FC<any> = (props) => {
               icon: checkmarkOutline,
               cssClass: "action-sheet-done",
               handler: () => {
-                setShowAlert(true);
+                hasRated ? setShowHasRatedAlert(true) : setShowAlert(true);
               }
             },{
               text: 'Delete request',
               role:'destructive',
               icon: trashOutline,
               handler: () => {
-                console.log('Favorite clicked');
+                otherAccept ? setShowForceRateAlert(true) : setShowDeleteAlert(true)
               }
             },{
               text: 'Cancel',
@@ -328,10 +381,37 @@ const Request: React.FC<any> = (props) => {
               text: "Delete",
               cssClass: "alert-buttons",
               handler: () => {
-                deleteActiveRequest(props.item.req_id, props.item.chatId);
+                removeRequest()
               },
             },
           ]}
+        />
+
+        <IonAlert
+            isOpen={showForceRateAlert}
+            onDidDismiss={() => setShowForceRateAlert(false)}
+            header={"Cannot delete"}
+            message={"You have to rate the other person before you can delete"}
+            buttons={[
+              { text: "Cancel", cssClass: "alert-buttons" },
+              {
+                text: "Rate now",
+                cssClass: "alert-buttons",
+                handler: () => {
+                  setShowAlert(true)
+                },
+              },
+            ]}
+        />
+
+        <IonAlert
+            isOpen={showHasRatedAlert}
+            onDidDismiss={() => setShowHasRatedAlert(false)}
+            header={"Already rated"}
+            message={"You have already rated this person"}
+            buttons={[
+              { text: "Cancel", cssClass: "alert-buttons" },
+            ]}
         />
 
         <IonPopover
