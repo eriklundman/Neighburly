@@ -6,14 +6,11 @@ import {
   IonSegmentButton,
   IonLabel,
   IonRow,
-  IonCol,
   IonHeader,
   IonImg,
   IonToolbar,
-  IonItem,
-  IonBadge,
-  IonGrid,
   IonChip,
+
 } from "@ionic/react";
 import "./ProfileTab.css";
 import Profile from "../components/Profile";
@@ -59,14 +56,14 @@ const ProfileTab: React.FC = () => {
       </IonHeader>
 
       <IonRow className="ion-align-items-stretch">
-        <IonSegment 
+        <IonSegment className="segment-profile"
           value={value}
           onIonChange={(e) => console.log("Segment selected", e.detail.value)}
         >
-          <IonSegmentButton className="segment-profile" onClick={() => setValue("helper")} value="helper">
+          <IonSegmentButton onClick={() => setValue("helper")} value="helper">
             <IonLabel color="secondary">Helper</IonLabel>
           </IonSegmentButton>
-          <IonSegmentButton className="segment-profile"
+          <IonSegmentButton
             onClick={() => setValue("receiver")}
             value="receiver"
           >
@@ -74,29 +71,18 @@ const ProfileTab: React.FC = () => {
           </IonSegmentButton>
         </IonSegment>
       </IonRow>
-      <IonContent>
+      <IonContent scrollY={false}>
         <div className="profile-grid">
           <div>
             <Profile fn={fn} ln={ln} />
           </div>
-         
-      <div className="info-text">
-            {value === "helper" ? (
-              <div>
-                <h6>You have helped</h6>
-                <h2>{helps}</h2>
-                <h6>people</h6>            
-              </div>
-            ) : (
-              
-              <div>
-                <h6>You have been helped</h6>
-                <h2>{receives}</h2>
-                <h6>times</h6>
-              </div>
-            )}
-          </div>
 
+          <div className="text-design">
+            <h6>Score</h6>
+            <IonChip color="success" className="score-badge">
+              {Math.round(score)}
+            </IonChip>
+          </div>
 
           <div className="text-design">
             <h6 className="rate-text">Rating</h6>
@@ -112,11 +98,25 @@ const ProfileTab: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-design">
-            <h6>Score</h6>
-            <IonChip color="success" className="score-badge">
-              {Math.round(score)}
-            </IonChip>
+          <div className="info-text">
+            {value === "helper" ? (
+              <div>
+                <h6>You have helped</h6>
+                <IonChip color="secondary" className="score-badge">
+                {helps}
+                </IonChip>
+                <h6>people</h6>            
+              </div>
+            ) : (
+              
+              <div>
+                <h6>You have been helped</h6>
+                <IonChip color="secondary" className="score-badge">
+                {receives}
+                </IonChip>
+                <h6>times</h6>
+              </div>
+            )}
           </div>
           <div>
               <SettingsBtn />

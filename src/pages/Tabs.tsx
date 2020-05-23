@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 import {
     IonIcon,
@@ -9,7 +9,7 @@ import {
     IonTabs,
     IonBadge, IonModal, IonContent, IonButtons, IonButton, IonItem, IonCard
 } from '@ionic/react';
-import { person, navigateCircle, heart, menu } from 'ionicons/icons';
+import { person, navigateCircle, heart, menu, menuOutline, heartOutline, navigateCircleOutline, personOutline } from 'ionicons/icons';
 import MenuTab from './MenuTab';
 import HelpTab from './HelpTab';
 import MapTab from './MapTab';
@@ -40,6 +40,11 @@ const Tabs: React.FC = () => {
     const [helpAccepted, setHelpAccepted] = useState([]);
     const[rating, setRating] = useState(0);
     const [messageCounter, setMessageCounter] = useState(0);
+
+    const [menuIcon, setMenuIcon] = useState(menuOutline);
+    const [helpIcon, setHelpIcon] = useState(heartOutline);
+    const [mapIcon, setMapIcon] = useState(navigateCircle);
+    const [profileIcon, setProfileIcon] = useState(personOutline);
 
  //listener for new messages
   useEffect(() => {
@@ -133,7 +138,33 @@ const Tabs: React.FC = () => {
       removeNoticeHelper(req_id);
 
   }
+
+  function resetTabIcons() {
+    setMenuIcon(menuOutline);
+    setHelpIcon(heartOutline);
+    setMapIcon(navigateCircleOutline);
+    setProfileIcon(personOutline);
+  }
   
+  function setMenuTabIcon() {
+      resetTabIcons();
+      setMenuIcon(menu)
+  }
+
+  function setHelpTabIcon() {
+    resetTabIcons();
+    setHelpIcon(heart)
+}
+
+function setMapTabIcon() {
+    resetTabIcons();
+    setMapIcon(navigateCircle)
+}
+
+function setProfileTabIcon() {
+    resetTabIcons();
+    setProfileIcon(person)
+}
 
 
   return (
@@ -154,21 +185,21 @@ const Tabs: React.FC = () => {
         <Route path="/tabs" render={() => <Redirect to="/mapTab"/>} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton className="tabColor" tab="menuTab" href="/menuTab">
-          <IonIcon icon={menu} />
+        <IonTabButton className="tabColor" tab="menuTab" href="/menuTab" onClick={()=>setMenuTabIcon()}>
+          <IonIcon icon={menuIcon} />
           <IonLabel >Menu</IonLabel>
         </IonTabButton>
-        <IonTabButton className="tabColor" tab="helpTab" href="/helpTab">
+        <IonTabButton className="tabColor" tab="helpTab" href="/helpTab" onClick={()=>setHelpTabIcon()}>
           {newMessage && <IonBadge color="danger">{messageCounter}</IonBadge>}
-          <IonIcon icon={heart} />
+          <IonIcon icon={helpIcon} />
           <IonLabel>Helps</IonLabel>
         </IonTabButton>
-        <IonTabButton className="tabColor" tab="mapTab" href="/mapTab">
-          <IonIcon icon={navigateCircle} />
+        <IonTabButton className="tabColor" tab="mapTab" href="/mapTab" onClick={()=>setMapTabIcon()}>
+          <IonIcon icon={mapIcon} />
           <IonLabel>Requests</IonLabel>
         </IonTabButton>
-        <IonTabButton className="tabColor" tab="profileTab" href="/profileTab">
-          <IonIcon icon={person} />
+        <IonTabButton className="tabColor" tab="profileTab" href="/profileTab" onClick={()=>setProfileTabIcon()}>
+          <IonIcon icon={profileIcon} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>

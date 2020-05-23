@@ -18,6 +18,7 @@ import {
   cartOutline,
   heart,
   trashOutline,
+  closeOutline,
 } from "ionicons/icons";
 import "./Request.css";
 import { deleteRequest, waitForAcceptRequest } from "../firebaseConfig";
@@ -106,6 +107,15 @@ const RequestOnMap: React.FC<any> = (props) => {
         event={showPopover.event}
         onDidDismiss={(e) => setShowPopover({ open: false, event: undefined })}
       >
+        <IonButton
+              color="tertiary"
+              onClick={()=>setShowPopover({open:false, event:undefined})}
+              className="popover-close-btn"
+              fill="clear"
+            >
+              <IonIcon icon={closeOutline}></IonIcon>
+            </IonButton>
+
         <div className="ion-popover">
           <div className="profile-name-request">
             <IonIcon

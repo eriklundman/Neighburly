@@ -27,6 +27,7 @@ import {
   personCircleOutline,
   trashOutline,
   ellipsisHorizontal,
+  closeOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
 import { deleteActiveRequest, giveRating } from "../firebaseConfig";
@@ -143,7 +144,11 @@ const Request: React.FC<any> = (props) => {
             setOtherAccept(true);
           }
 
-          if (data.receiver_id === userRef.uid && data.completed === false && data.h_completed === true) {
+          if (
+            data.receiver_id === userRef.uid &&
+            data.completed === false &&
+            data.h_completed === true
+          ) {
             setPending(props.item.h_fn + " has marked this as done");
             //här måste man ratera innan delete
             setOtherAccept(true);
@@ -163,7 +168,6 @@ const Request: React.FC<any> = (props) => {
             setDeleteMessage("Other user has deleted request")
             setCompleteMessage("");
           }
-
         }
       });
     return () => {
@@ -298,12 +302,7 @@ const Request: React.FC<any> = (props) => {
           userRef &&
           userRef.uid === props.item.r_id ? (
             <IonButtons slot="end">
-              <IonButton
-                onClick={(e) =>
-                  setShowActionSheet(true)
-                }
-                fill="clear"
-              >
+              <IonButton onClick={(e) => setShowActionSheet(true)} fill="clear">
                 <IonIcon color="tertiary" icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
@@ -311,10 +310,7 @@ const Request: React.FC<any> = (props) => {
             userRef &&
             userRef.uid === props.item.h_id ? (
             <IonButtons slot="end">
-              <IonButton
-                onClick={() => setShowActionSheet(true)}
-                fill="clear"
-              >
+              <IonButton onClick={() => setShowActionSheet(true)} fill="clear">
                 <IonIcon color="tertiary" icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
@@ -415,64 +411,61 @@ const Request: React.FC<any> = (props) => {
         />
 
         <IonPopover
-        cssClass="ion-popover"
+          cssClass="ion-popover"
           animated={true}
           isOpen={showPopover.open}
           event={showPopover.event}
-          onDidDismiss={() =>
-            setShowPopover({ open: false, event: undefined })
-          }
+          onDidDismiss={() => setShowPopover({ open: false, event: undefined })}
         >
           <div className="ion-popover">
+            <IonButton
+              color="tertiary"
+              onClick={()=>setShowPopover({open:false, event:undefined})}
+              className="popover-close-btn"
+              fill="clear"
+            >
+              <IonIcon icon={closeOutline}></IonIcon>
+            </IonButton>
 
-              <div className="profile-name-request">
-                <IonIcon
-                  slot="end"
-                  size="large"
-                  color="tertiary"
-                  icon={personCircleOutline}
-                />
-                {name}
-              </div>
+            <div className="profile-name-request">
+              <IonIcon
+                slot="end"
+                size="large"
+                color="tertiary"
+                icon={personCircleOutline}
+              />
+              {name}
+            </div>
 
             {userRef && userRef.uid === props.item.h_id ? (
-
-                <div style={{ fontSize: 27 }} className="profile-name-request">
-                  <StarRatingComponent
-                    name="rate1"
-                    starCount={5}
-                    value={r_stars}
-                    editing={false}
-                    starColor="#194afb"
-                    emptyStarColor="#bbd0ff"
-                  />
-                </div>
-
+              <div style={{ fontSize: 27 }} className="profile-name-request">
+                <StarRatingComponent
+                  name="rate1"
+                  starCount={5}
+                  value={r_stars}
+                  editing={false}
+                  starColor="#194afb"
+                  emptyStarColor="#bbd0ff"
+                />
+              </div>
             ) : (
-
-                <div style={{ fontSize: 27 }} className="profile-name-request">
-                  <StarRatingComponent
-                    name="rate1"
-                    starCount={5}
-                    value={h_stars}
-                    editing={false}
-                    starColor="#194afb"
-                    emptyStarColor="#bbd0ff"
-                  />
-                </div>
-
+              <div style={{ fontSize: 27 }} className="profile-name-request">
+                <StarRatingComponent
+                  name="rate1"
+                  starCount={5}
+                  value={h_stars}
+                  editing={false}
+                  starColor="#194afb"
+                  emptyStarColor="#bbd0ff"
+                />
+              </div>
             )}
 
-              <div className="report-user-btn">
-                <IonButton
-                  expand="block"
-                  color="danger"
-                  onClick={goToReportUser}
-                >
-                  Report user
-                </IonButton>
-              </div>
-
+            <div className="report-user-btn">
+              <IonButton expand="block" color="danger" onClick={goToReportUser}>
+                Report user
+              </IonButton>
+            </div>
           </div>
         </IonPopover>
       </IonCardContent>

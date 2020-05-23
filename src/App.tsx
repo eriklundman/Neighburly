@@ -6,13 +6,12 @@ import {
   IonSpinner
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
+import '@ionic/react/css/structure.css';
 import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import TermsOfUseRegister from './pages/TermsOfUseRegister';
 import Chat from "./pages/Chat";
-
-
 
 
 /* Core CSS required for Ionic components to work properly */

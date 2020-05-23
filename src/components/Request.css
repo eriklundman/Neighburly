@@ -125,7 +125,7 @@ text-align: center;
 }
 
 .ion-popover{
-    padding: 1em;
+    padding: 2em 1em;
     display:grid;
     grid-template-rows: auto;
     justify-items: center;
@@ -134,7 +134,13 @@ text-align: center;
 
 .report-user-btn{
     margin-top: 1em;
-justify-self: stretch;
+    justify-self: stretch;
+}
+
+.popover-close-btn{
+    position: absolute;
+    top:0;
+    right:0;
 }
 
 

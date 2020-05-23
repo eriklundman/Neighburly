@@ -278,6 +278,7 @@ class SimpleMap extends React.Component {
                   style={{
                     position: "absolute",
                     transform: "translate(-50%, -100%)",
+                    height: 'auto'
                   }}
                 >
                   <IonIcon size="large" slot="icon-only" icon={ico} />
@@ -296,7 +297,7 @@ class SimpleMap extends React.Component {
                   style={{
                     position: "absolute",
                     transform: "translate(-50%, -100%)",
-                    height: "fit-content"
+                    height: 'auto'
                   }}
                 >
                   <IonIcon size="large" slot="icon-only" icon={ico} />
