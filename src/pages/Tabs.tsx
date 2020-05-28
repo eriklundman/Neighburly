@@ -6,7 +6,7 @@ import {
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
-    IonTabs,
+    IonTabs, 
     IonBadge, IonModal, IonContent, IonButtons, IonButton, IonItem, IonCard
 } from '@ionic/react';
 import { person, navigateCircle, heart, menu, menuOutline, heartOutline, navigateCircleOutline, personOutline } from 'ionicons/icons';

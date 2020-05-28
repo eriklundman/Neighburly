@@ -96,7 +96,7 @@ const RequestOnMap: React.FC<any> = (props) => {
             </IonButton>
           </div>
         ) : (
-          <h3 color="tertiary">Your Own Request</h3>
+          <h3 className="your-request">Your request</h3>
         )}
       </IonCardHeader>
 

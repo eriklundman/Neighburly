@@ -45,7 +45,7 @@ const Login: React.FC = () => {
       </IonHeader>
       <IonLoading spinner="circles" message="Please wait..." duration={0} isOpen={busy} />
       <IonContent>
-
+          <div className="login">
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>
@@ -69,7 +69,7 @@ const Login: React.FC = () => {
         <IonItem lines="none">
         <div>Forgot password? <Link className="link-color" to="/forgotpassword">Reset password!</Link> </div>
         </IonItem>
- 
+        </div>
 
       </IonContent>
     </IonPage>

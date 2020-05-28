@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect} from "react";
+import { Link } from 'react-router-dom';
+
 import {
   IonContent,
   IonPage,
@@ -148,7 +150,7 @@ const MapTab: React.FC = () => {
             className="changeInfo">
               <IonIcon icon={informationCircleOutline}></IonIcon>
               <div>
-              Go to <b> Profile</b> to edit your radius
+              <p className="radius-info">Go to <Link onClick={() => setShowModal(false)} className="link-style" to="/profileTab"> <b>Profile</b></Link> to edit your radius</p>
               </div>
             </div>
             </IonFooter>

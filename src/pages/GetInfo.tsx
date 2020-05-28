@@ -44,7 +44,7 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>The map!</h2>
+        <h2>The map</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoMap.png"/>
@@ -57,20 +57,20 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Make a help request!</h2>
+        <h2>Make a help request</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoAdd.png"/>
         </div>
         <div className="text-container">
-        <p>After klicking the "add request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
+        <p>After clicking the "add request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Help someone!</h2>
+        <h2>Help someone</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoHelp.png"/>
@@ -83,7 +83,7 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Your profile!</h2>
+        <h2>Your profile</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoProfile.png"/>
@@ -96,7 +96,7 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Change your radius!</h2>
+        <h2>Change your radius</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoRadius.png"/>
@@ -109,7 +109,7 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Your requests!</h2>
+        <h2>Your requests</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/logga3.png"/>
@@ -122,13 +122,13 @@ const GetInfo: React.FC = () => {
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>If you forget!</h2>
+        <h2>If you forget</h2>
         </div>
         <div className="image-container">
         <IonImg className="image-slide" src="assets/icon/infoMenu.png"/>
         </div>
         <div className="text-container">
-        <p>You will always be able to read this information in the menu under the <b className="text-success">"info"</b> section.</p>
+        <p>You will always be able to read this information in the menu under the <b className="text-success">"info"</b> section. Don't forget to check if you made it on the <b className="text-danger">top list</b>!</p>
         </div>
         </div>
       </IonSlide>

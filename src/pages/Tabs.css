@@ -6,9 +6,7 @@
     --color: var(--ion-tab-bar-color, var(--ion-color-step-600, #65658c));
     --color-selected: #194afb;
 }
-.tabColor:focus{
-    font-weight: bold;
-}
+
 
 
 .accepted-modal {

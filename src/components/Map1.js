@@ -244,8 +244,9 @@ class SimpleMap extends React.Component {
             subHeader={this.state.reqType}
             message={this.state.des}
             buttons={[
-              "Cancel",
+              {text: "Cancel", cssClass:"alert-buttons"},
               {
+                cssClass:"alert-buttons",
                 text: "Delete",
                 handler: () => {
                   this.eraseRequest();

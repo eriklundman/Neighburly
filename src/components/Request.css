@@ -99,7 +99,10 @@ text-align: center;
 
 .alert-buttons{
     color: #194afb !important; 
+    text-align: center;
 }
+
+
 
 .rqst-des{
     -webkit-hyphens: auto;
@@ -142,5 +145,7 @@ text-align: center;
     top:0;
     right:0;
 }
-
-
+ 
+.your-request{
+    color:#001e57;
+}
