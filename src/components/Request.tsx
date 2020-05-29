@@ -143,7 +143,7 @@ const Request: React.FC<any> = (props) => {
             setOtherAccept(true);
           }
 
-          if (
+          else if (
             data.receiver_id === userRef.uid &&
             data.completed === false &&
             data.h_completed === true
@@ -152,21 +152,24 @@ const Request: React.FC<any> = (props) => {
             //här måste man ratera innan delete
             setOtherAccept(true);
           }
+          else (setPending(""))
 
           if (data.helper_id === userRef.uid && data.completed === false && data.h_completed === true) {
             setCompleteMessage("Waiting for " + props.item.r_fn + " to mark as done");
             setHasRated(true);
             //här ska man inte kunna ratea igen
           }
-          if (data.receiver_id === userRef.uid && data.completed === false && data.r_completed === true) {
+          else if (data.receiver_id === userRef.uid && data.completed === false && data.r_completed === true) {
             setCompleteMessage("Waiting for " + props.item.h_fn + " to mark as done");
             setHasRated(true);
             //här ska man inte kunna ratea igen
-          }
+          } else {setCompleteMessage("")}
+
           if (data.r_deleted || data.h_deleted) {
             setDeleteMessage("Other user has deleted request")
             setCompleteMessage("");
           }
+          else {setDeleteMessage("")}
         }
       });
     return () => {

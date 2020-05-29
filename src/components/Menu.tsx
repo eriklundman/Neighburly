@@ -22,14 +22,14 @@ const Menu: React.FC = () => {
   return (
     <IonContent>
     <IonLoading message="Logging out..." duration={0} isOpen={busy}/>
-  <IonItem detail={true} routerLink="/menuTab/top10/">
+  <IonItem detail={true} routerLink="/top10">
   <IonLabel> Top 10  </IonLabel>
   <IonIcon color="warning" icon={trophyOutline}></IonIcon>
 </IonItem>
-<IonItem detail={true} routerLink="/menuTab/info/">
+<IonItem detail={true} routerLink="/info">
   <IonLabel> Info </IonLabel>
 </IonItem>
-<IonItem detail={true} routerLink="/menuTab/termsandconditions/">
+<IonItem detail={true} routerLink="/termsandconditions">
   <IonLabel> Terms & Conditions </IonLabel>
 </IonItem>
 <IonItem button onClick = {logout}>

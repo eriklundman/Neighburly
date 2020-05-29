@@ -50,6 +50,7 @@ const Tabs: React.FC = () => {
   useEffect(() => {
     let boolArray: boolean[] = [];
     let userRef : any = firebase.auth().currentUser;
+    seenTutorial(userRef.uid);
     let unsubscribe = db.collection("chats").where('participants', 'array-contains',
         userRef.uid)
         .onSnapshot(function (snapshot) {
@@ -165,6 +166,17 @@ function setProfileTabIcon() {
     resetTabIcons();
     setProfileIcon(person)
 }
+function seenTutorial(userId : any) {
+   let docRef = db.collection("users").doc(userId);
+       docRef.get().then((data : any) => {
+        if (!data.data().seen_tutorial) {
+            history.push("/info")
+            docRef.update({
+                seen_tutorial: true
+            })
+        }
+    })
+}
 
 
   return (
@@ -172,9 +184,9 @@ function setProfileTabIcon() {
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/:tab(menuTab)" component={MenuTab} exact={true} />
-        <Route path="/:tab(menuTab)/top10/" component={TopTen}/>
-        <Route path="/:tab(menuTab)/info/" component={GetInfo}/>
-        <Route path="/:tab(menuTab)/termsandconditions/" component={TermsOfUse}/>
+        <Route path="/top10" component={TopTen}/>
+        <Route path="/info" component={GetInfo}/>
+        <Route path="/termsandconditions" component={TermsOfUse}/>
         <Route path="/:tab(helpTab)" component={HelpTab} exact={true} />
         <Route path="/:tab(mapTab)" component={MapTab} exact={true} />
         <Route path="/:tab(mapTab)/makerequest/" component={MakeRequest}/>
@@ -224,7 +236,7 @@ function setProfileTabIcon() {
                 <h5 className="info-text">Your request:</h5>
                 <p className="info-text">{item.description}</p>
 
-                <p className="info-text" style={{fontWeight:"bold"}}>Accept to chat and make arrangements</p>
+                <p className="info-text" style={{fontWeight:"bold"}}>Accept the help so you can chat and make arrangements</p>
 
                 <IonItem></IonItem>
             <IonButtons className="buttons-accepted">

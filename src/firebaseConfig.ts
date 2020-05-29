@@ -104,7 +104,7 @@ export async function createRequest(text: string, selected: string, coords: any)
     return true;
   }
   catch {
-    toast("Requesten skickades ej");
+    toast("Failed to make request, make sure you have an internet connection", 4000);
     return false;
   }
 
