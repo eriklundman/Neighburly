@@ -12,9 +12,7 @@ import {
   IonCardSubtitle,
   IonCardHeader,
   IonPopover,
-  IonList,
   IonAlert,
-  IonLabel,
   IonActionSheet,
 } from "@ionic/react";
 import {
@@ -58,8 +56,6 @@ const Request: React.FC<any> = (props) => {
   const [r_stars, setR_stars] = useState(0);
   const [stars, setStars] = useState(0);
   const [otherAccept, setOtherAccept] = useState(false);
-  const [showHastoRateAlert, setshowHastoRateAlert] = useState(false);
-
 
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -210,7 +206,7 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     if (rating === 0) {
-      setshowHastoRateAlert(true);
+      return toast("You have to rate before you are done!");
     } else {
       setShowAlert(false);
 
@@ -329,7 +325,7 @@ const Request: React.FC<any> = (props) => {
               </IonButton>
             </IonButtons>
           ) : (
-            <IonButtons slot="end">
+              <IonButtons slot="end">
                 <IonButton
                     onClick={(e) =>
                       hasRated ? setShowActionSheetRated(true): setShowActionSheet(true)
@@ -338,8 +334,7 @@ const Request: React.FC<any> = (props) => {
                 >
                   <IonIcon color="tertiary" icon={ellipsisHorizontal} />
                 </IonButton>
-                </IonButtons>
-
+              </IonButtons>
           )}
         </IonItem>
 
@@ -386,7 +381,7 @@ const Request: React.FC<any> = (props) => {
               role: 'cancel',
               cssClass: 'action-sheet-cancel',
             }
-
+            
           ]}
         ></IonActionSheet>
 
@@ -424,34 +419,6 @@ const Request: React.FC<any> = (props) => {
             ]}
         />
 
-<<<<<<< Updated upstream
-        <IonAlert
-            isOpen={showHasRatedAlert}
-            onDidDismiss={() => setShowHasRatedAlert(false)}
-            header={"Already rated"}
-            message={"You have already rated this person"}
-            buttons={[
-              { text: "Cancel", cssClass: "alert-buttons",
-             },
-            ]}
-        />
-
-<IonAlert
-            isOpen={showHastoRateAlert}
-            onDidDismiss={() => setshowHastoRateAlert(false)}
-            header={"Give rating"}
-            message={"You have to rate before you can mark the request as done"}
-            buttons={[
-              { text: "Ok", cssClass: "alert-buttons",
-              handler: () => {
-                setShowAlert(true)
-              },
-             }, 
-            ]}
-        />
-
-=======
->>>>>>> Stashed changes
         <IonPopover
           cssClass="ion-popover"
           animated={true}

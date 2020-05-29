@@ -189,10 +189,10 @@ class SimpleMap extends React.Component {
 
   createMapOptions = (maps) => {
     return{zoomControlOptions: {
-      position: maps.ControlPosition.RIGHT_CENTER,
       style: maps.ZoomControlStyle.SMALL
     },
-    fullscreenControl:false
+    fullscreenControl:false,
+    zoomControl: false
   }
   }
 
