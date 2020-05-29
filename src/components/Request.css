@@ -149,3 +149,13 @@ text-align: center;
 .your-request{
     color:#001e57;
 }
+
+.request-state-badge{
+    margin-top: 0.3em;
+}
+
+.request-name{
+    margin:0;
+}
+
+

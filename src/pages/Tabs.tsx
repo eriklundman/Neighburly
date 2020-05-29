@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { Redirect, Route, useHistory } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { Redirect, Route, useHistory} from 'react-router-dom';
 import {
     IonIcon,
     IonLabel,
@@ -158,7 +158,7 @@ const Tabs: React.FC = () => {
 
 function setMapTabIcon() {
     resetTabIcons();
-    setMapIcon(navigateCircle)
+    setMapIcon(navigateCircle);
 }
 
 function setProfileTabIcon() {
@@ -171,14 +171,14 @@ function setProfileTabIcon() {
     <IonContent>
     <IonTabs>
       <IonRouterOutlet>
-        <Route path="/menuTab" component={MenuTab} exact={true} />
-        <Route path="/menuTab/top10/" component={TopTen}/>
-        <Route path="/menuTab/info/" component={GetInfo}/>
-        <Route path="/menuTab/termsandconditions/" component={TermsOfUse}/>
-        <Route path="/helpTab" component={HelpTab} exact={true} />
-        <Route path="/mapTab" component={MapTab} exact={true} />
-        <Route path="/mapTab/makerequest/" component={MakeRequest}/>
-        <Route path="/profileTab" component={ProfileTab} exact={true} />
+        <Route path="/:tab(menuTab)" component={MenuTab} exact={true} />
+        <Route path="/:tab(menuTab)/top10/" component={TopTen}/>
+        <Route path="/:tab(menuTab)/info/" component={GetInfo}/>
+        <Route path="/:tab(menuTab)/termsandconditions/" component={TermsOfUse}/>
+        <Route path="/:tab(helpTab)" component={HelpTab} exact={true} />
+        <Route path="/:tab(mapTab)" component={MapTab} exact={true} />
+        <Route path="/:tab(mapTab)/makerequest/" component={MakeRequest}/>
+        <Route path="/:tab(profileTab)" component={ProfileTab} exact={true} />
         <Route path="/edityourprofile" component={EditYourProfile}/>
         <Route path="/updatepassword" component={UpdatePassword}/>
         <Route path="/reportuser" component={ReportUser}/>

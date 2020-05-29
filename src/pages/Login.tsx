@@ -22,12 +22,14 @@ const Login: React.FC = () => {
     
     console.log(`${res ? 'login success' : 'login failed' }`)
     if (res) {
+      window.location.reload();
       if(email === "admin@neighburly.se"){
         history.replace('/adminpage');
         toast("Log in as admin successful!", 1500);
       }
       else{
-      history.replace('/tabs');
+      history.replace('/maptab');
+      toast("Log in successful!", 1500);
       }
       
     }
@@ -49,7 +51,7 @@ const Login: React.FC = () => {
           <IonList>
             <IonItem>
             <IonLabel position="floating"> Email address</IonLabel>
-            <IonInput
+            <IonInput type="email"
           onIonChange={(e: any) => setEmail(e.target.value)} /></IonItem>
           <IonItem>
           <IonLabel position="floating"> Password</IonLabel>

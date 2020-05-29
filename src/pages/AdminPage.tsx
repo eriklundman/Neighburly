@@ -62,14 +62,14 @@ const AdminPage: React.FC = () => {
             </IonContent>
             <IonFooter>
                 <IonToolbar>
-                    <IonButtons>
-                        <IonButton color="danger" onClick={() => {
+                    <IonItem detail={false} lines="none" button onClick={() => {
                             logoutUser()
                             window.location.reload();
                         }}>
+                            <IonLabel color="danger">
                             Log Out
-                        </IonButton>
-                    </IonButtons>
+                            </IonLabel>
+                    </IonItem>
                 </IonToolbar>
             </IonFooter>
         </IonPage>

@@ -47,7 +47,7 @@ const RoutingSystem: React.FC = () => {
   return (
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/tabs" component={Tabs} exact />
+        <Route path="/tabs" component={Tabs}/>
         <Route path="/login" component={Login} exact />
         <Route path="/register" component={Register} exact />
         <Route path="/termsofuse" component={TermsOfUseRegister} exact />

@@ -45,7 +45,6 @@ const Request: React.FC<any> = (props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showForceRateAlert, setShowForceRateAlert] = useState(false);
-  const [showHasRatedAlert, setShowHasRatedAlert] = useState(false);
   const [hasRated, setHasRated] = useState(false);
   const [rating, setRating] = useState(0);
   let userRef: any = firebase.auth().currentUser;
@@ -71,6 +70,8 @@ const Request: React.FC<any> = (props) => {
   });
 
   const [showActionSheet, setShowActionSheet] = useState(false);
+  const [showActionSheetRated, setShowActionSheetRated] = useState(false);
+
 
   let icon: any;
   if (props.item.type === "shopping") {
@@ -259,9 +260,9 @@ const Request: React.FC<any> = (props) => {
     <IonCard class={props.type + "class"}>
       <IonCardHeader>
         <IonCardSubtitle className={props.type}>{text}</IonCardSubtitle>
-        <IonBadge color="success">{pending}</IonBadge>
-        <IonBadge color="danger">{deleteMessage}</IonBadge>
-        <IonBadge>{completeMessage}</IonBadge>
+        <IonBadge className="request-state-badge" color="success">{pending}</IonBadge>
+        <IonBadge className="request-state-badge" color="danger">{deleteMessage}</IonBadge>
+        <IonBadge className="request-state-badge">{completeMessage}</IonBadge>
 
         {notice && (
           <IonBadge className="chatt-badge" color="danger">
@@ -291,7 +292,7 @@ const Request: React.FC<any> = (props) => {
               setShowPopover({ open: true, event: e.nativeEvent })
             }
           >
-            <h3>{name}</h3>
+            <h3 className="request-name">{name}</h3>
           </IonButton>
         </IonCardTitle>
       </IonCardHeader>
@@ -304,7 +305,7 @@ const Request: React.FC<any> = (props) => {
           userRef &&
           userRef.uid === props.item.r_id ? (
             <IonButtons slot="end">
-              <IonButton onClick={(e) => setShowActionSheet(true)} fill="clear">
+              <IonButton onClick={(e) => hasRated ? setShowActionSheetRated(true): setShowActionSheet(true)} fill="clear">
                 <IonIcon color="tertiary" icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
@@ -312,7 +313,7 @@ const Request: React.FC<any> = (props) => {
             userRef &&
             userRef.uid === props.item.h_id ? (
             <IonButtons slot="end">
-              <IonButton onClick={() => setShowActionSheet(true)} fill="clear">
+              <IonButton onClick={() => hasRated ? setShowActionSheetRated(true): setShowActionSheet(true)} fill="clear">
                 <IonIcon color="tertiary" icon={ellipsisHorizontal} />
               </IonButton>
             </IonButtons>
@@ -331,7 +332,7 @@ const Request: React.FC<any> = (props) => {
             <IonButtons slot="end">
                 <IonButton
                     onClick={(e) =>
-                        setShowActionSheet(true)
+                      hasRated ? setShowActionSheetRated(true): setShowActionSheet(true)
                     }
                     fill="clear"
                 >
@@ -351,9 +352,29 @@ const Request: React.FC<any> = (props) => {
               icon: checkmarkOutline,
               cssClass: "action-sheet-done",
               handler: () => {
-                hasRated ? setShowHasRatedAlert(true) : setShowAlert(true);
+                setShowAlert(true);
               }
             },{
+              text: 'Delete request',
+              role:'destructive',
+              icon: trashOutline,
+              handler: () => {
+                otherAccept ? setShowForceRateAlert(true) : setShowDeleteAlert(true)
+              }
+            },{
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'action-sheet-cancel',
+            }
+            
+          ]}
+        ></IonActionSheet>
+
+        <IonActionSheet
+          isOpen={showActionSheetRated}
+          onDidDismiss={() => setShowActionSheetRated(false)}
+          buttons={[
+           {
               text: 'Delete request',
               role:'destructive',
               icon: trashOutline,
@@ -403,6 +424,7 @@ const Request: React.FC<any> = (props) => {
             ]}
         />
 
+<<<<<<< Updated upstream
         <IonAlert
             isOpen={showHasRatedAlert}
             onDidDismiss={() => setShowHasRatedAlert(false)}
@@ -428,6 +450,8 @@ const Request: React.FC<any> = (props) => {
             ]}
         />
 
+=======
+>>>>>>> Stashed changes
         <IonPopover
           cssClass="ion-popover"
           animated={true}
