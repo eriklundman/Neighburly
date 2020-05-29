@@ -93,7 +93,7 @@ const Chat: React.FC<any> = (props) => {
                   <IonTitle color="tertiary">{user1}</IonTitle>}
 
         <IonButtons slot="start">
-        <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/HelpTab" />
+        <IonBackButton text="" icon={chevronBackOutline} color="tertiary" defaultHref="/helpTab" />
       </IonButtons>
       </IonToolbar>
       </IonHeader>

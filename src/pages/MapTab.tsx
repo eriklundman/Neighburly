@@ -9,7 +9,7 @@ import {
   IonIcon,
   IonButtons,
   IonList,
-  IonItem, IonFooter,
+  IonItem, IonFooter, useIonViewDidLeave,
 
 } from "@ionic/react";
 import SimpleMap from "../components/Map1";
@@ -104,6 +104,10 @@ const MapTab: React.FC = () => {
     }
     return false
   }
+
+  useIonViewDidLeave(() => {
+    setShowModal(false);
+})
 
 
   return (
