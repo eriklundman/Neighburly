@@ -21,7 +21,7 @@ import * as firebase from "firebase";
 const db = firebase.firestore();
 
 const ProfileTab: React.FC = () => {
-  const [value, setValue] = useState("helper");
+  const [value, setValue] = useState<any>("helper");
   const [stars, setStars] = useState(3);
   const [helps, setHelps] = useState(0);
   const [receives, setReceives] = useState(0);
@@ -58,13 +58,12 @@ const ProfileTab: React.FC = () => {
       <IonRow className="ion-align-items-stretch">
         <IonSegment className="segment-profile"
           value={value}
-          onIonChange={(e) => console.log("Segment selected", e.detail.value)}
+          onIonChange={(e) => setValue(e.detail.value)}
         >
-          <IonSegmentButton onClick={() => setValue("helper")} value="helper">
+          <IonSegmentButton value="helper">
             <IonLabel color="secondary">Helper</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton
-            onClick={() => setValue("receiver")}
             value="receiver"
           >
             <IonLabel color="secondary">Receiver</IonLabel>

@@ -158,4 +158,12 @@ text-align: center;
     margin:0;
 }
 
+.request-state-badge{
+    margin-top: 0.3em;
+}
+
+.request-name{
+    margin:0;
+}
+
 

@@ -388,6 +388,26 @@ const Request: React.FC<any> = (props) => {
           ]}
         ></IonActionSheet>
 
+        <IonActionSheet
+          isOpen={showActionSheetRated}
+          onDidDismiss={() => setShowActionSheetRated(false)}
+          buttons={[
+           {
+              text: 'Delete request',
+              role:'destructive',
+              icon: trashOutline,
+              handler: () => {
+                otherAccept ? setShowForceRateAlert(true) : setShowDeleteAlert(true)
+              }
+            },{
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'action-sheet-cancel',
+            }
+            
+          ]}
+        ></IonActionSheet>
+
         <IonAlert
           isOpen={showDeleteAlert}
           onDidDismiss={() => setShowDeleteAlert(false)}

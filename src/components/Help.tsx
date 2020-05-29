@@ -18,7 +18,7 @@ const db = firebase.firestore();
 /* kolla detta https://www.youtube.com/watch?v=44Avd9NBf7M elements, inte string */
 const Help: React.FC = () => {
   const [info, setInfo] = useState([]);
-  const [defValue, setDefValue] = useState("");
+  const [defValue, setDefValue] = useState<any>("");
   const [id, setId] = useState<any>();
   const [activeHelps, setActiveHelps] = useState<number>();
   const [inactiveHelps, setInctiveHelps] = useState<number>();
@@ -83,16 +83,16 @@ const Help: React.FC = () => {
           <IonRow>
             <IonSegment
               onIonChange={(e) =>
-                console.log("Segment selected", e.detail.value)
+                setDefValue(e.detail.value)
               }
               value={defValue}
             >
 
-              <IonSegmentButton className="segment-help" onClick={()=>setDefValue("activehelps")} value="activehelps">
+              <IonSegmentButton className="segment-help" value="activehelps">
                 <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Ongoing helps</IonLabel>
               </IonSegmentButton>
-              <IonSegmentButton className="segment-help" onClick={()=>setDefValue("inactivehelps")} value="inactivehelps">
+              <IonSegmentButton className="segment-help" value="inactivehelps">
                 <IonBadge className="segmentNotice" color="danger"></IonBadge>
                 <IonLabel color="secondary">Completed helps</IonLabel>
               </IonSegmentButton>
