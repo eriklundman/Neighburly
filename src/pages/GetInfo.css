@@ -6,9 +6,9 @@
 }
 
 
-.link-color{
-    color: #194afb;
-    text-decoration: none;
+.link-colors{
+    color: #001e57;
+    text-decoration: underline;
 }
 
 .design-image{
@@ -56,4 +56,11 @@
     "textarea";
 
 }
+
+
+
+
+
+
+
 

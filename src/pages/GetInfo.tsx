@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonSlides, IonSlide, IonPage, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonImg } from '@ionic/react';
+import { IonSlides, IonSlide, IonPage, IonIcon, IonToolbar, IonTitle, IonButtons, IonBackButton, IonContent, IonHeader, IonImg } from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 import './GetInfo.css';
 import {Link} from 'react-router-dom';
@@ -25,18 +25,20 @@ const GetInfo: React.FC = () => {
             </IonToolbar>
         </IonHeader>
 
-        <IonContent className="ion-padding" fullscreen={true}>
+        <IonContent fullscreen={true} className="ion-padding">
         <IonSlides className="bullet-design" pager={true} options={slideOpts}>
       <IonSlide>
         <div className="grid">
           <div>
-        <h2>Welcome to Neighburly!</h2>
+        <h1>Welcome to Neighburly!</h1>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
         <div>
-        <p style={{fontWeight:"bold"}}>In the following slides you will get a tutorial on how to get started with the Neighburly app.</p>
+        <p>
+        In the following slides you will get a tutorial on how to get started with the Neighburly app.   
+      </p>
         </div>
         </div>
 
@@ -50,7 +52,7 @@ const GetInfo: React.FC = () => {
         <IonImg className="image-slide" src="assets/icon/infoMap.png"/>
         </div>
         <div className="text-container">
-        <p>On the map you can see <b className="text-success">others requests</b>, help people by clicking on them and make <b className="text-warning">your own request</b> by clicking on the <b className="text-danger">"add request"</b> button.</p>
+        <p>On the map you can see <b className="text-success">others requests</b>, help people by clicking on them and make <b className="text-warning">your own request</b> by clicking on the <b className="text-danger">"Add Request"</b> button.</p>
         </div>
         </div>
       </IonSlide>
@@ -63,7 +65,7 @@ const GetInfo: React.FC = () => {
         <IonImg className="image-slide" src="assets/icon/infoAdd.png"/>
         </div>
         <div className="text-container">
-        <p>After clicking the "add request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
+        <p>After clicking the "Add Request" button you get to fill out a form with all the relevant information. When you are done your request will pop up on the map on your chosen location.</p>
         </div>
         </div>
       </IonSlide>
@@ -76,7 +78,7 @@ const GetInfo: React.FC = () => {
         <IonImg className="image-slide" src="assets/icon/infoHelp.png"/>
         </div>
         <div className="text-container">
-        <p>When you want to help someone you click on the <b className="text-danger">request icon </b> on the map, click <b className="text-warning">"help"</b>. You can also see a <b className="text-success">list</b> with all requests within your set radius.</p>
+        <p>When you want to help someone you click on a <b className="text-danger">request icon </b> on the map, click the<b className="text-warning"> "HELP" </b>button. You can also see a <b className="text-success">list</b> with all requests within your set radius.</p>
         </div>
         </div>
       </IonSlide>
@@ -112,10 +114,10 @@ const GetInfo: React.FC = () => {
         <h2>Your requests</h2>
         </div>
         <div className="image-container">
-        <IonImg className="image-slide" src="assets/icon/logga3.png"/>
+        <IonImg className="image-slide" src="assets/icon/infoRequest.png"/>
         </div>
         <div className="text-container">
-          <p>You can find your <b className="text-warning">on-going</b> and <b className="text-danger">completed</b> requests here, this is also where you reach the <b className="text-success">chat</b>.</p>
+          <p>You can find your <b className="text-warning">ongoing</b> and <b className="text-danger">completed</b> requests here, this is also where you reach the <b className="text-success">chat</b>.</p>
         </div>
         </div>
       </IonSlide>
@@ -128,20 +130,20 @@ const GetInfo: React.FC = () => {
         <IonImg className="image-slide" src="assets/icon/infoMenu.png"/>
         </div>
         <div className="text-container">
-        <p>You will always be able to read this information in the menu under the <b className="text-success">"info"</b> section. Don't forget to check if you made it on the <b className="text-danger">top list</b>!</p>
+        <p>You will always be able to read this information in the menu under the <b className="text-success">"Info"</b> section. Don't forget to check if you made it on the <b className="text-danger">top list</b>!</p>
         </div>
         </div>
       </IonSlide>
       <IonSlide>
       <div className="grid">
           <div>
-        <h2>Get started!</h2>
+        <h1>Get started!</h1>
         </div>
         <div>
         <IonImg src="assets/icon/logga3.png"/>
         </div>
-        <div>
-       <b> <Link className="link-color" to="/mapTab">Continue to Neighburly!</Link></b>
+        <div className="hejsan">
+       <h3> <Link className="link-colors" to="/mapTab"><b>Continue to Neighburly!  </b></Link></h3>
         </div>
         </div>
       </IonSlide>
