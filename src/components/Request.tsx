@@ -56,6 +56,8 @@ const Request: React.FC<any> = (props) => {
   const [r_stars, setR_stars] = useState(0);
   const [stars, setStars] = useState(0);
   const [otherAccept, setOtherAccept] = useState(false);
+  const [showHastoRateAlert, setshowHastoRateAlert] = useState(false);
+
 
   const [showPopover, setShowPopover] = useState<{
     open: boolean;
@@ -209,8 +211,8 @@ const Request: React.FC<any> = (props) => {
 
   const doneWithRequest = () => {
     if (rating === 0) {
-      return toast("You have to rate before you are done!");
-    } else {
+      setshowHastoRateAlert(true);
+        } else {
       setShowAlert(false);
 
       let helper: boolean;
@@ -441,6 +443,21 @@ const Request: React.FC<any> = (props) => {
               },
             ]}
         />
+
+<IonAlert
+            isOpen={showHastoRateAlert}
+            onDidDismiss={() => setshowHastoRateAlert(false)}
+            header={"Give rating"}
+            message={"You have to rate before you can mark the request as done"}
+            buttons={[
+              { text: "Ok", cssClass: "alert-buttons",
+              handler: () => {
+                setShowAlert(true)
+              },
+             }, 
+            ]}
+        />
+
 
         <IonPopover
           cssClass="ion-popover"

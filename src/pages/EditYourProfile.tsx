@@ -134,9 +134,9 @@ const EditYourProfile: React.FC = () => {
             header={"Delete Account"}
             message={"Are you sure you want to delete your account?"}
             buttons={[
-              "Cancel",
+              { text: "Cancel", cssClass: "delete-botton" },              
               {
-                text: "Delete",
+                text: "Delete", cssClass: "delete-botton",
 
                 handler: () => {
                   deleteUser();

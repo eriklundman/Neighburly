@@ -6,3 +6,8 @@ display: grid;
   height: 100%;
 }
 
+.delete-botton{
+  color: #194afb !important; 
+  text-align: center;
+}
+
