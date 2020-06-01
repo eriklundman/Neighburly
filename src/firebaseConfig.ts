@@ -368,7 +368,7 @@ export function giveRating(new_rating: any, userId: any, helper: boolean) {
   else if (helper === false) {
     received = 1
   }
-
+if(userData){
   userData.get().then((doc: any) => {
     if (doc !== undefined) {
       let nr = ((doc.data().rating) * (doc.data().numb_of_ratings) + new_rating) / ((doc.data().numb_of_ratings) + 1)
@@ -385,7 +385,7 @@ export function giveRating(new_rating: any, userId: any, helper: boolean) {
       })
     }
   })
-
+}
 }
 
 

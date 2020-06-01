@@ -77,12 +77,17 @@ const App: React.FC = () => {
           window.history.replaceState({}, '', '/tabs')
           //toast("Log in successful!", 1500);
       }
+      else if (user && user.email === "admin@neighburly.se") {
+        console.log("hej")
+        window.history.replaceState({}, '', '/tabs')
+        
+      }
       else {
         window.history.replaceState({}, '', '/')
-        /*if(user && !user.emailVerified){*/
+        /*if(user && !user.emailVerified){
           logoutUser()
-          //toast("Email not verified")
-       // }
+          toast("Email not verified")
+        }*/
       }
       setBusy(false)
     })
