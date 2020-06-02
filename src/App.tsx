@@ -35,7 +35,6 @@ import './theme/variables.css';
 import { getCurrentUser, logoutUser } from './firebaseConfig';
 import AdminPage from './pages/AdminPage';
 import BlockedPage from './pages/BlockedPage';
-import { toast } from './toast';
 import ForgotPassword from './pages/ForgotPasswordPage';
 
 
@@ -60,10 +59,6 @@ const RoutingSystem: React.FC = () => {
     </IonReactRouter>
   )
 }
-
-
-
-
 
 const App: React.FC = () => {
 

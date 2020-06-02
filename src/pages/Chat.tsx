@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import * as firebase from 'firebase'
+import * as firebase from 'firebase';
 import {
     IonContent,
     IonHeader,
@@ -7,7 +7,7 @@ import {
     IonTitle,
     IonToolbar,
     IonButton,
-    IonLabel, IonInput, IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonCol, IonTextarea, useIonViewDidEnter
+    IonItem, IonFooter, IonButtons, IonBackButton , useIonViewDidLeave, IonTextarea, useIonViewDidEnter
 } from '@ionic/react'
 import './Chat.css';
 import {getUserInfo, storeMessage, updateNotice} from "../firebaseConfig";

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   IonPage,
   IonToolbar,
-  IonFooter,
   IonTitle,
   IonHeader,
   IonButtons,

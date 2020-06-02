@@ -103,7 +103,7 @@ const ReportUser: React.FC = (props) => {
 
             <IonItem lines="none">
           <IonRadio slot="start" className="radio-design" value="Innapropriate_content" />
-          <IonLabel color="tertiary">Innapropriate content</IonLabel>
+          <IonLabel color="tertiary">Inappropriate content</IonLabel>
           </IonItem>
           <IonItem lines="none">
           <IonRadio slot="start" className="radio-design" value="Spam/Marketing" />

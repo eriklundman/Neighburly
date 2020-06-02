@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import {
     IonButton,
     IonInput,
     IonPage, IonLabel, IonList, IonContent, IonLoading, IonItem, IonHeader, IonToolbar, IonImg, IonButtons, IonIcon
 } from '@ionic/react';
-import { toast } from "../toast";
 import * as firebase from 'firebase'
 import { chevronBackOutline } from 'ionicons/icons';
 

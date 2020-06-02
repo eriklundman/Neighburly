@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonPage, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput, IonAlert, IonIcon, IonFooter } from '@ionic/react';
-import { toast } from '../toast';
+import { IonPage, IonToolbar, IonGrid, IonTitle, IonHeader, IonContent, IonLabel, IonItem, IonList, IonFooter } from '@ionic/react';
 import { logoutUser } from '../firebaseConfig'
 import ReportsAdmin from '../components/ReportsAdmin';
 import * as firebase from 'firebase'
@@ -10,7 +9,6 @@ const db = firebase.firestore();
 const AdminPage: React.FC = () => {
 
     const [reports, setReports] = useState([]);
-    let userRef: any = firebase.auth().currentUser;
 
     useEffect(() => {
         let repArr: any = [];

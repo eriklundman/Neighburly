@@ -28,12 +28,11 @@ import {
   closeOutline,
 } from "ionicons/icons";
 import StarRatingComponent from "react-star-rating-component";
-import { deleteActiveRequest, giveRating } from "../firebaseConfig";
+import {giveRating } from "../firebaseConfig";
 import "./Request.css";
 
 import * as firebase from "firebase";
 import { useHistory } from "react-router-dom";
-import { toast } from "../toast";
 
 const db = firebase.firestore();
 

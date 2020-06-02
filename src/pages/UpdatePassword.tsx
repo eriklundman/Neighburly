@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import { IonPage, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput } from '@ionic/react';
+import { IonPage, IonToolbar, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonList, IonInput } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
 import { newPw } from "../firebaseConfig";
 import * as firebase from 'firebase'
@@ -9,7 +9,6 @@ import './UpdatePassword.css'
 
 
 const UpdatePassword: React.FC = () => {
-    const db = firebase.firestore();
     const history = useHistory();
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')

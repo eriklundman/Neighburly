@@ -1,3 +1,5 @@
+// This google map component is based on code from 
+
 import React from "react";
 import GoogleMapReact from "google-map-react";
 import Marker from "./MapMarker";
@@ -14,7 +16,7 @@ import {
   cart,
   navigateCircleSharp,
 } from "ionicons/icons";
-import { IonIcon, IonButton, IonAlert, withIonLifeCycle, IonButtons } from "@ionic/react";
+import { IonIcon, IonButton, IonAlert, withIonLifeCycle} from "@ionic/react";
 
 import { Plugins } from "@capacitor/core";
 import * as firebase from 'firebase'

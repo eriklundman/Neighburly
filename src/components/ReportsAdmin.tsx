@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-
     IonCardContent,
     IonCard,
     IonCardTitle,
@@ -10,8 +9,7 @@ import {
     IonButtons,
     IonAlert,
     IonItem,
-    IonIcon,
-
+    IonIcon
 } from "@ionic/react";
 
 import './ReportsAdmin.css'

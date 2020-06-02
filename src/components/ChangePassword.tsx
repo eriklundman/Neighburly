@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton, IonButtons, IonItem, IonText } from '@ionic/react';
+import {IonItem, IonText } from '@ionic/react';
 import { Link } from 'react-router-dom';
 
 

@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {
   IonButton,
   IonInput,
-  IonPage, IonLabel, IonList, IonContent, IonLoading, IonGrid, IonRow, IonItem, IonHeader, IonToolbar, IonImg
+  IonPage, IonLabel, IonList, IonContent, IonLoading, IonItem, IonHeader, IonToolbar, IonImg
 } from '@ionic/react';
 import { loginUser } from '../firebaseConfig'
 import { toast } from "../toast";

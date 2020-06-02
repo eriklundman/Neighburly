@@ -181,80 +181,80 @@ const Tabs: React.FC = () => {
     }
 
 
-    return (
-        <IonContent>
-            <IonTabs>
-                <IonRouterOutlet>
-                    <Route path="/:tab(menuTab)" component={MenuTab} exact={true} />
-                    <Route path="/top10" component={TopTen} />
-                    <Route path="/info" component={GetInfo} />
-                    <Route path="/termsandconditions" component={TermsOfUse} />
-                    <Route path="/:tab(helpTab)" component={HelpTab} exact={true} />
-                    <Route path="/:tab(mapTab)" component={MapTab} exact={true} />
-                    <Route path="/:tab(mapTab)/makerequest/" component={MakeRequest} />
-                    <Route path="/:tab(profileTab)" component={ProfileTab} exact={true} />
-                    <Route path="/edityourprofile" component={EditYourProfile} />
-                    <Route path="/updatepassword" component={UpdatePassword} />
-                    <Route path="/reportuser" component={ReportUser} />
-                    <Route path="/tabs" render={() => <Redirect to="/mapTab" />} exact={true} />
-                </IonRouterOutlet>
-                <IonTabBar slot="bottom">
-                    <IonTabButton className="tabColor" tab="menuTab" href="/menuTab" onClick={() => setMenuTabIcon()}>
-                        <IonIcon icon={menuIcon} />
-                        <IonLabel >Menu</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton className="tabColor" tab="helpTab" href="/helpTab" onClick={() => setHelpTabIcon()}>
-                        {newMessage && <IonBadge color="danger">{messageCounter}</IonBadge>}
-                        <IonIcon icon={helpIcon} />
-                        <IonLabel>Helps</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton className="tabColor" tab="mapTab" href="/mapTab" onClick={() => setMapTabIcon()}>
-                        <IonIcon icon={mapIcon} />
-                        <IonLabel>Requests</IonLabel>
-                    </IonTabButton>
-                    <IonTabButton className="tabColor" tab="profileTab" href="/profileTab" onClick={() => setProfileTabIcon()}>
-                        <IonIcon icon={profileIcon} />
-                        <IonLabel>Profile</IonLabel>
-                    </IonTabButton>
-                </IonTabBar>
-            </IonTabs>
+  return (
+    <IonContent>
+    <IonTabs>
+      <IonRouterOutlet>
+        <Route path="/:tab(menuTab)" component={MenuTab} exact={true} />
+        <Route path="/top10" component={TopTen}/>
+        <Route path="/info" component={GetInfo}/>
+        <Route path="/termsandconditions" component={TermsOfUse}/>
+        <Route path="/:tab(helpTab)" component={HelpTab} exact={true} />
+        <Route path="/:tab(mapTab)" component={MapTab} exact={true} />
+        <Route path="/:tab(mapTab)/makerequest/" component={MakeRequest}/>
+        <Route path="/:tab(profileTab)" component={ProfileTab} exact={true} />
+        <Route path="/edityourprofile" component={EditYourProfile}/>
+        <Route path="/updatepassword" component={UpdatePassword}/>
+        <Route path="/reportuser" component={ReportUser}/>
+        <Route path="/tabs" render={() => <Redirect to="/mapTab"/>} exact={true} />
+      </IonRouterOutlet>
+      <IonTabBar slot="bottom">
+        <IonTabButton className="tabColor" tab="menuTab" href="/menuTab" onClick={()=>setMenuTabIcon()}>
+          <IonIcon icon={menuIcon} />
+          <IonLabel >Menu</IonLabel>
+        </IonTabButton>
+        <IonTabButton className="tabColor" tab="helpTab" href="/helpTab" onClick={()=>setHelpTabIcon()}>
+          {newMessage && <IonBadge color="danger">{messageCounter}</IonBadge>}
+          <IonIcon icon={helpIcon} />
+          <IonLabel>Helps</IonLabel>
+        </IonTabButton>
+        <IonTabButton className="tabColor" tab="mapTab" href="/mapTab" onClick={()=>setMapTabIcon()}>
+          <IonIcon icon={mapIcon} />
+          <IonLabel>Requests</IonLabel>
+        </IonTabButton>
+        <IonTabButton className="tabColor" tab="profileTab" href="/profileTab" onClick={()=>setProfileTabIcon()}>
+          <IonIcon icon={profileIcon} />
+          <IonLabel>Profile</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
 
-            {alertInfo.map((item: any, index: number) =>
-                <IonModal key={index} cssClass="accepted-modal" isOpen={showAlert} backdropDismiss={false}>
-                    <IonCard className="accepted-card">
-                        <h3 className="title-design">{item.fn} {item.ln[0]} wants to help!</h3>
-                        <div className="rating-design"
-                            style={{ fontSize: 25 }}>
-                            <StarRatingComponent
-                                name="rate1"
-                                starCount={5}
-                                value={rating}
-                                editing={false}
-                                starColor="#194afb"
-                                emptyStarColor="#bbd0ff"
-                            />
+        {alertInfo.map((item: any, index: number) =>
+        <IonModal key={index} cssClass="accepted-modal" isOpen={showAlert} backdropDismiss={false}>
+            <IonCard className="accepted-card">
+                <h3 className="title-design">{item.fn } {item.ln[0]} wants to help!</h3>
+                <div  className="rating-design"
+                      style={{ fontSize: 25 }}>
+                    <StarRatingComponent
+                        name="rate1"
+                        starCount={5}
+                        value={rating}
+                        editing={false}
+                        starColor="#194afb"
+                        emptyStarColor="#bbd0ff"
+                    />
 
-                        </div>
-                        <h5 className="info-text">Your request:</h5>
-                        <p className="info-text">{item.description}</p>
+                </div>
+                <h5 className="info-text">Your request:</h5>
+                <p className="info-text">{item.description}</p>
 
-                        <p className="info-text" style={{ fontWeight: "bold" }}>Accept the help so you can chat and make arrangements</p>
+                <p className="info-text" style={{fontWeight:"bold"}}>Accept the help so you can chat and make arrangements</p>
 
-                        <IonItem></IonItem>
-                        <IonButtons className="buttons-accepted">
-                            <IonButton
-                                className="cancel-button"
-                                fill="clear"
-                                expand="full"
-                                onClick={() => declineRequest(item.req_id)}
-                            >
-                                Cancel
+                <IonItem></IonItem>
+            <IonButtons className="buttons-accepted">
+                <IonButton
+                    className="cancel-button"
+                    fill="clear"
+                    expand="full"
+                    onClick={() => declineRequest(item.req_id)}
+                >
+                    Decline
                 </IonButton>
-                            <IonButton expand="full" fill="clear" className="done-button" onClick={() => acceptRequest(item.req_id)}>Accept request</IonButton>
-                        </IonButtons>
-                    </IonCard>
-                </IonModal>)
-            }
+                <IonButton expand="full" fill="clear" className="done-button" onClick={() => acceptRequest(item.req_id)}>Accept help</IonButton>
+            </IonButtons>
+            </IonCard>
+        </IonModal>)
+        }
 
             {helpAccepted.map((item: any, index: number) =>
                 <IonModal key={index} cssClass="accepted-modal" isOpen={showAlert2} backdropDismiss={false}>

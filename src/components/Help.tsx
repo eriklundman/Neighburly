@@ -6,7 +6,7 @@ import {
   IonSegment,
   IonRow,
   IonGrid,
-  IonList, IonBadge, IonLoading,
+  IonList, IonBadge
 } from "@ionic/react";
 import Request from "../components/Request";
 import * as firebase from "firebase";

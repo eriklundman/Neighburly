@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { IonPage, IonHeader, IonContent, IonToolbar, IonTitle, IonButtons, IonBackButton, IonItem, IonLabel, useIonViewDidEnter, IonBadge, IonList, IonLoading } from '@ionic/react';
 import { chevronBackOutline } from 'ionicons/icons';
 import * as firebase from "firebase";

@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import { IonPage, IonImg, IonToolbar, IonGrid, IonTitle, IonHeader, IonButtons, IonBackButton, IonContent, IonLabel, IonItem, IonButton, IonRow, IonList, IonInput, IonFooter } from '@ionic/react';
+import { IonPage, IonImg, IonToolbar, IonHeader, IonButtons, IonContent, IonButton, IonFooter } from '@ionic/react';
 import { logoutUser } from '../firebaseConfig';
 import "./BlockedPage.css";
 import * as firebase from "firebase";
